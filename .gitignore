@@ -1,0 +1,33 @@
+# ── Intermédiaires de rendu ──────────────────────────────
+.cache/
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+
+# ── Sorties (lourdes par nature) ─────────────────────────
+# Les livrables restent locaux ; forcer l'ajout si besoin :
+#   git add -f output/mon-livrable.mp4
+output/*
+!output/README.md
+!output/.gitkeep
+projects/*/renders/
+
+# ── Médias lourds (rush, audio) ──────────────────────────
+# Polices et images restent versionnées ; vidéos/audio non.
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.m4v
+*.wav
+*.mp3
+*.m4a
+*.aac
+*.flac
+*.aiff
+*.ogg
+
+# Garder les dossiers vides
+!**/.gitkeep
