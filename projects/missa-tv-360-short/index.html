@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="fr" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: 'Nunito'; font-weight: 200 1000; src: url('vendor/Nunito-Variable.ttf') format('truetype'); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #060a14; }
+      body { font-family: 'Nunito', sans-serif; font-weight: 900; }
+      #root { width: 100%; height: 100%; position: relative; }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .sin { position: absolute; inset: 0; }
+      .bg { position: absolute; inset: -60px; background-size: cover; background-position: center; }
+      .shade { position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(4,7,15,.5) 0%, rgba(4,7,15,.1) 45%, rgba(4,7,15,.8) 100%); }
+      .k { position: absolute; left: 0; width: 100%; text-align: center; }
+      .card { position: absolute; border-radius: 44px; overflow: hidden;
+        box-shadow: 0 40px 120px rgba(0,0,0,.65); border: 4px solid rgba(255,255,255,.14); }
+      .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .cap {
+        position: absolute; left: 90px; right: 90px; bottom: 130px;
+        text-align: center; color: #ffffff; font-weight: 800; font-size: 42px;
+        line-height: 1.4; background: rgba(4, 7, 15, .68); border: 2px solid rgba(248, 227, 0, .4);
+        border-radius: 36px; padding: 26px 34px; opacity: 0;
+      }
+      #vig { position: absolute; inset: 0; pointer-events: none;
+        background: radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(0,0,0,.38) 100%); }
+      /* S1 */
+      #t1a { top: 520px; font-size: 92px; color: #ffffff; }
+      #t1b { top: 640px; font-size: 92px; color: #f8e300; }
+      #t1c { top: 800px; font-size: 44px; color: #b9c4e2; font-weight: 800; }
+      .xb { position: absolute; width: 110px; height: 110px; border-radius: 50%; background: #d92626;
+        color: #fff; font-size: 58px; display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 12px 40px rgba(217,38,38,.45); }
+      #x1 { right: 140px; top: 250px; } #x2 { right: 320px; top: 380px; }
+      /* S2 */
+      #card2 { left: 65px; top: 400px; width: 950px; height: 534px; }
+      #tile { position: absolute; left: 438px; top: 552px; width: 200px; height: 200px; border-radius: 40px;
+        box-shadow: 0 20px 60px rgba(0,0,0,.7); }
+      #t2 { top: 1010px; font-size: 54px; color: #ffffff; }
+      #t2 em { font-style: normal; color: #7dd87d; }
+      /* S3 */
+      .stat { position: absolute; left: 0; width: 100%; text-align: center; }
+      .stat .num { font-size: 150px; text-shadow: 0 10px 50px rgba(0,0,0,.8); }
+      .stat .lbl { font-size: 46px; font-weight: 800; letter-spacing: .06em; color: #ffffff; text-shadow: 0 6px 30px rgba(0,0,0,.9); }
+      #st1 { top: 470px; } #st1 .num { color: #58d068; }
+      #st2 { top: 880px; } #st2 .num { color: #f8e300; }
+      /* S4 */
+      #p1 { top: 560px; font-size: 54px; color: #ffffff; letter-spacing: .1em; font-weight: 800; }
+      #price { position: absolute; left: 50%; top: 700px; margin-left: -440px; width: 880px; height: 250px;
+        background: #f8e300; border-radius: 60px; display: flex; align-items: center; justify-content: center;
+        overflow: hidden; box-shadow: 0 24px 90px rgba(248,227,0,.35); }
+      #price b { color: #1746b4; font-size: 112px; }
+      #price i { color: #1ca23e; font-size: 58px; font-style: normal; margin-left: 22px; }
+      .shine { position: absolute; top: -20%; bottom: -20%; left: -180px; width: 140px;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.5), rgba(255,255,255,0));
+        transform: skewX(-20deg); }
+      /* S5 */
+      #glow5 { position: absolute; left: 50%; top: 720px; width: 980px; height: 980px;
+        margin-left: -490px; margin-top: -490px;
+        background: radial-gradient(circle, rgba(248,227,0,.38) 0%, rgba(248,227,0,0) 65%); }
+      #logoF { position: absolute; left: 50%; top: 400px; margin-left: -320px; width: 640px; height: 640px;
+        border-radius: 92px; box-shadow: 0 40px 120px rgba(0,0,0,.65); }
+      #tag { top: 1100px; font-size: 58px; color: #f8e300; }
+      #cta { position: absolute; left: 50%; top: 1270px; margin-left: -380px; width: 760px; height: 150px;
+        background: #1ca23e; color: #ffffff; font-size: 52px; display: flex; align-items: center;
+        justify-content: center; border-radius: 80px; box-shadow: 0 20px 70px rgba(28,162,62,.5);
+        overflow: hidden; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="18.74" data-width="1080" data-height="1920">
+
+      <div id="sc1" class="scene clip" data-start="0" data-duration="3.12" data-track-index="0">
+        <div class="sin" id="sin1">
+          <div id="bg1" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
+          <div class="shade"></div>
+          <div id="t1a" class="k">PLUSIEURS</div>
+          <div id="t1b" class="k">ABONNEMENTS ?</div>
+          <div id="t1c" class="k">…pour les mêmes chaînes. STOP.</div>
+          <div id="x1" class="xb">✕</div><div id="x2" class="xb">✕</div>
+        </div>
+      </div>
+
+      <div id="sc2" class="scene clip" data-start="2.77" data-duration="4.94" data-track-index="1">
+        <div class="sin" id="sin2">
+          <div id="bg2" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
+          <div class="shade"></div>
+          <div id="card2" class="card"><img src="assets/salon-tv.webp" alt="Salon TV Android" /></div>
+          <img id="tile" src="assets/logo-missa.png" alt="MISSA TV 360" />
+          <div id="t2" class="k">DIRECT SUR TA <em>TV ANDROID</em></div>
+        </div>
+      </div>
+
+      <div id="sc3" class="scene clip" data-start="7.36" data-duration="3.86" data-track-index="2">
+        <div class="sin" id="sin3">
+          <div id="bg3" data-layout-allow-overflow class="bg" style="background-image:url('assets/cinema.jpg')"></div>
+          <div class="shade"></div>
+          <div id="st1" class="stat"><div class="num" id="n1">0</div><div class="lbl">CHAÎNES TV</div></div>
+          <div id="st2" class="stat"><div class="num" id="n2">0</div><div class="lbl">FILMS &amp; SÉRIES</div></div>
+        </div>
+      </div>
+
+      <div id="sc4" class="scene clip" data-start="10.87" data-duration="3.78" data-track-index="3">
+        <div class="sin" id="sin4">
+          <div id="bg4" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
+          <div class="shade"></div>
+          <div id="p1" class="k">UN SEUL ABONNEMENT</div>
+          <div id="price"><b>5 000 FCFA</b><i>/ AN</i><div class="shine" id="sh4"></div></div>
+        </div>
+      </div>
+
+      <div id="sc5" class="scene clip" data-start="14.3" data-duration="4.44" data-track-index="4">
+        <div class="sin" id="sin5">
+          <div id="bg5" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
+          <div class="shade"></div>
+          <div id="glow5" data-layout-allow-overflow></div>
+          <img id="logoF" src="assets/logo-missa.png" alt="MISSA TV 360" />
+          <div id="tag" class="k">LA TÉLÉ COMME TU L'AIMES.</div>
+          <div id="cta">ABONNE-TOI MAINTENANT<div class="shine" id="sh5"></div></div>
+        </div>
+      </div>
+
+      <div id="vig"></div>
+
+      <div id="cap1" class="cap clip" data-start="0.1" data-duration="2.5" data-track-index="6">Plusieurs abonnements ? Stop.</div>
+      <div id="cap2" class="cap clip" data-start="2.77" data-duration="4.3" data-track-index="7">Missa TV 360, direct sur ta TV Android.</div>
+      <div id="cap3" class="cap clip" data-start="7.36" data-duration="3.2" data-track-index="8">3 000 chaînes, 9 000 films et séries.</div>
+      <div id="cap4" class="cap clip" data-start="10.87" data-duration="3.1" data-track-index="9">5 000 francs par an, même en petit réseau.</div>
+      <div id="cap5" class="cap clip" data-start="14.3" data-duration="3.8" data-track-index="10">Missa TV 360. Abonne-toi maintenant.</div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines = window.__timelines || {};
+      const fmt = v => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      const kb = (sel, start, dur) => tl.fromTo(sel, { scale: 1 }, { scale: 1.08, duration: dur, ease: "none" }, start);
+
+      kb("#bg1", 0, 3.12); kb("#card2 img", 2.77, 4.94); kb("#bg3", 7.36, 3.86); kb("#bg4", 10.87, 3.78); kb("#bg5", 14.3, 4.44);
+
+      /* S1 */
+      tl.fromTo("#t1a", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45, ease: "power3.out" }, .15);
+      tl.fromTo("#t1b", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45, ease: "power3.out" }, .45);
+      tl.fromTo("#t1c", { scale: .5, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .4, ease: "back.out(2.2)" }, 1.0);
+      tl.fromTo("#x1", { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .35, ease: "back.out(2)" }, 1.5);
+      tl.fromTo("#x2", { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .35, ease: "back.out(2)" }, 1.9);
+
+      /* S2 */
+      tl.fromTo("#sin2", { opacity: 0 }, { opacity: 1, duration: .35, ease: "power1.inOut" }, 2.77);
+      tl.fromTo("#card2", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 2.9);
+      tl.fromTo("#tile", { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .5, ease: "back.out(1.9)" }, 3.7);
+      tl.fromTo("#t2", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45 }, 4.3);
+
+      /* S3 */
+      tl.fromTo("#sin3", { opacity: 0 }, { opacity: 1, duration: .35, ease: "power1.inOut" }, 7.36);
+      tl.fromTo("#st1", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .4 }, 7.5);
+      const o1 = { v: 0 };
+      tl.to(o1, { v: 3000, duration: 1.0, ease: "power2.out", onUpdate: () => { document.getElementById("n1").textContent = fmt(o1.v); } }, 7.55);
+      tl.fromTo("#st2", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .4 }, 8.8);
+      const o2 = { v: 0 };
+      tl.to(o2, { v: 9000, duration: 1.0, ease: "power2.out", onUpdate: () => { document.getElementById("n2").textContent = fmt(o2.v); } }, 8.85);
+
+      /* S4 */
+      tl.fromTo("#sin4", { opacity: 0 }, { opacity: 1, duration: .35, ease: "power1.inOut" }, 10.87);
+      tl.fromTo("#p1", { y: -30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .35 }, 11.0);
+      tl.fromTo("#price", { scale: .3, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .55, ease: "elastic.out(1, .55)" }, 11.3);
+      tl.fromTo("#sh4", { x: 0 }, { x: 1150, duration: .8, ease: "power2.inOut" }, 11.9);
+
+      /* S5 */
+      tl.fromTo("#sin5", { opacity: 0 }, { opacity: 1, duration: .35, ease: "power1.inOut" }, 14.3);
+      tl.fromTo("#glow5", { autoAlpha: 0, scale: .5 }, { autoAlpha: 1, scale: 1, duration: .7 }, 14.4);
+      tl.fromTo("#logoF", { scale: .4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .55, ease: "back.out(1.7)" }, 14.5);
+      tl.fromTo("#tag", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45 }, 15.3);
+      tl.fromTo("#cta", { scale: .6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .45, ease: "back.out(1.8)" }, 15.9);
+      tl.fromTo("#sh5", { x: 0 }, { x: 950, duration: .7, ease: "power2.inOut" }, 16.5);
+      tl.to("#cta", { scale: 1.06, duration: .45, yoyo: true, repeat: 3, ease: "sine.inOut" }, 16.7);
+
+      /* captions */
+      tl.fromTo("#cap1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, .1);
+      tl.fromTo("#cap2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 2.77);
+      tl.fromTo("#cap3", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 7.36);
+      tl.fromTo("#cap4", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 10.87);
+      tl.fromTo("#cap5", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 14.3);
+
+      tl.to("#root", { autoAlpha: 0, duration: .5 }, 18.24);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
