@@ -28,3 +28,6 @@ projects/*/renders/
 
 # Garder les dossiers vides
 !**/.gitkeep
+
+# Téléchargements temporaires image_search
+image-search/
