@@ -8,9 +8,8 @@ MD := ./md
 help: ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
 
-bootstrap: ## Installe les dépendances Python du moteur
-	pip3 install --break-system-packages -q imageio-ffmpeg pillow numpy av
-	$(MD) doctor
+bootstrap: ## Installe TOUT (Python + Node + ffmpeg/ffprobe + Chromium)
+	bash scripts/bootstrap.sh
 
 doctor: ## Diagnostic complet du moteur
 	$(MD) doctor
@@ -45,3 +44,11 @@ list: ## Liste des projets
 clean: ## Nettoie les intermédiaires : make clean P=ma-video
 	@test -n "$(P)" || (echo "Usage : make clean P=ma-video" && exit 1)
 	$(MD) clean $(P)
+
+hf-check: ## Contrôle un projet HyperFrames : make hf-check P=hf-demo
+	@test -n "$(P)" || (echo "Usage : make hf-check P=hf-demo" && exit 1)
+	./scripts/hf check projects/$(P)
+
+hf-render: ## Rend un projet HyperFrames : make hf-render P=hf-demo [Q=draft|looks|delivery]
+	@test -n "$(P)" || (echo "Usage : make hf-render P=hf-demo [Q=delivery]" && exit 1)
+	./scripts/hf render projects/$(P) --quality $(or $(Q),draft) --output output/$(P).mp4

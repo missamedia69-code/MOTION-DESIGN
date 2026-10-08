@@ -62,10 +62,23 @@ Procédures de production : **[docs/PROCEDURES.md](docs/PROCEDURES.md)**
   avec fondus
 - **Formats** : 16:9, 9:16 (Reels/TikTok), 1:1, 4:5, 21:9, 720p — fps configurable
 
+## Moteur n°2 : HyperFrames (HTML → vidéo)
+
+Le dépôt embarque aussi **HyperFrames** (HeyGen) : 21 skills d'agent
+(`.agents/skills/`), CLI via `./scripts/hf`, rendu Chromium headless embarqué
+adapté au sandbox (voir [docs/HYPERFRAMES.md](docs/HYPERFRAMES.md)).
+
+```bash
+./scripts/hf check  projects/hf-demo                 # gate qualité
+./scripts/hf render projects/hf-demo --quality draft --output output/hf-demo.mp4
+```
+
 ## Dépendances
 
 `python3` · `imageio-ffmpeg` (binaire ffmpeg statique) · `av` (PyAV) · `pillow` ·
-ImageMagick (optionnel, conversion SVG→PNG). Installation : `make bootstrap`.
+ImageMagick (optionnel, conversion SVG→PNG) · `node ≥22` (`hyperframes`,
+`@sparticuz/chromium`, `gsap` épinglés dans `package.json`).
+Installation complète : `make bootstrap`.
 
 ---
 Licence Apache-2.0 — voir [LICENSE](LICENSE).

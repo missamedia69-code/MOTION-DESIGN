@@ -108,6 +108,20 @@ de première/dernière image, audio fondu en sortie.
 
 ---
 
+## P8 · Moteur HyperFrames (HTML → vidéo)
+
+Pour un motion design riche (GSAP, CSS, web components) :
+
+```bash
+./scripts/hf check  projects/<nom>      # gate qualité (lint+runtime+motion+contraste)
+./scripts/hf render projects/<nom> --quality draft --output output/<nom>.mp4
+```
+
+Procédure complète (init, vendoring CDN **obligatoire**, routage des skills) :
+**[HYPERFRAMES.md](HYPERFRAMES.md)**.
+
+---
+
 ## Dépannage
 
 | Symptôme | Cause probable | Solution |
