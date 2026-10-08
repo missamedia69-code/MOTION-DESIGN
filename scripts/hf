@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Wrapper HyperFrames : prépare ffmpeg/ffprobe + Chromium embarqué puis exécute la CLI.
+# Usage : ./scripts/hf <commande hyperframes>   (ex. ./scripts/hf doctor --json)
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+# ffmpeg/ffprobe sur PATH (voir bootstrap.sh) — repli local si absent
+if ! command -v ffmpeg >/dev/null 2>&1; then
+  FFIO=$(python3 -c "import imageio_ffmpeg; print(imageio_ffmpeg.get_ffmpeg_exe())" 2>/dev/null || true)
+  [ -n "$FFIO" ] && export PATH="$(dirname "$FFIO"):$PATH"
+fi
+
+# Chromium embarqué (idempotent)
+if [ ! -x /tmp/chromium ] || [ ! -f /tmp/al2023/lib/libnss3.so ]; then
+  node scripts/ensure-browser.mjs >/dev/null
+fi
+export LD_LIBRARY_PATH="/tmp/al2023/lib:/tmp${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+export HYPERFRAMES_BROWSER_PATH="${HYPERFRAMES_BROWSER_PATH:-/tmp/chromium}"
+# sandbox non-root : pas de sandbox Chrome
+export CHROMIUM_FLAGS="${CHROMIUM_FLAGS:---no-sandbox}"
+
+exec npx hyperframes "$@"
