@@ -50,7 +50,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         if self.path in ("/", "/index.html"):
-            body = _section("Sorties (output/)", os.path.join(REPO, "output"), "output")
+            body = _section("Sorties (livrées en artefact)", os.path.join(REPO, ".cache", "rendus"), ".cache/rendus")
             body += _section("Rendus de projets", os.path.join(REPO, "projects"), "projects")
             page = PAGE.format(body=body).encode()
             self.send_response(200)

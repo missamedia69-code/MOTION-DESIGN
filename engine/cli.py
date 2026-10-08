@@ -141,7 +141,7 @@ def main() -> None:
     p.add_argument("--template", default="base")
     p.set_defaults(fn=cmd_new)
 
-    p = sub.add_parser("render", help="rendre un projet vers output/")
+    p = sub.add_parser("render", help="rendre un projet (livrable livré en artefact)")
     p.add_argument("name")
     p.add_argument("--preset", help="mp4-hq|mp4-web|mp4-h265|gif|webm-vp9|mov-alpha")
     p.add_argument("--out", help="chemin de sortie personnalisé")

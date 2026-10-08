@@ -2,7 +2,7 @@
 
 **HyperFrames** (HeyGen) est le second moteur de rendu du dépôt : on écrit du **HTML/CSS/GSAP**
 « seekable » et il produit un MP4 déterministe. Il cohabite avec le moteur déclaratif
-(`./md render`) ; les deux livrent dans `output/`.
+(`./md render`) ; les deux livrent leurs fichiers **en artefact** (temporaire : `.cache/rendus/`).
 
 - **21 skills** installés : `.agents/skills/` (+ `skills-lock.json`). Le routeur est
   `.agents/skills/hyperframes/SKILL.md` — à lire avant toute création.
@@ -54,12 +54,12 @@ enregistrées dans `window.__timelines["main"]` (GSAP `paused: true`).
 ```bash
 ./scripts/hf check  projects/<nom>                    # gate : lint+runtime+layout+motion+contraste
 ./scripts/hf render projects/<nom> --quality draft  \
-  --output output/<nom>.mp4                           # itération rapide
-./scripts/hf render projects/<nom> --quality delivery --output output/<nom>-final.mp4
+  --output .cache/rendus/<nom>.mp4                    # itération rapide
+./scripts/hf render projects/<nom> --quality delivery --output .cache/rendus/<nom>-final.mp4
 ```
 
 Formats dispo : `--format mp4|webm|mov|gif|png-sequence|hls` (mov/webm = transparent).
-Vérifier ensuite : `./md info output/<nom>.mp4`.
+Vérifier ensuite : `./md info .cache/rendus/<nom>.mp4`.
 
 ## Procédure H5 · Prévisualisation & studio
 
@@ -84,4 +84,4 @@ remotion-to-hyperframes… Chaque workflow s'installe à la demande
 | Reproductibilité | project.json | index.html + vendor/ |
 | Rendu alpha | mov-alpha | `--format mov/webm` |
 
-Les deux partagent `assets/` (médias installés via `./md install`) et `output/`.
+Les deux partagent `assets/` (médias installés via `./md install`) ; les livrables sont remis en artefact.

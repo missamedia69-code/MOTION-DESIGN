@@ -331,7 +331,7 @@ def render_project(name: str, export_name: str | None = None, out_path: str | No
     if len(scenes) > 1 and alpha_export:
         _fail("L'export avec canal alpha ne supporte qu'une seule scène (v1).")
 
-    out_dir = os.path.join(REPO, "output")
+    out_dir = os.path.join(REPO, ".cache", "rendus")
     os.makedirs(out_dir, exist_ok=True)
     default_file = f"{name}-{export_name}{exp['ext']}"
     out_path = out_path or proj.get("export", {}).get("filename")

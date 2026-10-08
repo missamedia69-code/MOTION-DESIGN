@@ -13,7 +13,7 @@ Le montage est **déclaratif** : le moteur compile ce fichier en graphe ffmpeg.
                                  // OU objet {"width":1080,"height":1920,"fps":30}
   "export": {
     "preset": "mp4-hq",          // mp4-hq|mp4-web|mp4-h265|gif|webm-vp9|mov-alpha
-    "filename": "livrable.mp4"   // optionnel (déposé dans output/)
+    "filename": "livrable.mp4"   // optionnel (déposé dans .cache/rendus/, livré en artefact)
   },
   "transitions": { "type": "fade", "duration": 0.5 },  // entre scènes (xfade)
   "audio": {                     // piste musicale (optionnelle)

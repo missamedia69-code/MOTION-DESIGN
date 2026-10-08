@@ -66,13 +66,14 @@ Règles d'or :
 ## P4 · Rendu
 
 ```bash
-./md render <nom>                        # MP4 haute qualité → output/
+./md render <nom>                        # MP4 haute qualité → livré en artefact
 ./md render <nom> --preset gif           # GIF animé
 ./md render <nom> --preset mp4-web       # prévisualisation rapide
-./md render <nom> --out output/client/v1.mp4
+./md render <nom> --out .cache/rendus/client-v1.mp4
 ```
 
 Chaque rendu écrit `projects/<nom>/manifest.json` (durée, poids, date, réglages).
+**Convention : plus de dossier `output/` — chaque livrable est remis en artefact.**
 
 ---
 
@@ -80,7 +81,7 @@ Chaque rendu écrit `projects/<nom>/manifest.json` (durée, poids, date, réglag
 
 ```bash
 ./md preview            # serveur HTTP → lien de prévisualisation navigateur
-./md info output/mon-projet-mp4-hq.mp4   # vérif durée / résolution / poids
+./md info .cache/rendus/mon-projet-mp4-hq.mp4   # vérif durée / résolution / poids
 ```
 
 Checklist de validation : durée conforme, texte lisible, aucun clignotement
@@ -90,12 +91,11 @@ de première/dernière image, audio fondu en sortie.
 
 ## P6 · Livraison & suivi Git
 
-- Les livrables restent dans `output/` (non versionnés par défaut).
 - Versionner le **projet** (léger, reproductible) :
   ```bash
   git add projects/<nom>/ assets/ && git commit -m "projet: <nom>"
   ```
-- Un livrable doit être versionné ? `git add -f output/<fichier>`
+- Les livrables ne sont PAS versionnés : ils sont livrés en artefact.
 - Le rendu est toujours reproductible : project.json + assets + `./md render`.
 
 ---
@@ -114,7 +114,7 @@ Pour un motion design riche (GSAP, CSS, web components) :
 
 ```bash
 ./scripts/hf check  projects/<nom>      # gate qualité (lint+runtime+motion+contraste)
-./scripts/hf render projects/<nom> --quality draft --output output/<nom>.mp4
+./scripts/hf render projects/<nom> --quality draft --output .cache/rendus/<nom>.mp4
 ```
 
 Procédure complète (init, vendoring CDN **obligatoire**, routage des skills) :

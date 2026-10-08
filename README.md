@@ -3,7 +3,7 @@
 Ce dépôt est un **moteur de montage motion design** : un espace de travail complet où
 l'on dépose des éléments (polices, logos, rushes, musiques), on décrit un montage de
 façon déclarative (`project.json`), et le moteur produit les livrables (MP4, GIF, WebM,
-ProRes alpha) dans `output/`.
+ProRes alpha) livrés **en artefact** (rendus temporaires dans `.cache/rendus/`).
 
 ## Démarrage rapide
 
@@ -11,7 +11,7 @@ ProRes alpha) dans `output/`.
 make bootstrap                      # dépendances + diagnostic
 ./md new demo --canvas 16x9         # crée projects/demo/project.json
 #   … éditer project.json (le montage se décrit, il ne se code pas)
-./md render demo                    # → output/demo-mp4-hq.mp4
+./md render demo                    # → livrable livré en artefact
 ./md preview                        # prévisualisation navigateur
 ```
 
@@ -27,7 +27,7 @@ MOTION-DESIGN/
 │   └── INVENTORY.md    ← inventaire généré automatiquement
 ├── templates/          ← modèles de projet (base, story)
 ├── docs/               ← procédures (PROCEDURES.md) et spec (SPEC-PROJET.md)
-├── output/             ← LIVRABLES FINAUX
+├── .cache/rendus/        ← rendus temporaires, LIVRÉS EN ARTEFACT (pas de dossier output/)
 └── .cache/             ← intermédiaires de rendu (ignorés par git)
 ```
 
@@ -38,7 +38,7 @@ MOTION-DESIGN/
 | `./md doctor` | diagnostic du moteur |
 | `./md install <fichiers\|URLs>` | installe des éléments dans `assets/` (+ validation + inventaire) |
 | `./md new <nom> --canvas 9x16` | crée un projet depuis un modèle |
-| `./md render <nom> [--preset gif]` | rend le projet vers `output/` |
+| `./md render <nom> [--preset gif]` | rend le projet (livrable livré en artefact) |
 | `./md preview` | serveur de prévisualisation des sorties |
 | `./md inventory` / `./md fonts` / `./md presets` | bibliothèque, polices, presets |
 | `./md info <media>` | analyse d'un média (durée, résolution, codecs) |
@@ -70,7 +70,7 @@ adapté au sandbox (voir [docs/HYPERFRAMES.md](docs/HYPERFRAMES.md)).
 
 ```bash
 ./scripts/hf check  projects/hf-demo                 # gate qualité
-./scripts/hf render projects/hf-demo --quality draft --output output/hf-demo.mp4
+./scripts/hf render projects/hf-demo --quality draft --output .cache/rendus/hf-demo.mp4
 ```
 
 ## Dépendances

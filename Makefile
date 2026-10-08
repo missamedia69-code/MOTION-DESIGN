@@ -51,4 +51,4 @@ hf-check: ## Contrôle un projet HyperFrames : make hf-check P=hf-demo
 
 hf-render: ## Rend un projet HyperFrames : make hf-render P=hf-demo [Q=draft|looks|delivery]
 	@test -n "$(P)" || (echo "Usage : make hf-render P=hf-demo [Q=delivery]" && exit 1)
-	./scripts/hf render projects/$(P) --quality $(or $(Q),draft) --output output/$(P).mp4
+	./scripts/hf render projects/$(P) --quality $(or $(Q),draft) --output .cache/rendus/$(P).mp4

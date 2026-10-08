@@ -5,12 +5,9 @@ __pycache__/
 node_modules/
 .DS_Store
 
-# ── Sorties (lourdes par nature) ─────────────────────────
-# Les livrables restent locaux ; forcer l'ajout si besoin :
-#   git add -f output/mon-livrable.mp4
-output/*
-!output/README.md
-!output/.gitkeep
+# ── Sorties ──────────────────────────────────────────────
+# Plus de dossier output/ : les livrables sont rendus dans
+# .cache/rendus/ (temporaire) puis LIVRÉS EN ARTEFACT.
 projects/*/renders/
 
 # ── Médias lourds (rush, audio) ──────────────────────────
