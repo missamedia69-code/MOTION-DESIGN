@@ -6,7 +6,7 @@ def save(name, sig, norm=.9):
     w=wave.open(name,'wb'); w.setnchannels(1); w.setsampwidth(2); w.setframerate(SR)
     w.writeframes((sig*32767).astype('<i2').tobytes()); w.close()
 rng=np.random.default_rng(7)
-DUR=48.0; N=int(SR*DUR); t=np.arange(N)/SR
+DUR=52.5; N=int(SR*DUR); t=np.arange(N)/SR
 mix=np.zeros(N)
 def add(s, x):
     i0=int(s*SR); i1=min(N,i0+len(x))
@@ -22,17 +22,17 @@ for b in range(int(DUR/(BEAT/2))):
     sh=(nse-np.roll(nse,1))*np.exp(-tt*46)
     add(b*BEAT/2, sh*(.28 if b%2 else .16))
 basspat=[(0,55,.55),(.9,55,.25),(1.2,65.4,.4),(1.8,49,.5),(2.4,55,.3),(3.0,73.4,.4),(3.6,65.4,.3)]
-for bar in range(12):
+for bar in range(int(DUR/2.4)):
     for o,f,d in basspat:
         L=int(d*SR); tt=np.arange(L)/SR
         add(bar*2.4+o, np.sin(2*np.pi*f*tt)*(1+.4*np.sin(4*np.pi*f*tt))*np.exp(-tt*3.2)*.5)
 kal=[(0,440),(.3,523.25),(.6,587.33),(1.2,659.25),(1.5,587.33),(2.4,523.25),(2.7,440),(3.3,392),(3.9,440),(4.2,523.25)]
-for rep in range(8):
+for rep in range(int(DUR/4.8)):
     for o,f in kal:
         L=int(.7*SR); tt=np.arange(L)/SR
         k=(np.sin(2*np.pi*f*tt)+.5*np.sin(4*np.pi*f*tt)*np.exp(-tt*9)+.2*np.sin(2*np.pi*f*3.01*tt))*np.exp(-tt*5.5)
         add(rep*4.8+o, k*.16)
-for bar in range(12):
+for bar in range(int(DUR/2.4)):
     for o,f in [(0.6,300),(1.5,820),(2.1,300)]:
         L=int(.16*SR); tt=np.arange(L)/SR
         nz=np.diff(np.concatenate(([0],rng.standard_normal(L))))
