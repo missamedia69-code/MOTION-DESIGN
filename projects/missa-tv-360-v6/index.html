@@ -57,9 +57,14 @@
       #st1 { left: 0; } #st1 .num { color: #58d068; }
       #st2 { left: 50%; } #st2 .num { color: #f8e300; }
       /* S4 */
-      #cardA { left: 65px; top: 400px; width: 950px; height: 430px; }
-      #cardB { left: 65px; top: 860px; width: 950px; height: 430px; }
-      #t4 { top: 1340px; font-size: 44px; color: #ffffff; letter-spacing: .04em; }
+      #cardA { left: 65px; top: 380px; width: 455px; height: 400px; }
+      #cardB { left: 560px; top: 380px; width: 455px; height: 400px; }
+      #cardC { left: 65px; top: 810px; width: 455px; height: 400px; }
+      #cardD { left: 560px; top: 810px; width: 455px; height: 400px; }
+      .lab { position: absolute; left: 16px; bottom: 16px; background: rgba(4,7,15,.78);
+        border: 2px solid rgba(248,227,0,.5); border-radius: 26px; padding: 8px 22px;
+        font-size: 30px; color: #ffffff; font-weight: 800; }
+      #t4 { top: 1260px; font-size: 44px; color: #ffffff; letter-spacing: .04em; }
       #t4 em { font-style: normal; color: #7dd87d; }
       /* S5 */
       #t5a { top: 560px; font-size: 76px; color: #ffffff; }
@@ -120,8 +125,10 @@
         <div class="sin" id="sin4">
           <div id="bg4" data-layout-allow-overflow class="bg" style="background-image:url('assets/cinema.jpg')"></div>
           <div class="shade"></div>
-          <div id="cardA" class="card"><img src="assets/foot.jpg" alt="Football" /></div>
-          <div id="cardB" class="card"><img src="assets/famille.jpg" alt="Séries et familles" /></div>
+          <div id="cardA" class="card"><img src="assets/foot2.jpg" alt="Football" /><div class="lab">FOOTBALL</div></div>
+          <div id="cardB" class="card"><img src="assets/films.jpg" alt="Films à succès" /><div class="lab">FILMS À SUCCÈS</div></div>
+          <div id="cardC" class="card"><img src="assets/series.png" alt="Séries africaines" /><div class="lab">SÉRIES AFRICAINES</div></div>
+          <div id="cardD" class="card"><img src="assets/international.jpg" alt="Programmes internationaux" /><div class="lab">INTERNATIONAL</div></div>
           <div id="t4" class="k">FOOTBALL • FILMS • <em>SÉRIES</em> • INTERNATIONAL</div>
         </div>
       </div>
@@ -193,9 +200,11 @@
 
       /* S4 */
       tl.fromTo("#sin4", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 18.47);
-      tl.fromTo("#cardA", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .6, ease: "power3.out" }, 19.0);
-      tl.fromTo("#cardB", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .6, ease: "power3.out" }, 20.6);
-      tl.fromTo("#t4", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 22.2);
+      tl.fromTo("#cardA", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 19.0);
+      tl.fromTo("#cardB", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 20.6);
+      tl.fromTo("#cardC", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 22.2);
+      tl.fromTo("#cardD", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 23.8);
+      tl.fromTo("#t4", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 25.2);
 
       /* S5 */
       tl.fromTo("#sin5", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 27.46);
