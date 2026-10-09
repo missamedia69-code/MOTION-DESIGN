@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>MISSA TV 360 — v9 afro-warm</title>
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Nunito"; src: url("vendor/Nunito-Variable.ttf") format("truetype"); font-weight: 200 1000; }
+      @font-face { font-family: "Montserrat"; src: url("vendor/Montserrat-Black.ttf") format("truetype"); font-weight: 900; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; background: #0b0602; overflow: hidden; }
+      body { font-family: "Nunito", sans-serif; color: #fdf6ea; }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #0b0602; }
+
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .sin { position: absolute; inset: 0; }
+      .wax { position: absolute; inset: -80px; background: url("assets/wax-bg.png") center/cover; opacity: .25;
+        filter: saturate(1.15) brightness(.8); }
+      .warm { position: absolute; inset: 0; background:
+        radial-gradient(ellipse 100% 42% at 50% 0%, rgba(242,163,60,.16), rgba(0,0,0,0) 62%),
+        radial-gradient(ellipse 120% 55% at 50% 102%, rgba(120,45,10,.4), rgba(0,0,0,0) 66%); }
+      .vign { position: absolute; inset: 0; background: radial-gradient(ellipse 82% 62% at 50% 50%, rgba(0,0,0,0) 52%, rgba(0,0,0,.6) 100%); }
+
+      .impact { font-family: "Montserrat", sans-serif; font-weight: 900; text-transform: uppercase; line-height: 1.04; }
+      .amber { color: #f2a33c; }
+      .yellow { color: #f8e300; }
+
+      .cap { position: absolute; left: 80px; right: 80px; bottom: 110px; text-align: center;
+        font-size: 36px; line-height: 1.42; font-weight: 700; color: #fdf6ea;
+        background: rgba(11,6,2,.78); border-left: 6px solid #f2a33c; border-right: 6px solid #f2a33c;
+        border-radius: 10px; padding: 26px 36px; }
+
+      /* S1 */
+      #bg1 { position: absolute; inset: -100px; background: url("assets/salon-afro.jpg") center/cover; filter: brightness(.62) saturate(1.1); }
+      #sh1 { position: absolute; inset: 0; background: linear-gradient(rgba(11,6,2,.25), rgba(11,6,2,.86) 78%); }
+      #t1a { position: absolute; top: 560px; width: 100%; text-align: center; font-size: 52px; font-weight: 800; color: #f2a33c; letter-spacing: .06em; }
+      #t1b { position: absolute; top: 650px; width: 100%; text-align: center; font-size: 108px; }
+      #t1c { position: absolute; top: 790px; width: 100%; text-align: center; font-size: 108px; }
+
+      /* S2 */
+      #glow2 { position: absolute; left: 50%; top: 760px; width: 800px; height: 800px; margin: -400px 0 0 -400px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(248,227,0,.28), rgba(242,163,60,.1) 45%, rgba(0,0,0,0) 70%); }
+      #logo2 { position: absolute; left: 50%; top: 760px; width: 580px; height: 580px; margin: -290px 0 0 -290px;
+        filter: drop-shadow(0 26px 60px rgba(0,0,0,.7)); }
+      #t2 { position: absolute; top: 1130px; width: 100%; text-align: center; font-size: 58px; }
+
+      /* S3 */
+      #boxprod { position: absolute; left: 50%; top: 330px; width: 660px; height: 660px; margin-left: -330px;
+        filter: drop-shadow(0 30px 55px rgba(0,0,0,.75)) drop-shadow(0 0 70px rgba(242,163,60,.35)); }
+      #st1 { position: absolute; top: 1020px; width: 100%; text-align: center; }
+      #st2 { position: absolute; top: 1190px; width: 100%; text-align: center; }
+      .stat .num { font-family: "Montserrat", sans-serif; font-weight: 900; font-size: 100px; color: #f8e300; }
+      .stat .lab { font-size: 42px; font-weight: 800; letter-spacing: .12em; color: #fdf6ea; text-transform: uppercase; }
+      #seal { position: absolute; left: 50%; top: 1400px; width: 620px; height: 130px; margin-left: -310px;
+        display: flex; align-items: center; justify-content: center; border-radius: 999px;
+        background: linear-gradient(90deg, #f8e300, #f2a33c); color: #14100a;
+        font-family: "Montserrat", sans-serif; font-weight: 900; font-size: 54px; letter-spacing: .04em;
+        box-shadow: 0 18px 50px rgba(242,163,60,.35); }
+
+      /* S4 */
+      #t4 { position: absolute; top: 240px; width: 100%; text-align: center; font-size: 74px; }
+      #gal { position: absolute; left: 64px; right: 64px; top: 430px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+      .card { position: relative; height: 570px; border-radius: 26px; overflow: hidden; background: #160b04;
+        border: 3px solid rgba(242,163,60,.65); box-shadow: 0 22px 55px rgba(0,0,0,.6); }
+      .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+      .card .lab { position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 8px 24px; text-align: center;
+        font-family: "Montserrat", sans-serif; font-weight: 900; font-size: 32px; letter-spacing: .08em;
+        color: #fff; text-transform: uppercase; background: linear-gradient(rgba(0,0,0,0), rgba(11,6,2,.92) 50%); }
+
+      /* S5 */
+      #t5a { position: absolute; top: 700px; width: 100%; text-align: center; font-size: 100px; }
+      #t5b { position: absolute; top: 830px; width: 100%; text-align: center; font-size: 100px; }
+      #t5c { position: absolute; top: 1030px; width: 100%; text-align: center; font-size: 56px; font-weight: 800; color: #f2a33c; }
+
+      /* S6 */
+      #glow6 { position: absolute; left: 50%; top: 680px; width: 860px; height: 860px; margin: -430px 0 0 -430px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(248,227,0,.3), rgba(0,0,0,0) 68%); }
+      #logoF { position: absolute; left: 50%; top: 680px; width: 580px; height: 580px; margin: -290px 0 0 -290px;
+        filter: drop-shadow(0 26px 60px rgba(0,0,0,.7)); }
+      #t6 { position: absolute; top: 1040px; width: 100%; text-align: center; font-size: 44px; font-weight: 800; letter-spacing: .1em; }
+      #cta { position: absolute; left: 50%; top: 1180px; width: 700px; height: 130px; margin-left: -350px;
+        display: flex; align-items: center; justify-content: center; border-radius: 999px;
+        background: #1ca23e; color: #fff; font-family: "Montserrat", sans-serif; font-weight: 900; font-size: 46px;
+        box-shadow: 0 18px 55px rgba(28,162,62,.45); }
+      #prix6 { position: absolute; top: 1350px; width: 100%; text-align: center; font-size: 46px; font-weight: 800; color: #f8e300; }
+
+      #fader { position: absolute; inset: 0; background: #000; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="47" data-width="1080" data-height="1920">
+
+      <div id="sc1" class="scene clip" data-start="0" data-duration="8.6" data-track-index="0">
+        <div class="sin">
+          <div id="bg1"></div>
+          <div id="sh1"></div>
+          <div id="t1a">Eh mon frère !</div>
+          <div id="t1b" class="impact">Marre de payer</div>
+          <div id="t1c" class="impact yellow">pour rien ?</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc2" class="scene clip" data-start="8.35" data-duration="5.9" data-track-index="1">
+        <div class="sin">
+          <div id="wax2" class="wax"></div>
+          <div class="warm"></div>
+          <div id="glow2"></div>
+          <img id="logo2" src="assets/logo-missa.png" alt="MISSA TV 360" />
+          <div id="t2" class="impact amber">Le vrai truc !</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc3" class="scene clip" data-start="13.97" data-duration="8.8" data-track-index="2">
+        <div class="sin">
+          <div class="wax"></div>
+          <div class="warm"></div>
+          <img id="boxprod" src="assets/box-pro.png" alt="Box WiFi MTN" />
+          <div id="st1" class="stat"><span class="num">+<span id="n1">0</span></span> <span class="lab">chaînes</span></div>
+          <div id="st2" class="stat"><span class="num">+<span id="n2">0</span></span> <span class="lab">films &amp; séries</span></div>
+          <div id="seal">5 000 XOF / AN</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc4" class="scene clip" data-start="22.52" data-duration="9.4" data-track-index="3">
+        <div class="sin">
+          <div class="wax"></div>
+          <div class="warm"></div>
+          <div id="t4" class="impact">Une autre <span class="amber">dimension</span></div>
+          <div id="gal">
+            <div id="cA" class="card"><img id="imA" src="assets/foot2.jpg" alt="Football" /><div class="lab">Football</div></div>
+            <div id="cB" class="card"><img id="imB" src="assets/films.jpg" alt="Grands films" /><div class="lab">Grands films</div></div>
+            <div id="cC" class="card"><img id="imC" src="assets/series.png" alt="Séries africaines" /><div class="lab">Séries africaines</div></div>
+            <div id="cD" class="card"><img id="imD" src="assets/international.jpg" alt="Monde entier" /><div class="lab">Monde entier</div></div>
+          </div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc5" class="scene clip" data-start="31.7" data-duration="6.8" data-track-index="4">
+        <div class="sin">
+          <div class="wax"></div>
+          <div class="warm"></div>
+          <div id="t5a" class="impact">Arrête de</div>
+          <div id="t5b" class="impact yellow">gaspiller !</div>
+          <div id="t5c">Passe à Missa TV 360, on est ensemble.</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc6" class="scene clip" data-start="38.2" data-duration="8.8" data-track-index="5">
+        <div class="sin">
+          <div class="wax"></div>
+          <div class="warm"></div>
+          <div id="glow6"></div>
+          <img id="logoF" src="assets/logo-missa.png" alt="MISSA TV 360" />
+          <div id="t6">Tu te connectes · tu choisis · tu profites</div>
+          <div id="cta">Abonne-toi maintenant</div>
+          <div id="prix6">5 000 F seulement par an !</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="cap1" class="cap clip" data-start="0.2" data-duration="8.0" data-track-index="7">Eh mon frère ! Chaque mois tu payes l'abonnement télé, et à la fin tu ne trouves même rien à regarder ? Ça fait mal au cœur, hein !</div>
+      <div id="cap2" class="cap clip" data-start="8.35" data-duration="5.5" data-track-index="8">Laisse-moi te montrer le vrai truc : Missa TV 360 !</div>
+      <div id="cap3" class="cap clip" data-start="13.97" data-duration="8.4" data-track-index="9">Avec ta box WiFi et ta connexion Internet : +3 000 chaînes et +9 000 films &amp; séries. Tu as bien entendu !</div>
+      <div id="cap4" class="cap clip" data-start="22.52" data-duration="9.0" data-track-index="10">Du football aux grands films, des séries africaines aux programmes du monde entier : une autre dimension !</div>
+      <div id="cap5" class="cap clip" data-start="31.7" data-duration="6.4" data-track-index="11">Arrête de gaspiller ton argent pour ce qui ne te plaît même pas. Passe à Missa TV 360 !</div>
+      <div id="cap6" class="cap clip" data-start="38.2" data-duration="8.2" data-track-index="12">Missa TV 360 : tu te connectes, tu choisis, tu profites ! 5 000 francs seulement par an. On est ensemble !</div>
+
+      <div id="fader" class="clip" data-start="0" data-duration="47" data-track-index="13"></div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines = window.__timelines || {};
+      const fmt = v => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+      /* S1 — salon réel, titres impact */
+      tl.fromTo("#sin1", { opacity: 0 }, { opacity: 1, duration: .45, ease: "power1.inOut" }, 0);
+      tl.fromTo("#bg1", { scale: 1.12 }, { scale: 1.0, duration: 8.2, ease: "sine.out" }, 0);
+      tl.fromTo("#t1a", { y: -30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45, ease: "power3.out" }, .3);
+      tl.fromTo("#t1b", { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .55, ease: "power3.out" }, .7);
+      tl.fromTo("#t1c", { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .55, ease: "power3.out" }, 1.05);
+      tl.fromTo("#t1c", { scale: 1 }, { scale: 1.04, duration: .18, yoyo: true, repeat: 1, ease: "power2.out" }, 1.7);
+
+      /* S2 — logo reveal + sting visuel */
+      tl.fromTo("#sin2", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 8.35);
+      tl.fromTo("#wax2", { scale: 1 }, { scale: 1.1, duration: 5.6, ease: "none" }, 8.35);
+      tl.fromTo("#glow2", { autoAlpha: 0, scale: .45 }, { autoAlpha: 1, scale: 1.15, duration: .6, ease: "expo.out" }, 8.45);
+      tl.fromTo("#logo2", { scale: .35, autoAlpha: 0, rotation: -4 }, { scale: 1, autoAlpha: 1, rotation: 0, duration: .6, ease: "expo.out" }, 8.6);
+      tl.fromTo("#t2", { y: 34, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .4, ease: "power3.out" }, 9.4);
+
+      /* S3 — box + compteurs + prix */
+      tl.fromTo("#sin3", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 13.97);
+      tl.fromTo("#boxprod", { y: 80, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45, ease: "power3.out" }, 14.1);
+      tl.fromTo("#boxprod", { y: 0 }, { y: -14, duration: 2.4, yoyo: true, repeat: 2, ease: "sine.inOut" }, 14.8);
+      tl.fromTo("#st1", { y: 44, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .35, ease: "power3.out" }, 15.6);
+      const o1 = { v: 0 };
+      tl.to(o1, { v: 3000, duration: 1.4, ease: "power2.out", onUpdate: () => { document.getElementById("n1").textContent = fmt(o1.v); } }, 15.65);
+      tl.fromTo("#st2", { y: 44, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .35, ease: "power3.out" }, 17.7);
+      const o2 = { v: 0 };
+      tl.to(o2, { v: 9000, duration: 1.4, ease: "power2.out", onUpdate: () => { document.getElementById("n2").textContent = fmt(o2.v); } }, 17.75);
+      tl.fromTo("#seal", { scale: .5, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .4, ease: "back.out(2)" }, 19.6);
+
+      /* S4 — galerie énergétique */
+      tl.fromTo("#sin4", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 22.52);
+      tl.fromTo("#t4", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: "power3.out" }, 22.7);
+      tl.fromTo("#cA", { y: 70, autoAlpha: 0, scale: .9 }, { y: 0, autoAlpha: 1, scale: 1, duration: .32, ease: "back.out(1.8)" }, 23.0);
+      tl.fromTo("#imA", { scale: 1.15 }, { scale: 1.45, x: -35, y: -22, duration: 8.4, ease: "none" }, 23.0);
+      tl.fromTo("#cB", { y: 70, autoAlpha: 0, scale: .9 }, { y: 0, autoAlpha: 1, scale: 1, duration: .32, ease: "back.out(1.8)" }, 24.6);
+      tl.fromTo("#imB", { scale: 1.4 }, { scale: 1.1, duration: 7.0, ease: "none" }, 24.6);
+      tl.fromTo("#cC", { y: 70, autoAlpha: 0, scale: .9 }, { y: 0, autoAlpha: 1, scale: 1, duration: .32, ease: "back.out(1.8)" }, 26.2);
+      tl.fromTo("#imC", { scale: 1.1, x: 0 }, { scale: 1.38, x: 30, duration: 6.6, ease: "none" }, 26.2);
+      tl.fromTo("#cD", { y: 70, autoAlpha: 0, scale: .9 }, { y: 0, autoAlpha: 1, scale: 1, duration: .32, ease: "back.out(1.8)" }, 27.8);
+      tl.fromTo("#imD", { scale: 1.35, y: 0 }, { scale: 1.1, y: -24, duration: 6.0, ease: "none" }, 27.8);
+
+      /* S5 — urgence chaleureuse */
+      tl.fromTo("#sin5", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 31.7);
+      tl.fromTo("#t5a", { x: -80, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: .4, ease: "power3.out" }, 31.95);
+      tl.fromTo("#t5b", { x: 80, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: .4, ease: "power3.out" }, 32.2);
+      tl.fromTo("#t5b", { scale: 1 }, { scale: 1.05, duration: .16, yoyo: true, repeat: 1, ease: "power2.out" }, 32.7);
+      tl.fromTo("#t5c", { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45, ease: "power3.out" }, 33.4);
+
+      /* S6 — final */
+      tl.fromTo("#sin6", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 38.2);
+      tl.fromTo("#glow6", { autoAlpha: 0, scale: .5 }, { autoAlpha: 1, scale: 1.1, duration: .7, ease: "expo.out" }, 38.3);
+      tl.fromTo("#logoF", { scale: .4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .55, ease: "back.out(1.9)" }, 38.45);
+      tl.fromTo("#t6", { y: 26, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .4, ease: "power3.out" }, 39.3);
+      tl.fromTo("#cta", { y: 40, autoAlpha: 0, scale: .9 }, { y: 0, autoAlpha: 1, scale: 1, duration: .4, ease: "back.out(1.9)" }, 40.0);
+      tl.fromTo("#cta", { scale: 1 }, { scale: 1.05, duration: .5, yoyo: true, repeat: 5, ease: "sine.inOut" }, 40.8);
+      tl.fromTo("#prix6", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .4, ease: "power3.out" }, 41.0);
+
+      tl.fromTo("#fader", { opacity: 0 }, { opacity: 1, duration: .7, ease: "sine.inOut" }, 46.3);
+
+      window.__timelines.main = tl;
+    </script>
+  </body>
+</html>
