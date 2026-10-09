@@ -56,14 +56,15 @@
       .stat .lbl { font-size: 38px; font-weight: 800; letter-spacing: .05em; color: #ffffff; text-shadow: 0 6px 30px rgba(0,0,0,.9); }
       #st1 { left: 0; } #st1 .num { color: #58d068; }
       #st2 { left: 50%; } #st2 .num { color: #f8e300; }
-      /* S4 */
-      #cardA { left: 65px; top: 380px; width: 455px; height: 400px; }
-      #cardB { left: 560px; top: 380px; width: 455px; height: 400px; }
-      #cardC { left: 65px; top: 810px; width: 455px; height: 400px; }
-      #cardD { left: 560px; top: 810px; width: 455px; height: 400px; }
-      .lab { position: absolute; left: 16px; bottom: 16px; background: rgba(4,7,15,.78);
-        border: 2px solid rgba(248,227,0,.5); border-radius: 26px; padding: 8px 22px;
-        font-size: 30px; color: #ffffff; font-weight: 800; }
+      /* S4 : clips vidéo */
+      #cA { left: 65px; top: 380px; width: 455px; height: 400px; }
+      #cB { left: 560px; top: 380px; width: 455px; height: 400px; }
+      #cC { left: 65px; top: 810px; width: 455px; height: 400px; }
+      #cD { left: 560px; top: 810px; width: 455px; height: 400px; }
+      .lab { position: absolute; background: rgba(4,7,15,.78); border: 2px solid rgba(248,227,0,.5);
+        border-radius: 26px; padding: 8px 22px; font-size: 30px; color: #ffffff; font-weight: 800; }
+      #labA { left: 81px; top: 718px; } #labB { left: 576px; top: 718px; }
+      #labC { left: 81px; top: 1148px; } #labD { left: 576px; top: 1148px; }
       #t4 { top: 1260px; font-size: 44px; color: #ffffff; letter-spacing: .04em; }
       #t4 em { font-style: normal; color: #7dd87d; }
       /* S5 */
@@ -87,9 +88,9 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="40.06" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="39.32" data-width="1080" data-height="1920">
 
-      <div id="sc1" class="scene clip" data-start="0" data-duration="6.97" data-track-index="0">
+      <div id="sc1" class="scene clip" data-start="0" data-duration="7.18" data-track-index="0">
         <div class="sin" id="sin1">
           <div id="bg1" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
           <div class="shade"></div>
@@ -100,7 +101,7 @@
         </div>
       </div>
 
-      <div id="sc2" class="scene clip" data-start="6.62" data-duration="4.49" data-track-index="1">
+      <div id="sc2" class="scene clip" data-start="6.83" data-duration="4.10" data-track-index="1">
         <div class="sin" id="sin2">
           <div id="bg2" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
           <div class="shade"></div>
@@ -110,7 +111,7 @@
         </div>
       </div>
 
-      <div id="sc3" class="scene clip" data-start="10.76" data-duration="8.06" data-track-index="2">
+      <div id="sc3" class="scene clip" data-start="10.58" data-duration="7.22" data-track-index="2">
         <div class="sin" id="sin3">
           <div id="bg3" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
           <div class="shade"></div>
@@ -121,19 +122,15 @@
         </div>
       </div>
 
-      <div id="sc4" class="scene clip" data-start="18.47" data-duration="9.34" data-track-index="3">
+      <div id="sc4" class="scene clip" data-start="17.45" data-duration="9.34" data-track-index="3">
         <div class="sin" id="sin4">
           <div id="bg4" data-layout-allow-overflow class="bg" style="background-image:url('assets/cinema.jpg')"></div>
           <div class="shade"></div>
-          <div id="cardA" class="card"><img src="assets/foot2.jpg" alt="Football" /><div class="lab">FOOTBALL</div></div>
-          <div id="cardB" class="card"><img src="assets/films.jpg" alt="Films à succès" /><div class="lab">FILMS À SUCCÈS</div></div>
-          <div id="cardC" class="card"><img src="assets/series.png" alt="Séries africaines" /><div class="lab">SÉRIES AFRICAINES</div></div>
-          <div id="cardD" class="card"><img src="assets/international.jpg" alt="Programmes internationaux" /><div class="lab">INTERNATIONAL</div></div>
           <div id="t4" class="k">FOOTBALL • FILMS • <em>SÉRIES</em> • INTERNATIONAL</div>
         </div>
       </div>
 
-      <div id="sc5" class="scene clip" data-start="27.46" data-duration="6.89" data-track-index="4">
+      <div id="sc5" class="scene clip" data-start="26.44" data-duration="7.01" data-track-index="4">
         <div class="sin" id="sin5">
           <div id="bg5" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
           <div class="shade"></div>
@@ -143,7 +140,7 @@
         </div>
       </div>
 
-      <div id="sc6" class="scene clip" data-start="34.0" data-duration="6.06" data-track-index="5">
+      <div id="sc6" class="scene clip" data-start="33.1" data-duration="6.22" data-track-index="5">
         <div class="sin" id="sin6">
           <div id="bg6" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
           <div class="shade"></div>
@@ -154,14 +151,24 @@
         </div>
       </div>
 
+      <!-- cartes contenus animées (effet clips) -->
+      <div id="cA" class="card"><img id="imA" src="assets/foot2.jpg" alt="Football" /></div>
+      <div id="cB" class="card"><img id="imB" src="assets/films.jpg" alt="Films à succès" /></div>
+      <div id="cC" class="card"><img id="imC" src="assets/series.png" alt="Séries africaines" /></div>
+      <div id="cD" class="card"><img id="imD" src="assets/international.jpg" alt="Programmes internationaux" /></div>
+      <div id="labA" class="lab">FOOTBALL</div>
+      <div id="labB" class="lab">FILMS À SUCCÈS</div>
+      <div id="labC" class="lab">SÉRIES AFRICAINES</div>
+      <div id="labD" class="lab">INTERNATIONAL</div>
+
       <div id="vig"></div>
 
       <div id="cap1" class="cap clip" data-start="0.2" data-duration="6.0" data-track-index="7">Tu en as marre de payer un abonnement télé chaque mois… pour ne rien trouver d'intéressant ?</div>
-      <div id="cap2" class="cap clip" data-start="6.62" data-duration="3.9" data-track-index="8">Alors découvre Missa TV 360 !</div>
-      <div id="cap3" class="cap clip" data-start="10.76" data-duration="7.2" data-track-index="9">Avec ta box WiFi et ta connexion : +3 000 chaînes et +9 000 films &amp; séries.</div>
-      <div id="cap4" class="cap clip" data-start="18.47" data-duration="8.5" data-track-index="10">Football, films à succès, séries africaines, programmes internationaux.</div>
-      <div id="cap5" class="cap clip" data-start="27.46" data-duration="6.0" data-track-index="11">Arrête de payer pour ce qui ne te satisfait pas. Passe à Missa TV 360 !</div>
-      <div id="cap6" class="cap clip" data-start="34.0" data-duration="5.0" data-track-index="12">Missa TV 360 : tu te connectes, tu choisis, tu profites !</div>
+      <div id="cap2" class="cap clip" data-start="6.83" data-duration="3.3" data-track-index="8">Alors découvre Missa TV 360 !</div>
+      <div id="cap3" class="cap clip" data-start="10.58" data-duration="6.4" data-track-index="9">Avec ta box WiFi et ta connexion : +3 000 chaînes et +9 000 films &amp; séries.</div>
+      <div id="cap4" class="cap clip" data-start="17.45" data-duration="8.4" data-track-index="10">Football, films à succès, séries africaines, programmes internationaux.</div>
+      <div id="cap5" class="cap clip" data-start="26.44" data-duration="6.1" data-track-index="11">Arrête de payer pour ce qui ne te satisfait pas. Passe à Missa TV 360 !</div>
+      <div id="cap6" class="cap clip" data-start="33.1" data-duration="5.1" data-track-index="12">Missa TV 360 : tu te connectes, tu choisis, tu profites !</div>
     </div>
 
     <script>
@@ -170,7 +177,7 @@
       const fmt = v => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
       const kb = (sel, start, dur) => tl.fromTo(sel, { scale: 1 }, { scale: 1.08, duration: dur, ease: "none" }, start);
 
-      kb("#bg1", 0, 6.97); kb("#bg2", 6.62, 4.49); kb("#bg3", 10.76, 8.06); kb("#bg4", 18.47, 9.34); kb("#bg5", 27.46, 6.89); kb("#bg6", 34.0, 6.06);
+      kb("#bg1", 0, 7.18); kb("#bg2", 6.83, 4.10); kb("#bg3", 10.58, 7.22); kb("#bg4", 17.45, 9.34); kb("#bg5", 26.44, 7.01); kb("#bg6", 33.1, 6.22);
 
       /* S1 */
       tl.fromTo("#t1a", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: "power3.out" }, .2);
@@ -181,55 +188,66 @@
       tl.fromTo("#x3", { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .4, ease: "back.out(2)" }, 3.3);
 
       /* S2 */
-      tl.fromTo("#sin2", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 6.62);
-      tl.fromTo("#glow2", { autoAlpha: 0, scale: .5 }, { autoAlpha: 1, scale: 1, duration: .8 }, 6.7);
-      tl.fromTo("#logo2", { scale: .35, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .65, ease: "back.out(1.8)" }, 6.85);
-      tl.fromTo("#t2", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 7.7);
+      tl.fromTo("#sin2", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 6.83);
+      tl.fromTo("#glow2", { autoAlpha: 0, scale: .5 }, { autoAlpha: 1, scale: 1, duration: .8 }, 6.91);
+      tl.fromTo("#logo2", { scale: .35, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .65, ease: "back.out(1.8)" }, 7.06);
+      tl.fromTo("#t2", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 7.9);
 
       /* S3 */
-      tl.fromTo("#sin3", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 10.76);
-      tl.fromTo("#halo3", { autoAlpha: 0, scale: .6 }, { autoAlpha: 1, scale: 1, duration: .8, ease: "power2.out" }, 10.9);
-      tl.fromTo("#boxprod", { y: 120, autoAlpha: 0, scale: .9 }, { y: 0, autoAlpha: 1, scale: 1, duration: .7, ease: "power3.out" }, 10.95);
-      tl.fromTo("#boxprod", { y: 0 }, { y: -16, duration: 2.2, yoyo: true, repeat: 2, ease: "sine.inOut" }, 11.8);
-      tl.fromTo("#st1", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45 }, 12.8);
+      tl.fromTo("#sin3", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 10.58);
+      tl.fromTo("#halo3", { autoAlpha: 0, scale: .6 }, { autoAlpha: 1, scale: 1, duration: .8, ease: "power2.out" }, 10.72);
+      tl.fromTo("#boxprod", { y: 120, autoAlpha: 0, scale: .9 }, { y: 0, autoAlpha: 1, scale: 1, duration: .7, ease: "power3.out" }, 10.77);
+      tl.fromTo("#boxprod", { y: 0 }, { y: -16, duration: 2.2, yoyo: true, repeat: 2, ease: "sine.inOut" }, 11.6);
+      tl.fromTo("#st1", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45 }, 12.6);
       const o1 = { v: 0 };
-      tl.to(o1, { v: 3000, duration: 1.3, ease: "power2.out", onUpdate: () => { document.getElementById("n1").textContent = fmt(o1.v); } }, 12.85);
-      tl.fromTo("#st2", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45 }, 14.9);
+      tl.to(o1, { v: 3000, duration: 1.3, ease: "power2.out", onUpdate: () => { document.getElementById("n1").textContent = fmt(o1.v); } }, 12.65);
+      tl.fromTo("#st2", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45 }, 14.6);
       const o2 = { v: 0 };
-      tl.to(o2, { v: 9000, duration: 1.3, ease: "power2.out", onUpdate: () => { document.getElementById("n2").textContent = fmt(o2.v); } }, 14.95);
+      tl.to(o2, { v: 9000, duration: 1.3, ease: "power2.out", onUpdate: () => { document.getElementById("n2").textContent = fmt(o2.v); } }, 14.65);
 
-      /* S4 */
-      tl.fromTo("#sin4", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 18.47);
-      tl.fromTo("#cardA", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 19.0);
-      tl.fromTo("#cardB", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 20.6);
-      tl.fromTo("#cardC", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 22.2);
-      tl.fromTo("#cardD", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 23.8);
-      tl.fromTo("#t4", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 25.2);
+      /* S4 : pops des clips vidéo + labels */
+      tl.fromTo("#sin4", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 17.45);
+      tl.fromTo("#cA", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 18.0);
+      tl.fromTo("#imA", { scale: 1.15 }, { scale: 1.5, x: -40, y: -25, duration: 8.4, ease: "none" }, 18.0);
+      tl.fromTo("#labA", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .35 }, 18.3);
+      tl.fromTo("#cB", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 19.6);
+      tl.fromTo("#imB", { scale: 1.45 }, { scale: 1.1, duration: 7.0, ease: "none" }, 19.6);
+      tl.fromTo("#imB", { filter: "brightness(1.25)" }, { filter: "brightness(0.92)", duration: .18, yoyo: true, repeat: 25, ease: "none" }, 19.8);
+      tl.fromTo("#labB", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .35 }, 19.9);
+      tl.fromTo("#cC", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 21.2);
+      tl.fromTo("#imC", { scale: 1.3, x: 60 }, { scale: 1.3, x: -60, duration: 7.2, ease: "none" }, 21.2);
+      tl.fromTo("#labC", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .35 }, 21.5);
+      tl.fromTo("#cD", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .55, ease: "power3.out" }, 22.8);
+      tl.fromTo("#imD", { scale: 1.12 }, { scale: 1.38, duration: 6.0, ease: "none" }, 22.8);
+      tl.fromTo("#imD", { filter: "hue-rotate(0deg)" }, { filter: "hue-rotate(24deg)", duration: 1.5, yoyo: true, repeat: 3, ease: "sine.inOut" }, 22.8);
+      tl.fromTo("#labD", { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .35 }, 23.1);
+      tl.fromTo("#t4", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 24.2);
+      tl.to(["#cA", "#cB", "#cC", "#cD", "#labA", "#labB", "#labC", "#labD"], { opacity: 0, duration: .4 }, 26.44);
 
       /* S5 */
-      tl.fromTo("#sin5", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 27.46);
-      tl.fromTo("#t5a", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: "power3.out" }, 27.7);
-      tl.fromTo("#t5b", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: "power3.out" }, 28.3);
-      tl.fromTo("#t5c", { scale: .5, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .55, ease: "back.out(2.2)" }, 29.2);
+      tl.fromTo("#sin5", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 26.44);
+      tl.fromTo("#t5a", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: "power3.out" }, 26.7);
+      tl.fromTo("#t5b", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: "power3.out" }, 27.3);
+      tl.fromTo("#t5c", { scale: .5, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .55, ease: "back.out(2.2)" }, 28.2);
 
       /* S6 */
-      tl.fromTo("#sin6", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 34.0);
-      tl.fromTo("#glow6", { autoAlpha: 0, scale: .5 }, { autoAlpha: 1, scale: 1, duration: .8 }, 34.1);
-      tl.fromTo("#logoF", { scale: .4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .6, ease: "back.out(1.7)" }, 34.25);
-      tl.fromTo("#tag", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 35.2);
-      tl.fromTo("#cta", { scale: .6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .5, ease: "back.out(1.8)" }, 35.9);
-      tl.fromTo("#sh6", { x: 0 }, { x: 950, duration: .8, ease: "power2.inOut" }, 36.6);
-      tl.to("#cta", { scale: 1.06, duration: .5, yoyo: true, repeat: 4, ease: "sine.inOut" }, 36.8);
+      tl.fromTo("#sin6", { opacity: 0 }, { opacity: 1, duration: .4, ease: "power1.inOut" }, 33.1);
+      tl.fromTo("#glow6", { autoAlpha: 0, scale: .5 }, { autoAlpha: 1, scale: 1, duration: .8 }, 33.2);
+      tl.fromTo("#logoF", { scale: .4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .6, ease: "back.out(1.7)" }, 33.35);
+      tl.fromTo("#tag", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 34.3);
+      tl.fromTo("#cta", { scale: .6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .5, ease: "back.out(1.8)" }, 35.0);
+      tl.fromTo("#sh6", { x: 0 }, { x: 950, duration: .8, ease: "power2.inOut" }, 35.7);
+      tl.to("#cta", { scale: 1.06, duration: .5, yoyo: true, repeat: 4, ease: "sine.inOut" }, 35.9);
 
       /* captions */
       tl.fromTo("#cap1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, .2);
-      tl.fromTo("#cap2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 6.62);
-      tl.fromTo("#cap3", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 10.76);
-      tl.fromTo("#cap4", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 18.47);
-      tl.fromTo("#cap5", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 27.46);
-      tl.fromTo("#cap6", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 34.0);
+      tl.fromTo("#cap2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 6.83);
+      tl.fromTo("#cap3", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 10.58);
+      tl.fromTo("#cap4", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 17.45);
+      tl.fromTo("#cap5", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 26.44);
+      tl.fromTo("#cap6", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 33.1);
 
-      tl.to("#root", { autoAlpha: 0, duration: .5 }, 39.56);
+      tl.to("#root", { autoAlpha: 0, duration: .5 }, 38.82);
 
       window.__timelines["main"] = tl;
       tl.seek(0);
