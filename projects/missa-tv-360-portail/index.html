@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1080, height=1920" />
+  <title>Missa TV 360 — Le monde s’ouvre</title>
+  <script src="vendor/gsap.min.js"></script>
+  <style>
+    @font-face { font-family: Mont; src: url('vendor/Montserrat-Black.ttf') format('truetype'); font-weight: 900; }
+    @font-face { font-family: Nunito; src: url('vendor/Nunito-Variable.ttf') format('truetype'); font-weight: 200 1000; }
+    :root { --navy:#06162a; --blue:#123e82; --yellow:#ffe500; --lime:#aaff64; --ivory:#f7faee; }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:var(--navy); }
+    body { color:var(--ivory); font-family:Nunito, sans-serif; }
+    #root { position:relative; width:100%; height:100%; overflow:hidden; background:var(--navy); }
+    .scene { position:absolute; inset:0; overflow:hidden; }
+    .sin { position:absolute; inset:0; overflow:hidden; }
+    .photo { position:absolute; inset:-65px; width:calc(100% + 130px); height:calc(100% + 130px); object-fit:cover; }
+    .deep-shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(4,17,36,.12) 0%,rgba(3,13,30,.2) 39%,rgba(4,13,30,.74) 69%,#06162a 100%); }
+    .impact { font:900 90px/1.04 Mont,sans-serif; letter-spacing:-.045em; text-transform:uppercase; }
+    .kicker { font-size:33px; line-height:1.25; font-weight:900; letter-spacing:.19em; text-transform:uppercase; }
+    .lime { color:var(--lime); } .yellow { color:var(--yellow); }
+    .glass { background:linear-gradient(145deg,rgba(18,56,104,.89),rgba(4,19,41,.93)); border:2px solid rgba(218,242,255,.24); box-shadow:0 26px 70px rgba(0,0,0,.38); }
+    .brand-tile { position:absolute; overflow:hidden; border:5px solid rgba(255,255,255,.72); background:#ffe500; border-radius:38px; box-shadow:0 20px 60px rgba(0,0,0,.46),0 0 52px rgba(220,255,56,.24); }
+    .brand-tile img { width:100%; height:100%; display:block; object-fit:cover; }
+    .stripe { position:absolute; width:110px; height:9px; border-radius:7px; background:var(--lime); }
+    .flair { position:absolute; border:2px solid rgba(180,255,91,.48); border-radius:50%; box-shadow:inset 0 0 60px rgba(180,255,91,.05),0 0 36px rgba(180,255,91,.09); }
+    .smallnote { font-size:30px; font-weight:800; letter-spacing:.06em; }
+
+    /* 01 — un portail, pas une simple télé. */
+    #s1 .photo { object-position:51% 45%; }
+    #s1shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,15,33,.3),rgba(1,12,30,.05) 32%,rgba(3,16,33,.62) 61%,rgba(3,14,30,.98) 96%); }
+    #s1orb { left:342px; top:369px; width:460px; height:460px; }
+    #s1orb2 { left:285px; top:310px; width:570px; height:570px; border-color:rgba(255,229,0,.33); }
+    #s1logo { left:781px; top:236px; width:228px; height:228px; border-radius:30px; }
+    #s1eyebrow { position:absolute; left:82px; top:1110px; color:var(--lime); }
+    #s1line1 { position:absolute; left:72px; top:1205px; width:950px; font-size:112px; }
+    #s1line2 { position:absolute; left:72px; top:1345px; width:950px; font-size:136px; color:var(--yellow); }
+    #s1foot { position:absolute; left:81px; top:1625px; font-size:36px; font-weight:900; letter-spacing:.13em; }
+
+    /* 02 — surcharge, facture qui monte, envie de passer à autre chose. */
+    #s2 { background:radial-gradient(circle at 48% 41%,#1d4587,#071b36 55%,#041021); }
+    #s2bg { opacity:.17; filter:saturate(.8); background:url('assets/portal.jpg') 60% 30%/cover no-repeat; }
+    #s2grid { position:absolute; inset:0; background-image:linear-gradient(rgba(146,233,240,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(146,233,240,.055) 1px,transparent 1px); background-size:90px 90px; }
+    #s2no { position:absolute; left:82px; top:250px; color:var(--lime); }
+    #s2question { position:absolute; left:76px; top:355px; width:930px; font-size:90px; }
+    #s2question span { color:var(--yellow); }
+    #s2pile { position:absolute; left:112px; top:715px; width:856px; height:590px; }
+    .bill { position:absolute; width:845px; height:166px; padding:32px 46px; display:flex; align-items:center; justify-content:space-between; border-radius:27px; border:3px solid rgba(211,231,248,.28); background:linear-gradient(112deg,rgba(9,37,78,.97),rgba(29,76,136,.97)); box-shadow:0 23px 45px rgba(0,0,0,.41); }
+    .bill:nth-child(1) { top:0; } .bill:nth-child(2) { top:175px; } .bill:nth-child(3) { top:350px; }
+    .bill .left { font-size:38px; font-weight:1000; letter-spacing:.045em; }
+    .bill .right { font:900 60px/1 Mont,sans-serif; color:#ffda70; }
+    .bill .x { color:#ff9e80; font-size:65px; font-weight:900; margin-right:23px; }
+    #s2enough { position:absolute; left:72px; top:1338px; width:935px; text-align:center; font-size:120px; color:var(--yellow); text-shadow:0 0 60px rgba(255,192,0,.24); }
+    #s2sub { position:absolute; top:1560px; left:106px; width:868px; padding:22px; border-top:2px solid rgba(255,255,255,.25); text-align:center; font-size:34px; font-weight:800; }
+
+    /* 03 — prix clair, appareils, box NET. */
+    #s3photo { background:url('assets/portal.jpg') 45% 38%/cover no-repeat; opacity:.47; }
+    #s3shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,12,30,.7) 0%,rgba(4,19,41,.72) 45%,rgba(2,15,32,.96) 100%); }
+    #s3ring { left:363px; top:157px; width:400px; height:400px; border-width:4px; }
+    #s3k { position:absolute; left:82px; top:176px; color:var(--lime); }
+    #s3title { position:absolute; left:78px; top:260px; width:940px; font-size:87px; }
+    #s3title em { color:var(--yellow); font-style:normal; }
+    #priceRow { position:absolute; left:75px; top:595px; width:930px; display:flex; gap:20px; }
+    .price { position:relative; width:455px; height:249px; padding:35px 32px 24px; border-radius:26px; }
+    .price.first { background:linear-gradient(140deg,#f7e500,#bdf247); color:#071c32; border:2px solid rgba(255,255,255,.76); box-shadow:0 28px 70px rgba(215,237,23,.22); }
+    .price.second { background:linear-gradient(140deg,#0c3d72,#0b233f); border:3px solid rgba(177,255,105,.62); }
+    .price .amount { font:900 91px/1 Mont,sans-serif; letter-spacing:-.07em; }
+    .price .currency { font:900 41px/1 Mont,sans-serif; margin-left:5px; }
+    .price .period { margin-top:12px; font-size:37px; font-weight:1000; letter-spacing:.11em; }
+    #deviceRow { position:absolute; left:80px; top:942px; width:920px; height:182px; display:flex; justify-content:space-between; }
+    .device { width:289px; height:181px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; border-radius:24px; background:rgba(6,28,59,.89); border:2px solid rgba(198,241,230,.33); }
+    .device svg { width:89px; height:89px; fill:none; stroke:var(--lime); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
+    .device b { font-size:29px; font-weight:1000; letter-spacing:.09em; }
+    #boxPanel { position:absolute; left:88px; top:1197px; width:904px; height:399px; border-radius:29px; display:flex; overflow:hidden; }
+    #boxPanel::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg,transparent 35%,rgba(3,17,38,.27) 53%,rgba(3,17,38,.62) 100%); }
+    #boxPanel img { position:absolute; left:0; top:0; width:540px; height:399px; object-fit:cover; object-position:center 48%; }
+    #boxPanelCopy { position:absolute; z-index:2; left:540px; top:55px; width:335px; font:900 57px/1.12 Mont,sans-serif; letter-spacing:-.045em; }
+    #boxPanelCopy span { color:var(--lime); }
+    #boxMini { position:absolute; left:85px; top:1653px; width:920px; text-align:center; color:#d9f4e8; font-size:32px; font-weight:900; letter-spacing:.1em; }
+
+    /* 04 — trois univers, portes successives. */
+    #s4 { background:#06152a; }
+    .world { position:absolute; inset:0; overflow:hidden; }
+    .world .photo { object-position:center center; }
+    .world .shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,14,32,.70) 0%,rgba(4,17,37,.05) 39%,rgba(4,16,34,.45) 57%,rgba(3,13,30,.98) 93%); }
+    .world .top { position:absolute; left:83px; top:199px; color:var(--lime); }
+    .world .bottomTitle { position:absolute; left:75px; top:1168px; width:925px; text-shadow:0 10px 36px rgba(0,0,0,.65); }
+    .world .bottomTitle .large { font:900 112px/1.03 Mont,sans-serif; letter-spacing:-.055em; }
+    .world .bottomTitle .sub { font:900 70px/1.22 Mont,sans-serif; letter-spacing:-.045em; margin-top:9px; color:var(--yellow); }
+    .world .desc { position:absolute; left:82px; top:1522px; width:920px; font-size:37px; font-weight:900; letter-spacing:.1em; }
+    #w2 .bottomTitle .large { font-size:119px; }
+    #w2 .bottomTitle .sub { font-size:68px; }
+    #w3 .bottomTitle .large { font-size:103px; }
+    #w3 .bottomTitle .sub { font-size:62px; }
+    #boxChip { position:absolute; right:71px; top:296px; width:223px; height:287px; border-radius:23px; overflow:hidden; background:rgba(4,19,39,.96); border:3px solid rgba(191,250,155,.75); box-shadow:0 22px 42px rgba(0,0,0,.62); }
+    #boxChip .crop { position:absolute; left:0; top:0; width:217px; height:217px; overflow:hidden; }
+    #boxKen { position:absolute; left:0; top:0; width:217px; height:217px; background:url('assets/box-net.png') center/cover no-repeat; }
+    #boxChip span { position:absolute; left:0; bottom:0; width:100%; height:64px; display:flex; align-items:center; justify-content:center; font:900 31px/1 Mont,sans-serif; color:var(--lime); letter-spacing:.1em; }
+    #worldCount { position:absolute; left:82px; top:1701px; font-size:31px; font-weight:900; color:var(--lime); letter-spacing:.18em; }
+
+    /* 05 — signal irrégulier → ligne continue. */
+    #s5 { background:radial-gradient(ellipse at 50% 49%,#16447b 0%,#082549 48%,#06162a 86%); }
+    #s5photo { opacity:.25; filter:saturate(.8); object-position:center 47%; }
+    #s5shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,16,32,.36),rgba(2,16,32,.80) 85%); }
+    #s5k { position:absolute; left:84px; top:237px; color:var(--lime); }
+    #s5question { position:absolute; left:75px; top:370px; width:943px; font-size:92px; }
+    #s5wave { position:absolute; left:0; top:686px; width:1080px; height:420px; overflow:visible; }
+    #s5wave #noisy { stroke:#ffbb66; fill:none; stroke-width:13; filter:drop-shadow(0 0 19px rgba(255,156,77,.55)); }
+    #s5wave #stable { stroke:var(--lime); fill:none; stroke-width:17; stroke-linecap:round; filter:drop-shadow(0 0 25px rgba(159,255,93,.8)); }
+    #s5badge { position:absolute; left:466px; top:847px; width:148px; height:148px; border-radius:100%; background:linear-gradient(145deg,#dfff30,#63df69); display:flex; align-items:center; justify-content:center; border:7px solid #fbffd8; box-shadow:0 0 80px rgba(119,255,111,.63),0 25px 50px rgba(0,0,0,.35); color:#082649; font:900 105px/1 Mont,sans-serif; }
+    #s5result { position:absolute; left:80px; top:1180px; width:920px; font-size:123px; text-align:center; }
+    #s5trust { position:absolute; left:117px; top:1510px; width:846px; height:109px; display:flex; align-items:center; justify-content:center; border:3px solid rgba(175,255,119,.75); border-radius:999px; background:rgba(8,52,70,.83); color:var(--lime); font-size:34px; font-weight:1000; letter-spacing:0; white-space:nowrap; }
+    #s5network { position:absolute; left:77px; top:1675px; width:926px; text-align:center; color:#ddf6ee; font-size:30px; font-weight:900; letter-spacing:.16em; }
+
+    /* 06 — conversion, QR honnête (emplacement non scannable). */
+    #s6 .photo { background:url('assets/portal.jpg') 50% 40%/cover no-repeat; opacity:.63; }
+    #s6shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,14,32,.56),rgba(4,18,38,.55) 33%,rgba(3,15,31,.92) 65%,rgba(3,14,29,.99)); }
+    #s6halo { left:299px; top:200px; width:480px; height:480px; border-width:4px; border-color:rgba(255,229,0,.45); }
+    #s6logo { left:402px; top:251px; width:276px; height:276px; background:#ffe500 url('assets/logo-missa.png') center/cover no-repeat; }
+    #s6heading { position:absolute; left:75px; top:652px; width:930px; text-align:center; font-size:98px; }
+    #s6heading span { color:var(--yellow); }
+    #cta { position:absolute; left:107px; top:989px; width:866px; height:168px; border-radius:34px; display:flex; align-items:center; justify-content:center; text-align:center; background:linear-gradient(110deg,#c6fe4e,#69e381); border:3px solid rgba(255,255,255,.85); color:#08243c; font:900 62px/1.06 Mont,sans-serif; letter-spacing:-.028em; box-shadow:0 19px 0 rgba(24,107,87,.66),0 30px 75px rgba(83,239,116,.35); }
+    #s6qr { position:absolute; left:116px; top:1284px; width:264px; height:264px; border-radius:25px; padding:23px; border:3px dashed rgba(209,247,225,.87); background:rgba(239,255,241,.94); box-shadow:0 25px 60px rgba(0,0,0,.26); }
+    #s6qr svg { width:100%; height:100%; }
+    #s6qrtext { position:absolute; left:97px; top:1564px; width:308px; text-align:center; font-size:25px; font-weight:1000; letter-spacing:.05em; }
+    #s6prices { position:absolute; left:442px; top:1292px; width:560px; }
+    #s6prices .p { font:900 53px/1.22 Mont,sans-serif; padding:21px 0; letter-spacing:-.035em; border-bottom:2px solid rgba(255,255,255,.32); }
+    #s6prices .p span { color:var(--yellow); }
+    #s6prices .p:last-child span { color:var(--lime); }
+    #s6end { position:absolute; left:81px; top:1705px; width:918px; text-align:center; font-size:35px; font-weight:1000; letter-spacing:.1em; }
+
+    /* Interface commune : discrète et régulière, jamais au milieu du message. */
+    #hud { position:absolute; inset:0; pointer-events:none; }
+    #hudName { position:absolute; left:80px; top:68px; font-size:30px; font-weight:1000; letter-spacing:.18em; text-shadow:0 2px 16px #051021; }
+    #hudSerial { position:absolute; right:80px; top:71px; font-size:30px; font-weight:1000; letter-spacing:.09em; color:var(--lime); text-shadow:0 2px 16px #051021; }
+    #progressBase { position:absolute; left:80px; top:1835px; width:920px; height:7px; background:rgba(244,255,242,.25); border-radius:8px; }
+    #progressFill { width:0; height:100%; border-radius:8px; background:linear-gradient(90deg,var(--yellow),var(--lime)); box-shadow:0 0 15px rgba(148,249,100,.75); }
+    #flash { position:absolute; inset:0; background:#e9fff5; opacity:0; pointer-events:none; }
+    #fader { position:absolute; inset:0; background:#041020; opacity:0; pointer-events:none; }
+  </style>
+</head>
+<body>
+  <div id="root" data-composition-id="main" data-start="0" data-duration="37" data-width="1080" data-height="1920">
+    <section id="s1" class="scene clip" data-start="0" data-duration="3" data-track-index="0">
+      <div id="in1" class="sin">
+        <img id="s1photo" class="photo" src="assets/portal.jpg" alt="Un portail de lumière s’ouvre dans un salon à Douala" />
+        <div id="s1shade"></div><div id="s1orb" class="flair"></div><div id="s1orb2" class="flair"></div>
+        <div id="s1logo" class="brand-tile"><img src="assets/logo-missa.png" alt="Logo Missa TV 360" /></div>
+        <div id="s1eyebrow" class="kicker">DÉCOUVREZ MISSA TV 360</div>
+        <div id="s1line1" class="impact">LE MONDE</div><div id="s1line2" class="impact">S’OUVRE.</div>
+        <div id="s1foot">UN MONDE. TOUS VOS ÉCRANS.</div>
+      </div>
+    </section>
+
+    <section id="s2" class="scene clip" data-start="3" data-duration="5" data-track-index="1">
+      <div id="in2" class="sin">
+        <div id="s2bg" class="photo"></div><div id="s2grid"></div>
+        <div id="s2no" class="kicker">01 / LE CONSTAT</div>
+        <div id="s2question" class="impact">TU PAYES <span>ENCORE</span><br />TROP CHER ?</div>
+        <div id="s2pile">
+          <div id="billA" class="bill"><div class="left"><span class="x">×</span>ABONNEMENT +</div><div class="right">XAF</div></div>
+          <div id="billB" class="bill"><div class="left"><span class="x">×</span>RECONDUCTION</div><div class="right">XAF</div></div>
+          <div id="billC" class="bill"><div class="left"><span class="x">×</span>CONTENU VIDE</div><div class="right">XAF</div></div>
+        </div>
+        <div id="s2enough" class="impact">ÇA SUFFIT.</div>
+        <div id="s2sub">Marre des abonnements chers pour du contenu vide ?</div>
+      </div>
+    </section>
+
+    <section id="s3" class="scene clip" data-start="8" data-duration="7" data-track-index="2">
+      <div id="in3" class="sin">
+        <div id="s3photo" class="photo"></div><div id="s3shade"></div><div id="s3ring" class="flair"></div>
+        <div id="s3k" class="kicker">02 / LA SOLUTION</div>
+        <div id="s3title" class="impact">LE <em>MONDE</em><br />EN FACE DE VOUS.</div>
+        <div id="priceRow">
+          <div id="pMonth" class="price first"><div><span class="amount" id="nMonth">0</span><span class="currency">XAF</span></div><div class="period">/ MOIS</div></div>
+          <div id="pYear" class="price second"><div><span class="amount" id="nYear">0</span><span class="currency">XAF</span></div><div class="period">/ AN</div></div>
+        </div>
+        <div id="deviceRow">
+          <div id="dev1" class="device"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="15" width="84" height="55" rx="5"/><path d="M50 71v15M28 86h44"/></svg><b>ANDROID TV</b></div>
+          <div id="dev2" class="device"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="17" y="9" width="66" height="82" rx="6"/><circle cx="50" cy="82" r="2"/></svg><b>TABLETTE</b></div>
+          <div id="dev3" class="device"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="28" y="7" width="44" height="86" rx="7"/><path d="M43 15h14M45 83h10"/></svg><b>TÉLÉPHONE</b></div>
+        </div>
+        <div id="boxPanel" class="glass"><img id="s3boximg" src="assets/box-net.png" alt="Box Wi-Fi NET"/><div id="boxPanelCopy">JUSTE<br /><span>TA BOX</span><br />WI-FI.</div></div>
+        <div id="boxMini">CONNECTE-TOI · CHOISIS · PROFITE</div>
+      </div>
+    </section>
+
+    <section id="s4" class="scene clip" data-start="15" data-duration="10" data-track-index="3">
+      <div id="in4" class="sin">
+        <div id="w1" class="world"><img id="w1photo" class="photo" src="assets/cinema-world.jpg" alt="Univers cinéma et manga"/><div class="shade"></div><div id="w1top" class="top kicker">03 / REGARDE</div><div id="w1title" class="bottomTitle"><div class="large">FILMS &amp; SÉRIES</div><div class="sub">MANGA.</div></div><div id="w1desc" class="desc">DES HISTOIRES À VIVRE.</div></div>
+        <div id="w2" class="world"><img id="w2photo" class="photo" src="assets/music-world.jpg" alt="Univers musique et récits courts"/><div class="shade"></div><div id="w2top" class="top kicker">04 / VIBRE</div><div id="w2title" class="bottomTitle"><div class="large">MUSIQUE.</div><div class="sub">SHORTS-DRAMAS.</div></div><div id="w2desc" class="desc">LE RYTHME, PARTOUT.</div></div>
+        <div id="w3" class="world"><img id="w3photo" class="photo" src="assets/game-world.jpg" alt="Univers jeux, podcasts et radio"/><div class="shade"></div><div id="w3top" class="top kicker">05 / JOUE &amp; ÉCOUTE</div><div id="w3title" class="bottomTitle"><div class="large">JEUX VIDÉO.</div><div class="sub">PODCASTS · RADIO.</div></div><div id="w3desc" class="desc">À CHAQUE ENVIE, SON UNIVERS.</div></div>
+        <div id="boxChip"><div class="crop"><div id="boxKen" role="img" aria-label="Box NET — zoom lent"></div></div><span>BOX NET</span></div>
+        <div id="worldCount">UN SEUL PORTAIL. MILLE HISTOIRES.</div>
+      </div>
+    </section>
+
+    <section id="s5" class="scene clip" data-start="25" data-duration="7" data-track-index="4">
+      <div id="in5" class="sin">
+        <img id="s5photo" class="photo" src="assets/v2-signal.png" alt=""/><div id="s5shade"></div>
+        <div id="s5k" class="kicker">06 / ÇA CONTINUE</div>
+        <div id="s5question" class="impact">MÊME CONNEXION<br /><span class="yellow">FAIBLE ?</span></div>
+        <svg id="s5wave" viewBox="0 0 1080 420" aria-hidden="true">
+          <path id="noisy" d="M0 210 L92 210 L137 114 L175 290 L224 93 L275 276 L316 126 L358 212 L413 213 L468 75 L517 310 L555 170 L606 210 L683 210 L740 92 L792 294 L840 140 L883 208 L1080 208"/>
+          <path id="stable" d="M0 210 C235 210 263 210 373 210 C470 210 500 209 560 210 C650 211 728 210 800 210 C920 210 1000 210 1080 210"/>
+        </svg>
+        <div id="s5badge">✓</div>
+        <div id="s5result" class="impact">FLUX<br /><span class="lime">STABLE.</span></div>
+        <div id="s5trust">✓ &nbsp; PENSÉ POUR LES PETITS DÉBITS</div>
+        <div id="s5network">RÉSEAU MOBILE · WI-FI</div>
+      </div>
+    </section>
+
+    <section id="s6" class="scene clip" data-start="32" data-duration="5" data-track-index="5">
+      <div id="in6" class="sin">
+        <div id="s6photo" class="photo"></div><div id="s6shade"></div><div id="s6halo" class="flair"></div>
+        <div id="s6logo" class="brand-tile" role="img" aria-label="Logo Missa TV 360"></div>
+        <div id="s6heading" class="impact">TON MONDE<br /><span>T’ATTEND.</span></div>
+        <div id="cta">TÉLÉCHARGEZ<br />MAINTENANT</div>
+        <div id="s6qr"><svg viewBox="0 0 200 200" fill="none" stroke="#0b3453" stroke-width="9" stroke-linecap="square" aria-label="Emplacement pour QR code"><path d="M10 60V10h50M140 10h50v50M10 140v50h50M140 190h50v-50"/><rect x="24" y="24" width="26" height="26" rx="3" fill="#0b3453" stroke="none"/><rect x="150" y="24" width="26" height="26" rx="3" fill="#0b3453" stroke="none"/><rect x="24" y="150" width="26" height="26" rx="3" fill="#0b3453" stroke="none"/><path d="M77 93l18 18 35-38" stroke="#35a657" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div id="s6qrtext">EMPLACEMENT QR</div>
+        <div id="s6prices"><div class="p"><span>2 000 XAF</span><br />/ MOIS</div><div class="p"><span>10 000 XAF</span><br />/ AN</div></div>
+        <div id="s6end">MISSA TV 360 · TON MONDE, TON RYTHME.</div>
+      </div>
+    </section>
+
+    <div id="hud" class="clip" data-start="0" data-duration="37" data-track-index="6"><div id="hudName">MISSA TV 360</div><div id="hudSerial">LE MONDE S’OUVRE</div><div id="progressBase"><div id="progressFill"></div></div></div>
+    <div id="flash" class="clip" data-start="0" data-duration="37" data-track-index="7"></div>
+    <div id="fader" class="clip" data-start="0" data-duration="37" data-track-index="8"></div>
+  </div>
+  <script>
+    // Paused, finite, seekable animation — HyperFrames sets the absolute time.
+    const tl = gsap.timeline({paused:true});
+    const fmt = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+    const reveal = (sel,at,d=.48,dy=50) => tl.fromTo(sel,{y:dy,autoAlpha:0},{y:0,autoAlpha:1,duration:d,ease:'power3.out'},at);
+    const pop = (sel,at,d=.48) => tl.fromTo(sel,{scale:.64,autoAlpha:0},{scale:1,autoAlpha:1,duration:d,ease:'back.out(1.7)'},at);
+    tl.fromTo('#progressFill',{width:0},{width:920,duration:37,ease:'none'},0);
+    tl.fromTo('#in1',{opacity:0},{opacity:1,duration:.22,ease:'power1.out'},0);
+    tl.fromTo('#s1photo',{scale:1.15,x:28},{scale:1.035,x:-15,duration:3,ease:'sine.out'},0);
+    tl.fromTo('#s1orb',{scale:.6,opacity:0},{scale:1.25,opacity:.85,duration:2.7,ease:'power2.out'},.2);
+    tl.fromTo('#s1orb2',{scale:.52,opacity:0},{scale:1.11,opacity:.5,duration:2.9,ease:'power2.out'},.1);
+    pop('#s1logo',.12,.6); reveal('#s1eyebrow',.46,.38,30);
+    reveal('#s1line1',.69,.51,84); reveal('#s1line2',.94,.6,110); reveal('#s1foot',1.65,.46,25);
+    tl.fromTo('#s1line2',{scale:1},{scale:1.035,duration:.45,yoyo:true,repeat:1,ease:'sine.inOut'},1.75);
+
+    // Receipts assemble; the last sentence lands on the downbeat.
+    tl.fromTo('#in2',{opacity:0},{opacity:1,duration:.18},3);
+    tl.fromTo('#s2bg',{scale:1.15},{scale:1.03,duration:5,ease:'none'},3);
+    reveal('#s2no',3.17,.34,25); reveal('#s2question',3.35,.5,76);
+    tl.fromTo('#billA',{x:-610,rotation:-8,autoAlpha:0},{x:0,rotation:-2,autoAlpha:1,duration:.52,ease:'back.out(1.4)'},4.05);
+    tl.fromTo('#billB',{x:640,rotation:7,autoAlpha:0},{x:0,rotation:1.2,autoAlpha:1,duration:.52,ease:'back.out(1.4)'},4.55);
+    tl.fromTo('#billC',{x:-590,rotation:-6,autoAlpha:0},{x:0,rotation:-1,autoAlpha:1,duration:.52,ease:'back.out(1.4)'},5.05);
+    tl.to('#s2pile',{scale:.82,opacity:.36,y:-80,rotation:2,duration:.62,ease:'power3.inOut'},6.15);
+    pop('#s2enough',6.35,.43); reveal('#s2sub',6.66,.48,25);
+
+    // Physical price cards, three display types, and the NET Wi-Fi box.
+    tl.fromTo('#in3',{opacity:0},{opacity:1,duration:.19},8);
+    tl.fromTo('#s3photo',{scale:1.12,x:-23},{scale:1.025,x:18,duration:7,ease:'none'},8);
+    tl.fromTo('#s3ring',{scale:.55,opacity:0},{scale:1.9,opacity:.42,duration:5,ease:'power1.out'},8.03);
+    reveal('#s3k',8.1,.34,24); reveal('#s3title',8.27,.55,63);
+    pop('#pMonth',8.81,.5); pop('#pYear',9.43,.47);
+    const month={v:0},year={v:0};
+    tl.to(month,{v:2000,duration:.8,ease:'power2.out',onUpdate:()=>document.querySelector('#nMonth').textContent=fmt(month.v)},8.9);
+    tl.to(year,{v:10000,duration:.9,ease:'power2.out',onUpdate:()=>document.querySelector('#nYear').textContent=fmt(year.v)},9.5);
+    reveal('#dev1',10.37,.35,35); reveal('#dev2',10.56,.35,35); reveal('#dev3',10.75,.35,35);
+    reveal('#boxPanel',11.49,.56,90);
+    tl.fromTo('#s3boximg',{scale:1.08,x:-18},{scale:1.22,x:10,duration:3.5,ease:'none'},11.5);
+    reveal('#boxMini',12.35,.44,28);
+
+    // Photo triptych. The product's Ken Burns runs uninterrupted across all 10 s.
+    tl.fromTo('#in4',{opacity:0},{opacity:1,duration:.16},15);
+    tl.fromTo('#w1',{opacity:0},{opacity:1,duration:.16},15);
+    tl.fromTo('#w1photo',{scale:1.07,x:0},{scale:1.26,x:-42,duration:4.0,ease:'none'},15);
+    reveal('#w1top',15.21,.36,28); reveal('#w1title',15.48,.49,78); reveal('#w1desc',16.03,.34,23);
+    tl.fromTo('#w2',{opacity:0,clipPath:'inset(0 100% 0 0)'},{opacity:1,clipPath:'inset(0 0% 0 0)',duration:.56,ease:'power2.inOut'},18.23);
+    tl.fromTo('#w2photo',{scale:1.08,x:40},{scale:1.26,x:-12,duration:4.1,ease:'none'},18.2);
+    tl.set('#w1',{opacity:0},18.79);
+    reveal('#w2top',18.83,.35,27); reveal('#w2title',19.00,.5,78); reveal('#w2desc',19.50,.34,23);
+    tl.fromTo('#w3',{opacity:0,clipPath:'inset(0 100% 0 0)'},{opacity:1,clipPath:'inset(0 0% 0 0)',duration:.56,ease:'power2.inOut'},21.48);
+    tl.fromTo('#w3photo',{scale:1.05,x:0},{scale:1.21,x:-40,duration:3.6,ease:'none'},21.45);
+    tl.set('#w2',{opacity:0},22.04);
+    reveal('#w3top',22.08,.35,27); reveal('#w3title',22.25,.5,78); reveal('#w3desc',22.76,.34,23);
+    pop('#boxChip',15.82,.42);
+    tl.fromTo('#boxKen',{scale:1.02,x:-3},{scale:1.3,x:13,duration:9.05,ease:'none'},15.82);
+    reveal('#worldCount',16.61,.42,26);
+
+    // The nervous orange signal yields to a calm lime line.
+    tl.fromTo('#in5',{opacity:0},{opacity:1,duration:.17},25);
+    tl.fromTo('#s5photo',{scale:1.1,y:65},{scale:1.0,y:-20,duration:7,ease:'none'},25);
+    reveal('#s5k',25.15,.35,27); reveal('#s5question',25.44,.5,72);
+    tl.fromTo('#noisy',{opacity:0,strokeDasharray:'150 28',strokeDashoffset:280},{opacity:.95,strokeDashoffset:0,duration:1.2,ease:'none'},25.7);
+    tl.to('#noisy',{opacity:0,duration:.48},27.7);
+    tl.fromTo('#stable',{opacity:0,strokeDasharray:1250,strokeDashoffset:1250},{opacity:1,strokeDashoffset:0,duration:1.0,ease:'power2.out'},27.77);
+    pop('#s5badge',28.2,.43); reveal('#s5result',28.54,.56,80);
+    reveal('#s5trust',29.58,.46,32); reveal('#s5network',30.27,.43,24);
+    tl.fromTo('#s5badge',{scale:1},{scale:1.15,duration:.48,repeat:4,yoyo:true,ease:'sine.inOut'},29.12);
+
+    // Warm return to the portal, functional CTA label and honest QR placeholder.
+    tl.fromTo('#in6',{opacity:0},{opacity:1,duration:.18},32);
+    tl.fromTo('#s6photo',{scale:1.11,x:33},{scale:1.025,x:-24,duration:5,ease:'none'},32);
+    tl.fromTo('#s6halo',{scale:.56,opacity:0},{scale:1.13,opacity:.75,duration:2.2,ease:'power2.out'},32.07);
+    pop('#s6logo',32.17,.57); reveal('#s6heading',32.7,.53,76);
+    pop('#cta',33.43,.53); tl.fromTo('#cta',{scale:1},{scale:1.045,duration:.46,yoyo:true,repeat:4,ease:'sine.inOut'},34.13);
+    reveal('#s6qr',34.05,.45,43); reveal('#s6qrtext',34.34,.36,21);
+    reveal('#s6prices',34.35,.51,40); reveal('#s6end',35.17,.42,21);
+    tl.fromTo('#fader',{opacity:0},{opacity:1,duration:.35,ease:'sine.inOut'},36.65);
+
+    // Short luminous punctuation at every chapter change and world swipe.
+    [3,8,15,18.23,21.48,25,32].forEach(t=>{
+      tl.to('#flash',{opacity:.19,duration:.075,ease:'power2.out'},t);
+      tl.to('#flash',{opacity:0,duration:.20,ease:'power1.out'},t+.075);
+    });
+    window.__timelines.main=tl;
+  </script>
+</body>
+</html>
