@@ -1,39 +1,44 @@
-# MISSA TV 360 — « Le monde s’ouvre »
+# MISSA TV 360 — « Ton monde s’ouvre » (59 secondes)
 
-**Nouvelle vidéo indépendante de la v9.** Format portrait 1080 × 1920, 30 i/s, 37 s. Une même porte lumineuse relie des univers cinéma, musique et jeu ; palette cobalt / jaune de marque / vert signal. Le montage suit exactement 3 + 5 + 7 + 10 + 7 + 5 secondes.
+Mise à jour de la vidéo `livrables/missa-tv-360-portail.mp4` : **59 s exactement**, portrait 1080 × 1920 à 30 i/s. Le film n'est pas simplement ralenti : les six chapitres, la voix, les animations, la musique et les effets sont recalés. Le texte tutoie le public du début à la fin, avec un français oral naturel et quelques tournures familières (« ça suffit, hein », « pose-toi », « on est ensemble ») sans caricature.
 
-| Temps | Séquence | Traitement et informations à l'écran | Voix française |
+| Temps | Chapitre | Texte et action à l'écran | Voix (verbatim) |
 | --- | --- | --- | --- |
-| 00–03 | Hook | Logo officiel dans une tuile jaune ; « LE MONDE S’OUVRE. » en pop + fade up ; portail du salon. | « Missa TV trois cent soixante ! » |
-| 03–08 | Problème | Trois factures arrivent, s'empilent puis rétrécissent ; « TU PAYES ENCORE TROP CHER ? », « ÇA SUFFIT. ». | « Marre de payer cher pour presque rien ? Stop, hein ! » |
-| 08–15 | Solution | Compteurs prix 2 000 XAF/mois et 10 000 XAF/an ; « LE MONDE EN FACE DE VOUS. » ; Android TV / tablette / téléphone ; box Wi-Fi NET. | « Deux mille le mois, dix mille l'an. Le monde en face de toi, avec ta box Wi-Fi ! » |
-| 15–25 | Modules | Trois passages photo : films/séries/manga → musique/shorts-dramas → jeux vidéo/podcasts/radio ; mini-produit NET en zoom Ken Burns continu. | « Films, séries, mangas. Musique, shorts-dramas. Jeux vidéo, podcasts, radio ! » |
-| 25–32 | Stabilité | Signal orange accidenté → ligne verte continue et coche ; « MÊME CONNEXION FAIBLE ? » → « FLUX STABLE. » ; « PENSÉ POUR LES PETITS DÉBITS ». | « Petit débit ? Pas de panique. Le flux reste stable, même quand ça ralentit. » |
-| 32–37 | CTA | Logo officiel ; « TÉLÉCHARGEZ MAINTENANT » ; emplacement QR **explicitement non scannable** ; rappel des prix. | « Missa TV trois cent soixante. Télécharge maintenant ! » |
+| 00–06 | Hook | Logo officiel sur le portail ; « TON MONDE S’OUVRE. » et « LE DIVERTISSEMENT À TON RYTHME. » | « Missa TV trois cent soixante... ton monde s'ouvre ! » |
+| 06–16 | Problème | Trois abonnements/factures s'accumulent. « ENCORE UN ABONNEMENT ? » → « ÇA SUFFIT. » | « Tu paies encore un abonnement, puis un autre... et au final, tu regardes toujours la même chose. Chaque fin de mois, ça pèse sur le portefeuille. Franchement, ça suffit, hein ! » |
+| 16–29 | Solution | « LE MONDE EN FACE DE TOI. » ; 2 000 XAF/mois ou 10 000 XAF/an ; box NET, **Wi-Fi + Internet**, puis Android TV, tablette et téléphone. | « Deux mille francs le mois, dix mille francs l'année : c'est toi qui choisis. » / « Avec ta box Wi-Fi et Internet, tu regardes sur ta télé, ta tablette ou ton téléphone. » |
+| 29–46 | Univers | 29–34,9 : films/séries/manga ; 34,9–40,1 : musique/shorts-dramas ; 40,1–46 : jeux vidéo/podcasts/radio. La box NET reste en zoom Ken Burns. | « Films, séries, mangas... pose-toi et choisis ton histoire ! » / « Musique, shorts-dramas : suis ton envie du moment. » / « Jeux vidéo, podcasts, radio... chacun trouve son truc ! » |
+| 46–53 | Stabilité | « PETIT DÉBIT ? ÇA CONTINUE. » ; signal irrégulier → ligne fluide → « FLUX STABLE. » | « Même avec un petit débit, le flux reste stable. Tu continues tranquille, hein ! » |
+| 53–59 | CTA | Logo ; « TON MONDE T’ATTEND. » ; « TÉLÉCHARGE MAINTENANT » ; placeholder QR non scannable ; rappel des deux prix. | « Ton monde t'attend. Télécharge maintenant, on est ensemble ! » |
 
-## Choix éditoriaux
+## Cohérence et vérifications éditoriales
 
-- Le logo **MTN n'apparaît pas** : la box reste **NET**, comme demandé lors de la correction précédente. Le Ken Burns de la séquence 4 s'applique à son image.
-- Faute de preuve ou de conditions de test, la vidéo n'affirme pas « garanti », « testé en zone rurale » ni la lecture vidéo en 2G. Elle conserve le bénéfice demandé (« petit débit », « flux stable ») sans présenter une certification non fournie. À faire valider avant diffusion commerciale.
-- Aucun lien de téléchargement n'a été fourni : le carré en fin de film est un **emplacement QR**, pas un faux code qui mènerait ailleurs. Le remplacer dès que l'URL officielle sera disponible.
-- Portraits et univers générés pour ce film ; logo et photographie du produit repris de la bibliothèque du dépôt. Voix sélectionnée lors de la v9 (français), musique et effets synthétiques originaux dans `sound.py`.
+- **Un seul point de vue** : le tutoiement (« toi / ta box / tes écrans / télécharge »), sans alterner « vous » et « tu ».
+- **Le bon prérequis** : la vidéo dit désormais **box Wi-Fi et connexion Internet** ; elle ne laisse pas entendre qu'une box seule donne accès au catalogue.
+- **Tarifs** : exactement 2 000 XAF/mois ou 10 000 XAF/an, selon le nouveau brief. Aucun ancien tarif de la v9.
+- La box porte **NET**, jamais MTN, conformément à la demande antérieure.
+- Faute de preuves transmises, la vidéo n'affirme ni « garanti », ni « testé en zone rurale », ni la lecture vidéo en 2G. La promesse de stabilité en faible débit, fournie par le brief, reste à confirmer avant diffusion commerciale.
+- Aucun lien de téléchargement officiel n'a été fourni. La case en fin de film est explicitement « EMPLACEMENT QR » et **n'est pas scannable**.
+- Les quatre univers photo ont été générés pour cette production ; le logo et la photographie de la box proviennent du dépôt. Voix française sélectionnée précédemment pour la v9, afro-électro et SFX synthétiques originaux dans `sound.py`.
 
-## Contrôle du master
+## Contrôle du master 59 s
 
-- `hf check` : réussi, 0 erreur de composition / layout / motion ; contraste 40/40.
-- Rendu : 37,000 s, H.264 1080 × 1920, 30 i/s, AAC stéréo 44,1 kHz ; qualité `delivery`.
-- Mix : environ −16,6 LUFS intégrés et −1,9 dBTP (mesure `ebur128`).
-- Contrôle visuel : images prélevées dans le **MP4 final** aux secondes 1,6 / 7,2 / 10,5 / 13,4 / 17 / 20 / 23,5 / 29,8 / 35,5.
+- `hf check` : passe (0 erreur, contraste **25/25** WCAG AA ; 7 avertissements de structure recommandant des sous-compositions, sans impact sur le rendu).
+- Master livré : **59,000 s**, H.264 1080 × 1920 / 30 i/s et AAC stéréo 44,1 kHz ; rendu `delivery`.
+- Niveau audio : environ **−16,7 LUFS intégrés** et **−1,4 dBTP** (`ebur128`).
+- Les neuf prises de voix sont entièrement dans leurs scènes et ne se chevauchent pas ; seule la phrase du problème est ajustée à **1,12×**.
+- Dix photogrammes ont été extraits du **MP4 final** (2,4 / 8,9 / 14,9 / 20,5 / 27,6 / 31,9 / 37,5 / 43,5 / 50,8 / 57,6 s) et vérifiés visuellement.
 
 ## Production
 
 ```bash
-# Depuis la racine du dépôt, une fois HyperFrames installé :
+# Depuis la racine du dépôt, après installation des dépendances :
 ./scripts/hf check projects/missa-tv-360-portail
 ./scripts/hf render projects/missa-tv-360-portail --quality delivery \
   --output .cache/rendus/missa-tv-360-portail-silent.mp4
 python3 projects/missa-tv-360-portail/sound.py
-# La VO .cache/vo10/s1..s6.mp3 est générée avec la voix choisie dans la session.
+# Neuf prises de voix .cache/vo59/s1,s2,s3a,s3b,s4a,s4b,s4c,s5,s6.mp3.
+# mix.py accélère uniquement s2 de 1,12× pour conserver la respiration des 10 s.
 python3 projects/missa-tv-360-portail/mix.py
-# → livrables/missa-tv-360-portail.mp4
+# → livrables/missa-tv-360-portail.mp4 (remplace le master 37 s)
 ```

@@ -1,4 +1,4 @@
-"""Bande-son synthétique originale de « Le monde s'ouvre » (37 s).
+"""Bande-son synthétique originale de « Le monde s'ouvre » (59 s).
 
 Depuis la racine du dépôt : python3 projects/missa-tv-360-portail/sound.py
 Écrit uniquement dans .cache/portail-audio/ (les médias lourds restent hors Git).
@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 
 SR = 44100
-DUR = 37.2
+DUR = 59.2
 N = round(DUR * SR)
 OUT = Path('.cache/portail-audio')
 OUT.mkdir(parents=True, exist_ok=True)
@@ -85,7 +85,7 @@ chords = [
     (49.00, (196.00,246.94,293.66), (392.00,493.88,587.33)),
     (55.00, (220.00,277.18,329.63), (440.00,554.37,659.25)),
 ]
-for bar in range(16):
+for bar in range(math.ceil(DUR/(4*beat))):
     base = bar*4*beat
     root, chord, lead = chords[bar % 4]
     # Intro is sparse; the hook lands before full drums return at the problem beat.
@@ -108,15 +108,16 @@ for bar in range(16):
         add(base+offset,pluck(note,.53),.095 if j%2==0 else .068,pan=(-.38 if j%2 else .37))
 
 # A gentle three-note signature makes the CTA feel resolved rather than cut off.
-for i,(freq,delay) in enumerate(((587.33,32.11),(739.99,32.29),(880.0,32.49))):
+for i,(freq,delay) in enumerate(((587.33,53.11),(739.99,53.29),(880.0,53.49))):
     add(delay,pluck(freq,1.5),.11+i*.025,pan=(-.25,0,.25)[i])
 
 s = np.arange(N)/SR
-section = np.interp(s,[0, .7, 2.3,3.05, 7.8,8.3,14.9,15.2,24.8,25.1,27.1,28.3,31.9,32.25,35.5,36.55,37.2],
-                       [.03,.38,.6,.72,.70,.91,.86,.99,.93,.34,.25,.61,.65,.95,.87,.55,0])
+section = np.interp(s,[0,.8,5.8,6.2,15.8,16.2,28.8,29.2,45.8,46.2,47.5,48.9,52.8,53.2,57.0,58.5,59.2],
+                       [.03,.36,.62,.72,.71,.88,.88,1.0,.94,.33,.25,.64,.65,.96,.87,.48,0])
 # Keep the voice local, warm and fully intelligible; crossfade ducking at each sentence edge.
 duck = np.ones(N,dtype=np.float32)
-for start,end in ((.10,2.84),(3.31,7.19),(8.23,14.62),(15.24,24.05),(25.36,31.05),(32.28,36.72)):
+for start,end in ((.30,4.13),(6.20,15.66),(16.35,20.58),(22.45,28.31),
+                  (29.08,34.90),(35.52,39.87),(40.64,45.84),(46.20,51.75),(53.22,57.36)):
     a,b=int(start*SR),int(end*SR)
     duck[a:b]=.35
     r=round(.21*SR)
@@ -180,19 +181,19 @@ def load(name: str) -> np.ndarray:
 sfx = np.zeros((N,2),dtype=np.float32)
 fx_files={name:load(name+'.wav') for name in ('whoosh','impact','tick','lock','glitch')}
 events = [
-    ('impact',.12,.45),('whoosh',2.92,.43),('glitch',3.14,.28),
-    ('tick',4.05,.48),('tick',4.55,.44),('tick',5.05,.44),('impact',6.35,.52),
-    ('whoosh',7.91,.56),('tick',8.81,.43),('tick',9.43,.43),
-    ('tick',10.37,.20),('tick',10.56,.20),('tick',10.75,.20),('impact',11.49,.38),
-    ('whoosh',14.92,.62),('tick',15.48,.22),('whoosh',18.2,.54),
-    ('tick',19.0,.22),('whoosh',21.45,.54),('tick',22.25,.22),
-    ('whoosh',24.92,.62),('glitch',25.86,.32),('lock',28.16,.57),
-    ('whoosh',31.92,.62),('impact',32.15,.53),('lock',33.44,.44),('tick',34.05,.28),
+    ('impact',.22,.45),('whoosh',5.92,.46),('glitch',6.14,.23),
+    ('tick',7.95,.46),('tick',9.36,.46),('tick',10.82,.44),('impact',14.04,.52),
+    ('whoosh',15.92,.56),('tick',17.64,.42),('tick',19.02,.42),
+    ('impact',22.35,.38),('tick',24.1,.22),('tick',24.69,.22),('tick',25.28,.22),
+    ('whoosh',28.92,.62),('tick',29.63,.23),('whoosh',34.90,.54),
+    ('tick',35.82,.22),('whoosh',40.10,.54),('tick',41.04,.22),
+    ('whoosh',45.92,.62),('glitch',46.75,.32),('lock',48.65,.57),
+    ('whoosh',52.92,.62),('impact',53.21,.53),('lock',55.03,.44),('tick',55.93,.28),
 ]
 for name,start,gain in events:
     sig=fx_files[name]
     a=round(start*SR); b=min(N,a+len(sig))
     sfx[a:b]+=gain*sig[:b-a]
 save('sfx-bed.wav',sfx,.68)
-print('37.2 s music + designed SFX stem:', OUT)
+print('59.2 s music + designed SFX stem:', OUT)
 
