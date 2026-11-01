@@ -1,0 +1,52 @@
+{
+  "name": "{{NAME}}",
+  "title": "{{NAME}}",
+  "version": 1,
+  "canvas": "16x9",
+  "duration": 6,
+  "background": "#0b1020",
+  "export": {
+    "preset": "mp4-hq"
+  },
+  "transitions": {
+    "type": "fade",
+    "duration": 0.5
+  },
+  "layers": [
+    {
+      "type": "shape",
+      "kind": "rect",
+      "w": 460,
+      "h": 6,
+      "color": "#8ab4ff",
+      "pos": "center",
+      "in": 0.4,
+      "out": 5.5,
+      "anim": "grow_x",
+      "anim_duration": 1.0
+    },
+    {
+      "type": "text",
+      "text": "TITRE DU PROJET",
+      "font": "DejaVuSans-Bold.ttf",
+      "size": 84,
+      "color": "#ffffff",
+      "pos": [960, 470],
+      "in": 0.2,
+      "out": 5.5,
+      "anim": "fade_up",
+      "amplitude": 60
+    },
+    {
+      "type": "text",
+      "text": "sous-titre ou accroche",
+      "size": 34,
+      "color": "#9fb4d8",
+      "pos": [960, 600],
+      "in": 0.8,
+      "out": 5.5,
+      "anim": "fade",
+      "fade_in": 0.8
+    }
+  ]
+}

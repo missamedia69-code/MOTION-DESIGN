@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>MISSA TV 360 — Teaser cinématique nuit &amp; or</title>
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Nunito"; src: url("vendor/Nunito-Variable.ttf") format("truetype"); font-weight: 200 1000; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; background: #04060b; overflow: hidden; }
+      body { font-family: "Nunito", sans-serif; color: #f5efe0; }
+
+      #root { position: relative; width: 1080px; height: 1920px; background: #04060b; overflow: hidden; }
+
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .sin { position: absolute; inset: 0; }
+      .bggold {
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(ellipse 90% 45% at 50% 12%, rgba(216,180,90,.14), rgba(0,0,0,0) 60%),
+          radial-gradient(ellipse 120% 60% at 50% 100%, rgba(23,40,80,.35), rgba(0,0,0,0) 65%),
+          #04060b;
+      }
+      .vign { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55) 100%); }
+
+      .goldline { position: absolute; height: 3px; background: linear-gradient(90deg, rgba(216,180,90,0), #d8b45a 18%, #e8cd86 50%, #d8b45a 82%, rgba(216,180,90,0)); }
+
+      .t-white { color: #f5efe0; font-weight: 300; text-transform: uppercase; }
+      .t-gold  { color: #e8cd86; font-weight: 600; text-transform: uppercase; }
+
+      .cap {
+        position: absolute; left: 90px; right: 90px; bottom: 120px;
+        text-align: center; font-size: 34px; line-height: 1.45; font-weight: 600;
+        color: #f2ead6; background: rgba(4,6,11,.72);
+        border: 1px solid rgba(216,180,90,.45); border-radius: 14px;
+        padding: 26px 34px; letter-spacing: .02em;
+      }
+
+      /* ---- S1 ---- */
+      #line1 { top: 620px; left: 190px; right: 190px; }
+      #t1a { position: absolute; top: 700px; width: 100%; text-align: center; font-size: 84px; letter-spacing: .16em; }
+      #t1b { position: absolute; top: 810px; width: 100%; text-align: center; font-size: 84px; letter-spacing: .16em; }
+      #t1c { position: absolute; top: 980px; width: 100%; text-align: center; font-size: 40px; letter-spacing: .22em; color: rgba(245,239,224,.62); font-weight: 300; }
+
+      /* ---- S2 ---- */
+      #glow2 { position: absolute; left: 50%; top: 780px; width: 760px; height: 760px; margin-left: -380px; margin-top: -380px;
+        background: radial-gradient(circle, rgba(232,205,134,.30), rgba(232,205,134,.08) 45%, rgba(0,0,0,0) 70%); border-radius: 50%; }
+      #logo2 { position: absolute; left: 50%; top: 780px; width: 560px; height: 560px; margin-left: -280px; margin-top: -280px;
+        filter: drop-shadow(0 24px 60px rgba(0,0,0,.65)); }
+      #line2 { top: 1120px; left: 260px; right: 260px; }
+      #t2 { position: absolute; top: 1180px; width: 100%; text-align: center; font-size: 42px; letter-spacing: .3em; }
+
+      /* ---- S3 ---- */
+      #halo3 { position: absolute; left: 50%; top: 500px; width: 900px; height: 620px; margin-left: -450px; margin-top: -310px;
+        background: radial-gradient(ellipse, rgba(232,205,134,.20), rgba(0,0,0,0) 70%); }
+      #boxprod { position: absolute; left: 50%; top: 470px; width: 720px; height: 720px; margin-left: -360px;
+        filter: drop-shadow(0 30px 50px rgba(0,0,0,.7)) sepia(.25) saturate(1.1) brightness(1.12); }
+      #st1 { position: absolute; top: 1210px; width: 100%; text-align: center; }
+      #st2 { position: absolute; top: 1380px; width: 100%; text-align: center; }
+      .stat .num { font-size: 96px; font-weight: 700; color: #e8cd86; letter-spacing: .06em; }
+      .stat .lab { font-size: 40px; font-weight: 300; letter-spacing: .28em; color: #f5efe0; }
+      #seal { position: absolute; left: 50%; top: 1570px; width: 460px; height: 120px; margin-left: -230px;
+        border: 2px solid #d8b45a; border-radius: 999px; display: flex; align-items: center; justify-content: center;
+        font-size: 52px; font-weight: 700; color: #e8cd86; letter-spacing: .1em;
+        box-shadow: 0 0 40px rgba(216,180,90,.25) inset, 0 0 40px rgba(216,180,90,.18); }
+
+      /* ---- S4 : galerie ---- */
+      #gal { position: absolute; left: 70px; right: 70px; top: 420px; display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+      .card { position: relative; height: 560px; border: 1px solid rgba(216,180,90,.55); border-radius: 20px; overflow: hidden;
+        background: #0a0e16; box-shadow: 0 20px 50px rgba(0,0,0,.55); }
+      .card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) brightness(.82) sepia(.12); }
+      .card .lab { position: absolute; left: 0; right: 0; bottom: 0; padding: 26px 10px 22px; text-align: center;
+        font-size: 30px; letter-spacing: .2em; font-weight: 600; color: #e8cd86; text-transform: uppercase;
+        background: linear-gradient(rgba(4,6,11,0), rgba(4,6,11,.9) 45%); }
+      #t4 { position: absolute; top: 250px; width: 100%; text-align: center; font-size: 46px; letter-spacing: .26em; }
+      #line4 { top: 350px; left: 240px; right: 240px; }
+
+      /* ---- S5 ---- */
+      #t5a { position: absolute; top: 760px; width: 100%; text-align: center; font-size: 80px; letter-spacing: .14em; }
+      #t5b { position: absolute; top: 870px; width: 100%; text-align: center; font-size: 80px; letter-spacing: .14em; }
+      #line5 { top: 1040px; left: 300px; right: 300px; }
+      #t5c { position: absolute; top: 1110px; width: 100%; text-align: center; font-size: 52px; letter-spacing: .2em;
+        text-shadow: 0 0 34px rgba(232,205,134,.45); }
+
+      /* ---- S6 ---- */
+      #glow6 { position: absolute; left: 50%; top: 700px; width: 820px; height: 820px; margin-left: -410px; margin-top: -410px;
+        background: radial-gradient(circle, rgba(232,205,134,.26), rgba(0,0,0,0) 68%); border-radius: 50%; }
+      #logoF { position: absolute; left: 50%; top: 700px; width: 560px; height: 560px; margin-left: -280px; margin-top: -280px;
+        filter: drop-shadow(0 24px 60px rgba(0,0,0,.65)); }
+      #t6 { position: absolute; top: 1060px; width: 100%; text-align: center; font-size: 38px; letter-spacing: .24em; color: #f5efe0; font-weight: 300; }
+      #cta { position: absolute; left: 50%; top: 1200px; width: 640px; height: 120px; margin-left: -320px;
+        display: flex; align-items: center; justify-content: center;
+        border: 2px solid #d8b45a; border-radius: 999px;
+        font-size: 44px; font-weight: 700; letter-spacing: .14em; color: #e8cd86; }
+      #ctaglow { position: absolute; left: 50%; top: 1200px; width: 640px; height: 120px; margin-left: -320px;
+        border-radius: 999px; box-shadow: 0 0 60px rgba(216,180,90,.5); }
+
+      #fader { position: absolute; inset: 0; background: #000; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="38.4" data-width="1080" data-height="1920">
+
+      <div id="sc1" class="scene clip" data-start="0" data-duration="6.5" data-track-index="0">
+        <div id="sin1" id="sin2" id="sin3" id="sin4" id="sin5" id="sin6" class="sin">
+          <div class="bggold"></div>
+          <div id="line1" class="goldline"></div>
+          <div id="t1a" class="t-white">Marre de payer</div>
+          <div id="t1b" class="t-gold">chaque mois ?</div>
+          <div id="t1c">…et ne rien trouver à regarder</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc2" class="scene clip" data-start="6.2" data-duration="4.2" data-track-index="1">
+        <div class="sin">
+          <div class="bggold"></div>
+          <div id="glow2"></div>
+          <img id="logo2" src="assets/logo-missa.png" alt="MISSA TV 360" />
+          <div id="line2" class="goldline"></div>
+          <div id="t2" class="t-gold">Le divertissement sans limites</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc3" class="scene clip" data-start="10.1" data-duration="7.3" data-track-index="2">
+        <div class="sin">
+          <div class="bggold"></div>
+          <div id="halo3"></div>
+          <img id="boxprod" src="assets/box-pro.png" alt="Box WiFi MTN" />
+          <div id="st1" class="stat"><span class="num">+<span id="n1">0</span></span> <span class="lab">chaînes</span></div>
+          <div id="st2" class="stat"><span class="num">+<span id="n2">0</span></span> <span class="lab">films &amp; séries</span></div>
+          <div id="seal">5 000 XOF / AN</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc4" class="scene clip" data-start="17.1" data-duration="8.9" data-track-index="3">
+        <div class="sin">
+          <div class="bggold"></div>
+          <div id="t4" class="t-gold">Une nouvelle dimension</div>
+          <div id="line4" class="goldline"></div>
+          <div id="gal">
+            <div id="cA" class="card"><img id="imA" src="assets/foot2.jpg" alt="Football" /><div class="lab">Football</div></div>
+            <div id="cB" class="card"><img id="imB" src="assets/films.jpg" alt="Films à succès" /><div class="lab">Films à succès</div></div>
+            <div id="cC" class="card"><img id="imC" src="assets/series.png" alt="Séries africaines" /><div class="lab">Séries africaines</div></div>
+            <div id="cD" class="card"><img id="imD" src="assets/international.jpg" alt="Programmes internationaux" /><div class="lab">International</div></div>
+          </div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc5" class="scene clip" data-start="25.7" data-duration="7.0" data-track-index="4">
+        <div class="sin">
+          <div class="bggold"></div>
+          <div id="t5a" class="t-white">Arrête de payer</div>
+          <div id="t5b" class="t-gold">pour ce qui te déçoit.</div>
+          <div id="line5" class="goldline"></div>
+          <div id="t5c" class="t-gold">Passe à Missa TV 360</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="sc6" class="scene clip" data-start="32.4" data-duration="6.0" data-track-index="5">
+        <div class="sin">
+          <div class="bggold"></div>
+          <div id="glow6"></div>
+          <img id="logoF" src="assets/logo-missa.png" alt="MISSA TV 360" />
+          <div id="t6">Tu te connectes · tu choisis · tu profites</div>
+          <div id="ctaglow"></div>
+          <div id="cta">Abonne-toi maintenant</div>
+          <div class="vign"></div>
+        </div>
+      </div>
+
+      <div id="cap1" class="cap clip" data-start="0.2" data-duration="5.9" data-track-index="7">Tu en as marre de payer un abonnement télé chaque mois… pour ne rien trouver d'intéressant ?</div>
+      <div id="cap2" class="cap clip" data-start="6.2" data-duration="3.8" data-track-index="8">Alors découvre Missa TV 360 !</div>
+      <div id="cap3" class="cap clip" data-start="10.1" data-duration="6.8" data-track-index="9">Avec ta box WiFi et ta connexion : +3 000 chaînes et +9 000 films &amp; séries.</div>
+      <div id="cap4" class="cap clip" data-start="17.1" data-duration="8.5" data-track-index="10">Football, films à succès, séries africaines, programmes internationaux.</div>
+      <div id="cap5" class="cap clip" data-start="25.7" data-duration="6.5" data-track-index="11">Arrête de payer pour ce qui ne te satisfait pas. Passe à Missa TV 360 !</div>
+      <div id="cap6" class="cap clip" data-start="32.4" data-duration="5.4" data-track-index="12">Missa TV 360 : tu te connectes, tu choisis, tu profites !</div>
+
+      <div id="fader" class="clip" data-start="0" data-duration="38.4" data-track-index="13"></div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines = window.__timelines || {};
+      const fmt = v => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      /* entrées = ease-out lentes ; sorties/crossfades = sine.inOut ; ambient long */
+
+      /* S1 — weight élégant : filet doré, titres en montée lente */
+      tl.fromTo("#sin1", { opacity: 0 }, { opacity: 1, duration: .6, ease: "sine.inOut" }, 0);
+      tl.fromTo("#line1", { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: "power2.inOut" }, .25);
+      tl.fromTo("#t1a", { y: 46, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .9, ease: "power2.out" }, .55);
+      tl.fromTo("#t1b", { y: 46, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .9, ease: "power2.out" }, .95);
+      tl.fromTo("#t1c", { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.0, ease: "sine.inOut" }, 2.1);
+
+      /* S2 — révélation radiale lente */
+      tl.fromTo("#sin2", { opacity: 0 }, { opacity: 1, duration: .5, ease: "sine.inOut" }, 6.2);
+      tl.fromTo("#glow2", { autoAlpha: 0, scale: .5 }, { autoAlpha: 1, scale: 1.25, duration: 1.6, ease: "sine.out" }, 6.35);
+      tl.fromTo("#logo2", { scale: .94, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 1.0, ease: "power2.out" }, 6.5);
+      tl.fromTo("#line2", { scaleX: 0 }, { scaleX: 1, duration: .9, ease: "power2.inOut" }, 7.4);
+      tl.fromTo("#t2", { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: .8, ease: "power2.out" }, 7.7);
+
+      /* S3 — spotlight, float lent, compteurs posés */
+      tl.fromTo("#sin3", { opacity: 0 }, { opacity: 1, duration: .5, ease: "sine.inOut" }, 10.1);
+      tl.fromTo("#halo3", { autoAlpha: 0 }, { autoAlpha: 1, duration: .9, ease: "sine.inOut" }, 10.25);
+      tl.fromTo("#boxprod", { y: 70, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: "power2.out" }, 10.4);
+      tl.fromTo("#boxprod", { y: 0 }, { y: -16, duration: 2.6, yoyo: true, repeat: 2, ease: "sine.inOut" }, 11.4);
+      tl.fromTo("#st1", { y: 36, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .7, ease: "power2.out" }, 12.2);
+      const o1 = { v: 0 };
+      tl.to(o1, { v: 3000, duration: 1.6, ease: "power1.inOut", onUpdate: () => { document.getElementById("n1").textContent = fmt(o1.v); } }, 12.3);
+      tl.fromTo("#st2", { y: 36, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .7, ease: "power2.out" }, 14.3);
+      const o2 = { v: 0 };
+      tl.to(o2, { v: 9000, duration: 1.6, ease: "power1.inOut", onUpdate: () => { document.getElementById("n2").textContent = fmt(o2.v); } }, 14.4);
+      tl.fromTo("#seal", { scale: .9, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .8, ease: "power2.out" }, 15.7);
+
+      /* S4 — galerie : montée douce stagger court, Ken Burns lents */
+      tl.fromTo("#sin4", { opacity: 0 }, { opacity: 1, duration: .5, ease: "sine.inOut" }, 17.1);
+      tl.fromTo("#t4", { autoAlpha: 0, y: 26 }, { autoAlpha: 1, y: 0, duration: .8, ease: "power2.out" }, 17.3);
+      tl.fromTo("#line4", { scaleX: 0 }, { scaleX: 1, duration: .8, ease: "power2.inOut" }, 17.5);
+      tl.fromTo("#cA", { y: 54, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: "power2.out" }, 17.6);
+      tl.fromTo("#imA", { scale: 1.06 }, { scale: 1.22, x: -26, y: -18, duration: 7.6, ease: "sine.inOut" }, 17.6);
+      tl.fromTo("#cB", { y: 54, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: "power2.out" }, 17.76);
+      tl.fromTo("#imB", { scale: 1.22 }, { scale: 1.06, duration: 7.4, ease: "sine.inOut" }, 17.76);
+      tl.fromTo("#cC", { y: 54, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: "power2.out" }, 17.92);
+      tl.fromTo("#imC", { scale: 1.06, x: 0 }, { scale: 1.2, x: 24, duration: 7.4, ease: "sine.inOut" }, 17.92);
+      tl.fromTo("#cD", { y: 54, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: "power2.out" }, 18.08);
+      tl.fromTo("#imD", { scale: 1.2, y: 0 }, { scale: 1.08, y: -20, duration: 7.2, ease: "sine.inOut" }, 18.08);
+
+      /* S5 — décision : glissements posés, lueur */
+      tl.fromTo("#sin5", { opacity: 0 }, { opacity: 1, duration: .5, ease: "sine.inOut" }, 25.7);
+      tl.fromTo("#t5a", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .9, ease: "power2.out" }, 25.95);
+      tl.fromTo("#t5b", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .9, ease: "power2.out" }, 26.45);
+      tl.fromTo("#line5", { scaleX: 0 }, { scaleX: 1, duration: .8, ease: "power2.inOut" }, 27.6);
+      tl.fromTo("#t5c", { autoAlpha: 0, scale: .97 }, { autoAlpha: 1, scale: 1, duration: 1.0, ease: "power2.out" }, 28.2);
+
+      /* S6 — final : pose du logo, tagline, CTA or */
+      tl.fromTo("#sin6", { opacity: 0 }, { opacity: 1, duration: .5, ease: "sine.inOut" }, 32.4);
+      tl.fromTo("#glow6", { autoAlpha: 0, scale: .6 }, { autoAlpha: 1, scale: 1.15, duration: 1.4, ease: "sine.out" }, 32.5);
+      tl.fromTo("#logoF", { scale: .92, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 1.0, ease: "power2.inOut" }, 32.6);
+      tl.fromTo("#t6", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .8, ease: "power2.out" }, 33.5);
+      tl.fromTo("#cta", { y: 26, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: "power2.out" }, 34.2);
+      tl.fromTo("#ctaglow", { autoAlpha: 0 }, { autoAlpha: .9, duration: .9, yoyo: true, repeat: 3, ease: "sine.inOut" }, 34.6);
+
+      /* fondu final */
+      tl.fromTo("#fader", { opacity: 0 }, { opacity: 1, duration: .7, ease: "sine.inOut" }, 37.7);
+
+      window.__timelines.main = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "projet": "demo-bienvenue",
+  "sortie": "output/demo-bienvenue-mp4-hq.mp4",
+  "export": "mp4-hq",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "label": "Reels / TikTok / Shorts / Story"
+  },
+  "duree_s": 12.2,
+  "poids": "510.1 Ko",
+  "rendu_le": "2026-10-08 17:44:00",
+  "temps_rendu_s": 17.1
+}

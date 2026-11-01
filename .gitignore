@@ -1,0 +1,35 @@
+# ── Intermédiaires de rendu ──────────────────────────────
+.cache/
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+
+# ── Sorties ──────────────────────────────────────────────
+# Plus de dossier output/ : les livrables sont rendus dans
+# .cache/rendus/ (temporaire) puis LIVRÉS EN ARTEFACT.
+projects/*/renders/
+
+# ── Médias lourds (rush, audio) ──────────────────────────
+# Polices et images restent versionnées ; vidéos/audio non.
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.m4v
+*.wav
+*.mp3
+*.m4a
+*.aac
+*.flac
+*.aiff
+*.ogg
+
+# Garder les dossiers vides
+!**/.gitkeep
+
+# Téléchargements temporaires image_search
+image-search/
+!livrables/*.mp4
+!projects/*/assets/*.mp4

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: 'Nunito'; font-weight: 200 1000; src: url('vendor/Nunito-Variable.ttf') format('truetype'); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #060a14; }
+      body { font-family: 'Nunito', sans-serif; font-weight: 900; }
+      #root { width: 100%; height: 100%; position: relative; }
+      .scene { position: absolute; inset: 0; overflow: hidden; }
+      .bg { position: absolute; inset: -60px; background-size: cover; background-position: center; }
+      .shade { position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(4,7,15,.5) 0%, rgba(4,7,15,.1) 45%, rgba(4,7,15,.8) 100%); }
+      .card { position: absolute; border-radius: 44px; overflow: hidden;
+        box-shadow: 0 40px 120px rgba(0,0,0,.65); border: 4px solid rgba(255,255,255,.14); }
+      .card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .cap {
+        position: absolute; left: 90px; right: 90px; bottom: 130px;
+        text-align: center; color: #ffffff; font-weight: 800; font-size: 42px;
+        line-height: 1.4; background: rgba(4, 7, 15, .68); border: 2px solid rgba(248, 227, 0, .4);
+        border-radius: 36px; padding: 26px 34px; opacity: 0;
+      }
+      .k { position: absolute; left: 0; width: 100%; text-align: center; }
+      /* S1 */
+      #t1a { top: 520px; font-size: 92px; color: #ffffff; }
+      #t1b { top: 640px; font-size: 92px; color: #f8e300; }
+      #t1c { top: 800px; font-size: 44px; color: #b9c4e2; font-weight: 800; }
+      .xb { position: absolute; width: 110px; height: 110px; border-radius: 50%; background: #d92626;
+        color: #fff; font-size: 58px; display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 12px 40px rgba(217,38,38,.45); }
+      #x1 { right: 140px; top: 250px; } #x2 { right: 320px; top: 380px; } #x3 { right: 120px; top: 450px; }
+      /* S2 */
+      #halo2 { position: absolute; left: 50%; top: 700px; width: 940px; height: 940px;
+        margin-left: -470px; margin-top: -470px;
+        background: radial-gradient(circle, rgba(248,227,0,.32) 0%, rgba(248,227,0,.10) 45%, rgba(248,227,0,0) 70%); }
+      #boxprod { position: absolute; left: 50%; top: 290px; margin-left: -400px; width: 800px; height: 800px;
+        object-fit: contain; filter: drop-shadow(0 42px 90px rgba(0,0,0,.8));
+        -webkit-mask-image: radial-gradient(ellipse 78% 72% at 50% 50%, #000 52%, transparent 96%);
+        mask-image: radial-gradient(ellipse 78% 72% at 50% 50%, #000 52%, transparent 96%); }
+      #t2a { top: 1150px; font-size: 72px; color: #f8e300; }
+      #t2b { top: 1250px; font-size: 48px; color: #ffffff; font-weight: 800; }
+      /* S3 */
+      #card3 { left: 65px; top: 400px; width: 950px; height: 534px; }
+      #tile { position: absolute; left: 438px; top: 552px; width: 200px; height: 200px; border-radius: 40px;
+        box-shadow: 0 20px 60px rgba(0,0,0,.7); }
+      #t3 { top: 1010px; font-size: 54px; color: #ffffff; }
+      #t3 em { font-style: normal; color: #7dd87d; }
+      /* S4 */
+      .stat { position: absolute; left: 0; width: 100%; text-align: center; }
+      .stat .num { font-size: 160px; text-shadow: 0 10px 50px rgba(0,0,0,.8); }
+      .stat .lbl { font-size: 50px; font-weight: 800; letter-spacing: .06em; color: #ffffff; text-shadow: 0 6px 30px rgba(0,0,0,.9); }
+      #st1 { top: 470px; } #st1 .num { color: #58d068; }
+      #st2 { top: 900px; } #st2 .num { color: #f8e300; }
+      /* S5 */
+      #p1 { top: 560px; font-size: 54px; color: #ffffff; letter-spacing: .1em; font-weight: 800; }
+      #price { position: absolute; left: 50%; top: 700px; margin-left: -440px; width: 880px; height: 250px;
+        background: #f8e300; border-radius: 60px; display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 24px 90px rgba(248,227,0,.35); }
+      #price b { color: #1746b4; font-size: 112px; }
+      #price i { color: #1ca23e; font-size: 58px; font-style: normal; margin-left: 22px; }
+      #p3 { top: 1010px; font-size: 44px; color: #b9c4e2; font-weight: 800; }
+      /* S6 */
+      .bar { position: absolute; bottom: 520px; width: 90px; border-radius: 24px; transform-origin: bottom;
+        box-shadow: 0 14px 50px rgba(0,0,0,.5); }
+      #b1 { left: 330px; height: 120px; background: #1ca23e; }
+      #b2 { left: 450px; height: 220px; background: #1ca23e; }
+      #b3 { left: 570px; height: 320px; background: #7ac22e; }
+      #b4 { left: 690px; height: 420px; background: #f8e300; }
+      #t6 { top: 560px; font-size: 78px; color: #ffffff; }
+      #t6b { top: 680px; font-size: 46px; color: #b9c4e2; font-weight: 800; }
+      /* S7 */
+      #glow7 { position: absolute; left: 50%; top: 720px; width: 980px; height: 980px;
+        margin-left: -490px; margin-top: -490px;
+        background: radial-gradient(circle, rgba(248,227,0,.38) 0%, rgba(248,227,0,0) 65%); }
+      #price, #cta { overflow: hidden; }
+      .shine { position: absolute; top: -20%; bottom: -20%; left: -180px; width: 140px;
+        background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.5), rgba(255,255,255,0));
+        transform: skewX(-20deg); }
+      #logoF { position: absolute; left: 50%; top: 400px; margin-left: -320px; width: 640px; height: 640px;
+        border-radius: 92px; box-shadow: 0 40px 120px rgba(0,0,0,.65); }
+      #tag { top: 1100px; font-size: 58px; color: #f8e300; }
+      #cta { position: absolute; left: 50%; top: 1270px; margin-left: -380px; width: 760px; height: 150px;
+        background: #1ca23e; border-radius: 75px; color: #ffffff; font-size: 50px;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 20px 70px rgba(28,162,62,.45); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="31.52" data-width="1080" data-height="1920">
+
+      <div id="sc1" class="scene clip" data-start="0" data-duration="5.04" data-track-index="0">
+        <div id="bg1" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
+        <div class="shade"></div>
+        <div id="t1a" class="k">PLUSIEURS</div>
+        <div id="t1b" class="k">ABONNEMENTS ?</div>
+        <div id="t1c" class="k">…pour les mêmes chaînes. STOP.</div>
+        <div id="x1" class="xb">✕</div><div id="x2" class="xb">✕</div><div id="x3" class="xb">✕</div>
+      </div>
+
+      <div id="sc2" class="scene clip" data-start="5.04" data-duration="4.32" data-track-index="1">
+        <div id="bg2" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
+        <div class="shade"></div>
+        <div id="halo2" data-layout-allow-overflow></div>
+        <img id="boxprod" src="assets/box-pro.png" alt="Box MTN Homebox" />
+        <div id="t2a" class="k">TA BOX WiFi</div>
+        <div id="t2b" class="k">+ FORFAIT ILLIMITÉ = T'AS TOUT</div>
+      </div>
+
+      <div id="sc3" class="scene clip" data-start="9.36" data-duration="5.24" data-track-index="2">
+        <div id="bg3" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
+        <div class="shade"></div>
+        <div id="card3" class="card"><img src="assets/salon-tv.webp" alt="Salon TV Android" /></div>
+        <img id="tile" src="assets/logo-missa.png" alt="MISSA TV 360" />
+        <div id="t3" class="k">AJOUTE-LE SUR TA <em>TV ANDROID</em></div>
+      </div>
+
+      <div id="sc4" class="scene clip" data-start="14.6" data-duration="3.92" data-track-index="3">
+        <div id="bg4" data-layout-allow-overflow class="bg" style="background-image:url('assets/cinema.jpg')"></div>
+        <div class="shade"></div>
+        <div id="st1" class="stat"><div class="num"><span id="n1">0</span>+</div><div class="lbl">CHAÎNES TV</div></div>
+        <div id="st2" class="stat"><div class="num"><span id="n2">0</span>+</div><div class="lbl">FILMS &amp; SÉRIES</div></div>
+      </div>
+
+      <div id="sc5" class="scene clip" data-start="18.52" data-duration="3.48" data-track-index="4">
+        <div id="bg5" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
+        <div class="shade"></div>
+        <div id="p1" class="k">UN SEUL ABONNEMENT</div>
+        <div id="price"><b>5 000 FCFA</b><i>/ AN</i><div class="shine" id="sh5"></div></div>
+        <div id="p3" class="k">c'est tout.</div>
+      </div>
+
+      <div id="sc6" class="scene clip" data-start="22.0" data-duration="3.76" data-track-index="5">
+        <div id="bg6" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-signal.png')"></div>
+        <div class="shade"></div>
+        <div id="t6" class="k">ÇA RESTE STABLE</div>
+        <div id="t6b" class="k">même avec un petit réseau</div>
+        <div id="b1" class="bar"></div><div id="b2" class="bar"></div>
+        <div id="b3" class="bar"></div><div id="b4" class="bar"></div>
+      </div>
+
+      <div id="sc7" class="scene clip" data-start="25.76" data-duration="5.76" data-track-index="6">
+        <div id="bg7" data-layout-allow-overflow class="bg" style="background-image:url('assets/v2-bg-hook.png')"></div>
+        <div class="shade"></div>
+        <div id="glow7" data-layout-allow-overflow></div>
+        <img id="logoF" src="assets/logo-missa.png" alt="MISSA TV 360" />
+        <div id="tag" class="k">LA TÉLÉ COMME TU L'AIMES.</div>
+        <div id="cta">ABONNE-TOI MAINTENANT<div class="shine" id="sh7"></div></div>
+      </div>
+
+      <div id="cap1" class="cap clip" data-start="0.4" data-duration="4.3" data-track-index="7">Plusieurs abonnements… pour les mêmes chaînes ? Stop.</div>
+      <div id="cap2" class="cap clip" data-start="5.04" data-duration="4.0" data-track-index="8">Ta box WiFi et ton forfait illimité : t'as déjà tout.</div>
+      <div id="cap3" class="cap clip" data-start="9.36" data-duration="4.9" data-track-index="9">Ajoute simplement Missa TV 360 sur ta TV Android.</div>
+      <div id="cap4" class="cap clip" data-start="14.6" data-duration="3.6" data-track-index="10">3 000 chaînes. 9 000 films et séries.</div>
+      <div id="cap5" class="cap clip" data-start="18.52" data-duration="3.1" data-track-index="11">Un seul abonnement : 5 000 FCFA par an.</div>
+      <div id="cap6" class="cap clip" data-start="22.0" data-duration="3.4" data-track-index="12">Même avec un petit réseau, ça reste stable.</div>
+      <div id="cap7" class="cap clip" data-start="25.76" data-duration="4.4" data-track-index="13">Missa TV 360. La télé comme tu l'aimes.</div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const fmt = (v) => Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      const kb = (sel, start, dur) => tl.fromTo(sel, { scale: 1 }, { scale: 1.08, duration: dur, ease: "none" }, start);
+
+      kb("#bg1", 0, 5.04); kb("#bg2", 5.04, 4.32); kb("#bg3", 9.36, 5.24);
+      kb("#card3 img", 9.36, 5.24);
+      kb("#bg4", 14.6, 3.92); kb("#bg5", 18.52, 3.48); kb("#bg6", 22.0, 3.76); kb("#bg7", 25.76, 5.76);
+
+      /* S1 */
+      tl.fromTo("#t1a", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: "power3.out" }, .2);
+      tl.fromTo("#t1b", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5, ease: "power3.out" }, .5);
+      tl.fromTo("#t1c", { scale: .5, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .45, ease: "back.out(2.2)" }, 1.2);
+      tl.fromTo("#x1", { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .4, ease: "back.out(2)" }, 1.8);
+      tl.fromTo("#x2", { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .4, ease: "back.out(2)" }, 2.3);
+      tl.fromTo("#x3", { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .4, ease: "back.out(2)" }, 2.8);
+
+      /* S2 */
+      tl.fromTo("#halo2", { autoAlpha: 0, scale: .6 }, { autoAlpha: 1, scale: 1, duration: .8, ease: "power2.out" }, 5.1);
+      tl.fromTo("#boxprod", { y: 120, autoAlpha: 0, scale: .9 }, { y: 0, autoAlpha: 1, scale: 1, duration: .7, ease: "power3.out" }, 5.15);
+      tl.fromTo("#boxprod", { y: 0 }, { y: -18, duration: 1.6, yoyo: true, repeat: 1, ease: "sine.inOut" }, 6.0);
+      tl.fromTo("#t2a", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 5.8);
+      tl.fromTo("#t2b", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 6.3);
+
+      /* S3 */
+      tl.fromTo("#card3", { y: 80, autoAlpha: 0, scale: .92 }, { y: 0, autoAlpha: 1, scale: 1, duration: .6, ease: "power3.out" }, 9.45);
+      tl.fromTo("#tile", { scale: 0, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .55, ease: "back.out(1.9)" }, 10.3);
+      tl.fromTo("#t3", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 11.0);
+
+      /* S4 */
+      tl.fromTo("#st1", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45 }, 14.7);
+      const o1 = { v: 0 };
+      tl.to(o1, { v: 3000, duration: 1.4, ease: "power2.out", onUpdate: () => { document.getElementById("n1").textContent = fmt(o1.v); } }, 14.75);
+      tl.fromTo("#st2", { y: 60, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .45 }, 16.4);
+      const o2 = { v: 0 };
+      tl.to(o2, { v: 9000, duration: 1.4, ease: "power2.out", onUpdate: () => { document.getElementById("n2").textContent = fmt(o2.v); } }, 16.45);
+
+      /* S5 */
+      tl.fromTo("#p1", { y: -30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .4 }, 18.6);
+      tl.fromTo("#price", { scale: .3, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .6, ease: "elastic.out(1, .55)" }, 18.9);
+      tl.fromTo("#p3", { autoAlpha: 0 }, { autoAlpha: 1, duration: .4 }, 19.8);
+      tl.fromTo("#sh5", { x: 0 }, { x: 1150, duration: .9, ease: "power2.inOut" }, 19.4);
+
+      /* S6 */
+      tl.fromTo("#t6", { y: 50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 22.1);
+      tl.fromTo("#t6b", { autoAlpha: 0 }, { autoAlpha: 1, duration: .4 }, 22.6);
+      tl.fromTo("#b1", { scaleY: 0, autoAlpha: 0 }, { scaleY: 1, autoAlpha: 1, duration: .3, ease: "power2.out" }, 22.8);
+      tl.fromTo("#b2", { scaleY: 0, autoAlpha: 0 }, { scaleY: 1, autoAlpha: 1, duration: .3, ease: "power2.out" }, 23.0);
+      tl.fromTo("#b3", { scaleY: 0, autoAlpha: 0 }, { scaleY: 1, autoAlpha: 1, duration: .3, ease: "power2.out" }, 23.2);
+      tl.fromTo("#b4", { scaleY: 0, autoAlpha: 0 }, { scaleY: 1, autoAlpha: 1, duration: .4, ease: "back.out(2)" }, 23.4);
+
+      /* S7 */
+      tl.fromTo("#logoF", { scale: .4, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .6, ease: "back.out(1.7)" }, 25.95);
+      tl.fromTo("#tag", { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .5 }, 26.8);
+      tl.fromTo("#cta", { scale: .6, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: .5, ease: "back.out(1.8)" }, 27.4);
+      tl.to("#cta", { scale: 1.06, duration: .5, yoyo: true, repeat: 5, ease: "sine.inOut" }, 28.1);
+      tl.fromTo("#glow7", { autoAlpha: 0, scale: .5 }, { autoAlpha: 1, scale: 1, duration: .8 }, 25.9);
+      tl.fromTo("#glow7", { scale: 1 }, { scale: 1.12, duration: 1.2, yoyo: true, repeat: 2, ease: "sine.inOut" }, 26.8);
+      tl.fromTo("#sh7", { x: 0 }, { x: 950, duration: .8, ease: "power2.inOut" }, 27.9);
+
+      /* captions */
+      tl.fromTo("#cap1", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, .4);
+      tl.fromTo("#cap2", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 5.04);
+      tl.fromTo("#cap3", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 9.36);
+      tl.fromTo("#cap4", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 14.6);
+      tl.fromTo("#cap5", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 18.52);
+      tl.fromTo("#cap6", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 22.0);
+      tl.fromTo("#cap7", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .3 }, 25.76);
+
+      tl.to("#root", { autoAlpha: 0, duration: .5 }, 31.02);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

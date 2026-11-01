@@ -1,0 +1,28 @@
+{
+  "name": "motion-design-engine",
+  "version": "1.0.0",
+  "description": "Ce dépôt est un **moteur de montage motion design** : un espace de travail complet où l'on dépose des éléments (polices, logos, rushes, musiques), on décrit un montage de façon déclarative (`project.json`), et le moteur produit les livrables (MP4, GIF, WebM, ProRes alpha) dans `output/`.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/missamedia69-code/MOTION-DESIGN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/missamedia69-code/MOTION-DESIGN/issues"
+  },
+  "homepage": "https://github.com/missamedia69-code/MOTION-DESIGN#readme",
+  "devDependencies": {
+    "@sparticuz/chromium": "^153.0.0",
+    "gsap": "^3.15.0",
+    "hyperframes": "^0.8.142"
+  }
+}

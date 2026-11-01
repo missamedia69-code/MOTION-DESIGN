@@ -1,0 +1,88 @@
+{
+  "name": "{{NAME}}",
+  "title": "{{NAME}} (storyboard 3 scènes)",
+  "version": 1,
+  "canvas": "9x16",
+  "export": {
+    "preset": "mp4-hq"
+  },
+  "transitions": {
+    "type": "fade",
+    "duration": 0.6
+  },
+  "_comment": "Projet multi-scènes : chaque scène a son fond, ses calques et sa durée. La transition d'une scène vers la suivante se règle avec scene.transition.",
+  "scenes": [
+    {
+      "duration": 4,
+      "background": "#0b1020",
+      "layers": [
+        {
+          "type": "text",
+          "text": "SCÈNE 1\nAccroche",
+          "size": 92,
+          "color": "#ffffff",
+          "align": "center",
+          "pos": "center",
+          "in": 0.2,
+          "out": 3.8,
+          "anim": "fade_up"
+        }
+      ]
+    },
+    {
+      "duration": 4,
+      "background": "#101a30",
+      "transition": { "type": "slideleft", "duration": 0.6 },
+      "layers": [
+        {
+          "type": "text",
+          "text": "SCÈNE 2\nMessage clé",
+          "size": 92,
+          "color": "#ffd479",
+          "pos": "center",
+          "in": 0.2,
+          "out": 3.8,
+          "anim": "fade"
+        }
+      ]
+    },
+    {
+      "duration": 4,
+      "background": "#0b1020",
+      "layers": [
+        {
+          "type": "text",
+          "text": "APPEL À L'ACTION",
+          "size": 84,
+          "color": "#ffffff",
+          "pos": "center",
+          "in": 0.2,
+          "out": 3.6,
+          "anim": "pop"
+        },
+        {
+          "type": "shape",
+          "kind": "rect",
+          "w": 520,
+          "h": 110,
+          "radius": 55,
+          "color": "#3b82f6",
+          "pos": [540, 1250],
+          "in": 0.8,
+          "out": 3.8,
+          "anim": "fade_up"
+        },
+        {
+          "type": "text",
+          "text": "En savoir plus",
+          "size": 40,
+          "color": "#ffffff",
+          "pos": [540, 1250],
+          "in": 1.0,
+          "out": 3.8,
+          "anim": "fade"
+        }
+      ]
+    }
+  ]
+}
