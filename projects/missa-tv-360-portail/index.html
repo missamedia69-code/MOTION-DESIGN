@@ -3,383 +3,250 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=1080, height=1920" />
-  <title>Missa TV 360 — Le monde s’ouvre (59 s)</title>
+  <title>Missa TV 360 — Ton envie fait le programme (59 s)</title>
+  <link rel="stylesheet" href="style.css" />
   <script src="vendor/gsap.min.js"></script>
-  <style>
-    @font-face { font-family: Mont; src: url('vendor/Montserrat-Black.ttf') format('truetype'); font-weight: 900; }
-    @font-face { font-family: Nunito; src: url('vendor/Nunito-Variable.ttf') format('truetype'); font-weight: 200 1000; }
-    :root { --navy:#06162a; --blue:#123e82; --yellow:#ffe500; --lime:#aaff64; --ivory:#f7faee; --coral:#f1714d; --green:#27cf78; --ochre:#e5aa4e; }
-    * { box-sizing: border-box; }
-    html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:var(--navy); }
-    body { color:var(--ivory); font-family:Nunito, sans-serif; }
-    #root { position:relative; width:100%; height:100%; overflow:hidden; background:var(--navy); }
-    .scene { position:absolute; inset:0; overflow:hidden; }
-    .sin { position:absolute; inset:0; overflow:hidden; }
-    .photo { position:absolute; inset:-65px; width:calc(100% + 130px); height:calc(100% + 130px); object-fit:cover; }
-    .deep-shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(4,17,36,.12) 0%,rgba(3,13,30,.2) 39%,rgba(4,13,30,.74) 69%,#06162a 100%); }
-    .impact { font:900 90px/1.04 Mont,sans-serif; letter-spacing:-.045em; text-transform:uppercase; }
-    .kicker { font-size:33px; line-height:1.25; font-weight:900; letter-spacing:.19em; text-transform:uppercase; }
-    .lime { color:var(--lime); } .yellow { color:var(--yellow); }
-    .glass { background:linear-gradient(145deg,rgba(18,56,104,.89),rgba(4,19,41,.93)); border:2px solid rgba(218,242,255,.24); box-shadow:0 26px 70px rgba(0,0,0,.38); }
-    .brand-tile { position:absolute; overflow:hidden; border:5px solid rgba(255,255,255,.72); background:#ffe500; border-radius:38px; box-shadow:0 20px 60px rgba(0,0,0,.46),0 0 52px rgba(220,255,56,.24); }
-    .brand-tile img { width:100%; height:100%; display:block; object-fit:cover; }
-    .stripe { position:absolute; width:110px; height:9px; border-radius:7px; background:var(--lime); }
-    .flair { position:absolute; border:2px solid rgba(180,255,91,.48); border-radius:50%; box-shadow:inset 0 0 60px rgba(180,255,91,.05),0 0 36px rgba(180,255,91,.09); }
-    .smallnote { font-size:30px; font-weight:800; letter-spacing:.06em; }
-
-    /* Pan-African color story, applied as framing rather than recoloring real UI. */
-    .afro-print { position:absolute; inset:0; pointer-events:none; opacity:.12;
-      background:url('assets/wax-bg.jpg') center/auto 760px repeat; mix-blend-mode:screen;
-      mask-image:linear-gradient(90deg,black 0%,transparent 27%,transparent 73%,black 100%); }
-    #s2print { opacity:.11; } #s3print { opacity:.09; } #s5print { opacity:.10; }
-    #s6print { opacity:.08; mask-image:linear-gradient(180deg,transparent,black 95%); }
-    #hudAccent { position:absolute; left:32px; top:68px; width:12px; height:108px; border-radius:10px;
-      background:linear-gradient(180deg,var(--coral) 0 31%,var(--yellow) 31% 66%,var(--green) 66%); }
-    #heroHalo { position:absolute; left:-105px; top:250px; width:1290px; height:930px; opacity:.8;
-      border-radius:50%; background:conic-gradient(from 240deg,transparent,rgba(241,113,77,.65),
-      rgba(255,229,0,.48),rgba(39,207,120,.74),transparent 94%);
-      mask:radial-gradient(ellipse,transparent 54%,black 56%,black 62%,transparent 65%); }
-    #heroApp { position:absolute; left:79px; top:445px; width:922px; height:545px; z-index:2;
-      padding:7px; border-radius:37px; background:linear-gradient(115deg,var(--coral),var(--yellow) 36%,var(--green) 78%,var(--yellow));
-      box-shadow:0 35px 90px rgba(0,0,0,.68),0 0 70px rgba(255,200,31,.38); transform-origin:center center; }
-    #heroApp .screen { position:relative; width:100%; height:100%; overflow:hidden; border-radius:29px; background:#05070b; }
-    #heroApp .app-shot { position:absolute; inset:0; background-position:center; background-size:cover; }
-    #heroFilms { background-image:url('assets/app-films.png'); }
-    #heroMusic { background-image:url('assets/app-music.png'); }
-    #heroCaption { position:absolute; top:15px; left:16px; z-index:3; border-radius:999px; padding:10px 19px;
-      font:900 25px/1 Mont,sans-serif; color:#071427; background:var(--yellow); box-shadow:0 8px 25px rgba(0,0,0,.65); }
-    #heroPills { position:absolute; z-index:3; left:84px; top:1014px; width:912px; display:flex; gap:12px; }
-    .hero-pill { flex:1; height:68px; border-radius:99px; display:flex; align-items:center; justify-content:center;
-      font:900 31px/1 Mont,sans-serif; color:#06162a; letter-spacing:.03em; box-shadow:0 12px 32px rgba(0,0,0,.45); }
-    #heroPill1 { background:var(--yellow); } #heroPill2 { background:var(--green); } #heroPill3 { background:var(--coral); }
-    .ui-frame { position:absolute; padding:7px; border-radius:31px; overflow:hidden;
-      background:linear-gradient(125deg,var(--yellow),var(--green) 53%,var(--coral));
-      box-shadow:0 28px 75px rgba(0,0,0,.75),0 0 65px rgba(245,211,56,.28); transform-origin:center center; }
-    .ui-frame .viewport { position:relative; width:100%; height:100%; overflow:hidden; border-radius:23px; background:#04070c; }
-    .ui-frame img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
-    .ui-frame .screen-label { position:absolute; top:20px; left:20px; z-index:3; padding:10px 19px;
-      font:900 27px/1 Mont,sans-serif; color:var(--yellow); background:rgba(5,20,37,.92);
-      border:2px solid rgba(255,229,0,.85); border-radius:99px; box-shadow:0 8px 26px rgba(0,0,0,.47); }
-    #w1App { left:100px; top:430px; width:880px; height:519px; }
-    #w2App { left:100px; top:432px; width:880px; height:520px; }
-    #w1Manga, #w2Player { opacity:0; }
-    #w2Player { object-fit:contain; background:#04070c; }
-    #w2App .screen-label { left:auto; top:auto; right:16px; bottom:16px; }
-
-    /* 01 — un portail, pas une simple télé. */
-    #s1 .photo { object-position:51% 45%; opacity:.72; }
-    #s1shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,15,33,.19),rgba(1,12,30,.29) 42%,rgba(3,16,33,.72) 67%,rgba(3,14,30,.98) 96%); }
-    #s1orb { left:342px; top:369px; width:460px; height:460px; }
-    #s1orb2 { left:285px; top:310px; width:570px; height:570px; border-color:rgba(255,229,0,.33); }
-    #s1logo { left:781px; top:236px; width:228px; height:228px; border-radius:30px; z-index:4; }
-    #s1eyebrow { position:absolute; left:82px; top:1110px; color:var(--lime); }
-    #s1line1 { position:absolute; left:72px; top:1205px; width:950px; font-size:112px; }
-    #s1line2 { position:absolute; left:72px; top:1345px; width:950px; font-size:136px; color:var(--yellow); }
-    #s1foot { position:absolute; left:81px; top:1625px; font-size:36px; font-weight:900; letter-spacing:.13em; }
-
-    /* 02 — surcharge, facture qui monte, envie de passer à autre chose. */
-    #s2 { background:radial-gradient(circle at 45% 36%,#553321,#222337 58%,#061429); }
-    #s2bg { opacity:.14; filter:saturate(.85); background:url('assets/portal.jpg') 60% 30%/cover no-repeat; }
-    #s2grid { position:absolute; inset:0; background-image:linear-gradient(rgba(146,233,240,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(146,233,240,.055) 1px,transparent 1px); background-size:90px 90px; }
-    #s2no { position:absolute; left:82px; top:250px; color:var(--lime); }
-    #s2question { position:absolute; left:76px; top:355px; width:930px; font-size:90px; }
-    #s2question span { color:var(--yellow); }
-    #s2pile { position:absolute; left:112px; top:715px; width:856px; height:590px; }
-    .bill { position:absolute; width:845px; height:166px; padding:32px 46px; display:flex; align-items:center; justify-content:space-between; border-radius:27px; border:3px solid rgba(244,167,109,.48); background:linear-gradient(112deg,rgba(22,30,51,.98),rgba(94,44,43,.97)); box-shadow:0 23px 45px rgba(0,0,0,.46); }
-    .bill:nth-child(1) { top:0; } .bill:nth-child(2) { top:175px; } .bill:nth-child(3) { top:350px; }
-    .bill .left { font-size:38px; font-weight:1000; letter-spacing:.045em; }
-    .bill .right { font:900 60px/1 Mont,sans-serif; color:#ffda70; }
-    .bill .x { color:#ff9e80; font-size:65px; font-weight:900; margin-right:23px; }
-    #s2enough { position:absolute; left:72px; top:1338px; width:935px; text-align:center; font-size:120px; color:var(--coral); text-shadow:0 0 60px rgba(245,103,55,.36); }
-    #s2sub { position:absolute; top:1560px; left:106px; width:868px; padding:22px; border-top:2px solid rgba(255,255,255,.25); text-align:center; font-size:34px; font-weight:800; }
-
-    /* 03 — prix clair, appareils, box NET. */
-    #s3photo { background:url('assets/portal.jpg') 45% 38%/cover no-repeat; opacity:.47; }
-    #s3shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,12,30,.7) 0%,rgba(4,19,41,.72) 45%,rgba(2,15,32,.96) 100%); }
-    #s3ring { left:363px; top:157px; width:400px; height:400px; border-width:4px; }
-    #s3k { position:absolute; left:82px; top:176px; color:var(--lime); }
-    #s3title { position:absolute; left:78px; top:260px; width:940px; font-size:87px; }
-    #s3title em { color:var(--yellow); font-style:normal; }
-    #priceRow { position:absolute; left:75px; top:595px; width:930px; display:flex; gap:20px; }
-    .price { position:relative; width:455px; height:249px; padding:35px 32px 24px; border-radius:26px; }
-    .price.first { background:linear-gradient(140deg,#f7e500,#bdf247); color:#071c32; border:2px solid rgba(255,255,255,.76); box-shadow:0 28px 70px rgba(215,237,23,.22); }
-    .price.second { background:linear-gradient(140deg,#0c3d72,#0b233f); border:3px solid rgba(177,255,105,.62); }
-    .price .amount { font:900 91px/1 Mont,sans-serif; letter-spacing:-.07em; }
-    .price .currency { font:900 41px/1 Mont,sans-serif; margin-left:5px; }
-    .price .period { margin-top:12px; font-size:37px; font-weight:1000; letter-spacing:.11em; }
-    #deviceRow { position:absolute; left:80px; top:942px; width:920px; height:182px; display:flex; justify-content:space-between; }
-    .device { width:289px; height:181px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; border-radius:24px; background:rgba(6,28,59,.89); border:2px solid rgba(198,241,230,.33); }
-    .device svg { width:89px; height:89px; fill:none; stroke:var(--lime); stroke-width:5; stroke-linecap:round; stroke-linejoin:round; }
-    .device b { font-size:29px; font-weight:1000; letter-spacing:.09em; }
-    #boxPanel { position:absolute; left:88px; top:1197px; width:904px; height:399px; border-radius:29px; display:flex; overflow:hidden; }
-    #boxPanel::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg,transparent 35%,rgba(3,17,38,.27) 53%,rgba(3,17,38,.62) 100%); }
-    #boxPanel img { position:absolute; left:0; top:0; width:540px; height:399px; object-fit:cover; object-position:center 48%; }
-    #boxPanelCopy { position:absolute; z-index:2; left:540px; top:55px; width:335px; font:900 48px/1.22 Mont,sans-serif; letter-spacing:-.045em; }
-    #boxPanelCopy span { color:var(--lime); }
-    #boxMini { position:absolute; left:85px; top:1653px; width:920px; text-align:center; color:#d9f4e8; font-size:32px; font-weight:900; letter-spacing:.1em; }
-
-    /* 04 — trois univers, portes successives. */
-    #s4 { background:#06152a; }
-    .world { position:absolute; inset:0; overflow:hidden; }
-    .world .photo { object-position:center center; }
-    .world .shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,14,32,.70) 0%,rgba(4,17,37,.05) 39%,rgba(4,16,34,.45) 57%,rgba(3,13,30,.98) 93%); }
-    .world .top { position:absolute; left:83px; top:199px; color:var(--lime); }
-    .world .bottomTitle { position:absolute; left:75px; top:1168px; width:925px; text-shadow:0 10px 36px rgba(0,0,0,.65); }
-    .world .bottomTitle .large { font:900 112px/1.03 Mont,sans-serif; letter-spacing:-.055em; }
-    .world .bottomTitle .sub { font:900 70px/1.22 Mont,sans-serif; letter-spacing:-.045em; margin-top:9px; color:var(--yellow); }
-    .world .desc { position:absolute; left:82px; top:1522px; width:920px; font-size:37px; font-weight:900; letter-spacing:.1em; }
-    #w2 .bottomTitle .large { font-size:119px; }
-    #w2 .bottomTitle .sub { font-size:68px; }
-    #w3 .bottomTitle .large { font-size:103px; }
-    #w3 .bottomTitle .sub { font-size:62px; }
-    #boxChip { position:absolute; right:71px; top:139px; width:223px; height:287px; border-radius:23px; overflow:hidden; background:rgba(4,19,39,.96); border:3px solid rgba(191,250,155,.75); box-shadow:0 22px 42px rgba(0,0,0,.62); }
-    #boxChip .crop { position:absolute; left:0; top:0; width:217px; height:217px; overflow:hidden; }
-    #boxKen { position:absolute; left:0; top:0; width:217px; height:217px; background:url('assets/box-net.png') center/cover no-repeat; }
-    #boxChip span { position:absolute; left:0; bottom:0; width:100%; height:64px; display:flex; align-items:center; justify-content:center; font:900 31px/1 Mont,sans-serif; color:var(--lime); letter-spacing:.1em; }
-    #worldCount { position:absolute; left:82px; top:1701px; font-size:31px; font-weight:900; color:var(--lime); letter-spacing:.18em; }
-
-    /* 05 — signal irrégulier → ligne continue. */
-    #s5 { background:radial-gradient(ellipse at 50% 49%,#16505c 0%,#082b49 48%,#06162a 86%); }
-    #s5photo { opacity:.25; filter:saturate(.8); object-position:center 47%; }
-    #s5shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,16,32,.36),rgba(2,16,32,.80) 85%); }
-    #s5k { position:absolute; left:84px; top:237px; color:var(--lime); }
-    #s5question { position:absolute; left:75px; top:370px; width:943px; font-size:92px; }
-    #s5wave { position:absolute; left:0; top:686px; width:1080px; height:420px; overflow:visible; }
-    #s5wave #noisy { stroke:var(--coral); fill:none; stroke-width:13; filter:drop-shadow(0 0 19px rgba(255,130,77,.64)); }
-    #s5wave #stable { stroke:var(--lime); fill:none; stroke-width:17; stroke-linecap:round; filter:drop-shadow(0 0 25px rgba(159,255,93,.8)); }
-    #s5badge { position:absolute; left:466px; top:847px; width:148px; height:148px; border-radius:100%; background:linear-gradient(145deg,#dfff30,#63df69); display:flex; align-items:center; justify-content:center; border:7px solid #fbffd8; box-shadow:0 0 80px rgba(119,255,111,.63),0 25px 50px rgba(0,0,0,.35); color:#082649; font:900 105px/1 Mont,sans-serif; }
-    #s5result { position:absolute; left:80px; top:1180px; width:920px; font-size:123px; text-align:center; }
-    #s5trust { position:absolute; left:117px; top:1510px; width:846px; height:109px; display:flex; align-items:center; justify-content:center; border:3px solid rgba(175,255,119,.75); border-radius:999px; background:rgba(8,52,70,.83); color:var(--lime); font-size:34px; font-weight:1000; letter-spacing:0; white-space:nowrap; }
-    #s5network { position:absolute; left:77px; top:1675px; width:926px; text-align:center; color:#ddf6ee; font-size:30px; font-weight:900; letter-spacing:.16em; }
-
-    /* 06 — conversion, QR honnête (emplacement non scannable). */
-    #s6 .photo { background:url('assets/portal.jpg') 50% 40%/cover no-repeat; opacity:.63; }
-    #s6shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,14,32,.56),rgba(4,18,38,.55) 33%,rgba(3,15,31,.92) 65%,rgba(3,14,29,.99)); }
-    #s6halo { left:299px; top:200px; width:480px; height:480px; border-width:4px; border-color:rgba(255,229,0,.45); }
-    #s6logo { left:402px; top:251px; width:276px; height:276px; background:#ffe500 url('assets/logo-missa.png') center/cover no-repeat; }
-    #s6heading { position:absolute; left:75px; top:652px; width:930px; text-align:center; font-size:98px; }
-    #s6heading span { color:var(--yellow); }
-    #cta { position:absolute; left:107px; top:989px; width:866px; height:168px; border-radius:34px; display:flex; align-items:center; justify-content:center; text-align:center; background:linear-gradient(110deg,var(--yellow),#bdef5d,var(--green)); border:3px solid rgba(255,255,255,.85); color:#08243c; font:900 62px/1.06 Mont,sans-serif; letter-spacing:-.028em; box-shadow:0 19px 0 rgba(24,107,87,.66),0 30px 75px rgba(229,190,71,.33); }
-    #s6qr { position:absolute; left:116px; top:1284px; width:264px; height:264px; border-radius:25px; padding:23px; border:3px dashed rgba(209,247,225,.87); background:rgba(239,255,241,.94); box-shadow:0 25px 60px rgba(0,0,0,.26); }
-    #s6qr svg { width:100%; height:100%; }
-    #s6qrtext { position:absolute; left:97px; top:1564px; width:308px; text-align:center; font-size:25px; font-weight:1000; letter-spacing:.05em; }
-    #s6prices { position:absolute; left:442px; top:1292px; width:560px; }
-    #s6prices .p { font:900 53px/1.22 Mont,sans-serif; padding:21px 0; letter-spacing:-.035em; border-bottom:2px solid rgba(255,255,255,.32); }
-    #s6prices .p span { color:var(--yellow); }
-    #s6prices .p:last-child span { color:var(--lime); }
-    #s6end { position:absolute; left:81px; top:1705px; width:918px; text-align:center; font-size:35px; font-weight:1000; letter-spacing:.1em; }
-
-    /* Interface commune : discrète et régulière, jamais au milieu du message. */
-    #hud { position:absolute; inset:0; pointer-events:none; }
-    #hudName { position:absolute; left:80px; top:68px; font-size:30px; font-weight:1000; letter-spacing:.18em; text-shadow:0 2px 16px #051021; }
-    #hudSerial { position:absolute; right:80px; top:71px; font-size:30px; font-weight:1000; letter-spacing:.09em; color:var(--lime); text-shadow:0 2px 16px #051021; }
-    #progressBase { position:absolute; left:80px; top:1835px; width:920px; height:7px; background:rgba(244,255,242,.25); border-radius:8px; }
-    #progressFill { width:0; height:100%; border-radius:8px; background:linear-gradient(90deg,var(--coral),var(--yellow),var(--green)); box-shadow:0 0 15px rgba(249,220,100,.72); }
-    #flash { position:absolute; inset:0; background:#e9fff5; opacity:0; pointer-events:none; }
-    #fader { position:absolute; inset:0; background:#041020; opacity:0; pointer-events:none; }
-  </style>
 </head>
 <body>
-  <div id="root" data-composition-id="main" data-start="0" data-duration="59" data-width="1080" data-height="1920">
-    <section id="s1" class="scene clip" data-start="0" data-duration="6" data-track-index="0">
-      <div id="in1" class="sin">
-        <img id="s1photo" class="photo" src="assets/portal.jpg" alt="Un portail de lumière s’ouvre dans un salon à Douala" />
-        <div id="s1shade"></div><div id="s1print" class="afro-print"></div>
-        <div id="heroHalo"></div><div id="s1orb" class="flair"></div><div id="s1orb2" class="flair"></div>
-        <div id="heroApp"><div class="screen">
-          <div id="heroFilms" class="app-shot" role="img" aria-label="Capture de l'accueil films et séries de Missa TV 360"></div>
-          <div id="heroMusic" class="app-shot" role="img" aria-label="Capture de la rubrique Musiques de Missa TV 360"></div>
-          <div id="heroCaption">L’APPLI EN VRAI</div>
-        </div></div>
-        <div id="heroPills"><div id="heroPill1" class="hero-pill">FILMS</div><div id="heroPill2" class="hero-pill">MANGAS</div><div id="heroPill3" class="hero-pill">MUSIQUES</div></div>
-        <div id="s1logo" class="brand-tile"><img src="assets/logo-missa.png" alt="Logo Missa TV 360" /></div>
-        <div id="s1eyebrow" class="kicker">MISSA TV 360 · C’EST PARTI</div>
-        <div id="s1line1" class="impact">TON MONDE</div><div id="s1line2" class="impact">S’OUVRE.</div>
-        <div id="s1foot">LE DIVERTISSEMENT À TON RYTHME.</div>
+<div id="root" data-composition-id="main" data-start="0" data-duration="59" data-width="1080" data-height="1920">
+
+  <!-- 00–06 · Warm editorial opening. The real UI is the first image of the film. -->
+  <section id="s1" class="scene clip" data-start="0" data-duration="6" data-track-index="0">
+    <div id="stage1" class="stage">
+    <div id="s1Sun" class="sun-disc"></div><div class="dots" id="s1Dots"></div>
+    <div id="s1Label" class="eyebrow">CE SOIR / 01</div>
+    <div id="s1Title" class="display">CE SOIR,<br />TU CHOISIS.</div>
+    <div id="s1Sub" class="blurb">UNE ENVIE, UN SWIPE, ET C’EST PARTI.</div>
+    <div id="s1Window" class="screen-frame screen-big">
+      <div class="window-tab"><span class="dot coral"></span><span class="dot gold"></span><span class="dot green"></span><strong>VRAIE CAPTURE DE L’APPLI</strong></div>
+      <div class="screen-glass">
+        <img id="s1Films" src="assets/app-films.png" alt="Capture réelle de l’accueil films et séries de Missa TV 360" />
+        <img id="s1Music" src="assets/app-music.png" alt="Capture réelle de la rubrique Musiques" />
       </div>
-    </section>
+    </div>
+    <div id="s1Gesture" class="gesture" aria-hidden="true"><span>→</span></div>
+    <div id="s1Tape" class="tape">L’APPLI, EN VRAI&nbsp; ↗</div>
+    <div id="s1Foot" class="little-caption">TON ENVIE FAIT LE PROGRAMME.</div>
 
-    <section id="s2" class="scene clip" data-start="6" data-duration="10" data-track-index="1">
-      <div id="in2" class="sin">
-        <div id="s2bg" class="photo"></div><div id="s2print" class="afro-print"></div><div id="s2grid"></div>
-        <div id="s2no" class="kicker">01 / LE CONSTAT</div>
-        <div id="s2question" class="impact">ENCORE UN<br /><span>ABONNEMENT ?</span></div>
-        <div id="s2pile">
-          <div id="billA" class="bill"><div class="left"><span class="x">×</span>UN ABONNEMENT</div><div class="right">XAF</div></div>
-          <div id="billB" class="bill"><div class="left"><span class="x">×</span>UN AUTRE ENCORE</div><div class="right">XAF</div></div>
-          <div id="billC" class="bill"><div class="left"><span class="x">×</span>MÊME CHOSE</div><div class="right">XAF</div></div>
-        </div>
-        <div id="s2enough" class="impact">ÇA SUFFIT.</div>
-        <div id="s2sub">Payer plus pour revoir la même chose ?</div>
+    </div>
+  </section>
+
+  <!-- 06–16 · A playful stack of too many steps; never fictitious prices. -->
+  <section id="s2" class="scene clip" data-start="6" data-duration="10" data-track-index="1">
+    <div id="stage2" class="stage">
+    <div class="dots dots-light" id="s2Dots"></div>
+    <div id="s2Label" class="eyebrow inverse">LE CONSTAT / 02</div>
+    <div id="s2Title" class="display inverse">TROP<br />D’ONGLETS.</div>
+    <div id="s2Small" class="blurb inverse">ON VOULAIT JUSTE CHOISIR UN FILM…</div>
+    <div id="s2Slip1" class="slip"><span class="slip-index">01</span> UNE APPLI DE PLUS <span class="slip-x">×</span></div>
+    <div id="s2Slip2" class="slip"><span class="slip-index">02</span> UN AUTRE ABONNEMENT <span class="slip-x">×</span></div>
+    <div id="s2Slip3" class="slip"><span class="slip-index">03</span> ON REGARDE QUOI ? <span class="slip-x">×</span></div>
+    <div id="s2Answer">ON PEUT FAIRE<br /><em>PLUS SIMPLE.</em></div>
+    <div id="s2Arrow" class="big-arrow" aria-hidden="true">↘</div>
+
+    </div>
+  </section>
+
+  <!-- 16–29 · Prices are constants: only the cards move, never the numbers. -->
+  <section id="s3" class="scene clip" data-start="16" data-duration="13" data-track-index="2">
+    <div id="stage3" class="stage">
+    <div class="dots" id="s3Dots"></div><div id="s3Corner" class="sun-corner" data-layout-allow-overflow></div>
+    <div id="s3Label" class="eyebrow">LA SOLUTION / 03</div>
+    <div id="s3Title" class="display">UN CHOIX.<br />TES ÉCRANS.</div>
+    <div id="s3PriceMonth" class="ticket"><span class="ticket-k">LE MOIS</span><strong>2 000<span>XAF</span></strong><b>À TON RYTHME ↗</b></div>
+    <div id="s3PriceYear" class="ticket ticket-year"><span class="ticket-k">L’ANNÉE</span><strong>10 000<span>XAF</span></strong><b>SI TU PRÉFÈRES ↗</b></div>
+    <div id="s3BoxPanel">
+      <img id="s3Box" src="assets/box-net.png" alt="Box noire portant la marque NET" />
+      <div id="s3BoxCopy"><small>À LA MAISON</small><strong>BOX<br />NET</strong><span>WI-FI +<br />INTERNET</span></div>
+    </div>
+    <div id="s3Devices"><div class="device">TÉLÉ</div><div class="device">TABLETTE</div><div class="device">TÉLÉPHONE</div></div>
+    <div id="s3Foot" class="little-caption">TA CONNEXION. TES ÉCRANS. TES ENVIES.</div>
+
+    </div>
+  </section>
+
+  <!-- 29–46 · A physical-feeling carousel, made from the four genuine screenshots. -->
+  <section id="s4" class="scene clip" data-start="29" data-duration="17" data-track-index="3">
+    <div id="stage4" class="stage">
+    <div id="cFilm" class="world">
+      <div class="dots"></div><div class="world-label">01 / REGARDE</div>
+      <div id="filmTitle" class="display">UNE HISTOIRE<br />POUR TOI.</div>
+      <div id="filmPhoto" class="photo-sticker"><img src="assets/cinema-world.jpg" alt="Silhouette devant un écran de cinéma" /></div>
+      <div id="filmFrame" class="screen-frame world-screen">
+        <div class="window-tab"><span class="dot coral"></span><span class="dot gold"></span><span class="dot green"></span><strong>CE QUE TU VOIS DANS L’APPLI</strong></div>
+        <div class="screen-glass"><img id="filmFull" src="assets/app-films.png" alt="Véritable capture du catalogue de films et séries" /><img id="mangaFull" src="assets/app-mangas.png" alt="Véritable capture du catalogue de mangas et animes" /></div>
       </div>
-    </section>
-
-    <section id="s3" class="scene clip" data-start="16" data-duration="13" data-track-index="2">
-      <div id="in3" class="sin">
-        <div id="s3photo" class="photo"></div><div id="s3shade"></div><div id="s3print" class="afro-print"></div><div id="s3ring" class="flair"></div>
-        <div id="s3k" class="kicker">02 / LA SOLUTION</div>
-        <div id="s3title" class="impact">LE <em>MONDE</em><br />EN FACE DE TOI.</div>
-        <div id="priceRow">
-          <div id="pMonth" class="price first"><div><span class="amount" id="nMonth">2 000</span><span class="currency">XAF</span></div><div class="period">/ MOIS</div></div>
-          <div id="pYear" class="price second"><div><span class="amount" id="nYear">10 000</span><span class="currency">XAF</span></div><div class="period">/ AN</div></div>
-        </div>
-        <div id="deviceRow">
-          <div id="dev1" class="device"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="15" width="84" height="55" rx="5"/><path d="M50 71v15M28 86h44"/></svg><b>ANDROID TV</b></div>
-          <div id="dev2" class="device"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="17" y="9" width="66" height="82" rx="6"/><circle cx="50" cy="82" r="2"/></svg><b>TABLETTE</b></div>
-          <div id="dev3" class="device"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="28" y="7" width="44" height="86" rx="7"/><path d="M43 15h14M45 83h10"/></svg><b>TÉLÉPHONE</b></div>
-        </div>
-        <div id="boxPanel" class="glass"><img id="s3boximg" src="assets/box-net.png" alt="Box Wi-Fi NET"/><div id="boxPanelCopy">TA BOX<br /><span>WI-FI +</span><br />INTERNET.</div></div>
-        <div id="boxMini">LE MONDE SUR TES ÉCRANS.</div>
+      <div id="filmDetail" class="detail-strip"><img id="filmRow" src="assets/ui-films-row.png" alt="Rangée d’affiches issue de la capture de l’application" /><img id="mangaRow" src="assets/ui-mangas-row.png" alt="Rangée de mangas issue de la capture de l’application" /></div>
+      <div id="filmSwipe" class="gesture small-gesture" aria-hidden="true">→</div>
+      <div id="filmCaption" class="world-caption">FILMS <span>·</span> SÉRIES <span>·</span> MANGAS</div>
+    </div>
+    <div id="cMusic" class="world world-music">
+      <div class="dots"></div><div class="world-label">02 / CHANGE D’AMBIANCE</div>
+      <div id="musicTitle" class="display">ET LÀ,<br />ÇA VIBRE.</div>
+      <div id="musicPhoto" class="photo-sticker"><img src="assets/music-world.jpg" alt="Chanteuse sur une scène à l’air libre" /></div>
+      <div id="musicFrame" class="screen-frame world-screen">
+        <div class="window-tab"><span class="dot coral"></span><span class="dot gold"></span><span class="dot green"></span><strong>RUBRIQUE MUSIQUES · CAPTURE RÉELLE</strong></div>
+        <div class="screen-glass"><img id="musicFull" src="assets/app-music.png" alt="Véritable capture de la rubrique Musiques et du lecteur" /></div>
       </div>
-    </section>
+      <div id="playerDetail" class="player-detail"><div class="detail-head">ZOOM SUR LE LECTEUR ↗</div><img src="assets/app-player-focus.png" alt="Gros plan fidèle du lecteur vidéo, recadré dans la quatrième capture" /></div>
+      <div id="musicCaption" class="world-caption">MUSIQUE <span>·</span> SHORTS-DRAMAS</div>
+    </div>
+    <div id="cGame" class="world world-game">
+      <div class="dots dots-light"></div><div class="world-label white">03 / ET AUSSI</div>
+      <div id="gameTitle" class="display inverse">CHANGE<br />DE VIBE.</div>
+      <div id="gamePhoto" class="photo-sticker"><img src="assets/game-world.jpg" alt="Joueur avec casque, micro et manette" /></div>
+      <div id="gameTag1" class="game-tag">JEUX VIDÉO <span>↗</span></div>
+      <div id="gameTag2" class="game-tag pale">PODCASTS <span>↗</span></div>
+      <div id="gameTag3" class="game-tag mint">RADIO <span>↗</span></div>
+      <div id="gameCaption" class="world-caption inverse">IL Y A TOUJOURS UN TRUC POUR TOI.</div>
+    </div>
 
-    <section id="s4" class="scene clip" data-start="29" data-duration="17" data-track-index="3">
-      <div id="in4" class="sin">
-        <div id="w1" class="world"><img id="w1photo" class="photo" src="assets/cinema-world.jpg" alt="Univers cinéma et manga"/><div class="shade"></div>
-          <div id="w1App" class="ui-frame"><div class="viewport"><img id="w1Films" src="assets/app-films.png" alt="Capture de l'application : films et séries"/><img id="w1Manga" src="assets/app-mangas.png" alt="Capture de l'application : mangas et animes"/><div class="screen-label">L’APPLI EN ACTION</div></div></div>
-          <div id="w1top" class="top kicker">03 / REGARDE</div><div id="w1title" class="bottomTitle"><div class="large">FILMS &amp; SÉRIES</div><div class="sub">MANGA.</div></div><div id="w1desc" class="desc">POSE-TOI. CHOISIS TON HISTOIRE.</div></div>
-        <div id="w2" class="world"><img id="w2photo" class="photo" src="assets/music-world.jpg" alt="Univers musique et récits courts"/><div class="shade"></div>
-          <div id="w2App" class="ui-frame"><div class="viewport"><img id="w2Music" src="assets/app-music.png" alt="Capture de la rubrique Musiques"/><img id="w2Player" src="assets/app-player-focus.png" alt="Extrait du lecteur vidéo de l'application"/><div class="screen-label">LE LECTEUR</div></div></div>
-          <div id="w2top" class="top kicker">04 / VIBRE</div><div id="w2title" class="bottomTitle"><div class="large">MUSIQUE.</div><div class="sub">SHORTS-DRAMAS.</div></div><div id="w2desc" class="desc">SUIS TON ENVIE DU MOMENT.</div></div>
-        <div id="w3" class="world"><img id="w3photo" class="photo" src="assets/game-world.jpg" alt="Univers jeux, podcasts et radio"/><div class="shade"></div><div id="w3top" class="top kicker">05 / JOUE &amp; ÉCOUTE</div><div id="w3title" class="bottomTitle"><div class="large">JEUX VIDÉO.</div><div class="sub">PODCASTS · RADIO.</div></div><div id="w3desc" class="desc">CHACUN TROUVE SON TRUC.</div></div>
-        <div id="boxChip"><div class="crop"><div id="boxKen" role="img" aria-label="Box NET — zoom lent"></div></div><span>BOX NET</span></div>
-        <div id="worldCount">TOUS TES UNIVERS, AU MÊME ENDROIT.</div>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="s5" class="scene clip" data-start="46" data-duration="7" data-track-index="4">
-      <div id="in5" class="sin">
-        <img id="s5photo" class="photo" src="assets/v2-signal.png" alt=""/><div id="s5shade"></div><div id="s5print" class="afro-print"></div>
-        <div id="s5k" class="kicker">06 / ÇA CONTINUE</div>
-        <div id="s5question" class="impact">PETIT DÉBIT ?<br /><span class="yellow">ÇA CONTINUE.</span></div>
-        <svg id="s5wave" viewBox="0 0 1080 420" aria-hidden="true">
-          <path id="noisy" d="M0 210 L92 210 L137 114 L175 290 L224 93 L275 276 L316 126 L358 212 L413 213 L468 75 L517 310 L555 170 L606 210 L683 210 L740 92 L792 294 L840 140 L883 208 L1080 208"/>
-          <path id="stable" d="M0 210 C235 210 263 210 373 210 C470 210 500 209 560 210 C650 211 728 210 800 210 C920 210 1000 210 1080 210"/>
-        </svg>
-        <div id="s5badge">✓</div>
-        <div id="s5result" class="impact">FLUX<br /><span class="lime">STABLE.</span></div>
-        <div id="s5trust">✓ &nbsp; PENSÉ POUR LES PETITS DÉBITS</div>
-        <div id="s5network">RÉSEAU MOBILE · WI-FI</div>
-      </div>
-    </section>
+  <!-- 46–53 · Designed for small bandwidth, without unverified guarantees. -->
+  <section id="s5" class="scene clip" data-start="46" data-duration="7" data-track-index="4">
+    <div id="stage5" class="stage">
+    <div class="dots" id="s5Dots"></div><div id="s5Label" class="eyebrow">PETIT DÉBIT / 05</div>
+    <div id="s5Title" class="display">ON GARDE<br />LE FIL.</div>
+    <div id="s5Sub" class="blurb">TON MOMENT N’ATTEND PAS.</div>
+    <svg id="s5Route" viewBox="0 0 940 500" aria-hidden="true">
+      <path id="route-dashes" d="M26 280 C100 80 166 430 247 240 S350 185 432 275" fill="none" stroke="#f3694d" stroke-width="23" stroke-linecap="round" stroke-dasharray="34 42" />
+      <path id="route-flow" d="M407 277 C545 277 640 277 916 277" fill="none" stroke="#2443a5" stroke-width="27" stroke-linecap="round" />
+      <circle id="route-dot" cx="430" cy="277" r="48" fill="#2443a5" stroke="#f8f2e8" stroke-width="12" />
+    </svg>
+    <div id="s5Card"><strong>PENSÉ POUR UN<br />FLUX STABLE.</strong><span>MÊME QUAND LE DÉBIT EST PETIT.</span></div>
+    <div id="s5Foot" class="little-caption">ON RESTE DANS L’HISTOIRE.</div>
 
-    <section id="s6" class="scene clip" data-start="53" data-duration="6" data-track-index="5">
-      <div id="in6" class="sin">
-        <div id="s6photo" class="photo"></div><div id="s6shade"></div><div id="s6print" class="afro-print"></div><div id="s6halo" class="flair"></div>
-        <div id="s6logo" class="brand-tile" role="img" aria-label="Logo Missa TV 360"></div>
-        <div id="s6heading" class="impact">TON MONDE<br /><span>T’ATTEND.</span></div>
-        <div id="cta">TÉLÉCHARGE<br />MAINTENANT</div>
-        <div id="s6qr"><svg viewBox="0 0 200 200" fill="none" stroke="#0b3453" stroke-width="9" stroke-linecap="square" aria-label="Emplacement pour QR code"><path d="M10 60V10h50M140 10h50v50M10 140v50h50M140 190h50v-50"/><rect x="24" y="24" width="26" height="26" rx="3" fill="#0b3453" stroke="none"/><rect x="150" y="24" width="26" height="26" rx="3" fill="#0b3453" stroke="none"/><rect x="24" y="150" width="26" height="26" rx="3" fill="#0b3453" stroke="none"/><path d="M77 93l18 18 35-38" stroke="#35a657" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div id="s6qrtext">EMPLACEMENT QR</div>
-        <div id="s6prices"><div class="p"><span>2 000 XAF</span><br />/ MOIS</div><div class="p"><span>10 000 XAF</span><br />/ AN</div></div>
-        <div id="s6end">MISSA TV 360 · TON MONDE, TON RYTHME.</div>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <div id="hud" class="clip" data-start="0" data-duration="59" data-track-index="6"><div id="hudAccent"></div><div id="hudName">MISSA TV 360</div><div id="hudSerial">LE MONDE S’OUVRE</div><div id="progressBase"><div id="progressFill"></div></div></div>
-    <div id="flash" class="clip" data-start="0" data-duration="59" data-track-index="7"></div>
-    <div id="fader" class="clip" data-start="0" data-duration="59" data-track-index="8"></div>
-  </div>
-  <script>
-    // 59-second seekable timeline. Every line of the VO has a deliberate visual beat.
-    // 00–06 hook · 06–16 problème · 16–29 solution · 29–46 univers · 46–53 débit · 53–59 CTA.
-    const tl = gsap.timeline({paused:true});
-    const reveal = (sel,at,d=.48,dy=50) => tl.fromTo(sel,{y:dy,autoAlpha:0},{y:0,autoAlpha:1,duration:d,ease:'power3.out'},at);
-    const pop = (sel,at,d=.48) => tl.fromTo(sel,{scale:.64,autoAlpha:0},{scale:1,autoAlpha:1,duration:d,ease:'back.out(1.7)'},at);
-    tl.fromTo('#progressFill',{width:0},{width:920,duration:59,ease:'none'},0);
+  <!-- 53–59 · One simple call to action; the QR-like mark is deliberately not a code. -->
+  <section id="s6" class="scene clip" data-start="53" data-duration="6" data-track-index="5">
+    <div id="stage6" class="stage">
+    <div id="s6Disc" class="sun-disc"></div><div class="dots" id="s6Dots"></div>
+    <div id="s6Logo"><img src="assets/logo-missa.png" alt="Identité graphique Missa TV 360" /></div>
+    <div id="s6Heading" class="display">TON ENVIE<br />FAIT LE<br />PROGRAMME.</div>
+    <div id="s6Mini" aria-label="Aperçu des captures réelles films, mangas et musique">
+      <div class="mini-shot"><img src="assets/ui-films-row.png" alt="Affiches de films" /><b>FILMS</b></div>
+      <div class="mini-shot"><img src="assets/ui-mangas-row.png" alt="Affiches de mangas" /><b>MANGAS</b></div>
+      <div class="mini-shot"><img src="assets/ui-music-player.png" alt="Lecteur musical" /><b>MUSIQUE</b></div>
+    </div>
+    <div id="s6Cta">TÉLÉCHARGE L’APPLI <span>↗</span></div>
+    <div id="s6Prices"><div><b>2 000 XAF</b><small>/ MOIS</small></div><div><b>10 000 XAF</b><small>/ AN</small></div></div>
+    <div id="s6Qr" aria-label="Emplacement QR fictif non scannable"><span>◇</span><small>QR À VENIR</small></div>
 
-    // Hook: real app UI bursts out of the portal in the first half-second.
-    tl.fromTo('#in1',{opacity:0},{opacity:1,duration:.25},0);
-    tl.fromTo('#s1photo',{scale:1.15,x:27},{scale:1.025,x:-18,duration:6,ease:'sine.out'},0);
-    tl.fromTo('#s1orb',{scale:.6,opacity:0},{scale:1.42,opacity:.74,duration:5.5,ease:'power2.out'},.16);
-    tl.fromTo('#s1orb2',{scale:.52,opacity:0},{scale:1.22,opacity:.42,duration:5.7,ease:'power2.out'},.11);
-    tl.fromTo('#heroHalo',{scale:.56,rotation:-32,opacity:0},{scale:1.10,rotation:37,opacity:.72,duration:5.7,ease:'power2.out'},.06);
-    tl.fromTo('#heroApp',{scale:.55,y:125,rotation:-7,autoAlpha:0},{scale:1,y:0,rotation:0,autoAlpha:1,duration:.72,ease:'expo.out'},.09);
-    tl.fromTo('#heroFilms',{scale:1.04,x:18},{scale:1.14,x:-23,duration:3.6,ease:'none'},.12);
-    tl.fromTo('#heroMusic',{opacity:0,clipPath:'inset(0 100% 0 0)',scale:1.1,x:20},
-      {opacity:1,clipPath:'inset(0 0% 0 0)',scale:1,x:0,duration:.7,ease:'power2.inOut'},3.14);
-    pop('#heroPill1',.91,.38); pop('#heroPill2',1.26,.38); pop('#heroPill3',3.48,.39);
-    pop('#s1logo',.23,.62); reveal('#s1eyebrow',.65,.48,38);
-    reveal('#s1line1',1.13,.64,99); reveal('#s1line2',1.82,.65,110);
-    reveal('#s1foot',3.03,.53,38);
-    tl.to('#s1line2',{scale:1.035,duration:.55,yoyo:true,repeat:2,ease:'sine.inOut'},3.29);
+    </div>
+  </section>
 
-    // Problème: three receipts accumulate while the narration explains the frustration.
-    tl.fromTo('#in2',{opacity:0},{opacity:1,duration:.22},6);
-    tl.fromTo('#s2bg',{scale:1.14},{scale:1.02,duration:10,ease:'none'},6);
-    reveal('#s2no',6.28,.4,32); reveal('#s2question',6.62,.62,84);
-    tl.fromTo('#billA',{x:-610,rotation:-8,autoAlpha:0},{x:0,rotation:-2,autoAlpha:1,duration:.62,ease:'back.out(1.4)'},7.95);
-    tl.fromTo('#billB',{x:640,rotation:7,autoAlpha:0},{x:0,rotation:1.2,autoAlpha:1,duration:.62,ease:'back.out(1.4)'},9.36);
-    tl.fromTo('#billC',{x:-590,rotation:-6,autoAlpha:0},{x:0,rotation:-1,autoAlpha:1,duration:.62,ease:'back.out(1.4)'},10.82);
-    tl.to('#s2pile',{scale:.82,opacity:.32,y:-85,rotation:2,duration:.78,ease:'power3.inOut'},13.49);
-    pop('#s2enough',14.04,.48); reveal('#s2sub',14.58,.45,25);
+  <div id="masthead" class="clip" data-start="0" data-duration="59" data-track-index="6"><span class="mast-dot"></span><b>MISSA TV 360</b><em>LE PROGRAMME, C’EST TOI.</em></div>
+  <div id="meter" class="clip" data-start="0" data-duration="59" data-track-index="7"><div id="meterFill"></div><div class="meter-ticks"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div id="endFade" class="clip" data-start="0" data-duration="59" data-track-index="8"></div>
+</div>
+<script>
+  // Deterministic 59-second GSAP timeline. Every screenshot remains an actual
+  // image from the client, with only pan, zoom, crop, swipes and physical frames.
+  const tl = gsap.timeline({paused:true});
+  const up = (sel,t,d=.53,dy=66) => tl.fromTo(sel,{y:dy,autoAlpha:0},{y:0,autoAlpha:1,duration:d,ease:'power3.out'},t);
+  const stamp = (sel,t,d=.57) => tl.fromTo(sel,{scale:.62,rotation:-8,autoAlpha:0},{scale:1,rotation:0,autoAlpha:1,duration:d,ease:'back.out(1.65)'},t);
+  // Graphic jump-cuts are intentional: no empty full-frame sweeps between chapters.
+  const cutIn = (sel,t) => tl.set(sel,{x:0,autoAlpha:1},t);
+  tl.fromTo('#meterFill',{width:0},{width:940,duration:59,ease:'none'},0);
 
-    // Solution: a single choice of price, then the real technical prerequisites.
-    tl.fromTo('#in3',{opacity:0},{opacity:1,duration:.2},16);
-    tl.fromTo('#s3photo',{scale:1.14,x:-26},{scale:1.025,x:20,duration:13,ease:'none'},16);
-    tl.fromTo('#s3ring',{scale:.55,opacity:0},{scale:2.22,opacity:.37,duration:10,ease:'power1.out'},16.04);
-    reveal('#s3k',16.22,.4,31); reveal('#s3title',16.54,.64,79);
-    // Animate the cards, never intermediate numbers that could be mistaken for other tariffs.
-    pop('#pMonth',17.64,.53); pop('#pYear',19.02,.53);
-    reveal('#boxPanel',22.35,.68,100);
-    tl.fromTo('#s3boximg',{scale:1.06,x:-12},{scale:1.22,x:12,duration:6.4,ease:'none'},22.4);
-    reveal('#dev1',24.1,.47,47); reveal('#dev2',24.69,.47,47); reveal('#dev3',25.28,.47,47);
-    reveal('#boxMini',27.17,.5,31);
+  // 00–06: a genuine film catalogue appears before the first sentence ends.
+  tl.fromTo('#s1Sun',{scale:.55,rotation:-32},{scale:1.16,rotation:34,duration:5.8,ease:'power2.out'},0);
+  up('#s1Label',.20,.41,30); up('#s1Title',.45,.68,92); up('#s1Sub',1.42,.49,35);
+  tl.fromTo('#s1Window',{x:620,y:175,scale:.72,rotation:12,autoAlpha:0},
+    {x:0,y:0,scale:1,rotation:-2,autoAlpha:1,duration:.86,ease:'expo.out'},.17);
+  tl.fromTo('#s1Films',{scale:1.02,x:12},{scale:1.11,x:-18,duration:2.78,ease:'none'},.23);
+  stamp('#s1Tape',2.0,.58);
+  tl.fromTo('#s1Gesture',{x:-180,autoAlpha:0},{x:0,autoAlpha:1,duration:.30,ease:'power2.out'},2.64);
+  tl.to('#s1Gesture',{x:-675,rotation:-20,duration:.63,ease:'power3.inOut'},3.04);
+  tl.fromTo('#s1Music',{x:970,rotation:5,autoAlpha:1},{x:0,rotation:0,duration:.68,ease:'power3.inOut'},3.05);
+  tl.to('#s1Films',{x:-960,duration:.68,ease:'power3.inOut'},3.05);
+  up('#s1Foot',3.92,.45,35);
 
-    // Three visual universes: actual app captures animate inside the projection/stage,
-    // while the NET box keeps its own continuous Ken Burns move.
-    tl.fromTo('#in4',{opacity:0},{opacity:1,duration:.18},29);
-    tl.fromTo('#w1',{opacity:0},{opacity:1,duration:.18},29);
-    tl.fromTo('#w1photo',{scale:1.07,x:0},{scale:1.27,x:-47,duration:6.05,ease:'none'},29);
-    tl.fromTo('#w1App',{scale:.63,y:135,rotation:-6,autoAlpha:0},{scale:1,y:0,rotation:0,autoAlpha:1,duration:.73,ease:'expo.out'},29.23);
-    tl.fromTo('#w1Films',{scale:1.03,x:0},{scale:1.14,x:-15,duration:3.25,ease:'none'},29.27);
-    tl.fromTo('#w1Manga',{opacity:0,clipPath:'inset(0 100% 0 0)',scale:1.10,x:20},
-      {opacity:1,clipPath:'inset(0 0% 0 0)',scale:1,x:0,duration:.66,ease:'power2.inOut'},32.24);
-    reveal('#w1top',29.24,.42,30); reveal('#w1title',29.63,.58,86); reveal('#w1desc',30.39,.42,24);
-    tl.fromTo('#w2',{opacity:0,clipPath:'inset(0 100% 0 0)'},{opacity:1,clipPath:'inset(0 0% 0 0)',duration:.55,ease:'power2.inOut'},34.90);
-    tl.fromTo('#w2photo',{scale:1.08,x:40},{scale:1.26,x:-15,duration:5.46,ease:'none'},34.90);
-    tl.set('#w1',{opacity:0},35.46);
-    tl.fromTo('#w2App',{scale:.67,y:80,rotation:7,autoAlpha:0},{scale:1,y:0,rotation:0,autoAlpha:1,duration:.65,ease:'expo.out'},35.29);
-    tl.fromTo('#w2Music',{scale:1.02,x:0},{scale:1.13,x:-16,duration:2.25,ease:'none'},35.3);
-    tl.to('#w2App',{scale:.55,x:300,y:-95,rotation:-3,duration:.73,ease:'power3.inOut'},37.17);
-    tl.fromTo('#w2Player',{opacity:0,clipPath:'inset(0 100% 0 0)',scale:1.08,x:22},
-      {opacity:1,clipPath:'inset(0 0% 0 0)',scale:1,x:0,duration:.47,ease:'power2.inOut'},37.93);
-    reveal('#w2top',35.54,.42,30); reveal('#w2title',35.82,.59,84); reveal('#w2desc',36.62,.45,27);
-    tl.fromTo('#w3',{opacity:0,clipPath:'inset(0 100% 0 0)'},{opacity:1,clipPath:'inset(0 0% 0 0)',duration:.55,ease:'power2.inOut'},40.10);
-    tl.fromTo('#w3photo',{scale:1.05,x:0},{scale:1.23,x:-44,duration:5.90,ease:'none'},40.10);
-    tl.set('#w2',{opacity:0},40.66);
-    reveal('#w3top',40.73,.43,30); reveal('#w3title',41.04,.60,87); reveal('#w3desc',41.81,.44,27);
-    pop('#boxChip',29.92,.49);
-    tl.fromTo('#boxKen',{scale:1.02,x:-3},{scale:1.31,x:13,duration:16.02,ease:'none'},29.92);
-    reveal('#worldCount',30.95,.53,27);
+  // 06–16: a stack of steps, swept away by a simpler proposition.
+  cutIn('#stage2',6);
+  tl.set('#stage1',{autoAlpha:0},6);
+  up('#s2Label',6.03,.4,40); up('#s2Title',6.12,.63,90); up('#s2Small',6.83,.48,37);
+  tl.fromTo('#s2Slip1',{x:-780,rotation:-11,autoAlpha:0},{x:0,rotation:-4,autoAlpha:1,duration:.68,ease:'back.out(1.3)'},8.11);
+  tl.fromTo('#s2Slip2',{x:870,rotation:9,autoAlpha:0},{x:0,rotation:3,autoAlpha:1,duration:.68,ease:'back.out(1.3)'},9.72);
+  tl.fromTo('#s2Slip3',{x:-740,rotation:-7,autoAlpha:0},{x:0,rotation:-1,autoAlpha:1,duration:.68,ease:'back.out(1.3)'},11.35);
+  tl.to(['#s2Slip1','#s2Slip2','#s2Slip3'],{y:-160,x:260,rotation:16,opacity:.16,duration:.62,ease:'power2.inOut'},13.44);
+  stamp('#s2Answer',13.9,.60); up('#s2Arrow',14.45,.48,35);
 
-    // Débit: noisy orange waveform straightens as the voice says "flux reste stable".
-    tl.fromTo('#in5',{opacity:0},{opacity:1,duration:.19},46);
-    tl.fromTo('#s5photo',{scale:1.1,y:65},{scale:1.0,y:-20,duration:7,ease:'none'},46);
-    reveal('#s5k',46.12,.37,30); reveal('#s5question',46.42,.57,79);
-    tl.fromTo('#noisy',{opacity:0,strokeDasharray:'150 28',strokeDashoffset:280},{opacity:.95,strokeDashoffset:0,duration:1.18,ease:'none'},46.64);
-    tl.to('#noisy',{opacity:0,duration:.49},48.06);
-    tl.fromTo('#stable',{opacity:0,strokeDasharray:1250,strokeDashoffset:1250},{opacity:1,strokeDashoffset:0,duration:.94,ease:'power2.out'},48.12);
-    pop('#s5badge',48.65,.47); reveal('#s5result',48.99,.60,83);
-    reveal('#s5trust',50.13,.48,38); reveal('#s5network',51.12,.48,29);
-    tl.to('#s5badge',{scale:1.13,duration:.48,repeat:3,yoyo:true,ease:'sine.inOut'},49.47);
+  // 16–29: gentle price-ticket pops, the real NET box, then three devices.
+  cutIn('#stage3',16);
+  tl.set('#stage2',{autoAlpha:0},16);
+  up('#s3Label',16.03,.4,37); up('#s3Title',16.15,.69,76);
+  stamp('#s3PriceMonth',17.25,.60); stamp('#s3PriceYear',19.12,.60);
+  tl.fromTo('#s3BoxPanel',{y:255,rotation:-7,autoAlpha:0},{y:0,rotation:0,autoAlpha:1,duration:.75,ease:'expo.out'},22.31);
+  tl.fromTo('#s3Box',{scale:1.10,x:-20},{scale:1.0,x:0,duration:6.5,ease:'sine.out'},22.35);
+  up('#s3Devices .device:nth-child(1)',25.53,.42,43);
+  up('#s3Devices .device:nth-child(2)',25.92,.42,43);
+  up('#s3Devices .device:nth-child(3)',26.31,.42,43);
+  up('#s3Foot',27.04,.43,24);
 
-    // CTA: consistent singular address, stated prices and an honest QR placeholder.
-    tl.fromTo('#in6',{opacity:0},{opacity:1,duration:.18},53);
-    tl.fromTo('#s6photo',{scale:1.12,x:34},{scale:1.02,x:-23,duration:6,ease:'none'},53);
-    tl.fromTo('#s6halo',{scale:.56,opacity:0},{scale:1.16,opacity:.73,duration:2.6,ease:'power2.out'},53.07);
-    pop('#s6logo',53.21,.62); reveal('#s6heading',53.91,.56,78);
-    pop('#cta',55.03,.55); tl.to('#cta',{scale:1.048,duration:.52,yoyo:true,repeat:3,ease:'sine.inOut'},55.66);
-    reveal('#s6qr',55.93,.47,47); reveal('#s6qrtext',56.26,.39,23);
-    reveal('#s6prices',56.27,.54,49); reveal('#s6end',57.27,.45,27);
-    tl.fromTo('#fader',{opacity:0},{opacity:1,duration:.35,ease:'sine.inOut'},58.65);
+  // 29–35: full screen → poster row → one physical swipe to manga.
+  cutIn('#stage4',29);
+  tl.set('#stage3',{autoAlpha:0},29);
+  tl.fromTo('#filmPhoto',{rotation:14,scale:.74,autoAlpha:0},{rotation:7,scale:1,autoAlpha:1,duration:.7,ease:'back.out(1.4)'},29.16);
+  up('#filmTitle',29.18,.65,82);
+  tl.fromTo('#filmFrame',{y:180,rotation:8,autoAlpha:0},{y:0,rotation:-2,autoAlpha:1,duration:.75,ease:'expo.out'},29.31);
+  tl.fromTo('#filmFull',{scale:1.0,x:0},{scale:1.12,x:-36,duration:3.1,ease:'none'},29.32);
+  tl.fromTo('#filmDetail',{y:150,rotation:-7,autoAlpha:0},{y:0,rotation:2,autoAlpha:1,duration:.6,ease:'back.out(1.3)'},30.51);
+  up('#filmCaption',30.85,.47,28);
+  tl.fromTo('#filmSwipe',{x:0,autoAlpha:0},{x:0,autoAlpha:1,duration:.2},31.75);
+  tl.to('#filmSwipe',{x:620,duration:.59,ease:'power3.inOut'},32.04);
+  tl.fromTo('#mangaFull',{x:1000,autoAlpha:1},{x:0,duration:.68,ease:'power3.inOut'},32.14);
+  tl.fromTo('#mangaRow',{x:970,autoAlpha:1},{x:0,duration:.68,ease:'power3.inOut'},32.14);
+  tl.to(['#filmFull','#filmRow'],{x:-1010,duration:.68,ease:'power3.inOut'},32.14);
 
-    // Seven short light hits preserve the rhythm without concealing the information.
-    [6,16,29,34.90,40.10,46,53].forEach(t=>{
-      tl.to('#flash',{opacity:.19,duration:.075,ease:'power2.out'},t);
-      tl.to('#flash',{opacity:0,duration:.20,ease:'power1.out'},t+.075);
-    });
-    window.__timelines.main=tl;
-  </script>
+  // 35–40.55: the music catalogue folds down as a truthful crop of the
+  // fourth capture enlarges the actual player (no fabricated playback UI).
+  tl.set('#cMusic',{x:0,autoAlpha:1},35.05);
+  tl.set('#cFilm',{autoAlpha:0},35.05);
+  up('#musicTitle',35.17,.63,76);
+  tl.fromTo('#musicPhoto',{x:270,scale:.7,rotation:-14,autoAlpha:0},{x:0,scale:1,rotation:5,autoAlpha:1,duration:.72,ease:'back.out(1.25)'},35.27);
+  tl.fromTo('#musicFrame',{y:190,rotation:-6,autoAlpha:0},{y:0,rotation:2,autoAlpha:1,duration:.76,ease:'expo.out'},35.67);
+  tl.fromTo('#musicFull',{scale:1.0,x:0},{scale:1.10,x:-22,duration:3.0,ease:'none'},35.71);
+  up('#musicCaption',36.52,.47,36);
+  tl.to('#musicFrame',{scale:.64,x:-20,y:355,rotation:-6,duration:.71,ease:'power3.inOut'},37.42);
+  stamp('#playerDetail',37.91,.56);
+
+  // 40.55–46: music → games and listening, in a strong cobalt collage.
+  tl.set('#cGame',{x:0,autoAlpha:1},40.55);
+  tl.set('#cMusic',{autoAlpha:0},40.55);
+  up('#gameTitle',40.67,.66,72);
+  tl.fromTo('#gamePhoto',{y:180,scale:.65,rotation:15,autoAlpha:0},
+    {y:0,scale:1,rotation:7,autoAlpha:1,duration:.73,ease:'back.out(1.3)'},40.91);
+  stamp('#gameTag1',41.9,.5); stamp('#gameTag2',42.63,.5); stamp('#gameTag3',43.36,.5);
+  up('#gameCaption',44.24,.46,32);
+
+  // 46–53: from an irregular line to a continuous line; an intention, not a guarantee.
+  cutIn('#stage5',46);
+  tl.set('#stage4',{autoAlpha:0},46);
+  up('#s5Label',46.04,.4,31); up('#s5Title',46.18,.7,96); up('#s5Sub',47.46,.41,24);
+  tl.fromTo('#route-dashes',{strokeDashoffset:490,autoAlpha:0},{strokeDashoffset:0,autoAlpha:1,duration:1.13,ease:'none'},47.76);
+  tl.fromTo('#route-flow',{strokeDasharray:520,strokeDashoffset:520},{strokeDashoffset:0,duration:.94,ease:'power2.out'},49.00);
+  tl.fromTo('#route-dot',{scale:.35,autoAlpha:0,transformOrigin:'center center'},
+    {scale:1,autoAlpha:1,duration:.49,ease:'back.out(1.8)'},49.13);
+  stamp('#s5Card',49.72,.66); up('#s5Foot',51.23,.43,24);
+
+  // 53–59: invitation rather than a shout, and an explicitly non-scannable placeholder.
+  cutIn('#stage6',53);
+  tl.set('#stage5',{autoAlpha:0},53);
+  tl.fromTo('#s6Disc',{scale:.60,rotation:-30},{scale:1.09,rotation:35,duration:5.7,ease:'power2.out'},53.04);
+  stamp('#s6Logo',53.30,.56); up('#s6Heading',53.22,.69,85);
+  ['#s6Mini .mini-shot:nth-child(1)','#s6Mini .mini-shot:nth-child(2)','#s6Mini .mini-shot:nth-child(3)']
+    .forEach((sel,i)=>up(sel,54.64+i*.17,.39,38));
+  stamp('#s6Cta',55.30,.53); up('#s6Prices',56.25,.46,34);
+  stamp('#s6Qr',56.55,.53);
+  tl.fromTo('#endFade',{opacity:0},{opacity:1,duration:.16,ease:'sine.inOut'},58.84);
+
+  window.__timelines = window.__timelines || {};
+  window.__timelines.main = tl;
+</script>
 </body>
 </html>

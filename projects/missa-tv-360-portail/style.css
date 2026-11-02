@@ -1,0 +1,174 @@
+@font-face { font-family:Mont; src:url('vendor/Montserrat-Black.ttf') format('truetype'); font-weight:900; }
+@font-face { font-family:MontExtra; src:url('vendor/Montserrat-ExtraBold.ttf') format('truetype'); font-weight:800; }
+@font-face { font-family:Nunito; src:url('vendor/Nunito-Variable.ttf') format('truetype'); font-weight:200 1000; }
+:root { --ink:#18233b; --cream:#f8f2e8; --yellow:#ffd54b; --coral:#f16d50; --cobalt:#2644a5; --mint:#c8ecca; --green:#67c887; }
+* { box-sizing:border-box; }
+html,body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:var(--cream); }
+body { color:var(--ink); font-family:Nunito,sans-serif; }
+#root { position:relative; width:100%; height:100%; overflow:hidden; background:var(--cream); }
+.scene { position:absolute; inset:0; overflow:hidden; isolation:isolate; }
+.stage { position:absolute; inset:0; overflow:hidden; opacity:0; visibility:hidden; isolation:isolate; }
+#stage1 { opacity:1; visibility:visible; }
+#s1 { background:var(--yellow); }
+#s2 { background:var(--cobalt); }
+#s3 { background:var(--mint); }
+#s4 { background:#f4a17b; }
+#s5 { background:#fbd35a; }
+#s6 { background:var(--cream); }
+.display { position:absolute; font:900 122px/.99 Mont,sans-serif; letter-spacing:-.058em; text-transform:uppercase; }
+.inverse { color:#fffdf3; }
+.eyebrow, .world-label { position:absolute; font:900 33px/1.2 MontExtra,sans-serif; letter-spacing:.105em; text-transform:uppercase; }
+.blurb { position:absolute; font:900 34px/1.25 Nunito,sans-serif; letter-spacing:.065em; }
+.little-caption { position:absolute; font:900 31px/1.2 MontExtra,sans-serif; letter-spacing:.08em; }
+.dots { position:absolute; inset:0; pointer-events:none; opacity:.23;
+  background:radial-gradient(rgba(23,38,59,.75) 1.8px,transparent 2.2px) 0 0/28px 28px;
+  mask-image:linear-gradient(90deg,transparent 28%,black 100%); }
+.dots-light { background:radial-gradient(rgba(255,255,255,.65) 1.8px,transparent 2.2px) 0 0/29px 29px; opacity:.19; }
+.sun-disc { position:absolute; border-radius:50%; background:var(--coral); box-shadow:24px 25px 0 rgba(24,35,59,.09); }
+.sun-corner { position:absolute; right:-200px; top:-320px; width:760px; height:780px; border-radius:50%; background:var(--coral); }
+
+/* Frames remain external to the source imagery: the app pixels are unmodified. */
+.screen-frame { position:absolute; padding:13px; background:#fffdf5; border:5px solid var(--ink); border-radius:29px; box-shadow:20px 23px 0 var(--ink); transform-origin:center center; }
+.screen-frame .window-tab { height:53px; display:flex; align-items:center; gap:11px; padding:0 14px; color:var(--ink); }
+.window-tab strong { margin-left:16px; font:900 23px/1 MontExtra,sans-serif; letter-spacing:.08em; white-space:nowrap; }
+.dot { display:inline-block; width:17px; height:17px; border-radius:50%; border:2px solid var(--ink); }
+.dot.coral { background:var(--coral); } .dot.gold { background:var(--yellow); } .dot.green { background:var(--green); }
+.screen-glass { position:relative; width:100%; height:calc(100% - 53px); overflow:hidden; background:#080a10; border-radius:8px 8px 12px 12px; }
+.screen-glass img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center center; }
+.gesture { position:absolute; z-index:4; width:116px; height:116px; display:flex; align-items:center; justify-content:center; border-radius:100%;
+  background:#fffdf2; border:5px solid var(--ink); box-shadow:12px 14px 0 var(--ink); font:900 80px/1 Mont,sans-serif; }
+
+/* 01 / A warm, immediate, tactile opening instead of the old dark portal. */
+#s1Sun { left:435px; top:120px; width:785px; height:785px; }
+#s1Label { left:71px; top:215px; }
+#s1Title { left:70px; top:314px; width:950px; font-size:134px; z-index:2; }
+#s1Sub { left:75px; top:663px; z-index:3; }
+#s1Window { left:54px; top:835px; width:973px; height:567px; z-index:2; }
+#s1Gesture { left:846px; top:1210px; }
+#s1Tape { position:absolute; left:190px; top:1449px; width:750px; height:123px; display:flex; align-items:center; justify-content:center;
+  z-index:5; background:#fffdf3; border:5px solid var(--ink); box-shadow:12px 13px 0 var(--ink);
+  font:900 52px/1 Mont,sans-serif; letter-spacing:-.035em; }
+#s1Foot { left:73px; top:1678px; width:940px; }
+
+/* 02 / Subscription clutter becomes a playful stack of physical slips. */
+#s2Label { left:77px; top:212px; }
+#s2Title { left:73px; top:318px; font-size:148px; }
+#s2Small { left:77px; top:669px; }
+.slip { position:absolute; left:120px; width:833px; height:156px; display:flex; align-items:center; padding:0 39px; gap:28px;
+  border:5px solid var(--ink); border-radius:18px; background:#fffaf0; box-shadow:16px 18px 0 var(--ink);
+  color:var(--ink); font:900 48px/1 MontExtra,sans-serif; letter-spacing:-.045em; white-space:nowrap; }
+.slip-index { font:900 36px/1 Mont,sans-serif; color:#b5523c; }
+.slip-x { margin-left:auto; color:#cf5137; font:900 74px/1 Mont,sans-serif; }
+#s2Slip1 { top:822px; } #s2Slip2 { top:1025px; left:145px; } #s2Slip3 { top:1226px; left:94px; }
+#s2Answer { position:absolute; left:73px; top:1315px; width:931px; height:301px; display:flex; flex-direction:column; justify-content:center; padding:27px 45px;
+  background:var(--yellow); border:6px solid var(--ink); border-radius:34px; box-shadow:17px 21px 0 #142247;
+  font:900 76px/1.08 Mont,sans-serif; letter-spacing:-.05em; }
+#s2Answer em { font-style:normal; color:#21439f; }
+#s2Arrow { position:absolute; left:800px; top:1615px; font:900 146px/1 Mont,sans-serif; color:var(--yellow); }
+
+/* 03 / Tickets are flat and legible. Amounts NEVER animate through other prices. */
+#s3Label { left:76px; top:221px; }
+#s3Title { left:74px; top:315px; font-size:117px; z-index:1; }
+.ticket { position:absolute; left:70px; top:632px; width:456px; height:268px; padding:25px 29px;
+  border:5px solid var(--ink); border-radius:22px; background:var(--yellow); box-shadow:14px 17px 0 var(--ink); }
+.ticket-year { left:550px; background:#fffdf4; }
+.ticket-k { font:900 30px/1 MontExtra,sans-serif; letter-spacing:.1em; }
+.ticket strong { display:block; margin-top:25px; font:900 86px/1 Mont,sans-serif; letter-spacing:-.075em; white-space:nowrap; }
+.ticket strong span { margin-left:7px; font-size:35px; letter-spacing:-.045em; }
+.ticket b { display:block; margin-top:16px; font:900 25px/1 MontExtra,sans-serif; letter-spacing:.08em; }
+#s3BoxPanel { position:absolute; left:71px; top:989px; width:939px; height:485px; display:flex; overflow:hidden;
+  background:var(--cobalt); border:6px solid var(--ink); border-radius:28px; box-shadow:15px 19px 0 var(--ink); }
+#s3Box { position:absolute; left:19px; top:20px; width:446px; height:431px; object-fit:cover; border-radius:16px; }
+#s3BoxCopy { position:absolute; left:493px; top:48px; width:417px; color:#fffdf1; }
+#s3BoxCopy small { display:block; font:900 31px/1 MontExtra,sans-serif; letter-spacing:.11em; }
+#s3BoxCopy strong { display:block; margin:26px 0 20px; font:900 88px/.95 Mont,sans-serif; letter-spacing:-.055em; }
+#s3BoxCopy span { display:block; font:900 39px/1.18 MontExtra,sans-serif; color:var(--yellow); }
+#s3Devices { position:absolute; left:70px; top:1574px; width:940px; display:flex; justify-content:space-between; gap:14px; }
+.device { width:303px; height:118px; display:flex; align-items:center; justify-content:center; border:4px solid var(--ink); border-radius:18px;
+  background:#fffdf4; box-shadow:8px 10px 0 var(--ink); font:900 35px/1 MontExtra,sans-serif; }
+#s3Foot { left:75px; top:1755px; }
+
+/* 04 / A real-screenshot carousel, inside three paper-collage universes. */
+.world { position:absolute; inset:0; overflow:hidden; isolation:isolate; }
+#cFilm { background:#f2a179; }
+.world-music { background:#f9e4d5; opacity:0; visibility:hidden; }
+.world-game { background:#273e95; opacity:0; visibility:hidden; }
+.world-label { left:76px; top:208px; z-index:3; }
+.world-label.white { color:#fffdf5; }
+#filmTitle { left:73px; top:315px; width:920px; font-size:115px; z-index:2; }
+.photo-sticker { position:absolute; overflow:hidden; border:8px solid #fffdf3; border-radius:23px; box-shadow:15px 18px 0 var(--ink); }
+.photo-sticker img { width:100%; height:100%; object-fit:cover; display:block; }
+#filmPhoto { left:782px; top:263px; width:270px; height:388px; z-index:1; }
+#filmPhoto img { object-position:center 43%; }
+.world-screen { left:59px; top:726px; width:960px; height:581px; z-index:2; }
+#filmDetail { position:absolute; left:111px; top:1362px; width:862px; height:225px; z-index:3; overflow:hidden;
+  background:#090b0e; border:9px solid #fffdf6; border-radius:20px; box-shadow:13px 15px 0 var(--ink); transform-origin:center center; }
+.detail-strip img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+#filmSwipe { left:264px; top:1153px; width:102px; height:102px; font-size:69px; }
+#filmCaption { left:74px; top:1668px; }
+.world-caption { position:absolute; font:900 39px/1.25 MontExtra,sans-serif; letter-spacing:.04em; }
+.world-caption span { color:#2041a2; }
+#musicTitle { left:72px; top:321px; width:760px; font-size:126px; z-index:2; }
+#musicPhoto { left:762px; top:293px; width:280px; height:475px; z-index:1; }
+#musicPhoto img { object-position:50% 35%; }
+#musicFrame { top:855px; transform-origin:top left; }
+#playerDetail { position:absolute; right:68px; top:784px; z-index:4; width:710px; height:528px; padding:16px 16px 20px;
+  border:6px solid var(--ink); border-radius:25px; background:var(--yellow); box-shadow:15px 18px 0 var(--ink); }
+#playerDetail .detail-head { height:57px; display:flex; align-items:center; font:900 29px/1 MontExtra,sans-serif; letter-spacing:.07em; }
+#playerDetail img { width:100%; height:412px; object-fit:cover; border-radius:9px; border:3px solid var(--ink); }
+#musicCaption { left:76px; top:1681px; }
+#gameTitle { left:73px; top:317px; width:800px; font-size:141px; z-index:2; }
+#gamePhoto { left:519px; top:400px; width:497px; height:627px; transform:rotate(7deg); z-index:1; }
+#gamePhoto img { object-position:50% 43%; filter:brightness(1.19) saturate(1.08); }
+.game-tag { position:absolute; left:72px; top:1100px; width:872px; height:143px; padding:22px 46px; display:flex; align-items:center; justify-content:space-between;
+  border:5px solid var(--ink); border-radius:20px; box-shadow:15px 17px 0 var(--ink); background:var(--yellow); font:900 63px/1 Mont,sans-serif; letter-spacing:-.055em; }
+.game-tag span { font-size:62px; }
+#gameTag2 { top:1291px; left:103px; }
+#gameTag3 { top:1481px; left:72px; }
+.game-tag.pale { background:#fffdf4; } .game-tag.mint { background:#a5e5ae; }
+#gameCaption { left:74px; top:1741px; font-size:33px; }
+
+/* 05 / Visual metaphor for a steadier flow, without promising verified speeds. */
+#s5Label { left:76px; top:235px; }
+#s5Title { left:71px; top:361px; width:946px; font-size:145px; }
+#s5Sub { left:75px; top:738px; font-size:39px; }
+#s5Route { position:absolute; left:67px; top:860px; width:947px; height:500px; overflow:visible; }
+#route-dashes, #route-flow { filter:drop-shadow(8px 10px 0 rgba(24,35,59,.15)); }
+#s5Card { position:absolute; left:76px; top:1400px; width:930px; height:241px; padding:32px 43px; display:flex; flex-direction:column; justify-content:center;
+  border:5px solid var(--ink); border-radius:28px; background:#fffdf4; box-shadow:16px 18px 0 var(--ink); }
+#s5Card strong { font:900 60px/.98 Mont,sans-serif; letter-spacing:-.048em; }
+#s5Card span { display:block; margin-top:16px; font:900 28px/1 MontExtra,sans-serif; color:#2644a5; letter-spacing:.03em; }
+#s5Foot { left:79px; top:1724px; }
+
+/* 06 / A sunny, compact invitation with real UI details and an honest QR slot. */
+#s6Disc { left:524px; top:151px; width:700px; height:700px; background:var(--yellow); }
+#s6Logo { position:absolute; left:77px; top:226px; width:215px; height:215px; z-index:2; overflow:hidden; border:5px solid var(--ink); border-radius:30px; box-shadow:12px 14px 0 var(--ink); background:var(--yellow); }
+#s6Logo img { width:100%; height:100%; object-fit:cover; }
+#s6Heading { left:72px; top:500px; width:947px; font-size:122px; z-index:1; }
+#s6Mini { position:absolute; left:77px; top:1067px; width:927px; display:flex; gap:19px; }
+.mini-shot { width:297px; height:216px; overflow:hidden; background:#fffdf2; border:4px solid var(--ink); border-radius:17px; box-shadow:9px 11px 0 var(--ink); }
+.mini-shot img { display:block; width:100%; height:145px; object-fit:cover; }
+.mini-shot b { display:block; padding:9px 12px; font:900 28px/1 MontExtra,sans-serif; letter-spacing:.03em; }
+#s6Cta { position:absolute; left:76px; top:1400px; width:930px; height:160px; padding:0 42px; display:flex; align-items:center; justify-content:space-between;
+  color:#fffdf4; background:var(--cobalt); border:5px solid var(--ink); border-radius:28px; box-shadow:13px 16px 0 var(--ink);
+  font:900 55px/1 Mont,sans-serif; letter-spacing:-.048em; white-space:nowrap; }
+#s6Cta span { font-size:75px; }
+#s6Prices { position:absolute; left:79px; top:1640px; width:680px; display:flex; justify-content:space-between; gap:12px; }
+#s6Prices div { display:flex; flex-direction:column; gap:5px; }
+#s6Prices b { font:900 41px/1 Mont,sans-serif; letter-spacing:-.055em; white-space:nowrap; }
+#s6Prices small { font:900 28px/1 MontExtra,sans-serif; }
+#s6Qr { position:absolute; right:75px; top:1600px; width:187px; height:166px; border:4px dashed var(--ink); border-radius:17px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#fffdf2; }
+#s6Qr span { font:900 91px/.9 Mont,sans-serif; color:var(--coral); }
+#s6Qr small { font:900 21px/1 Nunito,sans-serif; letter-spacing:.04em; }
+
+/* Quiet editorial furniture; nothing from the old neon HUD survives. */
+#masthead { position:absolute; left:67px; top:48px; width:946px; height:80px; display:flex; align-items:center; padding:0 22px; z-index:20;
+  background:#fffdf3; border:4px solid var(--ink); border-radius:19px; box-shadow:8px 9px 0 var(--ink); color:var(--ink); }
+#masthead .mast-dot { width:29px; height:29px; flex:none; border-radius:50%; background:var(--coral); border:3px solid var(--ink); margin-right:15px; }
+#masthead b { font:900 32px/1 Mont,sans-serif; white-space:nowrap; letter-spacing:.025em; }
+#masthead em { margin-left:auto; font:900 24px/1 Nunito,sans-serif; white-space:nowrap; font-style:normal; }
+#meter { position:absolute; left:70px; bottom:73px; width:940px; height:19px; z-index:20; overflow:hidden; background:#fffdf4; border:3px solid var(--ink); border-radius:30px; box-shadow:6px 7px 0 var(--ink); }
+#meterFill { height:100%; width:0; background:linear-gradient(90deg,#f16d50 0%,#f9d34c 33%,#67c887 68%,#2644a5 100%); }
+.meter-ticks { position:absolute; inset:0; display:flex; justify-content:space-evenly; }
+.meter-ticks i { width:3px; height:100%; background:var(--ink); }
+#endFade { position:absolute; inset:0; z-index:30; pointer-events:none; background:#162140; opacity:0; }
