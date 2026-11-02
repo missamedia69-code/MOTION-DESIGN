@@ -32,7 +32,7 @@ audio.append('[10:a]volume=1.12[m]')
 audio.append('[11:a]volume=.73[e]')
 audio.append(''.join(f'[v{i}]' for i in range(1,len(voices)+1))+
              '[m][e]amix=inputs=11:normalize=0,volume=1.30,'+
-             'alimiter=limit=.78:attack=5:release=80:level=0,'+
+             'alimiter=limit=.72:attack=5:release=80:level=0,'+
              'apad,afade=t=out:st=58.72:d=0.28,atrim=0:59,asetpts=PTS-STARTPTS[aout]')
 inputs = [video,*voices,music,sfx]
 cmd = ['ffmpeg','-hide_banner','-loglevel','error','-y']

@@ -2,7 +2,7 @@
 
 Depuis la racine du dépôt : python3 projects/missa-tv-360-portail/sound.py
 Écrit uniquement dans .cache/portail-audio/ (les médias lourds restent hors Git).
-Le mix final des voix et des effets est décrit dans mix.sh.
+Le mix final des voix et des effets est décrit dans mix.py.
 """
 from __future__ import annotations
 
@@ -88,8 +88,8 @@ chords = [
 for bar in range(math.ceil(DUR/(4*beat))):
     base = bar*4*beat
     root, chord, lead = chords[bar % 4]
-    # Intro is sparse; the hook lands before full drums return at the problem beat.
-    if base >= 2.0:
+    # The percussion starts on frame zero: real app visuals hit immediately.
+    if base >= 0.0:
         for offset, gain in ((0,.80),(.9,.48),(1.5,.70),(2.1,.38)):
             add(base+offset,kick(),gain)
         for offset, gain in ((.6,.5),(1.8,.62)):
@@ -99,6 +99,8 @@ for bar in range(math.ceil(DUR/(4*beat))):
             add(t,hat(h%4==3),.38 if h%2 else .28,pan=(-.25 if h%2 else .25))
         for offset in (.37,1.27,1.86):
             add(base+offset,conga(),.16,pan=.24)
+        for offset in (.15,1.44):
+            add(base+offset,conga(268),.12,pan=-.28)
     for offset,pitch,gain in ((.0,root,.31),(.88,root*1.122,.18),(1.46,root,.25),(2.04,root*1.334,.18)):
         add(base+offset,bass(pitch),gain)
     for j,offset in enumerate((.0,.9,1.5)):
@@ -113,11 +115,11 @@ for i,(freq,delay) in enumerate(((587.33,53.11),(739.99,53.29),(880.0,53.49))):
 
 s = np.arange(N)/SR
 section = np.interp(s,[0,.8,5.8,6.2,15.8,16.2,28.8,29.2,45.8,46.2,47.5,48.9,52.8,53.2,57.0,58.5,59.2],
-                       [.03,.36,.62,.72,.71,.88,.88,1.0,.94,.33,.25,.64,.65,.96,.87,.48,0])
+                       [.38,.69,.78,.77,.71,.88,.88,1.0,.94,.33,.25,.64,.65,.96,.87,.48,0])
 # Keep the voice local, warm and fully intelligible; crossfade ducking at each sentence edge.
 duck = np.ones(N,dtype=np.float32)
-for start,end in ((.30,4.13),(6.20,15.66),(16.35,20.58),(22.45,28.31),
-                  (29.08,34.90),(35.52,39.87),(40.64,45.84),(46.20,51.75),(53.22,57.36)):
+for start,end in ((.30,4.43),(6.20,15.57),(16.35,20.73),(22.45,28.27),
+                  (29.08,34.54),(35.52,39.75),(40.64,45.86),(46.20,51.51),(53.22,57.52)):
     a,b=int(start*SR),int(end*SR)
     duck[a:b]=.35
     r=round(.21*SR)
@@ -181,12 +183,14 @@ def load(name: str) -> np.ndarray:
 sfx = np.zeros((N,2),dtype=np.float32)
 fx_files={name:load(name+'.wav') for name in ('whoosh','impact','tick','lock','glitch')}
 events = [
-    ('impact',.22,.45),('whoosh',5.92,.46),('glitch',6.14,.23),
+    ('whoosh',.10,.34),('impact',.22,.46),('tick',.91,.24),('tick',1.26,.24),
+    ('whoosh',3.14,.38),('tick',3.48,.25),('whoosh',5.92,.46),('glitch',6.14,.23),
     ('tick',7.95,.46),('tick',9.36,.46),('tick',10.82,.44),('impact',14.04,.52),
     ('whoosh',15.92,.56),('tick',17.64,.42),('tick',19.02,.42),
     ('impact',22.35,.38),('tick',24.1,.22),('tick',24.69,.22),('tick',25.28,.22),
-    ('whoosh',28.92,.62),('tick',29.63,.23),('whoosh',34.90,.54),
-    ('tick',35.82,.22),('whoosh',40.10,.54),('tick',41.04,.22),
+    ('whoosh',28.92,.62),('tick',29.24,.29),('tick',29.63,.23),
+    ('tick',32.24,.37),('whoosh',34.90,.54),('tick',35.29,.32),
+    ('whoosh',37.17,.29),('tick',37.93,.35),('whoosh',40.10,.54),('tick',41.04,.22),
     ('whoosh',45.92,.62),('glitch',46.75,.32),('lock',48.65,.57),
     ('whoosh',52.92,.62),('impact',53.21,.53),('lock',55.03,.44),('tick',55.93,.28),
 ]

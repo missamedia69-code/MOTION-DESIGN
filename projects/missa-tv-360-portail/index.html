@@ -8,7 +8,7 @@
   <style>
     @font-face { font-family: Mont; src: url('vendor/Montserrat-Black.ttf') format('truetype'); font-weight: 900; }
     @font-face { font-family: Nunito; src: url('vendor/Nunito-Variable.ttf') format('truetype'); font-weight: 200 1000; }
-    :root { --navy:#06162a; --blue:#123e82; --yellow:#ffe500; --lime:#aaff64; --ivory:#f7faee; }
+    :root { --navy:#06162a; --blue:#123e82; --yellow:#ffe500; --lime:#aaff64; --ivory:#f7faee; --coral:#f1714d; --green:#27cf78; --ochre:#e5aa4e; }
     * { box-sizing: border-box; }
     html, body { margin:0; padding:0; width:100%; height:100%; overflow:hidden; background:var(--navy); }
     body { color:var(--ivory); font-family:Nunito, sans-serif; }
@@ -27,31 +27,70 @@
     .flair { position:absolute; border:2px solid rgba(180,255,91,.48); border-radius:50%; box-shadow:inset 0 0 60px rgba(180,255,91,.05),0 0 36px rgba(180,255,91,.09); }
     .smallnote { font-size:30px; font-weight:800; letter-spacing:.06em; }
 
+    /* Pan-African color story, applied as framing rather than recoloring real UI. */
+    .afro-print { position:absolute; inset:0; pointer-events:none; opacity:.12;
+      background:url('assets/wax-bg.jpg') center/auto 760px repeat; mix-blend-mode:screen;
+      mask-image:linear-gradient(90deg,black 0%,transparent 27%,transparent 73%,black 100%); }
+    #s2print { opacity:.11; } #s3print { opacity:.09; } #s5print { opacity:.10; }
+    #s6print { opacity:.08; mask-image:linear-gradient(180deg,transparent,black 95%); }
+    #hudAccent { position:absolute; left:32px; top:68px; width:12px; height:108px; border-radius:10px;
+      background:linear-gradient(180deg,var(--coral) 0 31%,var(--yellow) 31% 66%,var(--green) 66%); }
+    #heroHalo { position:absolute; left:-105px; top:250px; width:1290px; height:930px; opacity:.8;
+      border-radius:50%; background:conic-gradient(from 240deg,transparent,rgba(241,113,77,.65),
+      rgba(255,229,0,.48),rgba(39,207,120,.74),transparent 94%);
+      mask:radial-gradient(ellipse,transparent 54%,black 56%,black 62%,transparent 65%); }
+    #heroApp { position:absolute; left:79px; top:445px; width:922px; height:545px; z-index:2;
+      padding:7px; border-radius:37px; background:linear-gradient(115deg,var(--coral),var(--yellow) 36%,var(--green) 78%,var(--yellow));
+      box-shadow:0 35px 90px rgba(0,0,0,.68),0 0 70px rgba(255,200,31,.38); transform-origin:center center; }
+    #heroApp .screen { position:relative; width:100%; height:100%; overflow:hidden; border-radius:29px; background:#05070b; }
+    #heroApp .app-shot { position:absolute; inset:0; background-position:center; background-size:cover; }
+    #heroFilms { background-image:url('assets/app-films.png'); }
+    #heroMusic { background-image:url('assets/app-music.png'); }
+    #heroCaption { position:absolute; top:15px; left:16px; z-index:3; border-radius:999px; padding:10px 19px;
+      font:900 25px/1 Mont,sans-serif; color:#071427; background:var(--yellow); box-shadow:0 8px 25px rgba(0,0,0,.65); }
+    #heroPills { position:absolute; z-index:3; left:84px; top:1014px; width:912px; display:flex; gap:12px; }
+    .hero-pill { flex:1; height:68px; border-radius:99px; display:flex; align-items:center; justify-content:center;
+      font:900 31px/1 Mont,sans-serif; color:#06162a; letter-spacing:.03em; box-shadow:0 12px 32px rgba(0,0,0,.45); }
+    #heroPill1 { background:var(--yellow); } #heroPill2 { background:var(--green); } #heroPill3 { background:var(--coral); }
+    .ui-frame { position:absolute; padding:7px; border-radius:31px; overflow:hidden;
+      background:linear-gradient(125deg,var(--yellow),var(--green) 53%,var(--coral));
+      box-shadow:0 28px 75px rgba(0,0,0,.75),0 0 65px rgba(245,211,56,.28); transform-origin:center center; }
+    .ui-frame .viewport { position:relative; width:100%; height:100%; overflow:hidden; border-radius:23px; background:#04070c; }
+    .ui-frame img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+    .ui-frame .screen-label { position:absolute; top:20px; left:20px; z-index:3; padding:10px 19px;
+      font:900 27px/1 Mont,sans-serif; color:var(--yellow); background:rgba(5,20,37,.92);
+      border:2px solid rgba(255,229,0,.85); border-radius:99px; box-shadow:0 8px 26px rgba(0,0,0,.47); }
+    #w1App { left:100px; top:430px; width:880px; height:519px; }
+    #w2App { left:100px; top:432px; width:880px; height:520px; }
+    #w1Manga, #w2Player { opacity:0; }
+    #w2Player { object-fit:contain; background:#04070c; }
+    #w2App .screen-label { left:auto; top:auto; right:16px; bottom:16px; }
+
     /* 01 — un portail, pas une simple télé. */
-    #s1 .photo { object-position:51% 45%; }
-    #s1shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,15,33,.3),rgba(1,12,30,.05) 32%,rgba(3,16,33,.62) 61%,rgba(3,14,30,.98) 96%); }
+    #s1 .photo { object-position:51% 45%; opacity:.72; }
+    #s1shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(3,15,33,.19),rgba(1,12,30,.29) 42%,rgba(3,16,33,.72) 67%,rgba(3,14,30,.98) 96%); }
     #s1orb { left:342px; top:369px; width:460px; height:460px; }
     #s1orb2 { left:285px; top:310px; width:570px; height:570px; border-color:rgba(255,229,0,.33); }
-    #s1logo { left:781px; top:236px; width:228px; height:228px; border-radius:30px; }
+    #s1logo { left:781px; top:236px; width:228px; height:228px; border-radius:30px; z-index:4; }
     #s1eyebrow { position:absolute; left:82px; top:1110px; color:var(--lime); }
     #s1line1 { position:absolute; left:72px; top:1205px; width:950px; font-size:112px; }
     #s1line2 { position:absolute; left:72px; top:1345px; width:950px; font-size:136px; color:var(--yellow); }
     #s1foot { position:absolute; left:81px; top:1625px; font-size:36px; font-weight:900; letter-spacing:.13em; }
 
     /* 02 — surcharge, facture qui monte, envie de passer à autre chose. */
-    #s2 { background:radial-gradient(circle at 48% 41%,#1d4587,#071b36 55%,#041021); }
-    #s2bg { opacity:.17; filter:saturate(.8); background:url('assets/portal.jpg') 60% 30%/cover no-repeat; }
+    #s2 { background:radial-gradient(circle at 45% 36%,#553321,#222337 58%,#061429); }
+    #s2bg { opacity:.14; filter:saturate(.85); background:url('assets/portal.jpg') 60% 30%/cover no-repeat; }
     #s2grid { position:absolute; inset:0; background-image:linear-gradient(rgba(146,233,240,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(146,233,240,.055) 1px,transparent 1px); background-size:90px 90px; }
     #s2no { position:absolute; left:82px; top:250px; color:var(--lime); }
     #s2question { position:absolute; left:76px; top:355px; width:930px; font-size:90px; }
     #s2question span { color:var(--yellow); }
     #s2pile { position:absolute; left:112px; top:715px; width:856px; height:590px; }
-    .bill { position:absolute; width:845px; height:166px; padding:32px 46px; display:flex; align-items:center; justify-content:space-between; border-radius:27px; border:3px solid rgba(211,231,248,.28); background:linear-gradient(112deg,rgba(9,37,78,.97),rgba(29,76,136,.97)); box-shadow:0 23px 45px rgba(0,0,0,.41); }
+    .bill { position:absolute; width:845px; height:166px; padding:32px 46px; display:flex; align-items:center; justify-content:space-between; border-radius:27px; border:3px solid rgba(244,167,109,.48); background:linear-gradient(112deg,rgba(22,30,51,.98),rgba(94,44,43,.97)); box-shadow:0 23px 45px rgba(0,0,0,.46); }
     .bill:nth-child(1) { top:0; } .bill:nth-child(2) { top:175px; } .bill:nth-child(3) { top:350px; }
     .bill .left { font-size:38px; font-weight:1000; letter-spacing:.045em; }
     .bill .right { font:900 60px/1 Mont,sans-serif; color:#ffda70; }
     .bill .x { color:#ff9e80; font-size:65px; font-weight:900; margin-right:23px; }
-    #s2enough { position:absolute; left:72px; top:1338px; width:935px; text-align:center; font-size:120px; color:var(--yellow); text-shadow:0 0 60px rgba(255,192,0,.24); }
+    #s2enough { position:absolute; left:72px; top:1338px; width:935px; text-align:center; font-size:120px; color:var(--coral); text-shadow:0 0 60px rgba(245,103,55,.36); }
     #s2sub { position:absolute; top:1560px; left:106px; width:868px; padding:22px; border-top:2px solid rgba(255,255,255,.25); text-align:center; font-size:34px; font-weight:800; }
 
     /* 03 — prix clair, appareils, box NET. */
@@ -93,20 +132,20 @@
     #w2 .bottomTitle .sub { font-size:68px; }
     #w3 .bottomTitle .large { font-size:103px; }
     #w3 .bottomTitle .sub { font-size:62px; }
-    #boxChip { position:absolute; right:71px; top:296px; width:223px; height:287px; border-radius:23px; overflow:hidden; background:rgba(4,19,39,.96); border:3px solid rgba(191,250,155,.75); box-shadow:0 22px 42px rgba(0,0,0,.62); }
+    #boxChip { position:absolute; right:71px; top:139px; width:223px; height:287px; border-radius:23px; overflow:hidden; background:rgba(4,19,39,.96); border:3px solid rgba(191,250,155,.75); box-shadow:0 22px 42px rgba(0,0,0,.62); }
     #boxChip .crop { position:absolute; left:0; top:0; width:217px; height:217px; overflow:hidden; }
     #boxKen { position:absolute; left:0; top:0; width:217px; height:217px; background:url('assets/box-net.png') center/cover no-repeat; }
     #boxChip span { position:absolute; left:0; bottom:0; width:100%; height:64px; display:flex; align-items:center; justify-content:center; font:900 31px/1 Mont,sans-serif; color:var(--lime); letter-spacing:.1em; }
     #worldCount { position:absolute; left:82px; top:1701px; font-size:31px; font-weight:900; color:var(--lime); letter-spacing:.18em; }
 
     /* 05 — signal irrégulier → ligne continue. */
-    #s5 { background:radial-gradient(ellipse at 50% 49%,#16447b 0%,#082549 48%,#06162a 86%); }
+    #s5 { background:radial-gradient(ellipse at 50% 49%,#16505c 0%,#082b49 48%,#06162a 86%); }
     #s5photo { opacity:.25; filter:saturate(.8); object-position:center 47%; }
     #s5shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(2,16,32,.36),rgba(2,16,32,.80) 85%); }
     #s5k { position:absolute; left:84px; top:237px; color:var(--lime); }
     #s5question { position:absolute; left:75px; top:370px; width:943px; font-size:92px; }
     #s5wave { position:absolute; left:0; top:686px; width:1080px; height:420px; overflow:visible; }
-    #s5wave #noisy { stroke:#ffbb66; fill:none; stroke-width:13; filter:drop-shadow(0 0 19px rgba(255,156,77,.55)); }
+    #s5wave #noisy { stroke:var(--coral); fill:none; stroke-width:13; filter:drop-shadow(0 0 19px rgba(255,130,77,.64)); }
     #s5wave #stable { stroke:var(--lime); fill:none; stroke-width:17; stroke-linecap:round; filter:drop-shadow(0 0 25px rgba(159,255,93,.8)); }
     #s5badge { position:absolute; left:466px; top:847px; width:148px; height:148px; border-radius:100%; background:linear-gradient(145deg,#dfff30,#63df69); display:flex; align-items:center; justify-content:center; border:7px solid #fbffd8; box-shadow:0 0 80px rgba(119,255,111,.63),0 25px 50px rgba(0,0,0,.35); color:#082649; font:900 105px/1 Mont,sans-serif; }
     #s5result { position:absolute; left:80px; top:1180px; width:920px; font-size:123px; text-align:center; }
@@ -120,7 +159,7 @@
     #s6logo { left:402px; top:251px; width:276px; height:276px; background:#ffe500 url('assets/logo-missa.png') center/cover no-repeat; }
     #s6heading { position:absolute; left:75px; top:652px; width:930px; text-align:center; font-size:98px; }
     #s6heading span { color:var(--yellow); }
-    #cta { position:absolute; left:107px; top:989px; width:866px; height:168px; border-radius:34px; display:flex; align-items:center; justify-content:center; text-align:center; background:linear-gradient(110deg,#c6fe4e,#69e381); border:3px solid rgba(255,255,255,.85); color:#08243c; font:900 62px/1.06 Mont,sans-serif; letter-spacing:-.028em; box-shadow:0 19px 0 rgba(24,107,87,.66),0 30px 75px rgba(83,239,116,.35); }
+    #cta { position:absolute; left:107px; top:989px; width:866px; height:168px; border-radius:34px; display:flex; align-items:center; justify-content:center; text-align:center; background:linear-gradient(110deg,var(--yellow),#bdef5d,var(--green)); border:3px solid rgba(255,255,255,.85); color:#08243c; font:900 62px/1.06 Mont,sans-serif; letter-spacing:-.028em; box-shadow:0 19px 0 rgba(24,107,87,.66),0 30px 75px rgba(229,190,71,.33); }
     #s6qr { position:absolute; left:116px; top:1284px; width:264px; height:264px; border-radius:25px; padding:23px; border:3px dashed rgba(209,247,225,.87); background:rgba(239,255,241,.94); box-shadow:0 25px 60px rgba(0,0,0,.26); }
     #s6qr svg { width:100%; height:100%; }
     #s6qrtext { position:absolute; left:97px; top:1564px; width:308px; text-align:center; font-size:25px; font-weight:1000; letter-spacing:.05em; }
@@ -135,7 +174,7 @@
     #hudName { position:absolute; left:80px; top:68px; font-size:30px; font-weight:1000; letter-spacing:.18em; text-shadow:0 2px 16px #051021; }
     #hudSerial { position:absolute; right:80px; top:71px; font-size:30px; font-weight:1000; letter-spacing:.09em; color:var(--lime); text-shadow:0 2px 16px #051021; }
     #progressBase { position:absolute; left:80px; top:1835px; width:920px; height:7px; background:rgba(244,255,242,.25); border-radius:8px; }
-    #progressFill { width:0; height:100%; border-radius:8px; background:linear-gradient(90deg,var(--yellow),var(--lime)); box-shadow:0 0 15px rgba(148,249,100,.75); }
+    #progressFill { width:0; height:100%; border-radius:8px; background:linear-gradient(90deg,var(--coral),var(--yellow),var(--green)); box-shadow:0 0 15px rgba(249,220,100,.72); }
     #flash { position:absolute; inset:0; background:#e9fff5; opacity:0; pointer-events:none; }
     #fader { position:absolute; inset:0; background:#041020; opacity:0; pointer-events:none; }
   </style>
@@ -145,7 +184,14 @@
     <section id="s1" class="scene clip" data-start="0" data-duration="6" data-track-index="0">
       <div id="in1" class="sin">
         <img id="s1photo" class="photo" src="assets/portal.jpg" alt="Un portail de lumière s’ouvre dans un salon à Douala" />
-        <div id="s1shade"></div><div id="s1orb" class="flair"></div><div id="s1orb2" class="flair"></div>
+        <div id="s1shade"></div><div id="s1print" class="afro-print"></div>
+        <div id="heroHalo"></div><div id="s1orb" class="flair"></div><div id="s1orb2" class="flair"></div>
+        <div id="heroApp"><div class="screen">
+          <div id="heroFilms" class="app-shot" role="img" aria-label="Capture de l'accueil films et séries de Missa TV 360"></div>
+          <div id="heroMusic" class="app-shot" role="img" aria-label="Capture de la rubrique Musiques de Missa TV 360"></div>
+          <div id="heroCaption">L’APPLI EN VRAI</div>
+        </div></div>
+        <div id="heroPills"><div id="heroPill1" class="hero-pill">FILMS</div><div id="heroPill2" class="hero-pill">MANGAS</div><div id="heroPill3" class="hero-pill">MUSIQUES</div></div>
         <div id="s1logo" class="brand-tile"><img src="assets/logo-missa.png" alt="Logo Missa TV 360" /></div>
         <div id="s1eyebrow" class="kicker">MISSA TV 360 · C’EST PARTI</div>
         <div id="s1line1" class="impact">TON MONDE</div><div id="s1line2" class="impact">S’OUVRE.</div>
@@ -155,7 +201,7 @@
 
     <section id="s2" class="scene clip" data-start="6" data-duration="10" data-track-index="1">
       <div id="in2" class="sin">
-        <div id="s2bg" class="photo"></div><div id="s2grid"></div>
+        <div id="s2bg" class="photo"></div><div id="s2print" class="afro-print"></div><div id="s2grid"></div>
         <div id="s2no" class="kicker">01 / LE CONSTAT</div>
         <div id="s2question" class="impact">ENCORE UN<br /><span>ABONNEMENT ?</span></div>
         <div id="s2pile">
@@ -170,12 +216,12 @@
 
     <section id="s3" class="scene clip" data-start="16" data-duration="13" data-track-index="2">
       <div id="in3" class="sin">
-        <div id="s3photo" class="photo"></div><div id="s3shade"></div><div id="s3ring" class="flair"></div>
+        <div id="s3photo" class="photo"></div><div id="s3shade"></div><div id="s3print" class="afro-print"></div><div id="s3ring" class="flair"></div>
         <div id="s3k" class="kicker">02 / LA SOLUTION</div>
         <div id="s3title" class="impact">LE <em>MONDE</em><br />EN FACE DE TOI.</div>
         <div id="priceRow">
-          <div id="pMonth" class="price first"><div><span class="amount" id="nMonth">0</span><span class="currency">XAF</span></div><div class="period">/ MOIS</div></div>
-          <div id="pYear" class="price second"><div><span class="amount" id="nYear">0</span><span class="currency">XAF</span></div><div class="period">/ AN</div></div>
+          <div id="pMonth" class="price first"><div><span class="amount" id="nMonth">2 000</span><span class="currency">XAF</span></div><div class="period">/ MOIS</div></div>
+          <div id="pYear" class="price second"><div><span class="amount" id="nYear">10 000</span><span class="currency">XAF</span></div><div class="period">/ AN</div></div>
         </div>
         <div id="deviceRow">
           <div id="dev1" class="device"><svg viewBox="0 0 100 100" aria-hidden="true"><rect x="8" y="15" width="84" height="55" rx="5"/><path d="M50 71v15M28 86h44"/></svg><b>ANDROID TV</b></div>
@@ -189,8 +235,12 @@
 
     <section id="s4" class="scene clip" data-start="29" data-duration="17" data-track-index="3">
       <div id="in4" class="sin">
-        <div id="w1" class="world"><img id="w1photo" class="photo" src="assets/cinema-world.jpg" alt="Univers cinéma et manga"/><div class="shade"></div><div id="w1top" class="top kicker">03 / REGARDE</div><div id="w1title" class="bottomTitle"><div class="large">FILMS &amp; SÉRIES</div><div class="sub">MANGA.</div></div><div id="w1desc" class="desc">POSE-TOI. CHOISIS TON HISTOIRE.</div></div>
-        <div id="w2" class="world"><img id="w2photo" class="photo" src="assets/music-world.jpg" alt="Univers musique et récits courts"/><div class="shade"></div><div id="w2top" class="top kicker">04 / VIBRE</div><div id="w2title" class="bottomTitle"><div class="large">MUSIQUE.</div><div class="sub">SHORTS-DRAMAS.</div></div><div id="w2desc" class="desc">SUIS TON ENVIE DU MOMENT.</div></div>
+        <div id="w1" class="world"><img id="w1photo" class="photo" src="assets/cinema-world.jpg" alt="Univers cinéma et manga"/><div class="shade"></div>
+          <div id="w1App" class="ui-frame"><div class="viewport"><img id="w1Films" src="assets/app-films.png" alt="Capture de l'application : films et séries"/><img id="w1Manga" src="assets/app-mangas.png" alt="Capture de l'application : mangas et animes"/><div class="screen-label">L’APPLI EN ACTION</div></div></div>
+          <div id="w1top" class="top kicker">03 / REGARDE</div><div id="w1title" class="bottomTitle"><div class="large">FILMS &amp; SÉRIES</div><div class="sub">MANGA.</div></div><div id="w1desc" class="desc">POSE-TOI. CHOISIS TON HISTOIRE.</div></div>
+        <div id="w2" class="world"><img id="w2photo" class="photo" src="assets/music-world.jpg" alt="Univers musique et récits courts"/><div class="shade"></div>
+          <div id="w2App" class="ui-frame"><div class="viewport"><img id="w2Music" src="assets/app-music.png" alt="Capture de la rubrique Musiques"/><img id="w2Player" src="assets/app-player-focus.png" alt="Extrait du lecteur vidéo de l'application"/><div class="screen-label">LE LECTEUR</div></div></div>
+          <div id="w2top" class="top kicker">04 / VIBRE</div><div id="w2title" class="bottomTitle"><div class="large">MUSIQUE.</div><div class="sub">SHORTS-DRAMAS.</div></div><div id="w2desc" class="desc">SUIS TON ENVIE DU MOMENT.</div></div>
         <div id="w3" class="world"><img id="w3photo" class="photo" src="assets/game-world.jpg" alt="Univers jeux, podcasts et radio"/><div class="shade"></div><div id="w3top" class="top kicker">05 / JOUE &amp; ÉCOUTE</div><div id="w3title" class="bottomTitle"><div class="large">JEUX VIDÉO.</div><div class="sub">PODCASTS · RADIO.</div></div><div id="w3desc" class="desc">CHACUN TROUVE SON TRUC.</div></div>
         <div id="boxChip"><div class="crop"><div id="boxKen" role="img" aria-label="Box NET — zoom lent"></div></div><span>BOX NET</span></div>
         <div id="worldCount">TOUS TES UNIVERS, AU MÊME ENDROIT.</div>
@@ -199,7 +249,7 @@
 
     <section id="s5" class="scene clip" data-start="46" data-duration="7" data-track-index="4">
       <div id="in5" class="sin">
-        <img id="s5photo" class="photo" src="assets/v2-signal.png" alt=""/><div id="s5shade"></div>
+        <img id="s5photo" class="photo" src="assets/v2-signal.png" alt=""/><div id="s5shade"></div><div id="s5print" class="afro-print"></div>
         <div id="s5k" class="kicker">06 / ÇA CONTINUE</div>
         <div id="s5question" class="impact">PETIT DÉBIT ?<br /><span class="yellow">ÇA CONTINUE.</span></div>
         <svg id="s5wave" viewBox="0 0 1080 420" aria-hidden="true">
@@ -215,7 +265,7 @@
 
     <section id="s6" class="scene clip" data-start="53" data-duration="6" data-track-index="5">
       <div id="in6" class="sin">
-        <div id="s6photo" class="photo"></div><div id="s6shade"></div><div id="s6halo" class="flair"></div>
+        <div id="s6photo" class="photo"></div><div id="s6shade"></div><div id="s6print" class="afro-print"></div><div id="s6halo" class="flair"></div>
         <div id="s6logo" class="brand-tile" role="img" aria-label="Logo Missa TV 360"></div>
         <div id="s6heading" class="impact">TON MONDE<br /><span>T’ATTEND.</span></div>
         <div id="cta">TÉLÉCHARGE<br />MAINTENANT</div>
@@ -226,7 +276,7 @@
       </div>
     </section>
 
-    <div id="hud" class="clip" data-start="0" data-duration="59" data-track-index="6"><div id="hudName">MISSA TV 360</div><div id="hudSerial">LE MONDE S’OUVRE</div><div id="progressBase"><div id="progressFill"></div></div></div>
+    <div id="hud" class="clip" data-start="0" data-duration="59" data-track-index="6"><div id="hudAccent"></div><div id="hudName">MISSA TV 360</div><div id="hudSerial">LE MONDE S’OUVRE</div><div id="progressBase"><div id="progressFill"></div></div></div>
     <div id="flash" class="clip" data-start="0" data-duration="59" data-track-index="7"></div>
     <div id="fader" class="clip" data-start="0" data-duration="59" data-track-index="8"></div>
   </div>
@@ -234,16 +284,21 @@
     // 59-second seekable timeline. Every line of the VO has a deliberate visual beat.
     // 00–06 hook · 06–16 problème · 16–29 solution · 29–46 univers · 46–53 débit · 53–59 CTA.
     const tl = gsap.timeline({paused:true});
-    const fmt = n => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ');
     const reveal = (sel,at,d=.48,dy=50) => tl.fromTo(sel,{y:dy,autoAlpha:0},{y:0,autoAlpha:1,duration:d,ease:'power3.out'},at);
     const pop = (sel,at,d=.48) => tl.fromTo(sel,{scale:.64,autoAlpha:0},{scale:1,autoAlpha:1,duration:d,ease:'back.out(1.7)'},at);
     tl.fromTo('#progressFill',{width:0},{width:920,duration:59,ease:'none'},0);
 
-    // Hook: logo first, then the new promise, then an extra breath on the portal.
+    // Hook: real app UI bursts out of the portal in the first half-second.
     tl.fromTo('#in1',{opacity:0},{opacity:1,duration:.25},0);
     tl.fromTo('#s1photo',{scale:1.15,x:27},{scale:1.025,x:-18,duration:6,ease:'sine.out'},0);
     tl.fromTo('#s1orb',{scale:.6,opacity:0},{scale:1.42,opacity:.74,duration:5.5,ease:'power2.out'},.16);
     tl.fromTo('#s1orb2',{scale:.52,opacity:0},{scale:1.22,opacity:.42,duration:5.7,ease:'power2.out'},.11);
+    tl.fromTo('#heroHalo',{scale:.56,rotation:-32,opacity:0},{scale:1.10,rotation:37,opacity:.72,duration:5.7,ease:'power2.out'},.06);
+    tl.fromTo('#heroApp',{scale:.55,y:125,rotation:-7,autoAlpha:0},{scale:1,y:0,rotation:0,autoAlpha:1,duration:.72,ease:'expo.out'},.09);
+    tl.fromTo('#heroFilms',{scale:1.04,x:18},{scale:1.14,x:-23,duration:3.6,ease:'none'},.12);
+    tl.fromTo('#heroMusic',{opacity:0,clipPath:'inset(0 100% 0 0)',scale:1.1,x:20},
+      {opacity:1,clipPath:'inset(0 0% 0 0)',scale:1,x:0,duration:.7,ease:'power2.inOut'},3.14);
+    pop('#heroPill1',.91,.38); pop('#heroPill2',1.26,.38); pop('#heroPill3',3.48,.39);
     pop('#s1logo',.23,.62); reveal('#s1eyebrow',.65,.48,38);
     reveal('#s1line1',1.13,.64,99); reveal('#s1line2',1.82,.65,110);
     reveal('#s1foot',3.03,.53,38);
@@ -264,23 +319,31 @@
     tl.fromTo('#s3photo',{scale:1.14,x:-26},{scale:1.025,x:20,duration:13,ease:'none'},16);
     tl.fromTo('#s3ring',{scale:.55,opacity:0},{scale:2.22,opacity:.37,duration:10,ease:'power1.out'},16.04);
     reveal('#s3k',16.22,.4,31); reveal('#s3title',16.54,.64,79);
+    // Animate the cards, never intermediate numbers that could be mistaken for other tariffs.
     pop('#pMonth',17.64,.53); pop('#pYear',19.02,.53);
-    const month={v:0},year={v:0};
-    tl.to(month,{v:2000,duration:1.0,ease:'power2.out',onUpdate:()=>document.querySelector('#nMonth').textContent=fmt(month.v)},17.73);
-    tl.to(year,{v:10000,duration:1.05,ease:'power2.out',onUpdate:()=>document.querySelector('#nYear').textContent=fmt(year.v)},19.11);
     reveal('#boxPanel',22.35,.68,100);
     tl.fromTo('#s3boximg',{scale:1.06,x:-12},{scale:1.22,x:12,duration:6.4,ease:'none'},22.4);
     reveal('#dev1',24.1,.47,47); reveal('#dev2',24.69,.47,47); reveal('#dev3',25.28,.47,47);
     reveal('#boxMini',27.17,.5,31);
 
-    // Fifteen seconds across three distinct universes; the box stays in Ken Burns.
+    // Three visual universes: actual app captures animate inside the projection/stage,
+    // while the NET box keeps its own continuous Ken Burns move.
     tl.fromTo('#in4',{opacity:0},{opacity:1,duration:.18},29);
     tl.fromTo('#w1',{opacity:0},{opacity:1,duration:.18},29);
     tl.fromTo('#w1photo',{scale:1.07,x:0},{scale:1.27,x:-47,duration:6.05,ease:'none'},29);
+    tl.fromTo('#w1App',{scale:.63,y:135,rotation:-6,autoAlpha:0},{scale:1,y:0,rotation:0,autoAlpha:1,duration:.73,ease:'expo.out'},29.23);
+    tl.fromTo('#w1Films',{scale:1.03,x:0},{scale:1.14,x:-15,duration:3.25,ease:'none'},29.27);
+    tl.fromTo('#w1Manga',{opacity:0,clipPath:'inset(0 100% 0 0)',scale:1.10,x:20},
+      {opacity:1,clipPath:'inset(0 0% 0 0)',scale:1,x:0,duration:.66,ease:'power2.inOut'},32.24);
     reveal('#w1top',29.24,.42,30); reveal('#w1title',29.63,.58,86); reveal('#w1desc',30.39,.42,24);
     tl.fromTo('#w2',{opacity:0,clipPath:'inset(0 100% 0 0)'},{opacity:1,clipPath:'inset(0 0% 0 0)',duration:.55,ease:'power2.inOut'},34.90);
     tl.fromTo('#w2photo',{scale:1.08,x:40},{scale:1.26,x:-15,duration:5.46,ease:'none'},34.90);
     tl.set('#w1',{opacity:0},35.46);
+    tl.fromTo('#w2App',{scale:.67,y:80,rotation:7,autoAlpha:0},{scale:1,y:0,rotation:0,autoAlpha:1,duration:.65,ease:'expo.out'},35.29);
+    tl.fromTo('#w2Music',{scale:1.02,x:0},{scale:1.13,x:-16,duration:2.25,ease:'none'},35.3);
+    tl.to('#w2App',{scale:.55,x:300,y:-95,rotation:-3,duration:.73,ease:'power3.inOut'},37.17);
+    tl.fromTo('#w2Player',{opacity:0,clipPath:'inset(0 100% 0 0)',scale:1.08,x:22},
+      {opacity:1,clipPath:'inset(0 0% 0 0)',scale:1,x:0,duration:.47,ease:'power2.inOut'},37.93);
     reveal('#w2top',35.54,.42,30); reveal('#w2title',35.82,.59,84); reveal('#w2desc',36.62,.45,27);
     tl.fromTo('#w3',{opacity:0,clipPath:'inset(0 100% 0 0)'},{opacity:1,clipPath:'inset(0 0% 0 0)',duration:.55,ease:'power2.inOut'},40.10);
     tl.fromTo('#w3photo',{scale:1.05,x:0},{scale:1.23,x:-44,duration:5.90,ease:'none'},40.10);
