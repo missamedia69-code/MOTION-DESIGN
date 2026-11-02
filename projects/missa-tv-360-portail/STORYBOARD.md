@@ -1,45 +1,50 @@
-# MISSA TV 360 — « Ton envie fait le programme » (59 secondes)
+# MISSA TV 360 — « L’appli en vrai » (59 secondes)
 
-**Master :** [`livrables/missa-tv-360-portail.mp4`](../../livrables/missa-tv-360-portail.mp4) — **59,000 s**, portrait 1080 × 1920, 30 i/s. Ce film remplace la direction « portail sombre / néon » : c'est désormais un **collage éditorial lumineux**, avec des aplats crème, bleu cobalt, jaune, corail et vert, des ombres découpées et des transitions au rythme de la musique. Le mouvement part des **vraies captures de l'application**, non de faux écrans reconstitués. La voix est moins déclamatoire, plus conversationnelle, avec de la place pour respirer.
+**Master :** [`livrables/missa-tv-360-portail.mp4`](../../livrables/missa-tv-360-portail.mp4) — **59,000 s**, 1080 × 1920, 30 i/s. Cette nouvelle proposition abandonne le collage clair, les photos d’exemple et le visuel de box généré. Elle adopte les couleurs et la logique **de l’application réelle** : noir profond, jaune de navigation, vert discret, grandes typographies, gros plans sur les quatre captures fournies par le client. Aucune photo de salle, chanteuse ou joueur ne subsiste dans le film ni dans les assets du projet.
 
-| Temps | Récit et mise en scène | Voix (verbatim) |
+| Temps | Visuel / idée | Voix (verbatim) |
 | --- | --- | --- |
-| 00–06 | **Accroche.** Soleil jaune, titre « CE SOIR, TU CHOISIS. » ; capture réelle des films qui glisse vers la rubrique musique. Le premier écran entre dès les premières images. | « Ce soir, tu as envie de quoi ? Pose-toi, on va trouver. » |
-| 06–16 | **Problème.** Trois fiches s'entassent : une appli de plus, un autre abonnement, et toujours la même question. Elles s'effacent devant « ON PEUT FAIRE PLUS SIMPLE. » | « Tu connais ces soirs où tu ouvres une appli, puis une autre. Les abonnements s'accumulent, et toi, tu cherches encore... On peut faire plus simple. » |
-| 16–29 | **Solution.** Deux tickets qui montrent **uniquement** « 2 000 XAF / mois » et « 10 000 XAF / an » ; vraie image de la box **NET**, accompagnée de **Wi-Fi + Internet** et de la télé, la tablette, le téléphone. | « Avec Missa TV trois cent soixante, tu choisis : deux mille francs le mois, ou dix mille l'année. » / « Avec ta box NET, le Wi-Fi et Internet, ça suit sur la télé, la tablette ou ton téléphone. » |
-| 29–46 | **Univers.** 29–35 : l'interface films coulisse vers la capture mangas, tandis que les rangées d'affiches se remplacent avec un geste de swipe. 35–40,55 : catalogue musical, puis gros plan fidèle de la quatrième capture sur le lecteur, avec une chanteuse en photo découpée. 40,55–46 : photo du joueur et étiquettes jeux vidéo/podcasts/radio. | « Un film, une série, un manga... choisis l'histoire qui te fait plaisir. » / « De la musique, des shorts-dramas... tu changes d'ambiance quand tu veux. » / « Et pour changer, il y a aussi les jeux vidéo, les podcasts et la radio. » |
-| 46–53 | **Petit débit.** Une ligne pointillée devient continue ; à l'écran : « ON GARDE LE FIL. » et « PENSÉ POUR UN FLUX STABLE. » | « Même avec un petit débit, le flux est pensé pour rester stable. Tu gardes le fil. » |
-| 53–59 | **Invitation.** « TON ENVIE FAIT LE PROGRAMME. » ; trois vignettes issues de l'application, bouton « TÉLÉCHARGE L’APPLI », rappel des deux tarifs et **QR À VENIR** explicitement fictif. | « Télécharge Missa TV trois cent soixante. Ce soir, c'est toi qui choisis. » |
+| 00–06 | **Accroche :** vraie capture films dès le début, glissement vers la rubrique musique ; « CE SOIR, TU AS ENVIE DE QUOI ? » | « Ce soir, tu as envie de quoi ? Pose-toi, on va trouver. » |
+| 06–16 | **Problème :** « UNE APPLI. PUIS UNE AUTRE. » ; ouvrir, chercher, recommencer → « PLUS SIMPLE ? ». Typographie seule, sans factures fictives. | « Tu connais ces soirs où tu ouvres une appli, puis une autre. Les abonnements s'accumulent, et toi, tu cherches encore... On peut faire plus simple. » |
+| 16–29 | **Solution :** prix fixes **2 000 XAF/mois** et **10 000 XAF/an** ; box **NET** en illustration vectorielle, marquée comme telle, et prérequis **Wi-Fi + Internet** ; télé, tablette, téléphone. | « Avec Missa TV trois cent soixante, tu choisis : deux mille francs le mois, ou dix mille l'année. » / « Avec ta box NET, le Wi-Fi et Internet, ça suit sur la télé, la tablette ou ton téléphone. » |
+| 29–35,05 | **Regarder :** capture films → capture mangas ; vrai zoom sur le **bouton Documentaires** (visible dans la capture du client). Aucune page de catalogue documentaire n’est inventée. | **« Films, séries, mangas, documentaires... choisis ce qui te plaît. »** |
+| 35,05–40,55 | **Télé + musique :** zoom sur le véritable onglet **TV Direct**, puis sur la capture musique et le lecteur vidéo recadré depuis la quatrième capture. Aucun faux logo de chaîne ni faux programme. | **« Chaînes de télé, musique, shorts-dramas... tu changes d'ambiance. »** |
+| 40,55–46 | **Autres envies :** quatrième capture originale, puis vrais onglets Podcasts et Radio, plus le texte Jeux vidéo. | « Et pour changer, il y a aussi les jeux vidéo, les podcasts et la radio. » |
+| 46–53 | **Petit débit :** tracé cassé → ligne continue ; « PENSÉ POUR UN FLUX STABLE » et non une garantie de performance. | « Même avec un petit débit, le flux est pensé pour rester stable. Tu gardes le fil. » |
+| 53–59 | **Invitation :** vignettes issues des vraies captures, téléchargement, rappel des prix et **QR À VENIR** non scannable. | « Télécharge Missa TV trois cent soixante. Ce soir, c'est toi qui choisis. » |
 
-## Animation d'interface et workflow
+## Images, voix et workflow
 
-- `assets/app-films.png`, `app-mangas.png`, `app-music.png`, `app-player.png` sont les **quatre captures fournies par le client**, conservées telles quelles. Les glissements, recadrages, zooms et changements d'écran sont des animations GSAP dans `index.html` ; l'image réelle reste identifiable.
-- `prepare_ui.py` recadre exclusivement des pixels existants pour créer `ui-films-row.png`, `ui-mangas-row.png`, `ui-music-player.png` et `app-player-focus.png`. Ce dernier est exactement la région `(57, 185)–(474, 453)` de `app-player.png` ; le titre du jeu hors sujet dans la séquence musicale n'est pas repris. Aucune jaquette ni commande du lecteur n'est inventée.
-- Les photographies et la box viennent des assets déjà présents ; la typographie et les aplats structurent un **nouvel univers visuel** plutôt que de remaquiller l'ancien. Le groove à 110 BPM, les percussions légères, les papiers froissés et les clics d'interface sont synthétisés de manière déterministe par `sound.py`.
-- Neuf nouvelles prises de voix ont été régénérées dans `.cache/vo59-editorial/`. Elles **ne sont pas accélérées** au mixage. Le français est proche et simple ; pas de marqueur de dialecte forcé ou d'accent caricaturé.
+- **Seules les captures originales du client** `app-films.png`, `app-mangas.png`, `app-music.png`, `app-player.png` et leurs recadrages fidèles sont utilisées comme images. `prepare_ui.py` génère les rangées films/mangas, le lecteur et trois zooms de navigation `ui-nav-docs.png`, `ui-nav-tv.png`, `ui-nav-audio.png`. Les onglets Documentaires et TV Direct **existent bien dans les captures**, mais leurs pages de résultats n’ont pas été fournies : le film ne prétend pas en montrer le contenu.
+- La box **NET** est une **illustration graphique**, non une photographie ni un modèle de matériel certifié. Les anciennes photos/illustrations d’exemple et l’ancien logo recréé ont été retirés des assets de ce projet.
+- Le mix percussif et la voix précédemment appréciés sont préservés hors de **29–40,6 s**. Dans cet intervalle, seules **deux phrases de la même voix sélectionnée** sont remplacées pour mentionner clairement *documentaires* et *chaînes de télé*. Les recouvrements de 0,17 à 0,33 s assurent une transition audio douce, sans accélération de voix. `sound.py` ne modifie que quelques effets synchronisés aux nouveaux swipes/zooms.
+- Le mix conserve la bande-son du master précédent depuis le commit `c7ee4ad` (dans l’historique Git, pas dans `livrables/`). `mix.py` sait la récupérer automatiquement si son cache temporaire manque. Les deux clips nouveaux sont attendus dans `.cache/vo59-revision/{s4a-short,s4b-short}.mp3`.
 
-## Limites éditoriales
+## Précautions éditoriales
 
-- Les seuls prix affichés sont **2 000 XAF/mois** et **10 000 XAF/an**, sans compteurs qui passent par d'autres montants. La box affiche **NET**, jamais MTN ; la connexion Internet est explicitement requise.
-- « Pensé pour un flux stable même avec un petit débit » répond au brief, **mais cette performance reste à confirmer avant diffusion commerciale**. Pas de « garanti », pas de « testé en zone rurale », pas d'affirmation de lecture vidéo en 2G.
-- Aucune URL officielle n'a été fournie : le graphisme **« QR À VENIR » est non scannable**. Il faudra intégrer un vrai code seulement une fois le lien validé. L'identité logo provient de la composition existante et peut être remplacée si le fichier de marque définitif est fourni.
+- **Prix** : 2 000 XAF/mois et 10 000 XAF/an, toujours fixes à l’image. La box porte **NET** ; le Wi-Fi **et une connexion Internet** sont requis.
+- « Pensé pour un flux stable même avec un petit débit » correspond au brief, mais **reste à confirmer avant toute diffusion commerciale**. Ni « garanti », ni « testé en zone rurale », ni lecture vidéo en 2G ne sont affirmés.
+- Faute d’URL officielle, « QR À VENIR » est un **emplacement non scannable**. Aucun lien inventé.
 
-## Contrôle du master
+## Contrôle du nouveau master
 
-- `./scripts/hf check projects/missa-tv-360-portail` : **0 erreur**, 8 recommandations de structure sans blocage, **29/29 textes conformes WCAG AA** ; aucune alerte runtime ni de disposition après correction.
-- Rendu `delivery` : **1770 images / 59,000 s**, vidéo H.264 1080 × 1920 à 30 i/s, audio AAC stéréo 44,1 kHz. Décode intégralement sans erreur ; 23 photogrammes extraits du MP4 final et inspectés, notamment les quatre captures, les prix, la box NET, le faible débit et le CTA.
-- Mix `ebur128` : environ **−16,6 LUFS intégrés / −2,7 dBTP**. Aucun chevauchement de voix entre chapitres ; la dernière phrase se termine avant 59 s.
+- HyperFrames `check` : **0 erreur**, 10 recommandations de structure/découverte de médias non bloquantes ; **37/37 textes conformes WCAG AA** ; aucune erreur runtime ni de mise en page.
+- **59,000 s exactement** (1770 images), H.264 1080 × 1920 / 30 i/s, AAC stéréo 44,1 kHz. Décodage intégral sans erreur, **19 photogrammes du MP4 final** contrôlés (dont Documentaires, TV Direct, tarifs, NET, QR).
+- Audio : environ **−16,6 LUFS intégrés / −2,6 dBTP**. La bande-son hors des deux répliques révisées reste celle du master apprécié.
+- `livrables/` contient **uniquement ce master**, sans anciennes versions.
 
-## Reproduction (depuis la racine du dépôt)
+## Reproduction
 
 ```bash
+# Depuis la racine du dépôt, avec les dépendances installées :
 python3 projects/missa-tv-360-portail/prepare_ui.py
 ./scripts/hf check projects/missa-tv-360-portail
 ./scripts/hf render projects/missa-tv-360-portail --quality delivery \
-  --output .cache/rendus/missa-tv-360-portail-editorial-silent.mp4
+  --output .cache/rendus/missa-tv-360-portail-product-silent.mp4
 python3 projects/missa-tv-360-portail/sound.py
-# Replacer les neuf prises de voix dans .cache/vo59-editorial/ :
-# s1,s2,s3a,s3b,s4a,s4b,s4c,s5,s6.mp3 (non versionnées, conformément à .gitignore).
+# Fournir deux prises dans .cache/vo59-revision/ :
+# s4a-short.mp3 « Films, séries, mangas, documentaires... choisis ce qui te plaît. »
+# s4b-short.mp3 « Chaînes de télé, musique, shorts-dramas... tu changes d'ambiance. »
 python3 projects/missa-tv-360-portail/mix.py
-# → livrables/missa-tv-360-portail.mp4, exactement 59,000 s
+# → livrables/missa-tv-360-portail.mp4 (59,000 s)
 ```

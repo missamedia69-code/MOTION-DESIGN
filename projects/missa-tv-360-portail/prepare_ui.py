@@ -15,6 +15,10 @@ CROPS = {
     "ui-films-row.png": ("app-films.png", (32, 164, 1268, 478)),
     "ui-mangas-row.png": ("app-mangas.png", (28, 160, 1258, 467)),
     "ui-music-player.png": ("app-music.png", (40, 175, 1260, 488)),
+    # These navigation strips are genuine tabs; they do not show unprovided catalog pages.
+    "ui-nav-docs.png": ("app-films.png", (591, 8, 959, 86)),
+    "ui-nav-tv.png": ("app-music.png", (214, 7, 709, 88)),
+    "ui-nav-audio.png": ("app-music.png", (697, 7, 976, 89)),
     # Excludes the unrelated game-title text, but retains the genuine player.
     "app-player-focus.png": ("app-player.png", (57, 185, 474, 453)),
 }
