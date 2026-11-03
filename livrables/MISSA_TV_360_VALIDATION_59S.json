@@ -1,0 +1,95 @@
+{
+  "status": "exports techniquement valides, MAQUETTES NON AUTORISÉES POUR DIFFUSION",
+  "duration_seconds": 59.0,
+  "fps": 30,
+  "scene_boundaries_seconds": [
+    0,
+    5,
+    11,
+    17,
+    29,
+    37,
+    47,
+    54,
+    59
+  ],
+  "captions": 15,
+  "srt": "livrables/MISSA_TV_360_PUB_59S_fr.srt",
+  "requested_prices": [
+    "2 000 FCFA / mois",
+    "10 000 FCFA / an"
+  ],
+  "check_before_publication": [
+    "prix et conditions",
+    "volumes du catalogue (milliers/centaines)",
+    "droits de diffusion des affiches visibles dans les captures",
+    "logo et identité graphique officiels",
+    "lien/plateformes de téléchargement",
+    "licence commerciale de la voix synthétisée et des photographies"
+  ],
+  "movies": {
+    "landscape": {
+      "path": "livrables/MISSA_TV_360_PUB_59S_16x9.mp4",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 59.0,
+      "fps": 30,
+      "frames": 1770,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "bytes": 5672786,
+      "burned_subtitles": true
+    },
+    "portrait": {
+      "path": "livrables/MISSA_TV_360_PUB_59S_9x16.mp4",
+      "width": 1080,
+      "height": 1920,
+      "seconds": 59.0,
+      "fps": 30,
+      "frames": 1770,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "bytes": 5749016,
+      "burned_subtitles": true
+    },
+    "square": {
+      "path": "livrables/MISSA_TV_360_PUB_59S_1x1.mp4",
+      "width": 1080,
+      "height": 1080,
+      "seconds": 59.0,
+      "fps": 30,
+      "frames": 1770,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "bytes": 4458229,
+      "burned_subtitles": true
+    },
+    "no_voice": {
+      "path": "livrables/MISSA_TV_360_PUB_59S_16x9_SANS_VOIX.mp4",
+      "width": 1920,
+      "height": 1080,
+      "seconds": 59.0,
+      "fps": 30,
+      "frames": 1770,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "bytes": 5494437,
+      "burned_subtitles": false
+    },
+    "VOIX_59S.wav": {
+      "seconds": 59.0,
+      "sample_rate": 48000,
+      "channels": 1
+    },
+    "MUSIQUE_59S.wav": {
+      "seconds": 59.0,
+      "sample_rate": 48000,
+      "channels": 2
+    },
+    "EFFETS_59S.wav": {
+      "seconds": 59.0,
+      "sample_rate": 48000,
+      "channels": 2
+    }
+  }
+}

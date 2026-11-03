@@ -5,6 +5,10 @@ l'on dépose des éléments (polices, logos, rushes, musiques), on décrit un mo
 façon déclarative (`project.json`), et le moteur produit les livrables (MP4, GIF, WebM,
 ProRes alpha) livrés **en artefact** (rendus temporaires dans `.cache/rendus/`).
 
+## Dernière campagne : MISSA TV 360 — 59 secondes
+
+Le [projet éditable « Ton divertissement mérite mieux »](projects/missa-tv-360-diversite/README.md) contient un **master 1920×1080**, deux recompositions **1080×1920 / 1080×1080**, une version **sans voix**, les stems, les sous-titres SRT, une miniature et un contrôle technique des exports. Ce sont des **maquettes non autorisées pour diffusion** : prix, catalogue, droits des affiches, identité de marque et lien de téléchargement sont encore à valider. La campagne « Ton écran » dans `projects/missa-tv-360-ton-ecran/` est historique et n'est pas le brief de ces nouveaux exports.
+
 ## Démarrage rapide
 
 ```bash
