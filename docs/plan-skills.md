@@ -165,7 +165,8 @@ une vidéo, le point d'entrée reste `.agents/skills/hyperframes/SKILL.md` ;
    `reference/timing-easing-tables` (easing/durées).
 5. **Captions** → captions natifs de la compo (style pub) ou
    `embedded-captions` (talking-head).
-6. **Audio** → VO (`tts`/voix choisie), BGM+SFX (`media-use`), puis mix via
+6. **Audio** → VO (`./md vo <nom>` depuis `vo.json`, voir
+   [VOIX-TTS.md](VOIX-TTS.md)), BGM+SFX (`media-use`), puis mix via
    `hyperframes-audio` (ducking VO, fades).
 7. **Contrôle** → `hyperframes-cli check` (0 erreur) + rendu draft + planche de
    frames + `motion-design/reference/quality-checklist`.

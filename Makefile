@@ -3,7 +3,7 @@
 
 MD := ./md
 
-.PHONY: help doctor new render preview inventory install fonts presets list clean bootstrap skills-check
+.PHONY: help doctor new render vo preview inventory install fonts presets list clean bootstrap skills-check test
 
 help: ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
@@ -41,8 +41,15 @@ presets: ## Liste des formats, exports et transitions
 list: ## Liste des projets
 	$(MD) list
 
+vo: ## Voix off : make vo P=missa-tv-360-v9 [BACKEND=edge-tts|voxcpm] [DRY=1]
+	@test -n "$(P)" || (echo "Usage : make vo P=missa-tv-360-v9 [DRY=1]" && exit 1)
+	$(MD) vo $(P) $(if $(BACKEND),--backend $(BACKEND),) $(if $(DRY),--dry-run,)
+
 skills-check: ## Vérifie la cohérence des skills (3 miroirs + skills-lock.json)
 	python3 scripts/check-skills.py
+
+test: ## Tests hors-ligne du moteur (python3 -m unittest)
+	python3 -m unittest discover -s tests -v
 
 clean: ## Nettoie les intermédiaires : make clean P=ma-video
 	@test -n "$(P)" || (echo "Usage : make clean P=ma-video" && exit 1)

@@ -1,7 +1,7 @@
 """CLI du moteur MOTION-DESIGN.
 
 Usage : ./md <commande> [options]
-Commandes : doctor, new, render, list, info, inventory, install, fonts, presets, preview, clean
+Commandes : doctor, new, render, vo, list, info, inventory, install, fonts, presets, preview, clean
 """
 from __future__ import annotations
 
@@ -62,6 +62,11 @@ def cmd_render(args) -> None:
     from engine import render
     render.render_project(args.name, export_name=args.preset, out_path=args.out,
                           dry_run=args.dry_run, fps_override=args.fps)
+
+
+def cmd_vo(args) -> None:
+    from engine import voice
+    voice.generate(args)
 
 
 def cmd_list(_args) -> None:
@@ -148,6 +153,22 @@ def main() -> None:
     p.add_argument("--fps", type=float)
     p.add_argument("--dry-run", action="store_true", help="afficher la commande sans exécuter")
     p.set_defaults(fn=cmd_render)
+
+    p = sub.add_parser("vo", help="générer les voix off d'un projet (TTS)")
+    p.add_argument("name", help="nom du projet")
+    p.add_argument("--script", help="manifeste vo.json (défaut : projects/<nom>/vo.json)")
+    p.add_argument("--backend", choices=("edge-tts", "voxcpm"), help="moteur TTS")
+    p.add_argument("--voice", help="voix (ex. fr-FR-HenriNeural, ou fichier de référence VoxCPM)")
+    p.add_argument("--rate", help="edge-tts : ex. -5%% ou +10%%")
+    p.add_argument("--model", help="VoxCPM : identifiant HuggingFace ou chemin local")
+    p.add_argument("--out-dir", help="dossier de sortie (relatif au dépôt)")
+    p.add_argument("--dry-run", action="store_true", help="afficher les commandes sans rien exécuter")
+    p.add_argument("--force", action="store_true", help="régénérer les clips déjà présents")
+    p.add_argument("--from-captions", action="store_true", help="lire les captions de index.html")
+    p.add_argument("--write-script", action="store_true", help="écrire vo.json depuis les captions")
+    p.add_argument("--mix", action="store_true", help="afficher les adelay ffmpeg dérivés du manifeste")
+    p.add_argument("--check-mix", metavar="FICHIER", help="comparer les starts au script de mixage")
+    p.set_defaults(fn=cmd_vo)
 
     sub.add_parser("list", help="liste des projets").set_defaults(fn=cmd_list)
 

@@ -39,6 +39,7 @@ MOTION-DESIGN/
 | `./md install <fichiers\|URLs>` | installe des éléments dans `assets/` (+ validation + inventaire) |
 | `./md new <nom> --canvas 9x16` | crée un projet depuis un modèle |
 | `./md render <nom> [--preset gif]` | rend le projet (livrable livré en artefact) |
+| `./md vo <nom> [--dry-run]` | génère les voix off depuis `vo.json` (TTS edge-tts / VoxCPM) — voir [docs/VOIX-TTS.md](docs/VOIX-TTS.md) |
 | `./md preview` | serveur de prévisualisation des sorties |
 | `./md inventory` / `./md fonts` / `./md presets` | bibliothèque, polices, presets |
 | `./md info <media>` | analyse d'un média (durée, résolution, codecs) |
@@ -60,6 +61,8 @@ Procédures de production : **[docs/PROCEDURES.md](docs/PROCEDURES.md)**
 - **Animation** : fondus, slides, pop, Ken Burns (zoompan), barres progressives, rotation
 - **Montage** : multi-scènes chaînées en xfade (21 transitions), mixage audio multi-pistes
   avec fondus
+- **Voix off** : segments déclaratifs dans `vo.json`, génération `./md vo`
+  (edge-tts / VoxCPM), `--dry-run` hors ligne et contrôle d'alignement avec le mix
 - **Formats** : 16:9, 9:16 (Reels/TikTok), 1:1, 4:5, 21:9, 720p — fps configurable
 
 ## Moteur n°2 : HyperFrames (HTML → vidéo)

@@ -77,6 +77,28 @@ Chaque rendu écrit `projects/<nom>/manifest.json` (durée, poids, date, réglag
 
 ---
 
+## P4bis · Voix off (TTS)
+
+La VO est déclarative : `projects/<nom>/vo.json` (segments `id` / `text` /
+`start`). Deux backends : `edge-tts` (en ligne) et `voxcpm` (local, modèle
+HuggingFace). Comparatif et contraintes : **[VOIX-TTS.md](VOIX-TTS.md)**.
+
+```bash
+./md vo <nom> --dry-run                  # valide les commandes, sans réseau ni fichier
+./md vo <nom> --check-mix mix9.sh        # vérifie que les starts calent sur les adelay
+./md vo <nom> --from-captions --write-script   # crée vo.json depuis index.html
+./md vo <nom>                           # génère les clips (poste connecté)
+make vo P=<nom> DRY=1                   # raccourci
+make test                               # tests hors-ligne du moteur
+```
+
+⚠️ Le sandbox de ce dépôt n'accède ni au service Microsoft Edge ni à
+HuggingFace : `--dry-run`, `--mix`, `--check-mix` et les tests fonctionnent ici,
+la génération réelle se fait sur un poste avec Internet. Les clips audio ne sont
+pas versionnés (`.gitignore`) ; mixer ensuite avec le script ffmpeg du projet.
+
+---
+
 ## P5 · Validation & prévisualisation
 
 ```bash

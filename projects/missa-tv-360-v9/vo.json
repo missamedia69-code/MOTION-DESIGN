@@ -1,0 +1,41 @@
+{
+  "project": "missa-tv-360-v9",
+  "backend": "edge-tts",
+  "voice": "fr-FR-HenriNeural",
+  "rate": "-4%",
+  "out_dir": ".cache/vo9",
+  "format": "mp3",
+  "segments": [
+    {
+      "id": "s1",
+      "start": 0.2,
+      "text": "Eh mon frère ! Chaque mois tu payes l'abonnement télé, et à la fin tu ne trouves même rien à regarder ? Ça fait mal au cœur, hein !"
+    },
+    {
+      "id": "s2",
+      "start": 8.35,
+      "text": "Laisse-moi te montrer le vrai truc : Missa TV 360 !"
+    },
+    {
+      "id": "s3",
+      "start": 13.97,
+      "text": "Avec ta box WiFi et ta connexion Internet : +3 000 chaînes et +9 000 films & séries. Et même avec un petit débit, le flux reste stable !"
+    },
+    {
+      "id": "s4",
+      "start": 22.52,
+      "text": "Du football aux grands films, des séries africaines aux programmes du monde entier : une autre dimension !"
+    },
+    {
+      "id": "s5",
+      "start": 31.7,
+      "text": "Arrête de gaspiller ton argent pour ce qui ne te plaît même pas. Passe à Missa TV 360 !"
+    },
+    {
+      "id": "s6",
+      "start": 38.2,
+      "text": "Missa TV 360 : tu te connectes, tu choisis, tu profites ! 5 000 francs seulement par an. On est ensemble !"
+    }
+  ],
+  "note": "Textes = captions de index.html ; 'start' = adelay du script mix9.sh (la VO doit caler sur le mix, pas sur les data-start des scènes). Voix conversationnelle à valider par le client."
+}
