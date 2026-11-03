@@ -1,6 +1,114 @@
 {
   "version": 1,
   "skills": {
+    "3d-asset-generation": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/3d-asset-generation/SKILL.md",
+      "computedHash": "53120b7de2071a566f77041f64485c40f589e751cac0e06492c5ce2311c7f82f"
+    },
+    "acestep": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/acestep/SKILL.md",
+      "computedHash": "3722bae84ece4743d0c3106ec6bb8c2196fe5d69dd802f0f69c16aac8381f27e"
+    },
+    "agents": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/agents/SKILL.md",
+      "computedHash": "18ddb1893c48233e73674aa00a28c62f75b55901ac7d24190575e72397a2b27a"
+    },
+    "ai-video-gen": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/ai-video-gen/SKILL.md",
+      "computedHash": "e1b56fc98497d9eed583ef39061bdcc1494046350bfce250c509429c3e6a800d"
+    },
+    "atlas-cloud": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/atlas-cloud/SKILL.md",
+      "computedHash": "68474b9ef61eeff2429699d03d9e3bb2b10142d165463f0f4ee4501b488c9647"
+    },
+    "avatar-video": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/avatar-video/SKILL.md",
+      "computedHash": "66a49290a0412d7bad634aac7e9cc24c5722ea6f508d6427e19ac2241bce8740"
+    },
+    "azure-speech-to-text": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/azure-speech-to-text/SKILL.md",
+      "computedHash": "bcbf029701e198414f138cd84841f8476dce9e18354b8dcb6e19bbac37c6eb36"
+    },
+    "azure-text-to-speech": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/azure-text-to-speech/SKILL.md",
+      "computedHash": "b57baf0ae959ef8f0882c1e10c3a8bb64cec93cde88e0dddd9dfc6700539c559"
+    },
+    "beautiful-mermaid": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/beautiful-mermaid/SKILL.md",
+      "computedHash": "0bbbe0bb6d026f50ba64b18bca28fbf646b2602456da9c1ce0f8f3d27bf80b03"
+    },
+    "bfl-api": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/bfl-api/SKILL.md",
+      "computedHash": "2c695760ec4be9342a55b7580113189bb9010255a2d8d7738dabbbfcb7f3fcd4"
+    },
+    "character-animation-qa": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/character-animation-qa/SKILL.md",
+      "computedHash": "727ca3217c8d69cce95452c3d843db8c78536feaf8c61d0006bb2a62618ef9c7"
+    },
+    "comfyui": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/comfyui/SKILL.md",
+      "computedHash": "92977dd30c179c3017890cd91cdee3d209c001bbb061f623e2bbadb47367fc77"
+    },
+    "create-video": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/create-video/SKILL.md",
+      "computedHash": "cc85de7d334304112e35863409f0ea0c0bb66b80223f21583fd3c5158930db8d"
+    },
+    "d3-viz": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/d3-viz/SKILL.md",
+      "computedHash": "f16b782976ac2df47f91839385b4458944d90f23f109ff32a8f450bbdaf6431d"
+    },
+    "dashscope": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/dashscope/SKILL.md",
+      "computedHash": "e92b06f97fda41c2e1acb3a39170d5c400e9b08db3c751e144972be928995691"
+    },
+    "design-motion-principles": {
+      "source": "kylezantos/design-motion-principles",
+      "sourceType": "github",
+      "skillPath": "skills/design-motion-principles/SKILL.md",
+      "computedHash": "6410c1844f511249f11f38d30d217cfecf7f595f45a868d74284b6380bab47d7"
+    },
+    "doubao-tts": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/doubao-tts/SKILL.md",
+      "computedHash": "b842727fcc27863c0cc8df9445b4086189aa95b223ad995dcc2c79112b6fe010"
+    },
+    "elevenlabs": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/elevenlabs/SKILL.md",
+      "computedHash": "9acc5f1cecc0181b9358204cbbf0838bea14a54af6699a1031a94aa31b832f2b"
+    },
     "embedded-captions": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
@@ -13,17 +121,119 @@
       "skillPath": "skills/faceless-explainer/SKILL.md",
       "computedHash": "10984627b1aed2c89cda04e7f6fd46c0d39cc5978338f985149ee9ab905db220"
     },
+    "faceswap": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/faceswap/SKILL.md",
+      "computedHash": "caefcda181d6dddc2c30841238ebabdd7583c0a2fec2e17b521454d015168f28"
+    },
+    "ffmpeg": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/ffmpeg/SKILL.md",
+      "computedHash": "51fa05bc18bb2691e622aefd1d8ec6d4d96a9e9c44cdf599003c9d6003d11a07"
+    },
     "figma": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "skillPath": "skills/figma/SKILL.md",
       "computedHash": "0aed427d5eaac09e92181b85a7ccc9bbdeab138a01272a02c13349546c10bbc8"
     },
+    "fish-audio-tts": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/fish-audio-tts/SKILL.md",
+      "computedHash": "eca4d290761773eb398cdf55e564df6726a83d20b62dbd7ee36b9e0863f55995"
+    },
+    "flux-best-practices": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/flux-best-practices/SKILL.md",
+      "computedHash": "a5a348cb8c94264b302b4af24b77c27f6f4332e430fbd6f767caf13c55403d93"
+    },
+    "framer-motion": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/framer-motion/SKILL.md",
+      "computedHash": "562bde7d5264b63f4e8402dc20b199118e97d652d501dc58af3fdf3a29f9a1dd"
+    },
+    "gemini-omni": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gemini-omni/SKILL.md",
+      "computedHash": "eb37343b5d315434c3fb6eb59080c278769ad088cddfc501f344f6796eb20c6e"
+    },
     "general-video": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "skillPath": "skills/general-video/SKILL.md",
       "computedHash": "d6deba70181518a3e4b6d82706b8d47c2bce80132599ecb711232928a1895b3b"
+    },
+    "generative-media-director": {
+      "source": "frankxai/awesome-motion-design-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/generative-media-director/SKILL.md",
+      "computedHash": "ac1dd22228431dfa1da668f88b1d17d1fe929de9342191dc84b31ac0f7f17d6a"
+    },
+    "grok-media": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/grok-media/SKILL.md",
+      "computedHash": "36cba6db9e7fc2955aecb2cda890b5d602f071538fb2e15e97d9127b8e5ef3ea"
+    },
+    "gsap-core": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gsap-core/SKILL.md",
+      "computedHash": "c4a01101d9e1aafbf4b49f75d74f9349790d8741981ba0237c990093863035a6"
+    },
+    "gsap-frameworks": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gsap-frameworks/SKILL.md",
+      "computedHash": "151f82c17668f8568be9ee77a7b6faadc295118fe5ee77e44c6971f59c66c857"
+    },
+    "gsap-performance": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gsap-performance/SKILL.md",
+      "computedHash": "863842ac2d7aee53fd4f0025c960173d7ad3e658a5715b89b2211fa280213c1f"
+    },
+    "gsap-plugins": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gsap-plugins/SKILL.md",
+      "computedHash": "83f5517521ddb74264d5227a2f11e58425edd10d20e8c0f1264e10cbcc00e712"
+    },
+    "gsap-react": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gsap-react/SKILL.md",
+      "computedHash": "7d3b52822681a4158e371f895c58fb7030ecaf33f585a534b7162f9e92c5d893"
+    },
+    "gsap-scrolltrigger": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gsap-scrolltrigger/SKILL.md",
+      "computedHash": "1cdc5647693783cb7a662d84a5de434c88a051ed56b4d33597c9b5782b5973e6"
+    },
+    "gsap-timeline": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gsap-timeline/SKILL.md",
+      "computedHash": "54981c2feec5a9c0d57988aeb32315af32bdeadd261550d5e9db7a7b1f08b487"
+    },
+    "gsap-utils": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/gsap-utils/SKILL.md",
+      "computedHash": "1ab2387f6e694718a4f1b5acf2a4ab16e1b884c3428adf5f6b26d830f00826cf"
+    },
+    "heygen": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/heygen/SKILL.md",
+      "computedHash": "e2c5db9c36904294497fcd18ee4f003cdf0f79746d46a57f1cc352d83957018f"
     },
     "hyperframes": {
       "source": "heygen-com/hyperframes",
@@ -67,6 +277,12 @@
       "skillPath": "skills/hyperframes-keyframes/SKILL.md",
       "computedHash": "99f3b420941f6f91d49c36865fb21e46a562cd43a3b88a1f2297f79d55542c35"
     },
+    "hyperframes-media": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/hyperframes-media/SKILL.md",
+      "computedHash": "e76b045065acd78bc2451a8feafe1dd69d64e62fc385e7352d0f5097357246a0"
+    },
     "hyperframes-registry": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
@@ -79,11 +295,59 @@
       "skillPath": "skills/hyperframes-studio/SKILL.md",
       "computedHash": "3ac6b0019626b0cfa0d067c52ae3e46b5d98722784b1ef103ac301a1815dfd7a"
     },
+    "kling-official": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/kling-official/SKILL.md",
+      "computedHash": "5d5fe7e34c1bc06110acf0708084e8b36601117bea97c0a15e92fb1daee3efc7"
+    },
+    "lottie-bodymovin": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/lottie-bodymovin/SKILL.md",
+      "computedHash": "0eece518ff73d47a172e8fed4c5e3b5e0113afd573124659021b3209f17289c9"
+    },
+    "ltx2": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/ltx2/SKILL.md",
+      "computedHash": "a3e77d57b2f7ffa9f501d1034ac3119739af1fb7012481f74d650ba3da4b874e"
+    },
+    "lyria": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/lyria/SKILL.md",
+      "computedHash": "97f42edb2e73282f0933a1a643085ead85d4feaef66053b84ae4c155cb649c3b"
+    },
+    "manim-composer": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/manim-composer/SKILL.md",
+      "computedHash": "6cd978db31ce962c847783a3c76c099185ed31cad6a37efae591e2a87c50b758"
+    },
+    "manimce-best-practices": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/manimce-best-practices/SKILL.md",
+      "computedHash": "b39acc1024b23c39cfdb187659c2d046277fb030767bbca3a0a3b22bbcf780fb"
+    },
+    "manimgl-best-practices": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/manimgl-best-practices/SKILL.md",
+      "computedHash": "ca058bcb180e7f506396c4e382595713ddceb6eaff3999c6075d14a82ce8da39"
+    },
     "media-use": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "skillPath": "skills/media-use/SKILL.md",
       "computedHash": "4e483ae6e7b26046477ae8d2c66048491e18d0e3e5e0f36f09322a4328bcaf89"
+    },
+    "minimax-h3": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/minimax-h3/SKILL.md",
+      "computedHash": "09dcc91fc408e67e1c6ae7397ea3b3d607e08fc329991b5e950b0a86d8c5ceaa"
     },
     "motion-design": {
       "source": "LottieFiles/motion-design-skill",
@@ -91,17 +355,41 @@
       "skillPath": "skills/motion-design/SKILL.md",
       "computedHash": "9fcf9130cc46ee8fd1d8e09a9263347a9d76efbcbfa46591cc4cefaf19bbb453"
     },
+    "motion-director": {
+      "source": "frankxai/awesome-motion-design-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/motion-director/SKILL.md",
+      "computedHash": "6e1d1d95831043eeced78fc67c9103c612add07d371f4b6875d293f7a1f96c34"
+    },
     "motion-graphics": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "skillPath": "skills/motion-graphics/SKILL.md",
       "computedHash": "73420963bea97e1008257c32f89b172486e87b87132ee4ebc83d21e1805ffd25"
     },
+    "music": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/music/SKILL.md",
+      "computedHash": "8de187c5fe68aba221193d827406c832fa5ed0cc1d7a82fc3b91d8a5fafeaefc"
+    },
     "music-to-video": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "skillPath": "skills/music-to-video/SKILL.md",
       "computedHash": "66793a5bc8dfb9ce03b7721fe42f4a685d8a95bc727602e6d661ec1f4aa9711d"
+    },
+    "playwright-recording": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/playwright-recording/SKILL.md",
+      "computedHash": "65dd7d4d2097a5ee137ee9a9ab9ced260d98d8728611fa70c6d8ba7d3c21f1e1"
+    },
+    "pose-library-design": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/pose-library-design/SKILL.md",
+      "computedHash": "4fca9f6c9774fcdd4a71293d2745cc5492cce960d8e0947679702aaea9dc6030"
     },
     "pr-to-video": {
       "source": "heygen-com/hyperframes",
@@ -115,11 +403,65 @@
       "skillPath": "skills/product-launch-video/SKILL.md",
       "computedHash": "824bec3729b135798d20fb0dda7ad7315b0623ccec685c736e6872d5f0b726a7"
     },
+    "provider-model-refresh": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/provider-model-refresh/SKILL.md",
+      "computedHash": "9c93673d1ed8ee69ad8dff98d1b2b675cc7bd624732fe07f259670908e20463a"
+    },
+    "provider-refresh-oct23": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/provider-refresh-oct23/SKILL.md",
+      "computedHash": "d8e194e564f55d9d95832f3053623b33c7ef7cbc7f9edbfc30f931616faa4586"
+    },
+    "remotion": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/remotion/SKILL.md",
+      "computedHash": "cf7d8bfb94ebe7f8bd1ac0ea312acf3096aa94f5ad34bb426360c34da0c9d33b"
+    },
+    "remotion-best-practices": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/remotion-best-practices/SKILL.md",
+      "computedHash": "9851afb52e1b892c43b2af973bda1776ce01fedfdfe704e0cfd70069a3a9c300"
+    },
     "remotion-to-hyperframes": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "skillPath": "skills/remotion-to-hyperframes/SKILL.md",
       "computedHash": "17c26590575d28118b783f6a534288ac38df50fae5b95826ee9d4976328ad687"
+    },
+    "remotion-video-agent": {
+      "source": "frankxai/awesome-motion-design-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/remotion-video-agent/SKILL.md",
+      "computedHash": "07cac77693241f7453f23da33445bcf444a9532e9770b032d3a6e2f3ade4a5ab"
+    },
+    "seedance-2-0": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/seedance-2-0/SKILL.md",
+      "computedHash": "9b201d96aabb8bab6ff7a04fdcac2c8ee0580528728584cee48c7a19f1471ccd"
+    },
+    "seedance-2-5": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/seedance-2-5/SKILL.md",
+      "computedHash": "841c2e7ecef6f8bbec99758f5980da891e35118259f0b7493e1723373d1bd6c1"
+    },
+    "setup-api-key": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/setup-api-key/SKILL.md",
+      "computedHash": "45e680b4a199bb031472fc28e752abc29bc2a38334cf5c80e1428c3f9fa33083"
+    },
+    "site-motion-excellence-director": {
+      "source": "frankxai/awesome-motion-design-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/site-motion-excellence-director/SKILL.md",
+      "computedHash": "34dfad840f52e2b7860729725a0c495ab6d5e595e71c18147c4bd1e2cdbdfa34"
     },
     "slideshow": {
       "source": "heygen-com/hyperframes",
@@ -127,11 +469,179 @@
       "skillPath": "skills/slideshow/SKILL.md",
       "computedHash": "fa178947b4cfe834d416c4d826d50cdd1f92dfb22395569032a40aa5d26819cc"
     },
+    "sound-effects": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/sound-effects/SKILL.md",
+      "computedHash": "54ec05122413cbc956b28fbd81c676e44eb0fdbbf6459ee3b367b2c7a1350b02"
+    },
+    "speech-to-text": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/speech-to-text/SKILL.md",
+      "computedHash": "bcb005567f41385e5dcba25d84de8d8ae10b65930a154146750c7004d103762b"
+    },
+    "svg-character-animation": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/svg-character-animation/SKILL.md",
+      "computedHash": "65a17b9ab121f1fb11af63ff1cc8ab36accf96a36ce8decb82660fe26df6fbf0"
+    },
+    "synthetic-screen-recording": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/synthetic-screen-recording/SKILL.md",
+      "computedHash": "e344a8555be7eb30839645a2af0d7bda71bbd61c2aff6e7be0dcf2f8a16ea7f8"
+    },
+    "tailwind-design-system": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/tailwind-design-system/SKILL.md",
+      "computedHash": "7ff2f4650597e98ca4cd8f01231fb432ab4d187d6b12e641485aa871a04448cc"
+    },
     "talking-head-recut": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "skillPath": "skills/talking-head-recut/SKILL.md",
       "computedHash": "991315e8803089b6b0d008026c9b42c2c83f6ea95c44b26956cd6ff6197f5305"
+    },
+    "text-to-speech": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/text-to-speech/SKILL.md",
+      "computedHash": "0691f5e84eeb8f5c5e152d304b6ef667efd4794eb11603ddc78b5e80b40bc993"
+    },
+    "threejs-animation": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-animation/SKILL.md",
+      "computedHash": "8c50b1493812bd88f3ed0637c0c3c5d846afdb322157b67b2ffba4ce8e552835"
+    },
+    "threejs-fundamentals": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-fundamentals/SKILL.md",
+      "computedHash": "e08d49571071f0f54ef2a76fdfcb96c16673e4fda478067727def4659feb80ca"
+    },
+    "threejs-geometry": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-geometry/SKILL.md",
+      "computedHash": "4e5757bf80a329810545c237e557e362fa14fd3a3e6a567ec1d75435be6b2dda"
+    },
+    "threejs-interaction": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-interaction/SKILL.md",
+      "computedHash": "988d235b7ebd85276a584c6f81ce7c801280ebc45b401017b334136dc8a7ec82"
+    },
+    "threejs-lighting": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-lighting/SKILL.md",
+      "computedHash": "9303d1b8a9704e88415e5a98c98ad7b6e0f654f8029a3606af7947c0efcb86cc"
+    },
+    "threejs-loaders": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-loaders/SKILL.md",
+      "computedHash": "f2cceed635fd7a2119acf6e5b1a2fcba63a0e52cf2514c1830a69e4744554fcc"
+    },
+    "threejs-materials": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-materials/SKILL.md",
+      "computedHash": "201cf0f3720c0ea9e415e6376b8ad389aa86b483875e87ca0e51aa2770c856aa"
+    },
+    "threejs-postprocessing": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-postprocessing/SKILL.md",
+      "computedHash": "48e04ff507582a18e0d509c2738b9d9466881b00e8ca2600727910a0d52abf75"
+    },
+    "threejs-shaders": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-shaders/SKILL.md",
+      "computedHash": "649ceb058edfb5cfd51e80fb3a6c57aca9bab4a9d3a03f6077aa9502be0c0771"
+    },
+    "threejs-textures": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-textures/SKILL.md",
+      "computedHash": "772a0bfc1d64cfcbc5347d206584a8fa412983201ad7a2cfb8766097b4936db9"
+    },
+    "threejs-world-generation": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/threejs-world-generation/SKILL.md",
+      "computedHash": "4827d89db49f7b473c6c1d49ec02e3649a690ec9a08cfa15c1356b5555c1e6da"
+    },
+    "vercel-composition-patterns": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/vercel-composition-patterns/SKILL.md",
+      "computedHash": "3b8c552707368c0c7b6bebda998776390b5a349961cdff9fdf0af6c1655ce6c1"
+    },
+    "vercel-react-best-practices": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/vercel-react-best-practices/SKILL.md",
+      "computedHash": "98cb0a546a53fe77a8a95592a6cc3f05b7e64a5db90ba47617817c831a7be887"
+    },
+    "video-download": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/video-download/SKILL.md",
+      "computedHash": "07ec3543f6bfeb4a0dce4086c018fbee3ab747ac68b8ba475c87050d3212d31b"
+    },
+    "video-edit": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/video-edit/SKILL.md",
+      "computedHash": "c392bc176158a9d0deed541752fc0fe5bcccd910aa3568beca5741ec2b2827e0"
+    },
+    "video-toolkit": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/video-toolkit/SKILL.md",
+      "computedHash": "72aa61abd26a02e952f58162c6c20cc43f11aaa4640363dc049cb83529771195"
+    },
+    "video-translate": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/video-translate/SKILL.md",
+      "computedHash": "97b045355d672aec6a2831bd0fb56dbfec67101d238ec5cd3b4ccb9e505a2d09"
+    },
+    "video-understand": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/video-understand/SKILL.md",
+      "computedHash": "098f2e869473b0e03c75fbf85009b0f46e75a2870ab52885faaae16578a211b8"
+    },
+    "visual-style": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/visual-style/SKILL.md",
+      "computedHash": "9b6545b4467ad420a311582abb4070850e24643b15e5856d907190ff5247ae7e"
+    },
+    "web-design-guidelines": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/web-design-guidelines/SKILL.md",
+      "computedHash": "a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a"
+    },
+    "web-motion-auditor": {
+      "source": "frankxai/awesome-motion-design-agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/web-motion-auditor/SKILL.md",
+      "computedHash": "2eabb83ac7e3ed2adea76c077e70868d220a7511d1c62e34def8183f6ca7c026"
+    },
+    "website-to-video": {
+      "source": "calesthio/OpenMontage",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/website-to-video/SKILL.md",
+      "computedHash": "5d9906ccfbb7bc7a38689aa4eb1f251321adba5d41f29fb73ad56e4781c55c95"
     }
   }
 }

@@ -1,8 +1,15 @@
 # Plan d'usage des skills du moteur MOTION-DESIGN
 
-Ce document décrit **tous les skills installés dans le moteur**, leur rôle,
-quand les mobiliser, et comment ils s'enchaînent dans le pipeline de
-production (exemple de référence : la pub MISSA TV 360, `projects/missa-tv-360-v6`).
+Ce document décrit **les skills installés dans le moteur** (107 skills issus de
+5 sources GitHub), leur rôle, quand les mobiliser, et comment ils s'enchaînent
+dans le pipeline de production (exemple de référence : la pub MISSA TV 360,
+`projects/missa-tv-360-v6`).
+
+Le noyau historique HyperFrames est détaillé en section 2 ; les collections
+ajoutées ensuite (LottieFiles, design-motion-principles, frankxai, OpenMontage)
+sont récapitulées en section 1bis. L'annuaire complet des dépôts, des prompts et
+des paquets volontairement non installés vit dans
+**[RESSOURCES-MOTION.md](RESSOURCES-MOTION.md)**.
 
 Les skills vivent dans `.agents/skills/` (référence canonique), sont exposés à
 Claude Code par un lien symbolique `.claude/skills/<nom>` et à Eve par une copie
@@ -15,8 +22,9 @@ dans `agent/skills/`. Ils sont enregistrés dans `skills-lock.json`
 npx skills add <owner>/<repo> --skill <nom> -a claude-code -a eve -y --json
 #   ↳ clone la source GitHub, installe dans .agents/skills/, crée le lien
 #     .claude/skills/, copie vers agent/skills/ et met à jour skills-lock.json
-npx skills list --json                                   # état des 22 skills
+npx skills list --json                                   # état des 107 skills
 npx skills experimental_install --dry-run --frozen-lockfile  # vérif du lock
+make skills-check                                     # 3 miroirs + lock
 npx skills update <nom> -y                            # mise à jour ultérieure
 ```
 
@@ -28,13 +36,19 @@ npx skills add LottieFiles/motion-design-skill --skill motion-design \
 ```
 
 `-a` se **répète** pour chaque agent (une liste séparée par des virgules est
-refusée). `-y` rend l'installation non interactive ; `--json` donne un résultat
-exploitable en CI. Pour forcer une réinstallation :
-`npx skills experimental_install --force`.
+refusée), tandis que `--skill` accepte **plusieurs noms** jusqu'au drapeau
+suivant : `--skill gsap-core gsap-timeline remotion -a claude-code -a eve -y`.
+`-y` rend l'installation non interactive ; `--json` donne un résultat exploitable
+en CI. Pour forcer une réinstallation : `npx skills experimental_install --force`.
+
+**Règle anti-collision** : avant d'installer un paquet multi-skills, comparer ses
+noms à `.agents/skills/` et exclure les doublons avec `--skill <liste>` — sinon
+la CLI écrase la version déjà installée et réécrit son entrée du lock. C'est
+précisément ce qui a été fait pour les 10 skills HyperFrames/OpenMontage.
 
 ---
 
-## 1. Le nouveau skill intégré : `motion-design` (LottieFiles)
+## 1. Skill transverse : `motion-design` (LottieFiles)
 
 Source : `LottieFiles/motion-design-skill` (installé via `npx skills add`,
 présent dans les trois répertoires et tracé dans `skills-lock.json`). Skill
@@ -70,7 +84,25 @@ techniques HyperFrames).
 
 ---
 
-## 2. Catalogue des 22 skills et déclencheurs
+## 1bis. Collections complémentaires (85 skills ajoutés)
+
+| Source | Skills | Usage dans le pipeline |
+|---|---|---|
+| `kylezantos/design-motion-principles` | 1 | **Audit** d'une animation existante (rapport HTML) ou **création** de micro-interactions UI ; à mobiliser en revue de composants HyperFrames |
+| `frankxai/awesome-motion-design-agent-skills` | 5 | Direction motion web (`motion-director`), audit (`web-motion-auditor`), Remotion (`remotion-video-agent`), médias génératifs (`generative-media-director`) |
+| `calesthio/OpenMontage` | 79 | Bibliothèque technique : GSAP (8), Three.js/WebGL (11), Remotion (2), Manim (3), Lottie, Framer Motion, data-viz, ffmpeg et outils vidéo, fournisseurs TTS/image/vidéo |
+
+Routage détaillé, exclusions (10 doublons préservés, 2 YAML invalides) et paquets
+lourds laissés à la demande : **[RESSOURCES-MOTION.md](RESSOURCES-MOTION.md)**.
+
+À noter : ces skills **ne remplacent pas** le noyau HyperFrames. Pour produire
+une vidéo, le point d'entrée reste `.agents/skills/hyperframes/SKILL.md` ;
+`hyperframes-animation` reste la règle technique, et `motion-design` /
+`design-motion-principles` apportent le goût et la revue.
+
+---
+
+## 2. Catalogue du noyau (22 skills de départ)
 
 ### Noyau HyperFrames (toujours)
 - **hyperframes** — *point d'entrée obligatoire* pour toute demande de vidéo/

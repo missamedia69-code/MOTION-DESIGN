@@ -4,9 +4,12 @@
 « seekable » et il produit un MP4 déterministe. Il cohabite avec le moteur déclaratif
 (`./md render`) ; les deux livrent leurs fichiers **en artefact** (temporaire : `.cache/rendus/`).
 
-- **22 skills** installés : `.agents/skills/` (+ miroirs `.claude/skills/` et
-  `agent/skills/`, verrou `skills-lock.json`). Le routeur est
-  `.agents/skills/hyperframes/SKILL.md` — à lire avant toute création.
+- **107 skills** installés : noyau HyperFrames (21) + collections LottieFiles,
+  design-motion-principles, frankxai et OpenMontage (86), dans `.agents/skills/`
+  (+ miroirs `.claude/skills/` et `agent/skills/`, verrou `skills-lock.json`).
+  Le routeur est `.agents/skills/hyperframes/SKILL.md` — à lire avant toute
+  création. Voir [plan-skills.md](plan-skills.md) et
+  [RESSOURCES-MOTION.md](RESSOURCES-MOTION.md).
 - **CLI** : toujours via le wrapper `./scripts/hf …` (il prépare ffmpeg/ffprobe + Chromium).
 
 ## Environnement sandbox (spécifique à ce dépôt)

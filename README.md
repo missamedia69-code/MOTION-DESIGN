@@ -64,12 +64,17 @@ Procédures de production : **[docs/PROCEDURES.md](docs/PROCEDURES.md)**
 
 ## Moteur n°2 : HyperFrames (HTML → vidéo)
 
-Le dépôt embarque aussi **HyperFrames** (HeyGen) : 22 skills d'agent
-(`.agents/skills/`, miroirs `.claude/skills/` et `agent/skills/`, lock
-`skills-lock.json`), CLI via `./scripts/hf`, rendu Chromium headless embarqué
-adapté au sandbox (voir [docs/HYPERFRAMES.md](docs/HYPERFRAMES.md)).
-Ajout d'un skill : `npx skills add <owner>/<repo> -a claude-code -a eve -y`
-(procédure détaillée dans [docs/plan-skills.md](docs/plan-skills.md)).
+Le dépôt embarque aussi **HyperFrames** (HeyGen) et **107 skills d'agent**
+(noyau HeyGen 21 + LottieFiles 1 + design-motion-principles 1 + frankxai 5 +
+OpenMontage 79), dans `.agents/skills/` avec miroirs `.claude/skills/` et
+`agent/skills/`, verrouillés par `skills-lock.json`. CLI via `./scripts/hf`,
+rendu Chromium headless embarqué adapté au sandbox
+(voir [docs/HYPERFRAMES.md](docs/HYPERFRAMES.md)).
+
+Ajout d'un skill : `npx skills add <owner>/<repo> -a claude-code -a eve -y` ;
+contrôle : `make skills-check`. Procédure et catalogue :
+[docs/plan-skills.md](docs/plan-skills.md) · annuaire des dépôts, prompts et
+ressources : [docs/RESSOURCES-MOTION.md](docs/RESSOURCES-MOTION.md).
 
 ```bash
 ./scripts/hf check  projects/hf-demo                 # gate qualité
