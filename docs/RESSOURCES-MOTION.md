@@ -99,6 +99,15 @@ agent : ils ne s'installent pas via `npx skills add`.
 
 ---
 
+## 3ter. Le Laboratoire (données → vidéo)
+
+Le moteur est aussi pilotable par une IA via `./md lab`, l'API `/api/runs` et un
+serveur MCP stdio : échantillon de données → protocole → expérience → MP4.
+Architecture et manuel de l'agent : **[LAB-MOTION.md](LAB-MOTION.md)** ·
+**[lab/AGENT.md](../lab/AGENT.md)**.
+
+---
+
 ## 4. Maintenance
 
 ```bash

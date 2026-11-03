@@ -144,6 +144,28 @@ Procédure complète (init, vendoring CDN **obligatoire**, routage des skills) :
 
 ---
 
+## P9 · Laboratoire (données → vidéo, pilotable par IA)
+
+Quand la demande arrive sous forme de **données** et non d'un montage décrit :
+
+```bash
+./md lab instruments                  # ce que le labo sait faire
+./md lab example > spec.json          # échantillon à éditer
+./md lab run spec.json --dry-run      # validation + compilation sans rendu
+./md lab run spec.json                # → livrables/lab/<nom>-<id>.mp4
+./md lab runs / ./md lab status <id>  # registre des expériences
+```
+
+Pour qu'un agent s'y connecte directement : `./md lab mcp` (serveur MCP stdio)
+ou `./md lab serve --port 8080` (API `POST /api/runs`). Protocole d'entrée,
+architecture et routes : **[LAB-MOTION.md](LAB-MOTION.md)** ·
+**[lab/AGENT.md](../lab/AGENT.md)**.
+
+Règle : ne pas écrire de `project.json` à la main pour un simple jeu de données ;
+le compositeur s'en charge. Pour une VO ensuite : P4bis.
+
+---
+
 ## Dépannage
 
 | Symptôme | Cause probable | Solution |
@@ -153,3 +175,5 @@ Procédure complète (init, vendoring CDN **obligatoire**, routage des skills) :
 | `dimensions paires` | canvas impair | utiliser un preset ou des dimensions paires |
 | Rendu lent | preset `mp4-hq` (slow) | tester en `mp4-web`, livrer en `mp4-hq` |
 | Média illisible | codec exotique | ré-encoder : voir P1, ou fournir un MP4 H.264 |
+| `ModuleNotFoundError: PIL` | dépendances Python réinitialisées | `pip3 install --break-system-packages pillow av imageio-ffmpeg` |
+| `ERREUR de protocole` au labo | champ d'échantillon invalide | `./md lab schema`, puis `./md lab run spec.json --dry-run` |

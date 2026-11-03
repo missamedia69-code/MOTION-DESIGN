@@ -40,6 +40,8 @@ MOTION-DESIGN/
 | `./md new <nom> --canvas 9x16` | crée un projet depuis un modèle |
 | `./md render <nom> [--preset gif]` | rend le projet (livrable livré en artefact) |
 | `./md vo <nom> [--dry-run]` | génère les voix off depuis `vo.json` (TTS edge-tts / VoxCPM) — voir [docs/VOIX-TTS.md](docs/VOIX-TTS.md) |
+| `./md lab demo` / `./md lab run spec.json` | **Laboratoire** : données en entrée → vidéo motion design |
+| `./md lab serve` / `./md lab mcp` | paillasse HTTP + API JSON, ou serveur MCP pour agent IA |
 | `./md preview` | serveur de prévisualisation des sorties |
 | `./md inventory` / `./md fonts` / `./md presets` | bibliothèque, polices, presets |
 | `./md info <media>` | analyse d'un média (durée, résolution, codecs) |
@@ -83,6 +85,25 @@ ressources : [docs/RESSOURCES-MOTION.md](docs/RESSOURCES-MOTION.md).
 ./scripts/hf check  projects/hf-demo                 # gate qualité
 ./scripts/hf render projects/hf-demo --quality draft --output .cache/rendus/hf-demo.mp4
 ```
+
+## Le Laboratoire : données → vidéo, pilotable par une IA
+
+Le moteur est aussi une **machine adressable par programme** : une IA s'y
+connecte comme un laborantin, dépose un échantillon de données, consulte les
+instruments, lance une expérience et récupère un MP4.
+
+```bash
+./md lab demo                          # données d'exemple → livrables/lab/*.mp4
+./md lab run spec.json --dry-run       # valider/compiler sans rendre
+./md lab serve --port 8080             # paillasse web + API /api/runs
+./md lab mcp                           # serveur MCP stdio (tools/list, tools/call)
+```
+
+Entrée minimale : `{"title":"…","data":[{"label":"Jan","value":12}, …]}`.
+Le compositeur fabrique 4 scènes (hook → KPI → barres animées → CTA) dans le
+format `project.json` existant, puis `render_project_data()` l'envoie à ffmpeg.
+Documentation complète : **[docs/LAB-MOTION.md](docs/LAB-MOTION.md)** ·
+manuel de l'agent : **[lab/AGENT.md](lab/AGENT.md)**.
 
 ## Dépendances
 

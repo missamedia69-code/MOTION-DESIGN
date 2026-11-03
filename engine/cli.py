@@ -1,7 +1,7 @@
 """CLI du moteur MOTION-DESIGN.
 
 Usage : ./md <commande> [options]
-Commandes : doctor, new, render, vo, list, info, inventory, install, fonts, presets, preview, clean
+Commandes : doctor, new, render, vo, lab, list, info, inventory, install, fonts, presets, preview, clean
 """
 from __future__ import annotations
 
@@ -42,13 +42,16 @@ def cmd_doctor(_args) -> None:
     presets_list = ", ".join(presets.EXPORT_PRESETS)
     print(f"Exports     : {presets_list}")
     print(f"Formats     : {', '.join(presets.CANVAS_PRESETS)}")
-    # test d'écriture
-    for d in ("output", ".cache", "projects", "assets"):
+    # test d'écriture (plus de dossier output/ : livrables dans .cache/rendus/)
+    for d in (".cache/rendus", "projects", "assets"):
         p = os.path.join(REPO, d)
-        writable = os.access(p, os.W_OK) if os.path.isdir(p) else False
+        probe_dir = p
+        while not os.path.isdir(probe_dir) and probe_dir != REPO:
+            probe_dir = os.path.dirname(probe_dir)
+        writable = os.access(probe_dir, os.W_OK)
         if not writable:
             ok = False
-        print(f"Dossier {d:<9}: {'OK' if writable else 'NON ACCESSIBLE'}")
+        print(f"Dossier {d:<14}: {'OK' if writable else 'NON ACCESSIBLE'}")
     print("\n" + ("✅ Moteur opérationnel." if ok else "⚠️  Des dépendances manquent."))
     sys.exit(0 if ok else 1)
 
@@ -67,6 +70,11 @@ def cmd_render(args) -> None:
 def cmd_vo(args) -> None:
     from engine import voice
     voice.generate(args)
+
+
+def cmd_lab(args) -> None:
+    from lab import cli as lab_cli
+    lab_cli.main(args)
 
 
 def cmd_list(_args) -> None:
@@ -169,6 +177,19 @@ def main() -> None:
     p.add_argument("--mix", action="store_true", help="afficher les adelay ffmpeg dérivés du manifeste")
     p.add_argument("--check-mix", metavar="FICHIER", help="comparer les starts au script de mixage")
     p.set_defaults(fn=cmd_vo)
+
+    p = sub.add_parser("lab", help="laboratoire : données en entrée → vidéo en sortie")
+    p.add_argument("action", nargs="?", default="serve",
+                   choices=("serve", "mcp", "run", "demo", "schema", "example",
+                            "instruments", "runs", "status"),
+                   help="serve=paillasse HTTP, mcp=connexion IA, run=une expérience")
+    p.add_argument("--input", help="fichier spec.json (run)")
+    p.add_argument("--id", help="id d'expérience (status)")
+    p.add_argument("--host", default="0.0.0.0")
+    p.add_argument("--port", type=int, default=8080)
+    p.add_argument("--limit", type=int, default=30)
+    p.add_argument("--dry-run", action="store_true", help="valider le montage sans rendre")
+    p.set_defaults(fn=cmd_lab)
 
     sub.add_parser("list", help="liste des projets").set_defaults(fn=cmd_list)
 

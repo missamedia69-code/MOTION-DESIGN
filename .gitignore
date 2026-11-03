@@ -32,4 +32,5 @@ projects/*/renders/
 # Téléchargements temporaires image_search
 image-search/
 !livrables/*.mp4
+!livrables/lab/*.mp4
 !projects/*/assets/*.mp4

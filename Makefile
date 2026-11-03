@@ -3,7 +3,7 @@
 
 MD := ./md
 
-.PHONY: help doctor new render vo preview inventory install fonts presets list clean bootstrap skills-check test
+.PHONY: help doctor new render vo lab lab-serve lab-demo lab-mcp preview inventory install fonts presets list clean bootstrap skills-check test
 
 help: ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
@@ -44,6 +44,18 @@ list: ## Liste des projets
 vo: ## Voix off : make vo P=missa-tv-360-v9 [BACKEND=edge-tts|voxcpm] [DRY=1]
 	@test -n "$(P)" || (echo "Usage : make vo P=missa-tv-360-v9 [DRY=1]" && exit 1)
 	$(MD) vo $(P) $(if $(BACKEND),--backend $(BACKEND),) $(if $(DRY),--dry-run,)
+
+lab: ## Laboratoire : make lab A=run INPUT=spec.json | A=demo | A=schema | A=runs
+	$(MD) lab $(or $(A),demo) $(if $(INPUT),--input $(INPUT),) $(if $(ID),--id $(ID),) $(if $(DRY),--dry-run,)
+
+lab-serve: ## Paillasse web + API JSON (port 8080 par défaut)
+	$(MD) lab serve --port $(or $(PORT),8080)
+
+lab-demo: ## Une expérience complète : données d'exemple → MP4
+	$(MD) lab demo
+
+lab-mcp: ## Serveur MCP stdio (connexion directe d'un agent IA)
+	$(MD) lab mcp
 
 skills-check: ## Vérifie la cohérence des skills (3 miroirs + skills-lock.json)
 	python3 scripts/check-skills.py

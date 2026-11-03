@@ -173,6 +173,11 @@ une vidéo, le point d'entrée reste `.agents/skills/hyperframes/SKILL.md` ;
 8. **Rendu & livraison** → `hyperframes-cli render` looks, mix final ffmpeg,
    artefact `present_file`, copie `livrables/`, commit+push.
 
+**Variante « données d'entrée »** : quand le brief arrive sous forme de chiffres
+ou de tableau, le **Laboratoire** (`./md lab`, MCP `lab_run`) remplace les étapes
+1–4 : protocole → métriques → 4 scènes → `render_project_data()`. Voir
+[LAB-MOTION.md](LAB-MOTION.md) et [lab/AGENT.md](../lab/AGENT.md).
+
 ---
 
 ## 4. Table de routage rapide

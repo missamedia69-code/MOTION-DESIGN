@@ -314,9 +314,23 @@ def audio_filters(audio_items, video_input_count: int, D: float) -> list[str]:
 
 def render_project(name: str, export_name: str | None = None, out_path: str | None = None,
                    dry_run: bool = False, fps_override: float | None = None) -> str:
+    """Charge `projects/<name>/project.json` puis délègue à `render_project_data`."""
     from . import project as project_mod
 
     proj, project_dir = project_mod.load(name)
+    return render_project_data(proj, project_dir, name, export_name=export_name,
+                               out_path=out_path, dry_run=dry_run,
+                               fps_override=fps_override)
+
+
+def render_project_data(proj: dict, project_dir: str, name: str,
+                        export_name: str | None = None, out_path: str | None = None,
+                        dry_run: bool = False, fps_override: float | None = None) -> str:
+    """Compile un project.json **déjà chargé** en vidéo.
+
+    Point d'entrée du Laboratoire : un agent peut fabriquer un montage en mémoire
+    à partir de données, sans créer de dossier dans `projects/`.
+    """
     canvas = presets.canvas(proj.get("canvas", presets.DEFAULT_CANVAS))
     if fps_override:
         canvas["fps"] = fps_override
