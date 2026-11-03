@@ -4,7 +4,8 @@
 « seekable » et il produit un MP4 déterministe. Il cohabite avec le moteur déclaratif
 (`./md render`) ; les deux livrent leurs fichiers **en artefact** (temporaire : `.cache/rendus/`).
 
-- **21 skills** installés : `.agents/skills/` (+ `skills-lock.json`). Le routeur est
+- **22 skills** installés : `.agents/skills/` (+ miroirs `.claude/skills/` et
+  `agent/skills/`, verrou `skills-lock.json`). Le routeur est
   `.agents/skills/hyperframes/SKILL.md` — à lire avant toute création.
 - **CLI** : toujours via le wrapper `./scripts/hf …` (il prépare ffmpeg/ffprobe + Chromium).
 

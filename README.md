@@ -64,9 +64,12 @@ Procédures de production : **[docs/PROCEDURES.md](docs/PROCEDURES.md)**
 
 ## Moteur n°2 : HyperFrames (HTML → vidéo)
 
-Le dépôt embarque aussi **HyperFrames** (HeyGen) : 21 skills d'agent
-(`.agents/skills/`), CLI via `./scripts/hf`, rendu Chromium headless embarqué
+Le dépôt embarque aussi **HyperFrames** (HeyGen) : 22 skills d'agent
+(`.agents/skills/`, miroirs `.claude/skills/` et `agent/skills/`, lock
+`skills-lock.json`), CLI via `./scripts/hf`, rendu Chromium headless embarqué
 adapté au sandbox (voir [docs/HYPERFRAMES.md](docs/HYPERFRAMES.md)).
+Ajout d'un skill : `npx skills add <owner>/<repo> -a claude-code -a eve -y`
+(procédure détaillée dans [docs/plan-skills.md](docs/plan-skills.md)).
 
 ```bash
 ./scripts/hf check  projects/hf-demo                 # gate qualité

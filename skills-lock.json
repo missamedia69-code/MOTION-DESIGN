@@ -85,6 +85,12 @@
       "skillPath": "skills/media-use/SKILL.md",
       "computedHash": "4e483ae6e7b26046477ae8d2c66048491e18d0e3e5e0f36f09322a4328bcaf89"
     },
+    "motion-design": {
+      "source": "LottieFiles/motion-design-skill",
+      "sourceType": "github",
+      "skillPath": "skills/motion-design/SKILL.md",
+      "computedHash": "9fcf9130cc46ee8fd1d8e09a9263347a9d76efbcbfa46591cc4cefaf19bbb453"
+    },
     "motion-graphics": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
@@ -126,12 +132,6 @@
       "sourceType": "github",
       "skillPath": "skills/talking-head-recut/SKILL.md",
       "computedHash": "991315e8803089b6b0d008026c9b42c2c83f6ea95c44b26956cd6ff6197f5305"
-    },
-    "motion-design": {
-      "source": "lottiefiles/motion-design-skill",
-      "sourceType": "github",
-      "skillPath": "skills/motion-design/SKILL.md",
-      "computedHash": "8729ecbc7e5736c1295baaa8ba0384bb4b1aac9cf91b83fcdc64d9548a57bb19"
     }
   }
 }

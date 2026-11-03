@@ -4,18 +4,42 @@ Ce document décrit **tous les skills installés dans le moteur**, leur rôle,
 quand les mobiliser, et comment ils s'enchaînent dans le pipeline de
 production (exemple de référence : la pub MISSA TV 360, `projects/missa-tv-360-v6`).
 
-Les skills vivent dans `.agents/skills/` (miroir `.claude/skills/`), enregistrés
-dans `skills-lock.json` (source GitHub + hash). Pour en ajouter un :
-copier le dossier du skill dans les deux répertoires et ajouter l'entrée au
-lock (source, sourceType, skillPath, computedHash = sha256 du SKILL.md).
+Les skills vivent dans `.agents/skills/` (référence canonique), sont exposés à
+Claude Code par un lien symbolique `.claude/skills/<nom>` et à Eve par une copie
+dans `agent/skills/`. Ils sont enregistrés dans `skills-lock.json`
+(source GitHub + hash calculé par la CLI — **ne pas éditer à la main**).
+
+### Ajouter / mettre à jour un skill (procédure officielle)
+
+```bash
+npx skills add <owner>/<repo> --skill <nom> -a claude-code -a eve -y --json
+#   ↳ clone la source GitHub, installe dans .agents/skills/, crée le lien
+#     .claude/skills/, copie vers agent/skills/ et met à jour skills-lock.json
+npx skills list --json                                   # état des 22 skills
+npx skills experimental_install --dry-run --frozen-lockfile  # vérif du lock
+npx skills update <nom> -y                            # mise à jour ultérieure
+```
+
+Exemple réel (skill transverse ci-dessous) :
+
+```bash
+npx skills add LottieFiles/motion-design-skill --skill motion-design \
+  -a claude-code -a eve -y --json
+```
+
+`-a` se **répète** pour chaque agent (une liste séparée par des virgules est
+refusée). `-y` rend l'installation non interactive ; `--json` donne un résultat
+exploitable en CI. Pour forcer une réinstallation :
+`npx skills experimental_install --force`.
 
 ---
 
 ## 1. Le nouveau skill intégré : `motion-design` (LottieFiles)
 
-Source : `lottiefiles/motion-design-skill`. Skill **transverse** : il ne
-produit pas de code HyperFrames, il fournit la *culture motion* appliquée à
-toute animation (GSAP, CSS, Lottie, Spring…).
+Source : `LottieFiles/motion-design-skill` (installé via `npx skills add`,
+présent dans les trois répertoires et tracé dans `skills-lock.json`). Skill
+**transverse** : il ne produit pas de code HyperFrames, il fournit la *culture
+motion* appliquée à toute animation (GSAP, CSS, Lottie, Spring…).
 
 ### Contenu et usage de chaque sous-module
 
