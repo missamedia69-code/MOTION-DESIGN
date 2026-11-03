@@ -1,0 +1,143 @@
+@font-face { font-family:Mont; src:url('vendor/Montserrat-Black.ttf') format('truetype'); font-weight:900; }
+@font-face { font-family:MontExtra; src:url('vendor/Montserrat-ExtraBold.ttf') format('truetype'); font-weight:800; }
+@font-face { font-family:Nunito; src:url('vendor/Nunito-Variable.ttf') format('truetype'); font-weight:200 1000; }
+:root { --black:#080b0c; --charcoal:#111719; --cream:#f6f7f3; --yellow:#ffca19; --green:#42c68b; --muted:#b8c3c2; --orange:#ed7054; }
+* { box-sizing:border-box; }
+html,body { margin:0; width:100%; height:100%; overflow:hidden; background:var(--black); }
+body { font-family:Nunito,sans-serif; color:var(--cream); }
+#root { position:relative; width:100%; height:100%; background:var(--black); overflow:hidden; }
+.scene { position:absolute; inset:0; overflow:hidden; isolation:isolate; }
+.stage { position:absolute; inset:0; overflow:hidden; isolation:isolate; opacity:0; visibility:hidden; }
+#stage1 { opacity:1; visibility:visible; }
+#s1,#s4 { background:var(--black); }
+#s2 { background:#12191a; }
+#s3 { background:#0d1010; }
+#s5 { background:#0c1816; }
+#s6 { background:var(--yellow); color:#0a1113; }
+.world { position:absolute; inset:0; overflow:hidden; isolation:isolate; }
+#cFilm { background:#080b0c; }
+#cMusic { background:#101616; opacity:0; visibility:hidden; }
+#cMore { background:#091410; opacity:0; visibility:hidden; }
+.hero-title { position:absolute; font:900 129px/.98 Mont,sans-serif; letter-spacing:-.062em; text-transform:uppercase; }
+.hero-title em { color:var(--yellow); font-style:normal; }
+.eyebrow { position:absolute; font:800 31px/1.15 MontExtra,sans-serif; letter-spacing:.16em; color:var(--green); text-transform:uppercase; }
+.smallcap { position:absolute; font:800 27px/1.3 Nunito,sans-serif; letter-spacing:.12em; color:var(--muted); }
+.app-display { position:absolute; overflow:hidden; background:#050607; border:3px solid rgba(255,202,25,.86); border-radius:12px; }
+.app-display img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:cover; object-position:center center; }
+.hairline { position:absolute; width:900px; height:2px; background:rgba(255,202,25,.4); }
+.category-line { position:absolute; font:800 39px/1.28 MontExtra,sans-serif; letter-spacing:.03em; color:#f1f4ee; }
+.category-line span { color:var(--green); padding:0 10px; }
+.category-line b { color:var(--yellow); }
+
+/* Opening: actual app screen first, followed by one honest screen swipe. */
+#s1Rule { left:78px; top:227px; }
+#s1Eyebrow { left:82px; top:178px; }
+#s1Display { left:53px; top:314px; width:974px; height:557px; }
+#s1Caption { left:76px; top:894px; }
+#s1Title { left:72px; top:1018px; width:946px; font-size:132px; }
+.tiny-label { position:absolute; left:72px; top:1620px; width:544px; height:88px; display:flex; align-items:center; justify-content:space-between; padding:0 27px;
+  border:2px solid var(--yellow); border-radius:10px; color:var(--yellow); font:800 36px/1 MontExtra,sans-serif; letter-spacing:.04em; }
+.tiny-label span { font-size:54px; line-height:1; }
+#s1TagMusic { left:72px; width:415px; }
+
+/* Less is more: precise type replaces the paper-ticket metaphor. */
+#s2Eyebrow { left:77px; top:188px; }
+#s2Title { left:72px; top:305px; width:949px; font-size:138px; }
+.index-line { position:absolute; left:79px; top:864px; width:914px; min-height:130px; display:flex; align-items:center;
+  border-top:2px solid #6a7877; font:900 61px/1.1 Mont,sans-serif; letter-spacing:-.05em; white-space:nowrap; }
+.index-line span { width:117px; font:900 49px/1 Mont,sans-serif; color:var(--green); }
+#s2Stack2 { top:1047px; } #s2Stack3 { top:1230px; border-bottom:2px solid #6a7877; }
+#s2Answer { position:absolute; left:70px; top:1500px; width:943px; padding:12px 0 18px 32px; border-left:12px solid var(--yellow);
+  font:900 73px/1.06 Mont,sans-serif; letter-spacing:-.055em; }
+#s2Answer b { color:var(--yellow); }
+
+/* Fixed tariffs; the vector device is marked NET, not a claim about a specific model. */
+#s3Eyebrow { left:76px; top:187px; }
+#s3Title { left:70px; top:270px; width:952px; font-size:129px; }
+.price-line { position:absolute; left:71px; top:623px; width:941px; height:182px; display:flex; align-items:flex-end; padding:15px 14px 27px;
+  border-bottom:2px solid var(--green); }
+.price-line small { position:absolute; top:6px; left:16px; font:800 27px/1 MontExtra,sans-serif; letter-spacing:.12em; color:var(--muted); }
+.price-line strong { font:900 109px/.95 Mont,sans-serif; letter-spacing:-.075em; color:var(--yellow); white-space:nowrap; }
+.price-line span { margin-left:auto; padding-bottom:10px; font:800 37px/1 MontExtra,sans-serif; white-space:nowrap; }
+.price-line.year { top:831px; border-color:#647974; }
+.price-line.year strong { color:#f7f9f2; }
+#netBox { position:absolute; left:92px; top:1122px; width:408px; height:376px; border-radius:28px 28px 18px 18px; overflow:hidden;
+  border:5px solid #747d7c; background:linear-gradient(145deg,#292f30,#080c0e 64%); box-shadow:20px 23px 0 #050708; transform-origin:center center; }
+#netBox .box-vents { position:absolute; left:24px; right:24px; top:36px; height:59px; opacity:.65;
+  background:repeating-linear-gradient(180deg,#12191b 0 5px,#768180 5px 7px,#12191b 7px 11px); }
+#netBox .box-leds { position:absolute; left:37px; right:37px; top:115px; display:flex; justify-content:space-between; }
+.box-leds i { width:13px; height:13px; border-radius:50%; background:#82d49d; box-shadow:0 0 9px #82d49d; }
+#netBox b { position:absolute; top:177px; left:89px; width:225px; height:111px; display:flex; align-items:center; justify-content:center;
+  border:6px solid var(--yellow); border-radius:99px; font:900 81px/1 Mont,sans-serif; letter-spacing:.025em; color:var(--yellow); }
+#s3BoxText { position:absolute; left:570px; top:1150px; width:420px; }
+#s3BoxText b { display:block; font:900 68px/1 Mont,sans-serif; letter-spacing:-.055em; }
+#s3BoxText span { display:block; margin-top:39px; font:800 42px/1.18 MontExtra,sans-serif; color:var(--yellow); }
+#s3BoxText small { display:block; margin-top:27px; font:800 27px/1.2 Nunito,sans-serif; color:var(--muted); }
+#s3Devices { position:absolute; left:73px; top:1646px; width:936px; display:flex; align-items:center; justify-content:space-between;
+  font:800 35px/1 MontExtra,sans-serif; }
+#s3Devices span { display:inline-block; padding-bottom:14px; border-bottom:4px solid var(--green); }
+#s3Devices i { width:9px; height:9px; border-radius:50%; background:var(--yellow); }
+
+/* Content is nothing but the client's actual app imagery, with truthful nav crops. */
+.world-eyebrow { left:77px; top:185px; }
+#filmTitle,#musicTitle,#moreTitle { left:70px; top:260px; width:950px; font-size:126px; }
+#filmDisplay { left:51px; top:623px; width:978px; height:570px; }
+.ui-strip { position:absolute; left:99px; top:1264px; width:881px; height:217px; overflow:hidden; background:#050607; border:2px solid var(--yellow); border-radius:8px; }
+.ui-strip img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.nav-focus { position:absolute; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:12px 16px 14px;
+  overflow:hidden; border:2px solid var(--green); border-radius:9px; background:#050607; }
+.nav-focus img { display:block; width:100%; max-height:150px; object-fit:contain; }
+.nav-focus div { width:100%; text-align:left; margin-top:10px; font:800 26px/1.15 Nunito,sans-serif; color:var(--muted); letter-spacing:.035em; }
+#docNav { left:130px; top:1252px; width:819px; height:245px; }
+#filmLabels { left:72px; top:1592px; width:942px; font-size:36px; }
+#musicTitle { top:260px; font-size:133px; }
+#tvNav { left:105px; top:554px; width:872px; height:206px; border-color:var(--yellow); }
+#musicDisplay { left:51px; top:858px; width:978px; height:554px; transform-origin:top left; }
+.player-lens { position:absolute; left:347px; top:914px; width:653px; height:436px; padding:9px 14px 13px;
+  background:#050607; border:3px solid var(--yellow); border-radius:8px; }
+.player-lens span { display:block; height:54px; padding-top:13px; font:800 24px/1 MontExtra,sans-serif; letter-spacing:.045em; color:var(--yellow); }
+.player-lens img { display:block; width:100%; height:349px; object-fit:contain; background:#050607; }
+#musicLabels { left:72px; top:1627px; }
+#moreTitle { top:262px; font-size:133px; }
+#moreDisplay { left:51px; top:670px; width:978px; height:563px; }
+#audioNav { left:202px; top:1318px; width:680px; height:232px; }
+#moreLabels { left:71px; top:1643px; font-size:39px; }
+
+/* Designed for low bandwidth; no fake speed test, guarantee badge or 2G claim. */
+#s5Eyebrow { left:75px; top:205px; }
+#s5Title { left:70px; top:311px; width:952px; font-size:144px; z-index:2; }
+#s5App { left:76px; top:812px; width:930px; height:525px; opacity:.27; filter:saturate(.68); }
+#s5Signal { position:absolute; left:75px; top:1104px; width:934px; height:230px; z-index:2; }
+#s5Intent { position:absolute; left:75px; top:1463px; width:930px; display:flex; flex-direction:column; gap:21px; }
+#s5Intent strong { font:900 58px/1.1 Mont,sans-serif; letter-spacing:-.05em; color:var(--yellow); }
+#s5Intent span { font:800 31px/1.2 MontExtra,sans-serif; letter-spacing:.06em; }
+
+/* Product CTA: no synthetic photos, no official-looking counterfeit QR code. */
+#s6Eyebrow { left:74px; top:190px; color:#145b46; }
+#s6Title { left:70px; top:298px; width:951px; font-size:119px; }
+#s6Title em { color:#096f52; }
+#s6Screens { position:absolute; left:72px; top:959px; width:938px; height:274px; display:flex; gap:14px; }
+#s6Screens div { width:303px; height:252px; overflow:hidden; border:3px solid #122226; border-radius:8px; background:#070a0c; }
+#s6Screens img { display:block; width:100%; height:189px; object-fit:cover; }
+#s6Screens span { display:block; padding:10px 12px; color:var(--yellow); font:800 30px/1 MontExtra,sans-serif; }
+#s6Cta { position:absolute; left:73px; top:1373px; width:935px; height:145px; display:flex; align-items:center; justify-content:space-between; padding:0 38px;
+  color:var(--yellow); background:#0b1112; border-radius:12px; font:900 54px/1 Mont,sans-serif; letter-spacing:-.05em; }
+#s6Cta span { font-size:77px; }
+#s6Prices { position:absolute; left:75px; top:1635px; width:675px; display:flex; justify-content:space-between; gap:12px; }
+#s6Prices div { display:flex; flex-direction:column; gap:8px; }
+#s6Prices b { font:900 43px/1 Mont,sans-serif; letter-spacing:-.055em; white-space:nowrap; }
+#s6Prices small { font:800 30px/1 MontExtra,sans-serif; }
+#s6Qr { position:absolute; right:75px; top:1589px; width:185px; height:162px; border:3px dashed #132222; border-radius:13px;
+  display:flex; align-items:center; justify-content:center; flex-direction:column; }
+#s6Qr span { font:900 88px/.9 Mont,sans-serif; color:#087957; }
+#s6Qr small { font:900 22px/1 Nunito,sans-serif; }
+
+/* Deliberately restrained permanent brand and chapter progress furniture. */
+#hud { position:absolute; left:73px; top:58px; width:937px; height:75px; z-index:20; display:flex; align-items:center; gap:13px;
+  font:800 31px/1 MontExtra,sans-serif; letter-spacing:.06em; color:var(--cream); text-shadow:0 2px 12px #050606; }
+#hud b { font-weight:800; white-space:nowrap; } #hud b i { color:var(--yellow); font-style:normal; }
+#hud span { margin-left:auto; font:800 25px/1 Nunito,sans-serif; letter-spacing:.08em; color:var(--muted); white-space:nowrap; }
+#hud .hud-stripe { position:absolute; left:0; bottom:0; width:936px; height:2px; background:linear-gradient(90deg,var(--green) 0 33%,var(--yellow) 33% 69%,var(--orange) 69%); }
+#progress { position:absolute; left:74px; bottom:73px; width:932px; height:10px; z-index:20; background:#485351; overflow:hidden; border-radius:99px; }
+#progressFill { width:0; height:100%; background:linear-gradient(90deg,var(--green),var(--yellow) 65%); }
+#endFade { position:absolute; inset:0; background:#080b0c; opacity:0; z-index:30; pointer-events:none; }

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1080, height=1920" />
+  <title>Missa TV 360 — L’appli en vrai (59 s)</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="vendor/gsap.min.js"></script>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="59" data-width="1080" data-height="1920">
+
+  <!-- 0–6: the first picture is a genuine app capture, not a generated set. -->
+  <section id="s1" class="scene clip" data-start="0" data-duration="6" data-track-index="0"><div id="stage1" class="stage">
+    <div class="hairline" id="s1Rule"></div>
+    <div id="s1Eyebrow" class="eyebrow">UNE APPLI. TES ENVIES.</div>
+    <div id="s1Display" class="app-display">
+      <img id="s1Films" src="assets/app-films.png" alt="Capture réelle du catalogue de films et séries" />
+      <img id="s1Music" src="assets/app-music.png" alt="Capture réelle de la rubrique Musiques" />
+    </div>
+    <div id="s1Caption" class="smallcap">L’INTERFACE RÉELLE • MISSA TV 360</div>
+    <div id="s1Title" class="hero-title">CE SOIR,<br />TU AS ENVIE<br /><em>DE QUOI ?</em></div>
+    <div id="s1TagFilm" class="tiny-label">FILMS &amp; SÉRIES <span>→</span></div>
+    <div id="s1TagMusic" class="tiny-label">MUSIQUE <span>↗</span></div>
+  </div></section>
+
+  <!-- 6–16: clean editorial type, no fake subscription bills or sample photos. -->
+  <section id="s2" class="scene clip" data-start="6" data-duration="10" data-track-index="1"><div id="stage2" class="stage">
+    <div id="s2Eyebrow" class="eyebrow">LE PROBLÈME / 02</div>
+    <div id="s2Title" class="hero-title">UNE APPLI.<br />PUIS<br /><em>UNE AUTRE.</em></div>
+    <div id="s2Stack1" class="index-line"><span>01</span> ON OUVRE</div>
+    <div id="s2Stack2" class="index-line"><span>02</span> ON CHERCHE</div>
+    <div id="s2Stack3" class="index-line"><span>03</span> ON RECOMMENCE</div>
+    <div id="s2Answer">ET SI ON FAISAIT<br /><b>PLUS SIMPLE ?</b></div>
+  </div></section>
+
+  <!-- 16–29: exact fixed prices, illustrated NET box, required Wi-Fi + Internet. -->
+  <section id="s3" class="scene clip" data-start="16" data-duration="13" data-track-index="2"><div id="stage3" class="stage">
+    <div id="s3Eyebrow" class="eyebrow">LA SOLUTION / 03</div>
+    <div id="s3Title" class="hero-title">UN CHOIX.<br /><em>TES ÉCRANS.</em></div>
+    <div id="s3Month" class="price-line"><small>LE MOIS</small><strong>2 000</strong><span>XAF / MOIS</span></div>
+    <div id="s3Year" class="price-line year"><small>L’ANNÉE</small><strong>10 000</strong><span>XAF / AN</span></div>
+    <div id="netBox" role="img" aria-label="Illustration d’une box NET, sans représentation de matériel certifié">
+      <div class="box-vents"></div><div class="box-leds"><i></i><i></i><i></i><i></i></div><b>NET</b>
+    </div>
+    <div id="s3BoxText"><b>BOX NET</b><span>WI-FI + INTERNET</span><small>LA CONNEXION EST NÉCESSAIRE.</small></div>
+    <div id="s3Devices"><span>TÉLÉ</span><i></i><span>TABLETTE</span><i></i><span>TÉLÉPHONE</span></div>
+  </div></section>
+
+  <!-- 29–46: actual captures drive the journey. A navigation tab is NOT a fabricated catalogue. -->
+  <section id="s4" class="scene clip" data-start="29" data-duration="17" data-track-index="3"><div id="stage4" class="stage">
+    <div id="cFilm" class="world">
+      <div class="eyebrow world-eyebrow">01 / REGARDER</div>
+      <div id="filmTitle" class="hero-title">L’HISTOIRE<br /><em>DU MOMENT.</em></div>
+      <div id="filmDisplay" class="app-display">
+        <img id="filmFull" src="assets/app-films.png" alt="Capture du catalogue films et séries de l’application" />
+        <img id="mangaFull" src="assets/app-mangas.png" alt="Capture du catalogue mangas et animes de l’application" />
+      </div>
+      <div id="filmStrip" class="ui-strip"><img id="filmPosters" src="assets/ui-films-row.png" alt="Rangée de films recadrée dans la capture originale" /><img id="mangaPosters" src="assets/ui-mangas-row.png" alt="Rangée de mangas recadrée dans la capture originale" /></div>
+      <div id="docNav" class="nav-focus"><img src="assets/ui-nav-docs.png" alt="Vrais onglets Séries et Documentaires de l’application" /><div>ONGLET DOCUMENTAIRES · CAPTURE RÉELLE</div></div>
+      <div id="filmLabels" class="category-line">FILMS <span>/</span> SÉRIES <span>/</span> MANGAS <span>/</span> <b>DOCUMENTAIRES</b></div>
+    </div>
+    <div id="cMusic" class="world">
+      <div class="eyebrow world-eyebrow">02 / PASSER À AUTRE CHOSE</div>
+      <div id="musicTitle" class="hero-title">CHAÎNES<br /><em>DE TÉLÉ.</em></div>
+      <div id="tvNav" class="nav-focus"><img src="assets/ui-nav-tv.png" alt="Vrais onglets TV Direct, Sports et Musiques de l’application" /><div>TV DIRECT · ONGLET PRÉSENT DANS L’APPLI</div></div>
+      <div id="musicDisplay" class="app-display"><img src="assets/app-music.png" alt="Capture réelle de la rubrique Musiques et de son lecteur" /></div>
+      <div id="playerLens" class="player-lens"><span>GROS PLAN SUR LE VRAI LECTEUR</span><img src="assets/app-player-focus.png" alt="Extrait non retouché du lecteur vidéo de la quatrième capture" /></div>
+      <div id="musicLabels" class="category-line">MUSIQUE <span>/</span> SHORTS-DRAMAS</div>
+    </div>
+    <div id="cMore" class="world">
+      <div class="eyebrow world-eyebrow">03 / ET POUR CHANGER</div>
+      <div id="moreTitle" class="hero-title">À CHACUN<br /><em>SON TRUC.</em></div>
+      <div id="moreDisplay" class="app-display"><img src="assets/app-player.png" alt="Quatrième capture originale, montrant le lecteur vidéo de l’application" /></div>
+      <div id="audioNav" class="nav-focus"><img src="assets/ui-nav-audio.png" alt="Vrais onglets Podcasts et Radio de l’application" /><div>ONGLETS PODCASTS ET RADIO · CAPTURE RÉELLE</div></div>
+      <div id="moreLabels" class="category-line">JEUX VIDÉO <span>/</span> PODCASTS <span>/</span> RADIO</div>
+    </div>
+  </div></section>
+
+  <!-- 46–53: a design intention, not an unverified speed guarantee. -->
+  <section id="s5" class="scene clip" data-start="46" data-duration="7" data-track-index="4"><div id="stage5" class="stage">
+    <div id="s5Eyebrow" class="eyebrow">PETIT DÉBIT / 05</div>
+    <div id="s5Title" class="hero-title">ON GARDE<br /><em>LE FIL.</em></div>
+    <div id="s5App" class="app-display"><img src="assets/app-films.png" alt="Capture de l’application sur un écran, illustration de la scène réseau" /></div>
+    <svg id="s5Signal" viewBox="0 0 930 230" aria-hidden="true">
+      <path id="signalBroken" d="M12 120 L80 120 L112 42 L148 183 L187 89 L219 120 L315 120" fill="none" stroke="#e96651" stroke-width="15" stroke-linecap="round" stroke-linejoin="round" />
+      <path id="signalSteady" d="M302 120 L920 120" fill="none" stroke="#ffc928" stroke-width="17" stroke-linecap="round" />
+    </svg>
+    <div id="s5Intent"><strong>PENSÉ POUR UN FLUX STABLE.</strong><span>MÊME AVEC UN PETIT DÉBIT.</span></div>
+  </div></section>
+
+  <!-- 53–59: only actual UI excerpts, fixed prices and an explicitly non-scannable QR slot. -->
+  <section id="s6" class="scene clip" data-start="53" data-duration="6" data-track-index="5"><div id="stage6" class="stage">
+    <div id="s6Eyebrow" class="eyebrow">MISSA TV 360 / À TOI DE VOIR</div>
+    <div id="s6Title" class="hero-title">TON ENVIE<br /><em>FAIT LE</em><br />PROGRAMME.</div>
+    <div id="s6Screens">
+      <div><img src="assets/ui-films-row.png" alt="Affiches extraites de la capture réelle films" /><span>FILMS</span></div>
+      <div><img src="assets/ui-mangas-row.png" alt="Affiches extraites de la capture réelle mangas" /><span>MANGAS</span></div>
+      <div><img src="assets/ui-music-player.png" alt="Lecteur extrait de la capture réelle musique" /><span>MUSIQUE</span></div>
+    </div>
+    <div id="s6Cta">TÉLÉCHARGE L’APPLI <span>↗</span></div>
+    <div id="s6Prices"><div><b>2 000 XAF</b><small>/ MOIS</small></div><div><b>10 000 XAF</b><small>/ AN</small></div></div>
+    <div id="s6Qr" aria-label="Emplacement QR fictif non scannable"><span>◇</span><small>QR À VENIR</small></div>
+  </div></section>
+
+  <div id="hud" class="clip" data-start="0" data-duration="59" data-track-index="6"><b>MISSA <i>TV</i> 360</b><span>LE MONDE S’OUVRE</span><div class="hud-stripe"></div></div>
+  <div id="progress" class="clip" data-start="0" data-duration="59" data-track-index="7"><div id="progressFill"></div></div>
+  <div id="endFade" class="clip" data-start="0" data-duration="59" data-track-index="8"></div>
+</div>
+<script>
+  // Seekable, deterministic 59-second timeline. All example photos have been
+  // removed. Tabs and player are crops of client screenshots, not invented UI.
+  const tl=gsap.timeline({paused:true});
+  const up=(sel,at,d=.52,dy=66)=>tl.fromTo(sel,{y:dy,autoAlpha:0},{y:0,autoAlpha:1,duration:d,ease:'power3.out'},at);
+  const pop=(sel,at,d=.53)=>tl.fromTo(sel,{scale:.78,autoAlpha:0},{scale:1,autoAlpha:1,duration:d,ease:'back.out(1.38)'},at);
+  const enter=(sel,at,previous)=>{tl.set(sel,{autoAlpha:1},at);if(previous)tl.set(previous,{autoAlpha:0},at);};
+  tl.fromTo('#progressFill',{width:0},{width:930,duration:59,ease:'none'},0);
+
+  // 0–6: real app first, wide screenshot swipes from films to music.
+  tl.fromTo('#s1Display',{y:75,scale:1.06,autoAlpha:0},{y:0,scale:1,autoAlpha:1,duration:.64,ease:'power3.out'},.08);
+  tl.fromTo('#s1Films',{scale:1.02,x:0},{scale:1.10,x:-24,duration:2.9,ease:'none'},.13);
+  up('#s1Eyebrow',.36,.37,25);up('#s1Caption',.62,.36,23);up('#s1Title',.30,.67,96);
+  pop('#s1TagFilm',1.74,.38);
+  tl.fromTo('#s1Music',{x:990,autoAlpha:1},{x:0,duration:.66,ease:'power3.inOut'},3.22);
+  tl.to('#s1Films',{x:-985,duration:.66,ease:'power3.inOut'},3.22);
+  tl.to('#s1TagFilm',{autoAlpha:0,x:-100,duration:.27},3.22);pop('#s1TagMusic',3.63,.41);
+
+  // 6–16: less collage, more typographic rhythm.
+  enter('#stage2',6,'#stage1');up('#s2Eyebrow',6.04,.37,24);up('#s2Title',6.15,.61,89);
+  up('#s2Stack1',8.11,.42,55);up('#s2Stack2',9.72,.42,55);up('#s2Stack3',11.35,.42,55);
+  tl.to(['#s2Stack1','#s2Stack2','#s2Stack3'],{autoAlpha:.14,y:-65,duration:.49,ease:'power2.inOut'},13.43);
+  up('#s2Answer',13.91,.58,100);
+
+  // 16–29: prices are always fixed values. NET hardware is explicitly an illustration.
+  enter('#stage3',16,'#stage2');up('#s3Eyebrow',16.04,.37,24);up('#s3Title',16.16,.57,82);
+  up('#s3Month',17.27,.47,65);up('#s3Year',19.11,.47,65);
+  tl.fromTo('#netBox',{y:85,rotationY:-20,autoAlpha:0},{y:0,rotationY:0,autoAlpha:1,duration:.70,ease:'power3.out'},22.34);
+  up('#s3BoxText',22.70,.54,67);
+  up('#s3Devices',25.52,.55,39);
+
+  // 29–35: films → manga → genuine documentary menu, all in the supplied UI.
+  enter('#stage4',29,'#stage3');up('#filmTitle',29.20,.61,78);
+  tl.fromTo('#filmDisplay',{y:125,autoAlpha:0},{y:0,autoAlpha:1,duration:.68,ease:'power3.out'},29.31);
+  tl.fromTo('#filmFull',{scale:1.01,x:0},{scale:1.12,x:-28,duration:2.18,ease:'none'},29.34);
+  up('#filmStrip',30.40,.49,58);up('#filmLabels',30.83,.47,30);
+  tl.fromTo('#mangaFull',{x:985,autoAlpha:1},{x:0,duration:.65,ease:'power3.inOut'},31.60);
+  tl.to('#filmFull',{x:-983,duration:.65,ease:'power3.inOut'},31.60);
+  tl.fromTo('#mangaPosters',{x:870,autoAlpha:1},{x:0,duration:.65,ease:'power3.inOut'},31.60);
+  tl.to('#filmPosters',{x:-870,duration:.65,ease:'power3.inOut'},31.60);
+  tl.to('#filmStrip',{autoAlpha:0,y:55,duration:.37},33.24);
+  up('#docNav',33.32,.54,66);
+
+  // 35–40.55: the actual TV Direct tab leads into music and a faithful player crop.
+  enter('#cMusic',35.05,'#cFilm');up('#musicTitle',35.17,.58,77);up('#tvNav',35.35,.53,70);
+  tl.fromTo('#musicDisplay',{y:150,autoAlpha:0},{y:0,autoAlpha:1,duration:.69,ease:'power3.out'},35.73);
+  up('#musicLabels',36.55,.47,30);
+  tl.to('#musicDisplay',{scale:.64,y:350,x:-15,duration:.66,ease:'power3.inOut'},37.30);
+  pop('#playerLens',37.91,.58);
+
+  // 40.55–46: original fourth capture and genuine Podcasts / Radio tabs.
+  enter('#cMore',40.55,'#cMusic');up('#moreTitle',40.66,.59,78);
+  tl.fromTo('#moreDisplay',{y:145,autoAlpha:0},{y:0,autoAlpha:1,duration:.71,ease:'power3.out'},41.10);
+  up('#audioNav',42.31,.52,67);up('#moreLabels',43.44,.47,35);
+
+  // 46–53: designed for low bandwidth; not a statement of proven performance.
+  enter('#stage5',46,'#stage4');up('#s5Eyebrow',46.05,.39,25);up('#s5Title',46.18,.62,83);
+  tl.fromTo('#s5App',{scale:.95,autoAlpha:0},{scale:1,autoAlpha:.27,duration:.69},46.75);
+  tl.fromTo('#signalBroken',{strokeDasharray:380,strokeDashoffset:380},{strokeDashoffset:0,duration:1.06,ease:'none'},47.75);
+  tl.fromTo('#signalSteady',{strokeDasharray:620,strokeDashoffset:620},{strokeDashoffset:0,duration:.86,ease:'power2.out'},49.01);
+  up('#s5Intent',49.78,.59,77);
+
+  // 53–59: product first; never render a scannable QR without an approved URL.
+  enter('#stage6',53,'#stage5');
+  tl.set('#hud',{color:'#172421',textShadow:'none'},53);
+  tl.set('#hud b i',{color:'#116448'},53);
+  tl.set('#hud span',{color:'#405047',textShadow:'none'},53);
+  up('#s6Eyebrow',53.05,.38,26);up('#s6Title',53.22,.67,87);
+  ['#s6Screens div:nth-child(1)','#s6Screens div:nth-child(2)','#s6Screens div:nth-child(3)']
+    .forEach((sel,i)=>up(sel,54.37+i*.17,.41,37));
+  up('#s6Cta',55.28,.52,58);up('#s6Prices',56.22,.44,36);up('#s6Qr',56.49,.48,35);
+  tl.fromTo('#endFade',{opacity:0},{opacity:1,duration:.16,ease:'sine.inOut'},58.84);
+  window.__timelines=window.__timelines||{};window.__timelines.main=tl;
+</script>
+</body>
+</html>

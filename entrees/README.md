@@ -1,34 +1,15 @@
-# entrees/ — déposez ici vos fichiers sources
+# Déposer les éléments officiels MISSA TV 360
 
-Déposez dans ce dossier les éléments à intégrer aux vidéos :
-logo original (PNG/SVG), photos produits, jingle audio, etc.
+Les vidéos « Ton écran mérite mieux » sont **des maquettes**, avec placeholders explicites. Pour finaliser une diffusion commerciale, déposer les éléments validés dans ce dossier sur la branche de la conversation **`arena/906c7c4f-motion-design`** (pas sur une ancienne branche) :
 
-## Méthode recommandée : interface web GitHub
+1. **Logo officiel** SVG ou PNG transparent, et confirmation « MISSA TV 360 » ou « MISSA TV 360+ ».
+2. **`res/values/colors.xml`** contenant `missaYellowPrimary`, ou sa valeur hexadécimale confirmée.
+3. **URL officielle de téléchargement** dans un simple fichier texte ; le QR ne sera généré *qu’après* validation de cette URL.
+4. **Conditions d’offre**, renouvellement éventuel, taxes, modes de paiement, validation de l’équivalence « sept mois offerts ».
+5. **Confirmation des volumes annoncés** : milliers de films/séries/documentaires/mangas et de radios, centaines de chaînes en direct ; confirmation des droits d’utilisation des images d’affiches présentes dans vos captures.
+6. **Autorisation commerciale des voix** choisies ou enregistrements de comédiens autorisés ; confirmation éditoriale de la formulation sur le faible débit.
+7. Si disponibles, captures authentiques des **pages** TV Direct et Documentaires (les seules captures actuelles ne montrent que les onglets). Un contact de support est facultatif.
 
-1. Sur GitHub, ouvrez le dépôt puis choisissez la branche
-   `arena/71cd3126-motion-design` (sélecteur de branche en haut à gauche).
-2. Entrez dans ce dossier `entrees/`.
-3. Bouton **« Add file » → « Upload files »**, glissez-déposez vos fichiers.
-4. **« Commit changes »** directement sur la branche.
-5. Dans le chat Arena, dites simplement « c'est déposé ».
+Depuis GitHub : choisir la branche ci-dessus, ouvrir `entrees/`, puis « Add file » → « Upload files ». Depuis un clone local, `git add entrees/` puis `git commit` et `git push origin arena/906c7c4f-motion-design`. Ne placez **aucun mot de passe, jeton, secret ou donnée personnelle non nécessaire** dans ces fichiers.
 
-L'agent récupère les fichiers (git fetch), les intègre et re-rend la vidéo.
-
-## Depuis un clone local (alternative)
-
-```bash
-git checkout arena/71cd3126-motion-design
-cp ~/mon-logo.png entrees/
-git add entrees/          # pour une vidéo ou un audio : git add -f
-git commit -m "apport logo original"
-git push origin arena/71cd3126-motion-design
-```
-
-## Notes
-
-- La branche `main` fonctionne aussi : l'agent sait y piocher les fichiers.
-- Le `.gitignore` du dépôt exclut `*.mp4`/`*.mp3`… : l'interface web GitHub
-  ne respecte pas .gitignore (donc aucun blocage), mais depuis un clone local
-  il faut `git add -f` pour forcer l'ajout d'une vidéo ou d'un audio.
-- Les formats conseillés : PNG/SVG pour les logos, JPG/PNG/WEBP pour les
-  photos, MP3/WAV pour l'audio.
+Les fichiers générés, scripts et prompts du spot sont dans `projects/missa-tv-360-ton-ecran/` ; le [rapport de validation](../projects/missa-tv-360-ton-ecran/RAPPORT.md) décrit les blocages de publication.
