@@ -1,0 +1,12 @@
+{
+  "name": "Session MISSA TV 360 · 3 formats",
+  "description": "Session MCP type : découverte des instruments, validation, puis trois expériences à partir de données.",
+  "steps": [
+    {"label": "Découverte des instruments", "tool": "lab_instruments"},
+    {"label": "Validation du protocole Reels", "tool": "lab_validate", "spec_file": "lab/samples/reels-abonnes.json"},
+    {"label": "Reels 9:16 · abonnés", "tool": "lab_run", "spec_file": "lab/samples/reels-abonnes.json"},
+    {"label": "Vidéo 16:9 · chaînes", "tool": "lab_run", "spec_file": "lab/samples/chaine-360.json"},
+    {"label": "Feed 1:1 · usages box", "tool": "lab_run", "spec_file": "lab/samples/box-usages.json"},
+    {"label": "Registre des expériences", "tool": "lab_runs", "arguments": {"limit": 5}}
+  ]
+}

@@ -97,7 +97,13 @@ instruments, lance une expérience et récupère un MP4.
 ./md lab run spec.json --dry-run       # valider/compiler sans rendre
 ./md lab serve --port 8080             # paillasse web + API /api/runs
 ./md lab mcp                           # serveur MCP stdio (tools/list, tools/call)
+python3 scripts/lab-connect.py --session lab/samples/session.json \
+    --report livrables/lab/session.json   # session MCP : 3 formats → 3 MP4
 ```
+
+Échantillons prêts à l'emploi : **[lab/samples/README.md](lab/samples/README.md)** ·
+rapport d'expériences : `livrables/lab/session.json` ·
+planche de contrôle : `livrables/lab/planche-motion.jpg`.
 
 Entrée minimale : `{"title":"…","data":[{"label":"Jan","value":12}, …]}`.
 Le compositeur fabrique 4 scènes (hook → KPI → barres animées → CTA) dans le

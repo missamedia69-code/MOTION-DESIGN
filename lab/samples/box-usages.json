@@ -1,0 +1,27 @@
+{
+  "name": "box-usages",
+  "title": "La box WiFi, côté usages",
+  "canvas": "1x1",
+  "preset": "mp4-web",
+  "duration": 2.2,
+  "style": {
+    "background": "#101820",
+    "text": "#FFFFFF",
+    "accent": "#FFCC00",
+    "muted": "#A8B8C8",
+    "font": "Montserrat-Bold.ttf",
+    "transition": "fadeblack"
+  },
+  "narrative": {
+    "hook": "Même avec un petit débit",
+    "insight": "Le flux reste stable sur tous les contenus",
+    "cta": "Missa TV 360 — on est ensemble !"
+  },
+  "data": [
+    {"label": "Ciné", "value": 82},
+    {"label": "Foot", "value": 94},
+    {"label": "Séries", "value": 76},
+    {"label": "Docs", "value": 61},
+    {"label": "Kids", "value": 48}
+  ]
+}

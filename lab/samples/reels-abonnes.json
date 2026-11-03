@@ -1,0 +1,28 @@
+{
+  "name": "reels-abonnes",
+  "title": "Missa TV 360 · Abonnés",
+  "canvas": "9x16",
+  "preset": "mp4-web",
+  "duration": 2.2,
+  "style": {
+    "background": "#08122B",
+    "text": "#FFFFFF",
+    "accent": "#FFD400",
+    "muted": "#9FB4D8",
+    "font": "Montserrat-ExtraBold.ttf",
+    "transition": "fade"
+  },
+  "brand": {"logo": "assets/images/logo-missa.png"},
+  "narrative": {
+    "hook": "Toujours plus de monde",
+    "insight": "La croissance continue, mois après mois",
+    "cta": "Rejoins Missa TV 360 !"
+  },
+  "data": [
+    {"label": "Juin", "value": 120},
+    {"label": "Juil", "value": 185},
+    {"label": "Août", "value": 240},
+    {"label": "Sept", "value": 310},
+    {"label": "Oct", "value": 420}
+  ]
+}

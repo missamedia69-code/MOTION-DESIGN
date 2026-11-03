@@ -82,6 +82,17 @@ class ComposerTest(unittest.TestCase):
                 self.assertIn(layer["anim"], render.ANIMS)
                 self.assertIn(layer["type"], ("text", "shape", "image"))
 
+    def test_long_hook_stays_on_one_line_and_clear_of_subtitle(self):
+        long_spec = spec_mod.validate(tiny(
+            canvas="16x9", duration=2.2,
+            narrative={"hook": "Une autre dimension de télé vraiment très longue",
+                       "insight": "x", "cta": "y"}))
+        proj = composer.compose(long_spec)
+        hook, subtitle = proj["scenes"][0]["layers"][1], proj["scenes"][0]["layers"][2]
+        # Corps réduit pour tenir dans max_width, et écart vertical suffisant.
+        self.assertLess(hook["size"], int(1920 * 0.062))
+        self.assertGreater(subtitle["pos"][1] - hook["pos"][1], 1080 * 0.15)
+
     def test_render_dry_run_from_memory(self):
         buf = io.StringIO()
         with redirect_stdout(buf):

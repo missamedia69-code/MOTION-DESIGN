@@ -72,6 +72,21 @@ deviner.
 | Artefact absent | expérience encore `running` | `lab_status` jusqu'à `done` |
 | `ModuleNotFoundError: PIL` | dépendances du moteur absentes | `make bootstrap` ou `pip3 install pillow av imageio-ffmpeg` |
 
+## Session prête à rejouer
+
+`scripts/lab-connect.py` ouvre le serveur MCP en sous-processus et exécute un
+fichier d'étapes, exactement comme le ferait un agent :
+
+```bash
+python3 scripts/lab-connect.py --session lab/samples/session.json \
+    --report livrables/lab/session.json
+```
+
+`lab/samples/` contient trois specs (9x16, 16x9, 1x1) et la session qui les
+enchaîne ; une étape référence sa spec par `spec_file`. Le rapport final
+contient `status`, `artifact`, `resolution`, `duration_s` et `bytes` pour chaque
+`lab_run`. Pour une seule expérience : `./md lab run lab/samples/reels-abonnes.json`.
+
 ## Exemple de session minimale (MCP)
 
 ```json

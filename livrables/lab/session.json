@@ -1,0 +1,69 @@
+{
+  "session": "Session MISSA TV 360 · 3 formats",
+  "protocol": "2024-11-05",
+  "steps": [
+    {
+      "label": "Découverte des instruments",
+      "tool": "lab_instruments",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "label": "Validation du protocole Reels",
+      "tool": "lab_validate",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "label": "Reels 9:16 · abonnés",
+      "tool": "lab_run",
+      "result": {
+        "status": "done",
+        "artifact": "livrables/lab/reels-abonnes-a66d3ec7869a.mp4",
+        "scenes": 4,
+        "layers": 28,
+        "duration_s": 7.3,
+        "resolution": "1080x1920",
+        "bytes": 180783,
+        "error": null
+      }
+    },
+    {
+      "label": "Vidéo 16:9 · chaînes",
+      "tool": "lab_run",
+      "result": {
+        "status": "done",
+        "artifact": "livrables/lab/chaine-360-db0408ddfc64.mp4",
+        "scenes": 4,
+        "layers": 28,
+        "duration_s": 8.1,
+        "resolution": "1920x1080",
+        "bytes": 384593,
+        "error": null
+      }
+    },
+    {
+      "label": "Feed 1:1 · usages box",
+      "tool": "lab_run",
+      "result": {
+        "status": "done",
+        "artifact": "livrables/lab/box-usages-25dc41b2812e.mp4",
+        "scenes": 4,
+        "layers": 26,
+        "duration_s": 7.3,
+        "resolution": "1080x1080",
+        "bytes": 147039,
+        "error": null
+      }
+    },
+    {
+      "label": "Registre des expériences",
+      "tool": "lab_runs",
+      "result": {
+        "ok": true
+      }
+    }
+  ]
+}

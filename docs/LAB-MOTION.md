@@ -152,7 +152,30 @@ métadonnées dans le registre ; l'artefact seul est livré.
 - `tests/test_lab.py` : tests hors-ligne du protocole, du compositeur, du
   registre, des outils MCP et des routes HTTP.
 
-## 6. Limites et suite
+## 6. Session réelle : connection MCP et série de rendus
+
+`scripts/lab-connect.py` est un **client JSON-RPC 2.0 stdio** : il lance
+`python3 -m lab.mcp` en sous-processus, fait `initialize` + `tools/list`, puis
+enchaîne les appels décrits dans un fichier de session. C'est la connexion
+« laborantin » sans serveur HTTP ni dépendance externe.
+
+```bash
+python3 scripts/lab-connect.py \
+    --session lab/samples/session.json \
+    --report livrables/lab/session.json
+```
+
+Les échantillons `lab/samples/*.json` couvrent trois formats (9:16, 16:9, 1:1)
+avec des accents, transitions et options de logo différents ; voir
+**[lab/samples/README.md](../lab/samples/README.md)**. Le rapport
+`livrables/lab/session.json` conserve le statut, la résolution, la durée et le
+chemin de chaque artefact. `livrables/lab/planche-motion.jpg` est la planche de
+contrôle (accroche + scène « barres » des trois rendus).
+
+Une session peut aussi être pilotée à la main via `./md lab mcp` ou en HTTP via
+`./md lab serve --port 8080` puis `POST /api/runs`.
+
+## 7. Limites et suite
 
 - Le labo produit pour l'instant des **vidéos muettes** ; la VO se superpose
   ensuite via `./md vo` (voir [VOIX-TTS.md](VOIX-TTS.md)) et le mixage ffmpeg.

@@ -21,6 +21,12 @@ def _text(content: str, pos, size: int, color: str, spec: dict,
           anim: str = "fade_up", t_in: float = 0.2, t_out: float | None = None,
           max_width: int | None = None, align: str = "center") -> dict:
     start, end = _window(spec, t_in, t_out)
+    # Un texte long ne doit jamais retomber sur une 2e ligne qui chevaucherait
+    # le calque suivant : on réduit le corps pour qu'il tienne sur une ligne.
+    if max_width:
+        chars = max(1, len(content))
+        fitted = int(max_width / (0.62 * chars))
+        size = max(int(size * 0.62), min(size, fitted))
     layer = {
         "type": "text",
         "text": content,
@@ -99,9 +105,9 @@ def compose(spec: dict) -> dict:
     hook = [
         _shape("rect", W * 0.46, 8, style["accent"], [W / 2, H * 0.30],
                "grow_x", spec, t_in=0.2, radius=4),
-        _text(nar["hook"], [W / 2, H * 0.44], big, style["text"], spec,
+        _text(nar["hook"], [W / 2, H * 0.42], big, style["text"], spec,
               anim="fade_up", max_width=int(W * 0.84)),
-        _text(spec["title"], [W / 2, H * 0.56], mid, style["muted"], spec,
+        _text(spec["title"], [W / 2, H * 0.60], mid, style["muted"], spec,
               anim="fade", t_in=0.6, max_width=int(W * 0.84)),
     ]
     logo = _logo_layer(spec, W, H, [W / 2, H * 0.78], int(W * 0.16))

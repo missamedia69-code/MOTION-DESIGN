@@ -1,0 +1,28 @@
+{
+  "name": "chaine-360",
+  "title": "+3 000 chaînes, tous les univers",
+  "canvas": "16x9",
+  "preset": "mp4-web",
+  "duration": 2.4,
+  "style": {
+    "background": "#061A33",
+    "text": "#FFFFFF",
+    "accent": "#00C853",
+    "muted": "#8FB8D8",
+    "font": "Montserrat-Black.ttf",
+    "transition": "slideleft"
+  },
+  "brand": {"logo": "assets/images/logo-missa.png"},
+  "narrative": {
+    "hook": "Une autre dimension de télé",
+    "insight": "Films, sport, séries et programmes du monde entier",
+    "cta": "Missa TV 360 · 5 000 F / an"
+  },
+  "data": [
+    {"label": "Films", "value": 900},
+    {"label": "Séries", "value": 760},
+    {"label": "Sport", "value": 420},
+    {"label": "Intl", "value": 580},
+    {"label": "Kids", "value": 340}
+  ]
+}
