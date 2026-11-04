@@ -1,27 +1,36 @@
 #!/usr/bin/env python3
-"""Bande-son WIP 59,00 s : VO de travail + SFX media-use, musique en SILENCE.
+"""Bande-son WIP v2, 59,00 s : VO de travail corrigée + SFX media-use.
 
-Produit des pistes séparées 48 kHz 16 bits (D.4) + le mix à muxer dans le MP4 :
-  assets/audio/voix-montage.wav   (VO seule, 59,00 s)
-  assets/audio/sfx.wav            (bruitages seuls)
-  assets/audio/musique.wav        (silence : [MUSIQUE TENSION] / [MUSIQUE ELAN])
-  assets/audio/mix.wav            (somme, crête ≤ 0,95)
+Produit les 4 pistes séparées 48 kHz 16 bits (D.4) + le mix à muxer :
+  voix-montage.wav · sfx.wav · musique.wav (SILENCE) · mix.wav
 
-La VO de travail dure 59,544 s : on retire 0,544 s DANS un silence repéré par
-onsets.py (52,61 → 53,29), jamais en accélérant la voix.
+Révision 1.1 : la VO de travail contient désormais « Mille francs CFA par
+mois. » et « Deux mois offerts ! ». Elle dure exactement 59,00 s : plus aucune
+coupe n'est nécessaire, donc sous-titres / images / son partagent le MÊME
+calage (render/wip_cuts.py). Le nombre de bruitages passe de 76 à ~34 pour
+accompagner la cure d'épurement visuelle.
 """
 from __future__ import annotations
 import subprocess
+import sys
 from pathlib import Path
 import numpy as np
 import imageio_ffmpeg
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from wip_cuts import S  # noqa: E402
+
 AUD = ROOT / "assets" / "audio"
 SFX = ROOT.parent / ".claude" / "skills" / "media-use" / "audio" / "assets" / "sfx"
 FF = imageio_ffmpeg.get_ffmpeg_exe()
 SR, TOTAL = 48000, 59.0
 N = int(SR * TOTAL)
+T = {fid: a for fid, a, _ in S}
+
+
+def A(fid, off=0.0):
+    return T[fid] + off
 
 
 def decode(path: Path) -> np.ndarray:
@@ -33,43 +42,41 @@ def decode(path: Path) -> np.ndarray:
 
 
 def write_wav(path: Path, x: np.ndarray):
-    pcm = np.clip(x, -1, 1)
-    pcm = (pcm * 32767).astype("<i2")
+    pcm = (np.clip(x, -1, 1) * 32767).astype("<i2")
     subprocess.run([FF, "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1",
                     "-i", "-", "-c:a", "pcm_s16le", str(path)],
                    input=pcm.tobytes(), check=True)
 
 
-# --- 1. VO : coupe dans un silence uniquement ------------------------------
+# --- 1. VO : déjà exactement 59,00 s, aucune coupe, aucune accélération ----
 vo = decode(AUD / "voix-temporaire.mp3")
-cut_a, cut_b = 52.70, 52.70 + (len(vo) / SR - TOTAL)
-vo = np.concatenate([vo[:int(cut_a * SR)], vo[int(cut_b * SR):]])
 vo = np.pad(vo[:N], (0, max(0, N - len(vo))))[:N].astype(np.float32)
-vo *= 0.92
 
-# --- 2. SFX : banque locale (Pixabay Content License) ----------------------
+# --- 2. SFX : banque locale (Pixabay Content License), calés sur les gestes -
 E = [
-    ("typing", 0.00, .22), ("impact-bass-1", 0.50, .38),
-    ("key-press", 1.00, .14), ("key-press", 1.30, .14), ("key-press", 1.60, .14),
-    ("key-press", 1.90, .14), ("key-press", 2.20, .14), ("key-press", 2.50, .14),
-    ("ping", 3.40, .20), ("ping", 3.60, .18), ("ping", 3.80, .16),
-    ("click", 4.20, .16), ("click", 4.70, .16), ("click", 5.00, .16),
-    ("click", 5.30, .16), ("click", 5.60, .16), ("click", 5.75, .16), ("click", 5.90, .16),
-    ("pop", 5.60, .18), ("whoosh-short", 6.50, .22),
-    ("impact-bass-2", 8.50, .20), ("impact-bass-2", 8.72, .20), ("impact-bass-2", 8.94, .20),
-    ("whoosh-short", 11.10, .14), ("whoosh-short", 11.40, .14), ("whoosh-short", 11.70, .14),
-    ("whoosh-cinematic", 13.00, .30),
-    ("impact-bass-1", 16.00, .48), ("sparkle", 16.50, .26),
-    ("impact-bass-2", 16.80, .34), ("chime", 16.90, .24),
-] + [("click-soft", 18.50 + i * .12, .07) for i in range(12)] + [
-    ("whoosh-short", 22.20 + i * .55, .11) for i in range(6)
-] + [("notification", 28.50 + i * .18, .09) for i in range(6)] + [
-    ("key-press", 33.00, .16), ("chime", 34.55, .22), ("whoosh-short", 38.55, .18),
-    ("click", 40.62, .14), ("click", 41.17, .14), ("click", 41.72, .14),
-    ("typing", 43.07, .20), ("chime", 45.30, .30), ("pop", 46.80, .28),
-] + [("click-soft", 51.20 + i * .20, .11) for i in range(7)] + [
-    ("key-press", 53.00, .16), ("click", 56.20, .30), ("chime", 56.30, .34),
-    ("sparkle", 57.20, .26), ("typing", 58.00, .18),
+    ("typing", A("F01", 0.05), .22), ("impact-bass-1", A("F01", 0.50), .38),
+    ("key-press", A("F01", 1.00), .14), ("key-press", A("F01", 1.30), .14),
+    ("key-press", A("F01", 1.60), .14), ("ping", A("F01", 3.40), .20),
+    ("click", A("F02", 0.35), .16), ("click", A("F02", 1.10), .16),
+    ("click", A("F02", 1.85), .16), ("pop", A("F02", 2.10), .18),
+    ("impact-bass-2", A("F03", 0.20), .20), ("impact-bass-2", A("F03", 2.25), .22),
+    ("whoosh-short", A("F04", 0.10), .18), ("whoosh-cinematic", A("F04", 1.70), .28),
+    ("impact-bass-1", A("F05", 1.52), .50), ("sparkle", A("F05", 1.75), .26),
+    ("impact-bass-2", A("F06", 0.30), .34), ("chime", A("F06", 0.45), .24),
+] + [(("click-soft", A("F06", 1.10 + i * 0.18), .07)) for i in range(6)] + [
+    ("whoosh-short", A("F07", 0.35), .12), ("whoosh-short", A("F07", 1.00), .12),
+    ("whoosh-short", A("F07", 2.20), .12),
+    ("notification", A("F08", 0.60), .11), ("notification", A("F08", 2.60), .11),
+    ("notification", A("F08", 4.50), .11), ("whoosh-short", A("F08", 6.30), .14),
+    ("chime", A("F09", 0.25), .22), ("click-soft", A("F09", 1.60), .08),
+    ("click-soft", A("F09", 3.20), .08), ("whoosh-short", A("F09", 5.10), .14),
+    ("click", A("F10", 0.05), .14), ("click", A("F10", 0.30), .14),
+    ("click", A("F10", 0.55), .14), ("chime", A("F10", 1.35), .22),
+    ("typing", A("F11", 0.10), .20), ("chime", A("F11", 1.00), .30),
+    ("pop", A("F12", 0.10), .24), ("click-soft", A("F12", 3.30), .10),
+    ("click-soft", A("F12", 3.45), .10), ("chime", A("F12", 3.75), .26),
+    ("click", A("F13", 0.75), .24), ("sparkle", A("F13", 1.60), .24),
+    ("typing", A("F13", 2.60), .16),
 ]
 sfx = np.zeros(N, dtype=np.float32)
 cache: dict[str, np.ndarray] = {}
@@ -83,20 +90,17 @@ for name, at, gain in E:
     i = int(at * SR)
     if i >= N:
         continue
-    j = min(N, i + len(w))
-    sfx[i:j] += w[:j - i]
+    k = min(N, i + len(w))
+    sfx[i:k] += w[:k - i]
 
 # --- 3. pistes séparées + mix ----------------------------------------------
-music = np.zeros(N, dtype=np.float32)   # [MUSIQUE TENSION] / [MUSIQUE ELAN] : silence
-# Voix au premier plan, SFX sous la voix (section I.3)
-vo *= 2.0
-sfx *= 0.5
+music = np.zeros(N, dtype=np.float32)   # [MUSIQUE TENSION] / [MUSIQUE ELAN]
+sfx *= 0.5                             # voix au premier plan (section I.3)
 mix = vo + sfx + music
 peak = float(np.max(np.abs(mix)))
 if peak > 0.95:
-    mix *= 0.95 / peak
-    vo *= 0.95 / peak
-    sfx *= 0.95 / peak
+    for x in (mix, vo, sfx):
+        x *= 0.95 / peak
 
 AUD.mkdir(parents=True, exist_ok=True)
 for name, x in [("voix-montage.wav", vo), ("sfx.wav", sfx),
@@ -104,5 +108,6 @@ for name, x in [("voix-montage.wav", vo), ("sfx.wav", sfx),
     write_wav(AUD / name, x)
 
 print(f"✅ 59,00 s · 48 kHz mono 16 bits · {len(E)} événements SFX · "
-      f"crête {float(np.max(np.abs(mix))):.3f} · RMS VO {float(np.sqrt(np.mean(vo**2))):.4f}")
-print("   voix-montage.wav / sfx.wav / musique.wav (silence) / mix.wav")
+      f"crête {float(np.max(np.abs(mix))):.3f} · "
+      f"RMS VO {float(np.sqrt(np.mean(vo ** 2))):.4f} / "
+      f"SFX {float(np.sqrt(np.mean(sfx ** 2))):.4f}")

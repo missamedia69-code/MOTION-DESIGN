@@ -2,7 +2,14 @@
 
 > **ÉTAPE 1 / ✅ POINT D'ARRÊT 1 LEVÉ le 4 novembre 2026** — réponse « Validé, on passe à la voix ».
 > Ce fichier reprend **mot pour mot** les textes G.2 et G.3 du cahier des charges v2.0 fourni par le
-> propriétaire, et propose les 5 concepts demandés par la méthode. **Aucune correction demandée.**
+> propriétaire, et propose les 5 concepts demandés par la méthode.
+>
+> ⚠️ **RÉVISION 1.1 du 4 novembre 2026** (retour sur le WIP) : **3 corrections tarifaires et
+> aucune autre modification du texte** — « Deux mille francs CFA par mois. » →
+> **« Mille francs CFA par mois. »**, « Sept mois offerts ! » → **« Deux mois offerts ! »**,
+> et à l'écran `XAF 2 000` → **`XAF 1 000`**. L'application ne pratique pas 7 mois offerts :
+> l'année à 10 000 au lieu de 12 × 1 000 = 12 000 équivaut à **2 mois offerts**.
+> Le reste du texte reste validé **mot pour mot** ; le point d'arrêt 1 reste levé.
 > Voir `DECISIONS.md` pour les 5 réponses, `SPEC-V2.md` pour les règles,
 > `RAPPORT-ETAPE-0.md` pour les éléments manquants.
 
@@ -11,7 +18,7 @@
 1. **« Le ticket, puis la grille »** *(retenu, direction A du cahier des charges)* — un ticket d'abonnement sans fin imprime toujours la même chose ; un pivot sur noir ouvre la grille des univers MISSA, et le film se termine sur un ticket propre « ACTIVÉ ».
 2. **« Le premier du mois »** — un calendrier qui se répète à l'identique douze fois, jusqu'à ce qu'une case jaune casse la boucle et déplie l'application.
 3. **« La télécommande qui ne change rien »** — sept pressions sur OK, sept fois la même chaîne ; le huitième bouton, jaune, ouvre les milliers de contenus.
-4. **« Deux mille francs »** — le prix d'abord, en très grand, puis retour en arrière sur la frustration : « et toi, tu paies combien pour la même chose ? ».
+4. **« Mille francs »** — le prix d'abord, en très grand, puis retour en arrière sur la frustration : « et toi, tu paies combien pour la même chose ? ».
 5. **« On est ensemble »** — un chœur de voix et de points lumineux (radios, chaînes, podcasts) qui s'allument de Douala au monde, porté par l'appel/réponse.
 
 > Le cahier des charges **impose déjà le concept 1** (« LE TICKET, PUIS LA GRILLE », section E.1)
@@ -35,8 +42,8 @@
 | `[28.0-34.0]` | **F08 Télévision en direct** | « Des centaines de chaînes de télévision en direct. Le sport, l'info, les enfants… tout y est. » |
 | `[34.0-40.0]` | **F09 Podcasts, radios, musique** | « Des podcasts. Des milliers de radios d'Afrique et du monde. Et ta musique, partout avec toi. » |
 | `[40.0-44.0]` | **F10 Appareils** | « Téléphone, tablette ou télé. Une seule application. Zéro prise de tête. » |
-| `[44.0-48.5]` | **F11 Prix mensuel** | « Et le prix ? Deux mille francs CFA par mois. Oui, tu as bien entendu. » |
-| `[48.5-54.5]` | **F12 Prix annuel** | « Ou dix mille francs CFA pour toute l'année. Sept mois offerts ! Moins de trente francs par jour. » |
+| `[44.0-48.5]` | **F11 Prix mensuel** | « Et le prix ? Mille francs CFA par mois. Oui, tu as bien entendu. » |
+| `[48.5-54.5]` | **F12 Prix annuel** | « Ou dix mille francs CFA pour toute l'année. Deux mois offerts ! Moins de trente francs par jour. » |
 | `[54.5-59.0]` | **F13 Appel à l'action** | « Missa TV trois cent soixante. Télécharge, et regarde enfin ce que tu mérites ! » puis **CHŒUR** : « On est ensemble ! » |
 
 **Structure en 6 temps** : accroche concrète et datée (F01) → gag muet 2,5 s (F02) → diagnostic 3 douleurs (F03-F04) → pivot sur noir (F05) → solution et bénéfices (F06-F10) → marque et CTA (F11-F13).
@@ -75,10 +82,10 @@ Téléphone, tablette ou télé.
 Une seule application.
 Zéro prise de tête.
 Et le prix ?
-Deux mille francs CFA par mois.
+Mille francs CFA par mois.
 Oui, tu as bien entendu.
 Ou dix mille francs CFA pour toute l'année.
-Sept mois offerts !
+Deux mois offerts !
 Moins de trente francs par jour.
 Missa TV trois cent soixante.
 Télécharge, et regarde enfin ce que tu mérites !
@@ -107,16 +114,18 @@ On est ensemble !
 ## 5. Sous-titre (règle de transcription)
 
 Le sous-titre reprend **la phrase de la voix EN TOUTES LETTRES**, mot par mot, y compris
-« deux mille francs CFA » et « dix mille francs CFA ». Le prix chiffré `XAF 2 000` / `XAF 10 000`
+« mille francs CFA » et « dix mille francs CFA ». Le prix chiffré `XAF 1 000` / `XAF 10 000`
 n'apparaît **que dans les cartes de prix** (F11, F12). Bande y 1280 → 1400, marges 80 px,
 60-64 px, **38 caractères maximum par morceau**, une phrase longue se découpe en morceaux qui se
 remplacent. **Aucun sous-titre** pendant F02 (gag muet) et les 3 moments typographiques F05, F10, F13.
 
 ## 6. Point d'arrêt 1 — relevé le 4 novembre 2026
 
-- [x] Validation **mot à mot** des deux textes ci-dessus : **« Validé, on passe à la voix »**, aucune correction.
+- [x] Validation **mot à mot** des deux textes ci-dessus : **« Validé, on passe à la voix »**.
+      Révision 1.1 : seules les 3 expressions tarifaires ci-dessus ont été corrigées à la demande
+      du propriétaire ; **aucune autre phrase n'a été modifiée**.
 - [x] Forme de marque : **« MISSA TV 360 »** (sans « + » ni « PLUS »).
-- [x] Écriture monétaire : **`XAF 2 000` / `XAF 10 000`** (défaut du CDC, variante `FCFA` non retenue).
+- [x] Écriture monétaire : **`XAF 1 000` / `XAF 10 000`** (défaut du CDC, variante `FCFA` non retenue).
 - [x] Logo officiel : le propriétaire a indiqué « le logo est dans asset » → `assets/img/logo-officiel.png`.
 - [ ] Chœur (3 voix ou narrateur seul) : **non tranché** → version minimale narrateur seul, à confirmer à l'étape 2.
 - [ ] Éléments restants de la section C : voir `DECISIONS.md` et `RAPPORT-ETAPE-0.md`.

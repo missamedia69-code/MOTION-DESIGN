@@ -1,5 +1,5 @@
 1
-00:00:00,290 --> 00:00:00,490
+00:00:00,290 --> 00:00:00,500
 Tu
 
 2
@@ -7,11 +7,11 @@ Tu
 paies. Chaque
 
 3
-00:00:01,380 --> 00:00:02,550
+00:00:01,370 --> 00:00:02,550
 premier du mois. Et chaque
 
 4
-00:00:03,000 --> 00:00:03,890
+00:00:03,000 --> 00:00:03,900
 soir… la même chose.
 
 5
@@ -31,7 +31,7 @@ mêmes séries,
 déjà vues.
 
 9
-00:00:11,240 --> 00:00:11,740
+00:00:11,240 --> 00:00:11,750
 Les mêmes pubs.
 
 10
@@ -43,7 +43,7 @@ Et ton argent, lui, il
 s'en va.
 
 12
-00:00:14,570 --> 00:00:16,270
+00:00:14,570 --> 00:00:16,280
 On mérite mieux!
 
 13
@@ -51,7 +51,7 @@ On mérite mieux!
 Voici Missa TV
 
 14
-00:00:17,970 --> 00:00:19,230
+00:00:17,970 --> 00:00:19,240
 trois cent soixante. Tout
 
 15
@@ -71,7 +71,7 @@ Des milliers
 de films. Des séries à
 
 19
-00:00:25,410 --> 00:00:27,610
+00:00:25,410 --> 00:00:27,620
 n'en plus finir. Des documentaires, des mangas…
 
 20
@@ -79,7 +79,7 @@ n'en plus finir. Des documentaires, des mangas…
 Des centaines de chaînes de télévision
 
 21
-00:00:30,440 --> 00:00:30,880
+00:00:30,430 --> 00:00:30,880
 en
 
 22
@@ -99,7 +99,7 @@ Des podcasts.
 Des milliers de
 
 26
-00:00:37,040 --> 00:00:37,720
+00:00:37,040 --> 00:00:37,730
 radios d'Afrique et
 
 27
@@ -107,65 +107,53 @@ radios d'Afrique et
 du monde. Et ta
 
 28
-00:00:39,510 --> 00:00:40,400
+00:00:39,510 --> 00:00:40,410
 musique, partout avec toi.
 
 29
-00:00:40,840 --> 00:00:41,760
+00:00:40,820 --> 00:00:41,940
 Téléphone, tablette ou télé. Une seule application. Zéro
 
 30
-00:00:42,420 --> 00:00:42,800
+00:00:42,420 --> 00:00:42,810
 prise de tête.
 
 31
-00:00:43,340 --> 00:00:44,900
-Et le prix? Deux mille francs
+00:00:43,630 --> 00:00:44,110
+Et le
 
 32
-00:00:45,830 --> 00:00:46,610
-CFA par mois.
+00:00:44,750 --> 00:00:46,370
+prix? Mille francs CFA par mois.
 
 33
-00:00:47,110 --> 00:00:48,270
+00:00:47,110 --> 00:00:48,280
 Oui, tu as bien entendu.
 
 34
-00:00:48,490 --> 00:00:48,650
-Ou
+00:00:48,760 --> 00:00:50,960
+Ou dix mille francs CFA pour toute
 
 35
-00:00:48,800 --> 00:00:49,210
-dix
+00:00:51,290 --> 00:00:52,190
+l'année. Deux mois
 
 36
-00:00:49,630 --> 00:00:50,740
-mille francs CFA pour
+00:00:52,810 --> 00:00:54,450
+offerts! Moins de trente francs
 
 37
-00:00:51,150 --> 00:00:51,520
-toute
+00:00:54,920 --> 00:00:55,480
+par jour.
 
 38
-00:00:51,650 --> 00:00:52,610
-l'année. Sept mois offerts!
-
-39
-00:00:53,290 --> 00:00:54,930
-Moins de trente francs par jour.
-
-40
-00:00:55,400 --> 00:00:55,960
+00:00:55,750 --> 00:00:56,310
 Missa TV trois cent
 
-41
-00:00:56,240 --> 00:00:56,790
-soixante. Télécharge, et
+39
+00:00:56,470 --> 00:00:57,510
+soixante. Télécharge, et regarde enfin ce que tu
 
-42
-00:00:56,950 --> 00:00:57,980
-regarde enfin ce que tu mérites!
-
-43
-00:00:58,480 --> 00:00:59,030
-On est ensemble!
+40
+00:00:58,000 --> 00:00:58,570
+mérites! On est ensemble!

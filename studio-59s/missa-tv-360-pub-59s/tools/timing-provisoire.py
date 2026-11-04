@@ -142,6 +142,20 @@ rec += ["", f"- VO de travail : **{SRC['duration']:.2f} s** pour une cible de **
         "- Silences > 0,4 s repérés par `onsets.py` : autant de plans avec leur propre action."]
 (ROOT / "TIMING-PROVISOIRE.md").write_text("\n".join(rec) + "\n")
 
+# --- 7. coupes réelles partagées avec le générateur et l'audio --------------
+# wip_build.py et wip_audio.py importent ce module : une seule source de vérité
+# pour les 13 fenêtres, afin que sous-titres, images et SFX ne se décalent pas.
+cl = ["# GÉNÉRÉ par tools/timing-provisoire.py — ne pas éditer à la main.",
+      "# Fenêtres réelles des 13 séquences, calées sur les silences de la VO.",
+      "S = ["]
+prev = 0.0
+for i, (fid, name, a, b) in enumerate(S):
+    end = 59.0 if i == len(S) - 1 else snap(b)
+    cl.append(f'    ("{fid}", {prev:.2f}, {end:.2f}),')
+    prev = end
+cl.append("]")
+(ROOT / "render" / "wip_cuts.py").write_text("\n".join(cl) + "\n")
+
 print(f"✅ {len(out_words)} mots · {len(out_phrases)} phrases · {k} cues SRT · 13 séquences")
 for fid, _, a, b in S:
     n = sum(len(assign.get(k, [])) for k, p in enumerate(phrases) if a <= p["start"] < b)

@@ -4,6 +4,8 @@
 > Ce fichier en est la **fiche de référence opérationnelle** : il consigne toutes les valeurs et règles
 > contraignantes. En cas de doute, le texte intégral fourni par l'utilisateur fait foi.
 > **STATUT : REMPLACE la version précédente (spot 50 s construit avec des images générées par IA).**
+>
+> ⚠️ **RÉVISION 1.1 — 4 novembre 2026 (retour du propriétaire sur le WIP)** : l'application facture **XAF 1 000 / mois** et **XAF 10 000 / an** ; 12 × 1 000 = **12 000**, l'écart de 2 000 XAF = **2 MOIS OFFERTS** (et non 7). À l'oral/sous-titre : « mille francs CFA » / « dix mille francs CFA ». « Moins de trente francs par jour » reste exact (10 000 / 365 = 27,4). Toute mention antérieure de 2 000 / 24 000 / 14 000 / 7 mois est **caduque**.
 
 ## 0. Identité
 
@@ -18,7 +20,7 @@
 
 ## A. Objectif, cible, ton
 
-- **Objectif** : faire installer MISSA TV 360 et convaincre de s'abonner. **Captiver dès les 3 premières secondes**. Comprendre en < 60 s : (1) on paie déjà pour un contenu pauvre et répétitif, (2) MISSA TV 360 donne bien plus dans une seule application, (3) prix très bas : **XAF 2 000 / mois · XAF 10 000 / an**.
+- **Objectif** : faire installer MISSA TV 360 et convaincre de s'abonner. **Captiver dès les 3 premières secondes**. Comprendre en < 60 s : (1) on paie déjà pour un contenu pauvre et répétitif, (2) MISSA TV 360 donne bien plus dans une seule application, (3) prix très bas : **XAF 1 000 / mois · XAF 10 000 / an**.
 - **Cible** : foyers urbains/périurbains d'Afrique francophone (zone XAF), 18-45 ans, télé/vidéos/radio/musique sur téléphone, tablette, Android TV. **Lisible SANS LE SON** (sous-titre mot à mot en permanence).
 - **Twist** : « en Afrique on paie chaque mois pour… toujours la même chose ». **SANS JAMAIS nommer, montrer ou évoquer un opérateur ou une marque** : décodeur, chaînes, logos génériques. Pivot sur noir « On mérite mieux ! ».
 - **Ton** : chaleureux, rythmé, complice, fier ; humour léger (gag muet de la télécommande) ; appel/réponse narrateur ↔ petit chœur (« On mérite mieux ! », « On est ensemble ! »). **Aucun cliché de pauvreté ou d'exotisme** : moderne, premium, aspirationnel.
@@ -28,15 +30,15 @@
 
 | Donnée | Valeur |
 |---|---|
-| Mensuel | **2 000 XAF** |
+| Mensuel | **1 000 XAF** |
 | Annuel | **10 000 XAF** |
-| 12 mois × 2 000 | **24 000 XAF** |
-| Économie annuelle | **14 000 XAF = 7 MOIS OFFERTS** (l'année coûte le prix de 5 mois) |
+| 12 mois × 1 000 | **12 000 XAF** |
+| Économie annuelle | **2 000 XAF = 2 MOIS OFFERTS** (l'année coûte le prix de 10 mois) |
 | 10 000 / 365 | **27,4 XAF/jour → « moins de trente francs par jour »** |
-| 10 000 / 12 | ~833 XAF/mois → **ne pas le dire dans le spot** |
+| 10 000 / 12 | ~833 XAF/mois (désormais exact) → **toujours ne pas le dire dans le spot** |
 
-- **Format monétaire OBLIGATOIRE À L'ÉCRAN** : préfixe `XAF` + espace fine pour les milliers → `XAF 2 000 / mois`, `XAF 10 000 / an`.
-- **À l'oral ET dans le sous-titre** : « deux mille francs CFA », « dix mille francs CFA ». Variante `FCFA 2 000` à valider par le propriétaire ; **ne jamais mélanger les deux écritures dans une même vidéo**.
+- **Format monétaire OBLIGATOIRE À L'ÉCRAN** : préfixe `XAF` + espace fine pour les milliers → `XAF 1 000 / mois`, `XAF 10 000 / an`.
+- **À l'oral ET dans le sous-titre** : « mille francs CFA », « dix mille francs CFA ». Variante `FCFA 1 000` à valider par le propriétaire ; **ne jamais mélanger les deux écritures dans une même vidéo**.
 - **Contenu annoncé (formulations du propriétaire, à ne pas gonfler)** : des **MILLIERS** de films, séries, documentaires, mangas ; des **CENTAINES** de chaînes de télévision en direct ; des podcasts ; des **MILLIERS** de chaînes de radio.
 - **Univers réels de l'app** (interfaces à l'écran) : Films & Mangas, Séries, Documentaires, Courts-métrages, Enfants, TV Direct, Sports, Musiques, Podcasts, Radio, Jeux rétro. Disponible sur téléphone, tablette, Android TV.
 - **À l'écran, les quantités en MOTS** (« MILLIERS », « CENTAINES »), jamais de chiffre précis non vérifié.
@@ -81,7 +83,7 @@
 - Libres : **~200 px en haut, ~440 px en bas, ~120 px à droite**.
 - **Sous-titre** : bande centrée **y 1280 → 1400**, marges latérales **80 px**, **60 à 64 px**, **38 caractères max par morceau** (une phrase longue se découpe en morceaux qui se remplacent), **mot par mot sur ses temps**.
 - Fractions de contrôle : `x0 0.07 · x1 0.93 · y0 0.667 · y1 0.73`.
-- Le sous-titre reprend la phrase de la voix **EN TOUTES LETTRES** (y compris « deux mille francs CFA »). Le prix chiffré `XAF 2 000` n'apparaît **que dans les cartes de prix**.
+- Le sous-titre reprend la phrase de la voix **EN TOUTES LETTRES** (y compris « mille francs CFA »). Le prix chiffré `XAF 1 000` n'apparaît **que dans les cartes de prix**.
 
 ### D.4 Livrables
 1. `missa-tv-360-pub-59s_9x16.mp4` — 1080×1920, 30 i/s, **59,0 s**.
@@ -126,7 +128,7 @@
 | F08 | 28.0 | 34.0 | 6.0 | demo | noir-MISSA | chaînes en direct |
 | F09 | 34.0 | 40.0 | 6.0 | demo | noir-MISSA | podcasts, radios, musique |
 | F10 | 40.0 | 44.0 | 4.0 | reassurance | noir-MISSA | téléphone, tablette, télé |
-| F11 | 44.0 | 48.5 | 4.5 | offer | noir-MISSA | XAF 2 000 / mois |
+| F11 | 44.0 | 48.5 | 4.5 | offer | noir-MISSA | XAF 1 000 / mois |
 | F12 | 48.5 | 54.5 | 6.0 | offer | noir-MISSA | XAF 10 000 / an |
 | F13 | 54.5 | 59.0 | 4.5 | cta | noir-MISSA | Télécharger |
 
@@ -140,7 +142,7 @@
 
 ## J. Textes à l'écran
 - Sous-titre mot à mot **tout le film**, SAUF les 3 moments typographiques (F05, F10, F13) et le gag muet (F02).
-- **Un mot clé en boîte d'accent par phrase** : F01 « paies » (rouge brique) · F03 « mêmes » · F04 « pubs » · F06 « seule » (jaune) · F07 « milliers » · F08 « centaines » · F09 « milliers » · F10 « seule » · F11 « deux mille » · F12 « offerts » · F13 « mérites ».
+- **Un mot clé en boîte d'accent par phrase** : F01 « paies » (rouge brique) · F03 « mêmes » · F04 « pubs » · F06 « seule » (jaune) · F07 « milliers » · F08 « centaines » · F09 « milliers » · F10 « seule » · F11 « mille » · F12 « offerts » · F13 « mérites ».
 - **Pics soulignés (3-4 en tout)** : « même chose » (F01), « déjà vues » (F03), « trente » (F12), « mérites » (F13).
 - Textes « décor » autorisés (liste fermée) : lignes du ticket, étiquettes de chaînes, compteurs, noms d'univers, prix, « OFFERT », « moins de XAF 30 / jour », « Télécharger », `[LIEN_TELECHARGEMENT]`, `[CONDITIONS_OFFRE]`. **Aucun autre texte.**
 
@@ -169,4 +171,4 @@
 - **Rapport final** : séquences terminées/non terminées justifiées, résultats des contrôles, placeholders restants, décisions attendues, chemins livrés.
 
 ## N. Grille de contrôle (15 points)
-1. Étape toutes les 0,5 s ; jamais > 1 s sans événement ; 0,1-0,3 s dans les 3 premières secondes · 2. Caméra jamais à l'arrêt > 0,5 s hors silence écrit · 3. Apparition ≤ 0,2 s, trop grande et floue · 4. Image devance son mot de 0,1-0,6 s ; texte synchrone à 0,1 s · 5. Chaque couture nomme son objet-pont, jamais deux copies · 6. ≤ 4 coupes, ≤ 2 fondus, aucune coupe sur image vide · 7. ≥ 3 verbes joués par un objet (paies = tampon, s'en va = pièces, offerts = tampons verts) · 8. Moitié des plans sur 3 niveaux de profondeur · 9. `handoff_out = handoff_in` · 10. Premier mot = cible/douleur, 1re image = ticket, pas le logo · 11. Lisible sans le son, bande sûre, contraste · 12. Un seul accent (jaune) réservé au monde 2, négatif = rouge brique · 13. Rime F11/F13 avec le geste du ticket F01 · 14. Fin : un seul bouton, curseur d'un seul mouvement, 2-3 s d'image vivante, noir à 59,0 · 15. Aucune marque tierce, aucune affiche réelle, aucune image IA, montants `XAF 2 000` / `XAF 10 000`, calculs de B respectés.
+1. Étape toutes les 0,5 s ; jamais > 1 s sans événement ; 0,1-0,3 s dans les 3 premières secondes · 2. Caméra jamais à l'arrêt > 0,5 s hors silence écrit · 3. Apparition ≤ 0,2 s, trop grande et floue · 4. Image devance son mot de 0,1-0,6 s ; texte synchrone à 0,1 s · 5. Chaque couture nomme son objet-pont, jamais deux copies · 6. ≤ 4 coupes, ≤ 2 fondus, aucune coupe sur image vide · 7. ≥ 3 verbes joués par un objet (paies = tampon, s'en va = pièces, offerts = tampons verts) · 8. Moitié des plans sur 3 niveaux de profondeur · 9. `handoff_out = handoff_in` · 10. Premier mot = cible/douleur, 1re image = ticket, pas le logo · 11. Lisible sans le son, bande sûre, contraste · 12. Un seul accent (jaune) réservé au monde 2, négatif = rouge brique · 13. Rime F11/F13 avec le geste du ticket F01 · 14. Fin : un seul bouton, curseur d'un seul mouvement, 2-3 s d'image vivante, noir à 59,0 · 15. Aucune marque tierce, aucune affiche réelle, aucune image IA, montants `XAF 1 000` / `XAF 10 000`, calculs de B respectés.

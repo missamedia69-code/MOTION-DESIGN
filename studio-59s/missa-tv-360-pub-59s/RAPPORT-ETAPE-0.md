@@ -10,8 +10,8 @@ par la section A de la v2.0). L'ancien MP4 reste livré à `livrables/missa-tv-3
 
 Conséquences acceptées de la v2.0 (elle remplace les choix antérieurs) :
 - **durée 50 s → 59,0 s** ;
-- **prix 1 000 XAF/mois → XAF 2 000 / mois**, **10 000 XAF/an → XAF 10 000 / an**, nouvelle
-  mécanique « 7 mois offerts » ;
+- **prix : tarif réel de l'application — `XAF 1 000 / mois` et `XAF 10 000 / an`**
+  (révision 1.1 du 04/11 : **2 mois offerts**, et non 7) ;
 - **« SFX seuls, aucune musique » → 2 morceaux CC0 fournis par l'utilisateur** (tension + élan) ;
 - **images générées / mosaïque → typographie animée, interfaces réelles, vecteurs** ;
 - **VO produite par l'agent → VO produite par l'utilisateur** (`voix.mp3`) ;
@@ -123,7 +123,7 @@ paiement, aucune capture et aucune station n'est inventé.
 | Section C | **« le logo est dans asset »** → `[LOGO_OFFICIEL]` résolu ; les 6 autres éléments restent en **placeholder visible**. |
 | `[VOIX]` | **VO de travail temporaire** autorisée pour le minutage ; `voix.mp3` attendu avant tout rendu final. |
 | `[MUSIQUES_CC0]` | **Le propriétaire fournit les 2 morceaux** ; en attendant `MUSIC=""` et pistes en silence. |
-| Point d'arrêt 1 | ✅ **Script validé mot à mot**, aucune correction. |
+| Point d'arrêt 1 | ✅ **Script validé mot à mot** ; révision 1.1 du 04/11 : 3 expressions tarifaires corrigées, le reste inchangé. |
 | Marque (L.10) | **« MISSA TV 360 »** (sans « + » ni « PLUS »). |
 
 ## 8. Étape 2 amorcée (minutage PROVISOIRE)
@@ -174,4 +174,26 @@ Contrôles : `validate` 0 erreur / 0 warning, sonde 1080×1920 · 30 fps · 59,0
 5 images quasi figées isolées, audio non silencieux sur les 6 tranches de 10 s.
 Le détail et les **8 limites connues** sont dans le rapport de livraison.
 
-**Aucun commit, aucun push, aucune clé, aucune publication.** Les points d'arrêt 2 à 6 restent ouverts.
+Les **livrables WIP ont ensuite été poussés** sur la branche de session à la demande explicite du
+propriétaire (« je ne vois pas ça dans le dossier livrable de github ») : commit `3c60a83`.
+Aucune clé, aucune publication, aucun merge vers `main`. Les points d'arrêt 2 à 6 restent ouverts.
+
+
+---
+
+## 10. Retour du propriétaire sur le WIP — révision 1.1 (04/11)
+
+Trois corrections et une demande de refonte, formulées après visionnage de la version d'évaluation :
+
+| Point | Retour | Traitement |
+|---|---|---|
+| **Paroles / tarifs** | « l'application n'offre pas 7 mois gratuits » ; mensuel **1 000 F**, annuel **10 000 F** « au lieu de 12 000 », donc **2 mois offerts** | `SPEC-V2.md` (B, H, J, N), `SCRIPT.md` (G.2/G.3), `DECISIONS.md`, `apercu/index.html`, `render/wip_build.py`, `index.html` : **toutes les anciennes valeurs remplacées**. VO de travail corrigée sur les 2 phrases fautives, `onsets.json`/SRT recalculés (149 mots, 40 cues). |
+| **Informations manquantes** | « il y a certaines informations qui manquent … je vais te les fournir plus tard » | **Rien n'est inventé.** Tous les éléments de la section C restent en **placeholder visible** ; la liste est rappelée dans le rapport de livraison. Aucune question posée maintenant. |
+| **Visuel** | « trop touffu », « beaucoup d'éléments se répètent », « pas de trucs vraiment élaborés », « épurer et rendre plus professionnel » | WIP **v2** : grille commune (marge 90 / colonne 900), **un seul point focal par plan**, un accent par séquence, filet de progression continu, objets-ponts conservés. 12 tuiles → 3, 40 chaînes → 1 écran, 120 points → 0, 7 barres PUB → 1, 8 pièces → 1, 12 pilules → 1 grille de 8 univers. |
+| **Transitions** | « les transitions sont cohérentes » | **Aucune modification** de la structure : 13 séquences, coupes, pivot noir à 16,0, objet-pont point → logo, fondu final au noir. |
+
+**Choix de formulation à confirmer plus tard** : le script validé employait « … mois **offerts** » et la section L.2 déconseille « gratuit » sauf si exact ; la révision conserve donc **« 2 MOIS OFFERTS »** (comparaison 12 000 → 10 000). Le propriétaire a dit « 2 mois gratuits » : s'il préfère ce mot, une seule substitution sera faite au moment de la VO définitive.
+
+**Éléments attendus, non demandés maintenant** : `[VOIX]`, 2 `[MUSIQUES_CC0]`, `[CAPTURES_APP]` (téléphone + Android TV), `[QR_CODE]`, `[LIEN_TELECHARGEMENT]`, `[MODES_DE_PAIEMENT]`, `[CONDITIONS_OFFRE]`, version transparente du logo.
+
+Les points d'arrêt **2 à 6 restent ouverts** ; cette révision ne produit toujours qu'une version d'évaluation.
