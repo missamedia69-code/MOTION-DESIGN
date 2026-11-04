@@ -1,0 +1,12 @@
+# Le .gitignore racine ignore *.mp3 : réintégrer uniquement les SFX de la méthode
+# (Pixabay Content License), nécessaires pour refaire un rendu.
+!.claude/skills/media-use/audio/assets/sfx/*.mp3
+
+# Sorties locales du projet (les livrables finaux sont copiés dans livrables/).
+missa-tv-360-pub-59s/renders/
+missa-tv-360-pub-59s/snapshots/
+missa-tv-360-pub-59s/assets/audio/voix.mp3
+missa-tv-360-pub-59s/assets/audio/music*.mp3
+
+# .env vide local (aucune clé) : ne pas versionner
+.env

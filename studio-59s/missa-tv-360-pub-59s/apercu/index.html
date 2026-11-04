@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MISSA TV 360 · TON ÉCRAN MÉRITE MIEUX · étape 2</title>
+<style>
+  :root{--jaune:#F5BB00;--noir:#0B0B0C;--gris:#141416;--creme:#F4F1EA;--vert:#009E49;--rouge:#B5473A}
+  *{box-sizing:border-box}body{margin:0;background:var(--noir);color:var(--creme);
+    font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 22px 80px}
+  header{display:flex;gap:22px;align-items:center;border-bottom:2px solid var(--jaune);padding-bottom:22px}
+  header img{width:132px;height:132px;border-radius:18px;flex:none}
+  h1{font-size:30px;line-height:1.15;margin:0 0 6px;color:var(--jaune);letter-spacing:-.5px}
+  .meta{font-size:14px;color:#b9b6ae}
+  .badge{display:inline-block;background:var(--jaune);color:var(--noir);font-weight:800;
+    font-size:12px;padding:3px 9px;border-radius:999px;margin-right:6px;letter-spacing:.4px}
+  .badge.attente{background:var(--rouge);color:#fff}
+  .badge.ok{background:var(--vert);color:#fff}
+  h2{font-size:19px;margin:38px 0 12px;color:var(--jaune);letter-spacing:.3px}
+  .carte{background:var(--gris);border:1px solid #2a2a2e;border-radius:14px;padding:18px;margin-bottom:14px}
+  audio{width:100%;height:44px;margin:6px 0 8px}
+  video{width:100%;max-height:640px;background:#000;border-radius:12px;display:block;margin-bottom:10px}
+  .note{font-size:13px;color:#d9a9a2;background:#2a1817;border-left:3px solid var(--rouge);padding:9px 12px;border-radius:0 8px 8px 0}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th,td{text-align:left;padding:7px 10px;border-bottom:1px solid #2a2a2e}
+  th{color:var(--jaune);font-size:12px;text-transform:uppercase;letter-spacing:.6px}
+  td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+  ul{columns:2;column-gap:28px;padding-left:20px;font-size:14px}li{break-inside:avoid;margin-bottom:5px}
+  a{color:var(--jaune);text-decoration:none;border-bottom:1px solid #6b5310}
+  a:hover{border-bottom-color:var(--jaune)}
+  .docs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .docs a{display:block;background:var(--gris);border:1px solid #2a2a2e;border-radius:10px;padding:12px 14px;
+    border-bottom:1px solid #2a2a2e;font-size:14px}
+  code{background:#242428;padding:2px 6px;border-radius:5px;font-size:13px}
+  footer{margin-top:44px;font-size:12px;color:#8d8b86;border-top:1px solid #2a2a2e;padding-top:16px}
+</style>
+</head>
+<body><div class="wrap">
+
+<header>
+  <img src="../assets/img/logo-officiel.png" alt="Logo officiel MISSA TV 360">
+  <div>
+    <h1>TON ÉCRAN MÉRITE MIEUX</h1>
+    <div class="meta">MISSA TV 360 · film de motion design · <b>1080×1920 · 30 i/s · 59,0 s</b><br>
+      Méthode HyperFrames <b>0.8.82 figé</b> · cahier des charges v2.0 du 4 novembre 2026</div>
+    <div style="margin-top:10px">
+      <span class="badge ok">ÉTAPE 0 OK</span><span class="badge ok">SCRIPT VALIDÉ</span>
+      <span class="badge attente">VOIX FINALE ATTENDUE</span><span class="badge attente">2 MUSIQUES CC0 ATTENDUES</span>
+    </div>
+  </div>
+</header>
+
+<h2>🎬 Version d'évaluation (WIP) — 59,0 s</h2>
+<div class="carte">
+  <video controls playsinline preload="metadata" src="wip.mp4"></video>
+  <div style="font-size:13px;color:#b9b6ae">Rendu HyperFrames 0.8.82 · 1080×1920 · 30 i/s · H.264/AAC.
+  <b>13 séquences</b>, typographie animée, vecteurs, 36 bandeaux de sous-titre mot à mot,
+  VO de travail + 76 SFX. <span style="color:#d9a9a2">Ce n'est PAS le film final</span> :
+  voix définitive, 2 musiques CC0, captures d'écran, QR/lien, paiements et conditions restent à fournir.</div>
+</div>
+
+<h2>VO de travail temporaire — <span style="color:#d9a9a2">pas la voix du film</span></h2>
+<div class="carte">
+  <audio controls preload="metadata" src="../assets/audio/voix-temporaire.mp3"></audio>
+  <div class="note">Piste de repère générée uniquement pour caler <code>onsets.json</code> (59,54 s).
+  Elle sera <b>remplacée par <code>assets/audio/voix.mp3</code></b> (ElevenLabs ou comédien local)
+  avant tout rendu final. Aucune clé API n'est utilisée.</div>
+</div>
+
+<h2>Contrôle de faisabilité du rendu</h2>
+<div class="carte">
+  <span class="badge ok">✓</span> <code>npx hyperframes --version</code> → 0.8.82 &nbsp;·&nbsp;
+  <span class="badge ok">✓</span> <code>doctor</code> → FFmpeg / FFprobe / Chrome OK &nbsp;·&nbsp;
+  <span class="badge ok">✓</span> rendu de fumée <b>1080×1920 · 30 fps · H.264</b> produit par le CLI.
+  <div style="font-size:13px;color:#b9b6ae;margin-top:8px">CDN Chrome et jsDelivr étant bloqués,
+  Chromium 153, FFprobe et les 7 polices OFL ont été installés depuis <code>registry.npmjs.org</code>.
+  Voir <code>studio-59s/setup.sh</code>.</div>
+</div>
+
+<h2>13 séquences — recalage provisoire sur les silences</h2>
+<div class="carte"><table>
+<tr><th>Id</th><th>Séquence</th><th>Début → Fin</th><th>Durée</th></tr>
+<tr><td>F01</td><td>Accroche, le ticket</td><td>0,00 → 4,00</td><td>4,00 s</td></tr>
+<tr><td>F02</td><td>Gag muet, télécommande</td><td>4,00 → 6,52</td><td>2,52 s</td></tr>
+<tr><td>F03</td><td>Mêmes chaînes, mêmes séries</td><td>6,52 → 11,07</td><td>4,55 s</td></tr>
+<tr><td>F04</td><td>Mêmes pubs, l'argent s'en va</td><td>11,07 → 14,48</td><td>3,41 s</td></tr>
+<tr><td>F05</td><td>Pivot sur noir « ON MÉRITE MIEUX. »</td><td>14,48 → 16,53</td><td>2,05 s</td></tr>
+<tr><td>F06</td><td>Révélation MISSA TV 360</td><td>16,53 → 22,11</td><td>5,58 s</td></tr>
+<tr><td>F07</td><td>Films, séries, docs, mangas</td><td>22,11 → 27,80</td><td>5,69 s</td></tr>
+<tr><td>F08</td><td>Chaînes en direct</td><td>27,80 → 34,55</td><td>6,75 s</td></tr>
+<tr><td>F09</td><td>Podcasts, radios, musique</td><td>34,55 → 40,62</td><td>6,07 s</td></tr>
+<tr><td>F10</td><td>Une seule application, trois écrans</td><td>40,62 → 43,07</td><td>2,45 s</td></tr>
+<tr><td>F11</td><td>Prix mensuel · XAF 2 000 / mois</td><td>43,07 → 48,38</td><td>5,31 s</td></tr>
+<tr><td>F12</td><td>Prix annuel · XAF 10 000 / an · 7 mois offerts</td><td>48,38 → 55,16</td><td>6,78 s</td></tr>
+<tr><td>F13</td><td>CTA · Télécharger · « TON ÉCRAN MÉRITE MIEUX. »</td><td>55,16 → 59,00</td><td>3,84 s</td></tr>
+</table>
+<div style="font-size:12px;color:#8d8b86;margin-top:10px">Temps <b>provisoires</b> : à refaire sur la voix
+définitive avec <code>mots.py</code> + <code>onsets.py --transcript</code>.</div></div>
+
+<h2>Éléments encore en PLACEHOLDER visible</h2>
+<div class="carte"><ul>
+  <li><code>[CAPTURES_APP]</code> — téléphone portrait + Android TV, après T01/T02/T03</li>
+  <li><code>[LIEN_TELECHARGEMENT]</code></li>
+  <li><code>[QR_CODE]</code></li>
+  <li><code>[MODES_DE_PAIEMENT]</code></li>
+  <li><code>[CONDITIONS_OFFRE]</code></li>
+  <li><code>[MUSIQUE TENSION]</code> 0 → 16,0 s</li>
+  <li><code>[MUSIQUE ELAN]</code> 16,0 → 59,0 s</li>
+  <li><code>[VOIX]</code> — voix définitive</li>
+</ul>
+<div style="font-size:13px;color:#b9b6ae">Résolus sans rien inventer :
+<b><code>[HEX_JAUNE] = #F5BB00</code></b> (dépôt applicatif) et
+<b><code>[LOGO_OFFICIEL]</code></b> (<code>assets/images/logo-missa.png</code>, désigné par le propriétaire).</div></div>
+
+<h2>Documents du projet</h2>
+<div class="docs">
+  <a href="../SCRIPT.md">SCRIPT.md — texte VO validé</a>
+  <a href="../DECISIONS.md">DECISIONS.md — 5 réponses</a>
+  <a href="../SPEC-V2.md">SPEC-V2.md — cahier des charges</a>
+  <a href="../RAPPORT-ETAPE-0.md">RAPPORT-ETAPE-0.md</a>
+  <a href="../TIMING-PROVISOIRE.md">TIMING-PROVISOIRE.md</a>
+  <a href="../sous-titres.srt">sous-titres.srt (45 cues)</a>
+  <a href="../onsets.json">onsets.json (provisoire)</a>
+  <a href="../assets/img/README.md">assets/img/README.md — logo</a>
+</div>
+
+<footer>Aucune photo, aucune image générée par IA, aucune marque tierce. Aucune clé API, aucun push,
+aucune publication. Projet : <code>studio-59s/missa-tv-360-pub-59s/</code> · branche
+<code>arena/cc667b6c-motion-design</code>.</footer>
+</div></body></html>

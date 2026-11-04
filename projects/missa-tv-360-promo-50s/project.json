@@ -1,0 +1,807 @@
+{
+  "name": "missa-tv-360-promo-50s",
+  "title": "MISSA TV 360 — promo verticale 50 s",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "export": {
+    "preset": "mp4-web"
+  },
+  "duration": 50.0,
+  "background": "assets/images/fond-degrade.png",
+  "audio": {
+    "file": "assets/bande-son.mp3",
+    "in": 0.0,
+    "volume": 1.0,
+    "fade_in": 0,
+    "fade_out": 0
+  },
+  "layers": [
+    {
+      "type": "image",
+      "file": "render/assets/slash.png",
+      "pos": "center",
+      "in": 0.0,
+      "out": 6.18,
+      "anim": "fade",
+      "fade_in": 0.25,
+      "fade_out": 0.4
+    },
+    {
+      "type": "image",
+      "file": "assets/images/logo-missa.png",
+      "scale": {
+        "w": 620
+      },
+      "fit": "contain",
+      "pos": [
+        540,
+        760
+      ],
+      "in": 0.3,
+      "out": 6.18,
+      "anim": "pop",
+      "fade_in": 0.35,
+      "anim_duration": 0.6
+    },
+    {
+      "type": "text",
+      "text": "EN AFRIQUE, ON PAIE…",
+      "size": 60,
+      "color": "#FFFFFF",
+      "font": "Montserrat-Black.ttf",
+      "pos": [
+        540,
+        1280
+      ],
+      "max_width": 940,
+      "in": 0.8,
+      "out": 6.18,
+      "anim": "fade_up",
+      "anim_duration": 0.6
+    },
+    {
+      "type": "shape",
+      "kind": "rect",
+      "w": 320,
+      "h": 10,
+      "radius": 5,
+      "color": "#FFD400",
+      "pos": [
+        540,
+        1360
+      ],
+      "in": 1.2,
+      "out": 6.18,
+      "anim": "grow_x",
+      "anim_duration": 0.7
+    },
+    {
+      "type": "image",
+      "file": "render/assets/search.png",
+      "pos": [
+        540,
+        260
+      ],
+      "in": 6.18,
+      "out": 21.36,
+      "anim": "fade",
+      "fade_in": 0.3,
+      "fade_out": 0.3
+    },
+    {
+      "type": "image",
+      "file": "assets/images/box-mtn-cutout.png",
+      "scale": {
+        "w": 280
+      },
+      "fit": "contain",
+      "pos": [
+        850,
+        210
+      ],
+      "in": 6.18,
+      "out": 21.36,
+      "anim": "fade",
+      "fade_in": 0.4,
+      "fade_out": 0.4
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/films.png",
+      "pos": [
+        295,
+        420
+      ],
+      "in": 6.53,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/manga.png",
+      "pos": [
+        785,
+        420
+      ],
+      "in": 7.68,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/series.png",
+      "pos": [
+        295,
+        665
+      ],
+      "in": 8.83,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/short-drama.png",
+      "pos": [
+        785,
+        665
+      ],
+      "in": 9.98,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/tv-radio.png",
+      "pos": [
+        295,
+        910
+      ],
+      "in": 11.13,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/lives.png",
+      "pos": [
+        785,
+        910
+      ],
+      "in": 12.28,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/sport.png",
+      "pos": [
+        295,
+        1155
+      ],
+      "in": 13.43,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/docs.png",
+      "pos": [
+        785,
+        1155
+      ],
+      "in": 14.58,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/enfants.png",
+      "pos": [
+        295,
+        1400
+      ],
+      "in": 15.73,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "image",
+      "file": "render/assets/tiles/jeux-video.png",
+      "pos": [
+        785,
+        1400
+      ],
+      "in": 16.88,
+      "out": 21.36,
+      "anim": "pop",
+      "fade_in": 0.3,
+      "anim_duration": 0.45
+    },
+    {
+      "type": "shape",
+      "kind": "rect",
+      "w": 64,
+      "h": 52,
+      "radius": 10,
+      "color": "#FFD400",
+      "pos": [
+        340,
+        774.0
+      ],
+      "in": 21.36,
+      "out": 28.0,
+      "anim": "grow_y",
+      "anim_duration": 0.6
+    },
+    {
+      "type": "shape",
+      "kind": "rect",
+      "w": 64,
+      "h": 104,
+      "radius": 10,
+      "color": "#FFD400",
+      "pos": [
+        432,
+        748.0
+      ],
+      "in": 21.36,
+      "out": 28.0,
+      "anim": "grow_y",
+      "anim_duration": 0.6
+    },
+    {
+      "type": "shape",
+      "kind": "rect",
+      "w": 64,
+      "h": 156,
+      "radius": 10,
+      "color": "#4A5E88",
+      "pos": [
+        524,
+        722.0
+      ],
+      "in": 21.36,
+      "out": 28.0,
+      "anim": "grow_y",
+      "anim_duration": 0.6
+    },
+    {
+      "type": "shape",
+      "kind": "rect",
+      "w": 64,
+      "h": 208,
+      "radius": 10,
+      "color": "#4A5E88",
+      "pos": [
+        616,
+        696.0
+      ],
+      "in": 21.36,
+      "out": 28.0,
+      "anim": "grow_y",
+      "anim_duration": 0.6
+    },
+    {
+      "type": "text",
+      "text": "FAIBLE DÉBIT",
+      "size": 62,
+      "color": "#FFFFFF",
+      "font": "Montserrat-Black.ttf",
+      "pos": [
+        540,
+        960
+      ],
+      "in": 21.66,
+      "out": 28.0,
+      "anim": "fade_up"
+    },
+    {
+      "type": "text",
+      "text": "STABLE · ÉCONOME",
+      "size": 38,
+      "color": "#FFD400",
+      "pos": [
+        540,
+        1040
+      ],
+      "in": 21.86,
+      "out": 28.0,
+      "anim": "fade"
+    },
+    {
+      "type": "image",
+      "file": "render/assets/ring.png",
+      "pos": [
+        540,
+        1340
+      ],
+      "in": 21.759999999999998,
+      "out": 28.0,
+      "anim": "pop",
+      "fade_in": 0.4
+    },
+    {
+      "type": "text",
+      "text": "DATA",
+      "size": 68,
+      "color": "#FFFFFF",
+      "font": "Montserrat-Black.ttf",
+      "pos": [
+        540,
+        1340
+      ],
+      "in": 21.96,
+      "out": 28.0,
+      "anim": "fade"
+    },
+    {
+      "type": "image",
+      "file": "assets/images/pastille.png",
+      "scale": {
+        "w": 220
+      },
+      "fit": "contain",
+      "pos": [
+        150,
+        300
+      ],
+      "in": 21.36,
+      "out": 28.0,
+      "anim": "fade",
+      "fade_in": 0.3,
+      "fade_out": 0.3
+    },
+    {
+      "type": "image",
+      "file": "assets/images/pastille.png",
+      "scale": {
+        "w": 720
+      },
+      "fit": "contain",
+      "pos": [
+        540,
+        800
+      ],
+      "in": 28.0,
+      "out": 34.4,
+      "anim": "pop",
+      "fade_in": 0.4
+    },
+    {
+      "type": "text",
+      "text": "24 H",
+      "size": 180,
+      "color": "#0B1020",
+      "font": "Montserrat-Black.ttf",
+      "pos": [
+        540,
+        800
+      ],
+      "in": 28.2,
+      "out": 34.4,
+      "anim": "pop"
+    },
+    {
+      "type": "text",
+      "text": "ESSAI GRATUIT",
+      "size": 60,
+      "color": "#FFD400",
+      "font": "Montserrat-Black.ttf",
+      "pos": [
+        540,
+        1260
+      ],
+      "in": 28.4,
+      "out": 34.4,
+      "anim": "fade_up"
+    },
+    {
+      "type": "text",
+      "text": "1 000 XAF / MOIS",
+      "size": 72,
+      "color": "#FFFFFF",
+      "font": "Montserrat-Black.ttf",
+      "pos": [
+        540,
+        220
+      ],
+      "in": 34.4,
+      "out": 44.76,
+      "anim": "fade_up"
+    },
+    {
+      "type": "text",
+      "text": "10 000 XAF / AN",
+      "size": 88,
+      "color": "#FFD400",
+      "font": "Montserrat-Black.ttf",
+      "pos": [
+        540,
+        360
+      ],
+      "in": 34.699999999999996,
+      "out": 44.76,
+      "anim": "pop",
+      "fade_in": 0.3
+    },
+    {
+      "type": "image",
+      "file": "render/assets/qr.png",
+      "pos": [
+        540,
+        700
+      ],
+      "in": 35.0,
+      "out": 44.76,
+      "anim": "fade",
+      "fade_in": 0.4
+    },
+    {
+      "type": "image",
+      "file": "render/assets/code-field.png",
+      "pos": [
+        540,
+        1000
+      ],
+      "in": 36.9,
+      "out": 44.76,
+      "anim": "fade",
+      "fade_in": 0.4
+    },
+    {
+      "type": "image",
+      "file": "render/assets/button.png",
+      "pos": [
+        540,
+        1220
+      ],
+      "in": 37.9,
+      "out": 44.76,
+      "anim": "pop",
+      "fade_in": 0.3
+    },
+    {
+      "type": "shape",
+      "kind": "rect",
+      "w": 1080,
+      "h": 1920,
+      "radius": 0,
+      "color": "#FFD400",
+      "pos": [
+        540,
+        960
+      ],
+      "in": 44.76,
+      "out": 50.0,
+      "anim": "fade",
+      "fade_in": 0.35,
+      "fade_out": 0.01
+    },
+    {
+      "type": "image",
+      "file": "assets/images/logo-missa.png",
+      "scale": {
+        "w": 640
+      },
+      "fit": "contain",
+      "pos": [
+        540,
+        620
+      ],
+      "in": 44.96,
+      "out": 50.0,
+      "anim": "pop",
+      "fade_in": 0.4
+    },
+    {
+      "type": "text",
+      "text": "ACTIVEZ VOTRE CODE",
+      "size": 72,
+      "color": "#0B1020",
+      "font": "Montserrat-Black.ttf",
+      "pos": [
+        540,
+        1260
+      ],
+      "max_width": 980,
+      "in": 45.16,
+      "out": 50.0,
+      "anim": "fade_up"
+    },
+    {
+      "type": "text",
+      "text": "10 000 XAF / AN",
+      "size": 52,
+      "color": "#163C9F",
+      "font": "Montserrat-Black.ttf",
+      "pos": [
+        540,
+        1380
+      ],
+      "in": 45.36,
+      "out": 50.0,
+      "anim": "fade"
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/01.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 0.0,
+      "out": 1.79,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/02.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 1.79,
+      "out": 4.12,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/03.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 4.12,
+      "out": 6.18,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/04.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 6.18,
+      "out": 9.2,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/05.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 9.2,
+      "out": 11.99,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/06.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 11.99,
+      "out": 14.08,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/07.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 14.08,
+      "out": 16.71,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/08.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 16.71,
+      "out": 19.5,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/09.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 19.5,
+      "out": 21.36,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/10.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 21.36,
+      "out": 23.27,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/11.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 23.27,
+      "out": 25.45,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/12.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 25.45,
+      "out": 27.62,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/13.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 28.0,
+      "out": 31.08,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/14.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 31.08,
+      "out": 34.4,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/15.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 34.4,
+      "out": 36.39,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/16.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 36.39,
+      "out": 39.66,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/17.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 39.66,
+      "out": 42.05,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/18.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 42.05,
+      "out": 44.76,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/19.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 44.76,
+      "out": 47.83,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    },
+    {
+      "type": "image",
+      "file": "render/assets/sub/20.png",
+      "pos": [
+        540,
+        1730
+      ],
+      "in": 47.83,
+      "out": 49.88,
+      "anim": "fade",
+      "fade_in": 0.1,
+      "fade_out": 0.1
+    }
+  ]
+}

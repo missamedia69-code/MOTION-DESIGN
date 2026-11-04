@@ -1,0 +1,15 @@
+{
+  "projet": "missa-tv-360-promo-50s",
+  "sortie": "livrables/missa-tv-360-promo-50s.mp4",
+  "export": "mp4-web",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "label": "YouTube / TV / écran"
+  },
+  "duree_s": 50.0,
+  "poids": "2.1 Mo",
+  "rendu_le": "2026-11-04 09:40:51",
+  "temps_rendu_s": 45.3
+}

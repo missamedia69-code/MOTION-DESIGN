@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MISSA TV 360 — aperçu voix & storyboard</title>
+<style>
+  :root { --jaune:#FFD400; --fond:#0B1020; --carte:#142040; --texte:#EAF0FF; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--fond); color:var(--texte);
+         font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+         padding:28px; max-width:1100px; margin:auto; }
+  h1 { color:var(--jaune); font-size:26px; margin:0 0 6px; }
+  p.lead { color:#9FB4D8; margin:0 0 26px; font-size:15px; }
+  h2 { color:var(--jaune); font-size:19px; margin:32px 0 14px;
+       border-bottom:1px solid #24365f; padding-bottom:8px; }
+  .carte { background:var(--carte); border:1px solid #24365f; border-radius:14px;
+           padding:16px 18px; margin-bottom:12px; }
+  .carte b { color:var(--jaune); display:block; margin-bottom:4px; font-size:15px; }
+  .carte small { color:#9FB4D8; display:block; margin-bottom:10px; }
+  audio { width:100%; height:38px; }
+  video { width:100%; max-height:560px; background:#000; border-radius:10px;
+          display:block; margin-bottom:8px; }
+  .grille { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .grille img { width:100%; border-radius:12px; border:1px solid #24365f; display:block; }
+  .grille figcaption { color:#9FB4D8; font-size:13px; margin-top:6px; }
+  table { border-collapse:collapse; width:100%; font-size:14px; }
+  th,td { text-align:left; padding:8px 10px; border-bottom:1px solid #24365f; }
+  th { color:var(--jaune); }
+  .note { background:#1b2b52; border-left:4px solid var(--jaune); padding:14px 16px;
+          border-radius:8px; font-size:14px; line-height:1.5; margin-top:24px; }
+  code { background:#0a1228; padding:2px 6px; border-radius:4px; color:var(--jaune); }
+  @media (max-width:760px) { .grille { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<h1>MISSA TV 360 · promo 50 s · 9:16</h1>
+<p class="lead">Aperçu de travail — voix, storyboard et images de la grille. Tout est lu en relatif depuis cette page.</p>
+
+<h2>Voir la vidéo rendue</h2>
+<div class="carte">
+  <video controls playsinline preload="metadata" src="video.mp4"></video>
+  <small>MISSA TV 360 · 50 s · 1080x1920 · VO + 10 SFX · 20 sous-titres</small>
+</div>
+
+<h2>Écouter les 5 pistes</h2>
+<div class="carte"><b>1 · TEMPLATE VOCAL</b><small>Référence uploadée sur GitHub · 24,02 s</small><audio controls preload="metadata" src="template.mp3"></audio></div>
+<div class="carte"><b>2 · VO D'ORIGINE</b><small>voice-02 · 44,32 s</small><audio controls preload="metadata" src="voix-origine.mp3"></audio></div>
+<div class="carte"><b>3 · TIMBRE SEUL</b><small>enveloppe spectrale du template</small><audio controls preload="metadata" src="voix-timbre.mp3"></audio></div>
+<div class="carte"><b>4 · TIMBRE + HAUTEUR</b><small>candidat « cloné » · correction x1,20</small><audio controls preload="metadata" src="voix-matchee.mp3"></audio></div>
+<div class="carte"><b>A/B COMPLET</b><small>4 extraits de 7 s enchaînés · 29,05 s</small><audio controls preload="metadata" src="comparaison.mp3"></audio></div>
+
+<h2>Comparaison visuelle des formes d'onde</h2>
+<div class="carte"><img src="formes-onde.png" alt="Formes d'onde" style="width:100%;border-radius:8px"></div>
+
+<h2>Mesures acoustiques</h2>
+<div class="carte"><table>
+<tr><th>Mesure</th><th>Template</th><th>VO voice-02</th></tr>
+<tr><td>F0 médian</td><td>294 Hz</td><td>203 Hz</td></tr>
+<tr><td>Centre spectral</td><td>4 015 Hz</td><td>2 324 Hz</td></tr>
+<tr><td>Durée</td><td>24,02 s</td><td>44,32 s</td></tr>
+</table></div>
+
+<h2>Visuels validés</h2>
+<div class="grille">
+  <figure><img src="storyboard.png" alt="Storyboard"><figcaption>Storyboard 6 plans · 50 s</figcaption></figure>
+  <figure><img src="images10.jpg" alt="10 images"><figcaption>Les 10 images générées de la grille</figcaption></figure>
+</div>
+
+<div class="note"><b>⚠️ Limite</b> : le transfert spectral rapproche la couleur du
+timbre mais ne clone pas l'identité, la prosodie ni l'accent. Un vrai clonage
+nécessite VoxCPM2 sur un poste connecté : <code>./md vo --backend voxcpm --voice "assets/audio/Voive Template.mp3"</code>.
+Voir <code>CLONAGE-VOIX.md</code>.</div>
+</body>
+</html>
