@@ -127,8 +127,32 @@ remplacent. **Aucun sous-titre** pendant F02 (gag muet) et les 3 moments typogra
 - [x] Forme de marque : **« MISSA TV 360 »** (sans « + » ni « PLUS »).
 - [x] Écriture monétaire : **`XAF 1 000` / `XAF 10 000`** (défaut du CDC, variante `FCFA` non retenue).
 - [x] Logo officiel : le propriétaire a indiqué « le logo est dans asset » → `assets/img/logo-officiel.png`.
-- [ ] Chœur (3 voix ou narrateur seul) : **non tranché** → version minimale narrateur seul, à confirmer à l'étape 2.
+- [x] Chœur : **version minimale retenue** — une seule voix, y compris « On mérite mieux ! » et
+      « On est ensemble ! » (le propriétaire synthétise en local, une seule prise).
 - [ ] Éléments restants de la section C : voir `DECISIONS.md` et `RAPPORT-ETAPE-0.md`.
 
 **Étape suivante : voix (point d'arrêt 2).** Une VO de travail temporaire est autorisée pour caler
 `onsets.json` ; `assets/audio/voix.mp3` reste attendu et sera substituée avant tout rendu final.
+
+
+## 7. Étape 2 — texte remis pour synthèse locale (04/11)
+
+Le propriétaire a indiqué : « donne moi le texte à utiliser, je te donne la voix, j'ai un logiciel en
+local qui permet de la synthétiser ». **`[VOIX]` passe donc de "attendu" à "en cours de production"**,
+sans aucune clé API, sans envoi, sans service cloud : la voix est produite sur sa machine.
+
+| Livrable | Contenu |
+|---|---|
+| `VOIX-A-SYNTHETISER.txt` | **le texte à coller**, pur, mot pour mot = G.3 ci-dessus (révision 1.1 : « Mille francs CFA par mois. », « Deux mois offerts ! »). 149 mots. |
+| `VOIX-CONSIGNES.md` | langue/français, direction de voix, prononciation (MISSA, TV, 360, CFA), format du fichier `assets/audio/voix.mp3`, une seule ligne à trancher (« offerts » / « gratuits »), format JSON des timings mot à mot. |
+
+Deux points restent ouverts au moment de la synthèse :
+1. **« Deux mois offerts ! » ou « Deux mois gratuits ! »** — une seule ligne ; le sous-titre et F12
+   seront alignés sur le choix réellement enregistré.
+2. **Timings mot à mot** — si le logiciel local exporte `{"words":[{"w","s","e"}]}`, `onsets.py
+   --transcript` donne le vrai `onsets.json` sans Whisper (modèle non téléchargeable ici). Sinon le
+   minutage reste provisoire sur `onsets.py --no-whisper`.
+
+**Point d'arrêt 2 toujours ouvert** jusqu'à réception de `voix.mp3` : la VO de travail
+`assets/audio/voix-temporaire.mp3` reste en place dans le WIP v2, le placeholder `[VOIX]` reste
+visible à l'écran.

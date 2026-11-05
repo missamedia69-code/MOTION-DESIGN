@@ -197,3 +197,27 @@ Trois corrections et une demande de refonte, formulées après visionnage de la 
 **Éléments attendus, non demandés maintenant** : `[VOIX]`, 2 `[MUSIQUES_CC0]`, `[CAPTURES_APP]` (téléphone + Android TV), `[QR_CODE]`, `[LIEN_TELECHARGEMENT]`, `[MODES_DE_PAIEMENT]`, `[CONDITIONS_OFFRE]`, version transparente du logo.
 
 Les points d'arrêt **2 à 6 restent ouverts** ; cette révision ne produit toujours qu'une version d'évaluation.
+
+
+---
+
+## 11. Étape 2 — le propriétaire fournit la voix (04/11)
+
+« donne moi le texte à utiliser, je te donne la voix, j'ai un logiciel en local qui permet de le
+synthétiser ». Deux fichiers ajoutés au projet :
+
+- `VOIX-A-SYNTHETISER.txt` : texte G.3 révisé, **≈150 mots (149 minutés dans `onsets.json`)**, pur, prêt à coller ;
+- `VOIX-CONSIGNES.md` : réglages, prononciation, format de fichier, choix « offerts / gratuits »,
+  format JSON des timings mot à mot.
+
+**Aucune clé, aucun service cloud, aucun envoi** : la synthèse est faite par le propriétaire sur sa
+machine, conformément à G.4 (alternative au forfait ElevenLabs payant). À réception de
+`assets/audio/voix.mp3` (+ transcript JSON si disponible), le pipeline `onsets.py` recalera les
+13 séquences et la VO de travail sera substituée. Le point d'arrêt 2 reste ouvert d'ici là, les
+points 3 à 6 également.
+
+**Question Pinterest (04/11)** : le connecteur Pinterest est `unsupported` sur Arena et
+`pinterest.com` n'est pas dans les hôtes réseau autorisés. Les éléments manquants ne sont pas des
+illustrations mais les assets officiels du propriétaire (section C) ; aucune image tiers ne sera
+introduite dans un film intégralement vectoriel. Un moodboard déposé dans `entrees/` ne servirait
+qu'à la direction artistique de l'étape 3, jamais au rendu.
