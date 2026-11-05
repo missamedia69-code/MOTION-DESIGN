@@ -6,6 +6,10 @@
 >
 > **RÉVISION 1.1** — cette version corrige le retour du propriétaire : **tarifs**, et **cure
 > d'épurement visuelle**. Les transitions, jugées cohérentes, n'ont **pas** été modifiées.
+>
+> ℹ️ **RÉVISION 1.2 (texte VO)** : le texte à synthétiser a été amélioré le 04/11 dans
+> `VOIX-A-SYNTHETISER.txt`. **Ce MP4 utilise encore la VO de travail 1.1** : le nouveau texte sera
+> intégré en une seule passe avec `voix.mp3` (point d'arrêt 2), sans re-render intermédiaire.
 
 ## Fichiers livrés
 

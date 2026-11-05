@@ -221,3 +221,26 @@ points 3 à 6 également.
 illustrations mais les assets officiels du propriétaire (section C) ; aucune image tiers ne sera
 introduite dans un film intégralement vectoriel. Un moodboard déposé dans `entrees/` ne servirait
 qu'à la direction artistique de l'étape 3, jamais au rendu.
+
+
+---
+
+## 12. Révision 1.2 du texte VO — « améliore ce texte » (04/11)
+
+Le propriétaire a proposé une nouvelle accroche (« des abonnements coûteux pour ne rien avoir »,
+« des contenus vides »), une nouvelle image (« mettre l'argent sur de l'argent ») et une chute
+« On est ensemble whech ! ». Ses **idées sont conservées** ; la mise en forme a été améliorée :
+français corrigé (*coûteux*, *contenus creux*, *empiler*), « chaque premier du mois » rétabli pour
+l'accroche datée, virgule finale remplacée, lignes vides normalisées (gag / pivot / chœur final
+uniquement, sinon le TTS dépasse 59,0 s), et « whech » traité comme une coquille.
+
+`VOIX-A-SYNTHETISER.txt`, `VOIX-CONSIGNES.md`, `SCRIPT.md` (G.2, G.3, §8) sont en **1.2**.
+**Point d'arrêt 1 réouvert** : validation mot pour mot attendue avant enregistrement.
+
+Trois décisions laissées au propriétaire : « offerts / gratuits », « whech / wesh / rien », et
+l'éventuel adoucissement de « pour ne rien avoir » en « pour rien de neuf ». Conséquence timing :
+l'accroche passe de 12 à ~22 mots, F01 de ~4,0 s à ~5,5-6,0 s ; recalage prévu sur `voix.mp3`.
+
+**Cohérence documentée** : `onsets.json`, `sous-titres.srt`, `index.html`, la VO de travail et le
+**WIP v2 déjà rendu** portent encore la VO 1.1. Ils seront régénérés en une seule passe à réception
+de `voix.mp3`. Aucun rendu, aucune clé, aucune publication lancés dans cette étape.

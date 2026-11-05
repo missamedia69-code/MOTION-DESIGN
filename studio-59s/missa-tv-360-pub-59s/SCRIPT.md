@@ -10,6 +10,12 @@
 > et à l'écran `XAF 2 000` → **`XAF 1 000`**. L'application ne pratique pas 7 mois offerts :
 > l'année à 10 000 au lieu de 12 × 1 000 = 12 000 équivaut à **2 mois offerts**.
 > Le reste du texte reste validé **mot pour mot** ; le point d'arrêt 1 reste levé.
+>
+> ⚠️ **RÉVISION 1.2 du 4 novembre 2026** — demande « améliore ce texte ». Le propriétaire réécrit
+> l'accroche et deux images ; français corrigé, lignes vides normalisées (détail au §8).
+> **Point d'arrêt 1 RÉOUVERT** : ce texte attend sa validation avant l'enregistrement de la voix.
+> Les tarifs de la révision 1.1 (**XAF 1 000 / mois · XAF 10 000 / an · 2 mois offerts**) restent
+> inchangés.
 > Voir `DECISIONS.md` pour les 5 réponses, `SPEC-V2.md` pour les règles,
 > `RAPPORT-ETAPE-0.md` pour les éléments manquants.
 
@@ -32,10 +38,10 @@
 
 | Temps | Séquence | Voix |
 |---|---|---|
-| `[0.0-4.5]` | **F01 Accroche** | « Tu paies. Chaque premier du mois. Et chaque soir… la même chose. » |
+| `[0.0-4.5]` | **F01 Accroche** | « Tu paies. Chaque premier du mois, des abonnements coûteux pour ne rien avoir. Et chaque soir... la même chose. Des contenus creux. » |
 | `[4.5-7.0]` | **F02 GAG MUET** | *(aucune voix, 2,5 s)* |
 | `[7.0-11.0]` | **F03 Douleurs 1 et 2** | « Les mêmes chaînes. Les mêmes séries, déjà vues. » |
-| `[11.0-15.0]` | **F04 Douleur 3** | « Les mêmes pubs. Et ton argent, lui, il s'en va. » |
+| `[11.0-15.0]` | **F04 Douleur 3** | « Les mêmes pubs. Tu ne fais qu'empiler l'argent sur l'argent. » |
 | `[15.0-16.0]` | **F05 Pivot** puis **NOIR 16.0 → 16.8** (silence, impact grave à 16.0) | **CHŒUR** : « On mérite mieux ! » |
 | `[16.8-22.0]` | **F06 Révélation** | « Voici Missa TV trois cent soixante. Tout ton divertissement, dans une seule application. » |
 | `[22.0-28.0]` | **F07 Films, séries, documentaires, mangas** | « Des milliers de films. Des séries à n'en plus finir. Des documentaires, des mangas… » |
@@ -58,13 +64,14 @@
 
 ```
 Tu paies.
-Chaque premier du mois.
-Et chaque soir... la même chose.
+Chaque premier du mois, des abonnements coûteux pour ne rien avoir.
+
+Et chaque soir... la même chose. Des contenus creux.
 
 Les mêmes chaînes.
 Les mêmes séries, déjà vues.
 Les mêmes pubs.
-Et ton argent, lui, il s'en va.
+Tu ne fais qu'empiler l'argent sur l'argent.
 
 On mérite mieux !
 
@@ -122,8 +129,8 @@ remplacent. **Aucun sous-titre** pendant F02 (gag muet) et les 3 moments typogra
 ## 6. Point d'arrêt 1 — relevé le 4 novembre 2026
 
 - [x] Validation **mot à mot** des deux textes ci-dessus : **« Validé, on passe à la voix »**.
-      Révision 1.1 : seules les 3 expressions tarifaires ci-dessus ont été corrigées à la demande
-      du propriétaire ; **aucune autre phrase n'a été modifiée**.
+      Révision 1.1 : seules les 3 expressions tarifaires ont été corrigées. **Révision 1.2 :
+      le texte a été remanié par le propriétaire → validation mot pour mot À RENOUVELER.**
 - [x] Forme de marque : **« MISSA TV 360 »** (sans « + » ni « PLUS »).
 - [x] Écriture monétaire : **`XAF 1 000` / `XAF 10 000`** (défaut du CDC, variante `FCFA` non retenue).
 - [x] Logo officiel : le propriétaire a indiqué « le logo est dans asset » → `assets/img/logo-officiel.png`.
@@ -143,7 +150,7 @@ sans aucune clé API, sans envoi, sans service cloud : la voix est produite sur 
 
 | Livrable | Contenu |
 |---|---|
-| `VOIX-A-SYNTHETISER.txt` | **le texte à coller**, pur, mot pour mot = G.3 ci-dessus (révision 1.1 : « Mille francs CFA par mois. », « Deux mois offerts ! »). 149 mots. |
+| `VOIX-A-SYNTHETISER.txt` | **le texte à coller**, pur, mot pour mot = G.3 ci-dessus (**révisions 1.1 + 1.2**). ≈160 mots. |
 | `VOIX-CONSIGNES.md` | langue/français, direction de voix, prononciation (MISSA, TV, 360, CFA), format du fichier `assets/audio/voix.mp3`, une seule ligne à trancher (« offerts » / « gratuits »), format JSON des timings mot à mot. |
 
 Deux points restent ouverts au moment de la synthèse :
@@ -156,3 +163,35 @@ Deux points restent ouverts au moment de la synthèse :
 **Point d'arrêt 2 toujours ouvert** jusqu'à réception de `voix.mp3` : la VO de travail
 `assets/audio/voix-temporaire.mp3` reste en place dans le WIP v2, le placeholder `[VOIX]` reste
 visible à l'écran.
+
+
+## 8. Révision 1.2 — amélioration du texte VO (04/11)
+
+Le propriétaire a proposé une nouvelle accroche et deux images, et demandé « améliore ce texte ».
+**Ses idées sont conservées** ; seuls le français, la ponctuation et le rythme de synthèse sont
+corrigés.
+
+| Ta version | Version améliorée | Pourquoi |
+|---|---|---|
+| « Tu paies, chaque mois des abonnements **couteux** pour ne rien avoir. » | « **Tu paies. Chaque premier du mois,** des abonnements **coûteux** pour ne rien avoir. » | deux phrases au lieu d'une virgule qui relie deux propositions ; accent sur *coûteux* ; **« chaque premier du mois »** rétablit l'**accroche datée** exigée par la section A (perdue avec « chaque mois »). Le premier mot reste **« Tu »**. |
+| « Et chaque soir... la même chose, des **contenues** vides, » | « Et chaque soir... la même chose. **Des contenus creux.** » | *contenus* est masculin (pas *contenues*) ; « contenus vides » est un pléonasme, *creux* est plus juste ; virgule finale → point. |
+| « Tu ne fais que **mettre l'argent sur de l'argent**. » | « Tu ne fais qu'**empiler l'argent sur l'argent**. » | *empiler* rend l'image lisible à l'oral et évite la répétition « de l'argent / de l'argent ». |
+| « On est ensemble **whech** ! » | « **On est ensemble !** » | *whech* semble une coquille. Si « **wesh** » est volontaire, c'est une tournure régionale : G.5 demande validation par un locuteur natif — le propriétaire (Douala) peut la donner. |
+| une ligne vide entre **chaque** phrase | lignes vides **uniquement** pour le gag muet, le pivot et le chœur final | un TTS marque une pause longue à chaque ligne vide : avec 20+ lignes vides, le texte dépasse largement 59,0 s. Les simples retours à la ligne restent des pauses courtes. |
+
+**Trois points que le propriétaire doit trancher avant d'enregistrer :**
+1. **« Deux mois offerts ! »** ou **« Deux mois gratuits ! »** (déjà signalé en 1.1) ;
+2. **« whech »** : coquille à corriger, ou « wesh » assumé ;
+3. **« pour ne rien avoir »** : formulation très absolue, gardée telle quelle. Variante moins
+   attaquable si souhaitée : « pour rien de neuf ». Aucun opérateur ni marque n'est nommé (L.1 OK).
+
+**Conséquence sur le minutage** : l'accroche gagne environ 8 mots (≈22 mots en F01 contre 12 en
+1.1). Au débit actuel, F01 passerait de 4,0 s à ~5,5-6,0 s. Ce n'est pas un problème : les
+13 séquences seront **recalées sur `voix.mp3`** à réception de la voix, en gardant le gag muet
+(2-3 s), le pivot sur noir et la durée totale **59,0 s**. Si tu veux absolument garder F01 à 4 s,
+une accroche resserrée est proposée dans `VOIX-CONSIGNES.md`.
+
+⚠️ **État de cohérence** : `VOIX-A-SYNTHETISER.txt`, G.2, G.3 et ce §8 sont en **1.2**.
+`onsets.json`, `sous-titres.srt`, `index.html`, la VO de travail et le **WIP v2 déjà rendu**
+portent encore la VO 1.1 : ils seront régénérés en une seule passe avec `voix.mp3`, conformément
+au point d'arrêt 2. **Aucun nouveau rendu n'est lancé avant ta validation.**
