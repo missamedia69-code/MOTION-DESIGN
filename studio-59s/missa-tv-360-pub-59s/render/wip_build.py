@@ -149,7 +149,7 @@ def scene(fid, bg, inner, track):
 # ===========================================================================
 
 # F01 — première image = LE TICKET (jamais le logo) ------------------------
-lignes = ["1er DU MOIS", "CHAÎNES : LES MÊMES", "TOTAL XAF ••••"]
+lignes = ["ABONNEMENTS", "CHAÎNES : LES MÊMES", "TOTAL XAF ••••"]  # révision 1.3 : aucune date de prélèvement
 f01 = (
     box("f01-card", 140, 300, 800, 760, fill=PAPER, stroke="transparent", radius=6, sw=0,
         extra="box-shadow:0 30px 90px rgba(0,0,0,.45)") +

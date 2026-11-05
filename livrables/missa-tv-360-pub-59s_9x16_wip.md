@@ -10,6 +10,9 @@
 > ℹ️ **RÉVISION 1.2 (texte VO)** : le texte à synthétiser a été amélioré le 04/11 dans
 > `VOIX-A-SYNTHETISER.txt`. **Ce MP4 utilise encore la VO de travail 1.1** : le nouveau texte sera
 > intégré en une seule passe avec `voix.mp3` (point d'arrêt 2), sans re-render intermédiaire.
+> **RÉVISION 1.3** : le texte VO ne mentionne plus de date de prélèvement et se termine par
+> « On est ensemble, wesh ! ». Le ticket de ce MP4 affiche encore `1er DU MOIS` : le libellé
+> `ABONNEMENTS` est déjà corrigé dans les sources et sera visible au prochain rendu.
 
 ## Fichiers livrés
 

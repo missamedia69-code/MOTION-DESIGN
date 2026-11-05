@@ -8,6 +8,11 @@
 > (accroche réécrite, « contenus creux », « empiler l'argent sur l'argent », « On est ensemble ! »).
 > Le détail des corrections est au §8 de `SCRIPT.md`. **Trois points à trancher avant d'enregistrer**
 > sont listés au §3 bis ci-dessous. Le texte attend ta validation mot pour mot (point d'arrêt 1 réouvert).
+>
+> ✅ **RÉVISION 1.3 (même jour)** : « chaque premier du mois » → **« Chaque mois »** (aucune date
+> de prélèvement affirmée) et **« On est ensemble, wesh ! »** retenu, tournure validée par toi
+> (locuteur natif, Douala). Le ticket F01 perd `1er DU MOIS` → `ABONNEMENTS`. Il ne reste qu'un
+> point à trancher : **« offerts » / « gratuits »**.
 
 ## 1. Fichier à produire
 
@@ -25,11 +30,11 @@ Le fichier reste **local** : `*.mp3` / `*.wav` sont ignorés par Git (aucune cl�
 | Chœur | **Une seule voix suffit**, y compris pour « On mérite mieux ! » et « On est ensemble ! » (version minimale autorisée par G.4) |
 | Stabilité / similarité | 40-50 % / 80-90 % si le logiciel expose ces paramètres |
 
-**Prononciation** : MISSA = « mi-sa » (écrire `Mi-sa` si le moteur bute, le sous-titre affiche toujours
+**Prononciation** : **wesh** = « wèch », interjection, ne pas épeler W-E-S-H ; MISSA = « mi-sa » (écrire `Mi-sa` si le moteur bute, le sous-titre affiche toujours
 MISSA) · TV = « télé » **ou** « té-vé », de façon **constante** · 360 = « trois cent soixante » ·
 CFA = lettres « C-F-A ». **Tous les chiffres sont déjà en toutes lettres** dans le texte.
 
-**Débit** : parler naturellement, **≈164 mots** pour une cible de **59,0 s**. Ne pas forcer la durée :
+**Débit** : parler naturellement, **≈163 mots** pour une cible de **59,0 s**. Ne pas forcer la durée :
 le montage coupe **uniquement dans les silences**, jamais en accélérant la voix. Les **lignes vides**
 marquent le gag muet (~2,5 s), le pivot (~0,8 s) et le chœur final — **ne pas en ajouter entre
 chaque phrase**, sinon le TTS dépasse 59,0 s. **Ne pas les allonger soi-même**.
@@ -49,16 +54,14 @@ Rappel du calcul : **12 × 1 000 = 12 000**, l'année coûte **10 000** → éca
 
 1. **« Deux mois offerts ! »** (texte livré, cohérent avec `2 MOIS OFFERTS` à l'écran) ou
    **« Deux mois gratuits ! »** (mot employé dans ton retour) → une seule ligne à remplacer.
-2. **« whech »** : coquille corrigée en **« On est ensemble ! »**. Si tu voulais **« wesh »**,
-   dis-le : c'est une tournure régionale que G.5 fait valider par un locuteur natif (toi, à Douala).
-3. **« pour ne rien avoir »** : gardé tel quel, mais c'est une affirmation très absolue. Variante
+2. **« pour ne rien avoir »** : gardé tel quel, mais c'est une affirmation très absolue. Variante
    plus prudente : **« pour rien de neuf »**. Aucun opérateur ni marque n'est nommé (L.1 respecté).
 
 **Accroche resserrée** (si tu veux garder F01 à ~4 s au lieu de ~5,5-6 s) :
 
 ```
 Tu paies.
-Chaque premier du mois, cher, pour rien de neuf.
+Chaque mois, cher, pour rien de neuf.
 
 Et chaque soir... la même chose.
 

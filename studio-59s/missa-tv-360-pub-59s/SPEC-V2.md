@@ -110,7 +110,7 @@
 - Géométrie : Monde 1 = ticket 640 u de large, **≥ 4 000 u de long**, centré, 3 stations. Monde 2 = grille verticale, **source unique `reference/grille.html`** recopiée à l'identique par chaque séquence.
 
 ## G. Script et voix
-- 6 temps : accroche concrète/datée → gag muet 2-3 s → diagnostic 3 douleurs → pivot sur noir → solution/bénéfices → marque/CTA. **Premier mot = cible ou douleur (« Tu »)**, première image = le ticket, **jamais le logo**.
+- 6 temps : accroche concrète (**sans date de prélèvement**, révision 1.3) → gag muet 2-3 s → diagnostic 3 douleurs → pivot sur noir → solution/bénéfices → marque/CTA. **Premier mot = cible ou douleur (« Tu »)**, première image = le ticket, **jamais le logo**.
 - Voir `SCRIPT.md` pour les deux versions intégrales (mise en scène + à coller dans ElevenLabs).
 - Voix : Eleven v4, langue **Français réglée à la main**, Stabilité 40-50 %, Similarité 80-90 %, 2-3 prises, **forfait payant obligatoire pour usage commercial**. Aucune balise de pause ; chiffres EN TOUTES LETTRES ; ponctuation/`...`/retours à la ligne font les pauses. Narrateur homme 35-45 ans, chaud, posé puis énergique, **accent français d'Afrique centrale ou de l'Ouest NATUREL**, 0:00-0:16 ironique et las, ≥ 0:17 énergie/fierté. Chœur optionnel 3 voix (homme, femme, jeune). Expressions locales avec modération, **toute tournure régionale validée par un locuteur natif**. Prononciation : MISSA = « mi-sa » (écrire « Mi-sa » si le moteur bute, le sous-titre affiche toujours MISSA) ; TV = « télé » ou « té-vé » de façon constante ; 360 = « trois cent soixante ».
 

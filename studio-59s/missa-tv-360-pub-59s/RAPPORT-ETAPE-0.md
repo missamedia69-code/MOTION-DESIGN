@@ -244,3 +244,25 @@ l'accroche passe de 12 à ~22 mots, F01 de ~4,0 s à ~5,5-6,0 s ; recalage prév
 **Cohérence documentée** : `onsets.json`, `sous-titres.srt`, `index.html`, la VO de travail et le
 **WIP v2 déjà rendu** portent encore la VO 1.1. Ils seront régénérés en une seule passe à réception
 de `voix.mp3`. Aucun rendu, aucune clé, aucune publication lancés dans cette étape.
+
+
+---
+
+## 13. Révision 1.3 — exactitude et ancrage local (04/11)
+
+« on ne paye pas forcément chaque premier du mois, on est ensemble wesh est mieux pour la pub ».
+
+- **Aucune date de prélèvement** : « Chaque premier du mois » → **« Chaque mois »** dans
+  `VOIX-A-SYNTHETISER.txt`, G.2, G.3. L'exigence « accroche datée » de la section A est écartée
+  au profit de L.2 ; le concept 2 « Le premier du mois » est écarté. L'accroche reste concrète.
+- **« On est ensemble, wesh ! »** : tournure régionale validée par le propriétaire (locuteur natif,
+  Douala) → G.5 satisfait. Virgule pour la pause TTS, prononciation « wèch ».
+- **Cohérence image/son** : `render/wip_build.py` et `index.html` affichaient `1er DU MOIS` sur le
+  ticket F01 → remplacé par **`ABONNEMENTS`**. Le WIP v2 déjà rendu conserve l'ancien libellé.
+- `SPEC-V2.md` A, `DECISIONS.md`, `VOIX-CONSIGNES.md`, `SCRIPT.md` §9, bannière de l'aperçu et le
+  rapport de livraison sont alignés.
+
+**Reste un seul point à trancher** : « Deux mois offerts ! » / « Deux mois gratuits ! ».
+`onsets.json`, `sous-titres.srt`, `TIMING-PROVISOIRE.md`, la VO de travail et le MP4 WIP v2
+restent en 1.1 jusqu'à réception de `voix.mp3` : régénération en une seule passe.
+**Aucun rendu, aucune clé, aucune publication.**

@@ -27,3 +27,14 @@
   uniquement, pour qu'il les voie sur GitHub. Aucun élément de la section C n'est inventé :
   ce qui manque s'affiche entre crochets à l'écran.
 - Le spot 50 s et ses 10 images générées restent **archivés, non réutilisés**.
+
+
+## Révision 1.3 — 4 novembre 2026 (retour sur le texte VO)
+
+| Retour du propriétaire | Décision |
+|---|---|
+| « **on ne paye pas forcément chaque premier du mois** » | **Aucune date de prélèvement** dans la VO, le sous-titre ni à l'écran. « Chaque premier du mois » → **« Chaque mois »** ; le ticket F01 perd `1er DU MOIS` → **`ABONNEMENTS`**. L'exigence « accroche datée » de la section A est **écartée** au profit de l'exactitude (L.2) : l'accroche reste concrète (« Tu paies », « des abonnements coûteux ») sans affirmer de jour. |
+| « **on est ensemble wesh est mieux pour la pub** » | **« On est ensemble, wesh ! »** retenu. Tournure régionale **validée par le propriétaire**, locuteur natif à Douala → **G.5 satisfait**. Le sous-titre mot à mot reprendra « wesh » ; prononciation « wèch », sans épeler. |
+
+Le **point d'arrêt 1** reste réouvert sur un seul point : **« Deux mois offerts ! »** ou
+**« Deux mois gratuits ! »**. Les tarifs 1.1 et l'interdiction des anciennes valeurs restent fermes.
