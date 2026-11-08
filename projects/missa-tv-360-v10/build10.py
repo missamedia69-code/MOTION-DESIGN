@@ -61,9 +61,38 @@ SUBS = [
 ]
 
 
+# Carte de temps vers l'audio fourni (align10.py) : toute la timeline est recalée sur la voix fournie.
+_TM = json.load(open(os.path.join(HERE, "tmap.json"))) if os.path.exists(os.path.join(HERE, "tmap.json")) else None
+END = _TM["duration"] if _TM else 60.0
+
+
+def M(t):
+    if not _TM:
+        return t
+    import bisect
+    o, n = _TM["old"], _TM["new"]
+    i = min(max(bisect.bisect_right(o, t) - 1, 0), len(o) - 2)
+    return round(n[i] + (n[i + 1] - n[i]) * (t - o[i]) / (o[i + 1] - o[i]), 3)
+
+
+def subs_t():
+    return [(M(a), M(b), t) for a, b, t in SUBS]
+
+
+def remap_clips(src):
+    import re
+    def f(m):
+        a, d = float(m.group(1)), float(m.group(2))
+        if a == 0 and d == 60:
+            return f'data-start="0" data-duration="{END}"'
+        na = M(a)
+        return f'data-start="{na}" data-duration="{round(M(a + d) - na, 3)}"'
+    return re.sub(r'data-start="([\d.]+)" data-duration="([\d.]+)"', f, src)
+
+
 def subs_html():
     out = []
-    for i, (a, b, t) in enumerate(SUBS):
+    for i, (a, b, t) in enumerate(subs_t()):
         out.append(f'<div id="sub{i}" class="sub clip" data-start="{a}" data-duration="{round(b - a, 2)}" data-track-index="{20 + i % 2}"><span>{html.escape(t)}</span></div>')
     return "\n      ".join(out)
 
@@ -72,11 +101,13 @@ def srt():
     def ts(x):
         ms = int(round(x * 1000)); h, ms = divmod(ms, 3600000); m, ms = divmod(ms, 60000); s, ms = divmod(ms, 1000)
         return f"{h:02d}:{m:02d}:{s:02d},{ms:03d}"
-    return "\n".join(f"{i + 1}\n{ts(a)} --> {ts(b)}\n{t.replace(NB, ' ')}\n" for i, (a, b, t) in enumerate(SUBS))
+    return "\n".join(f"{i + 1}\n{ts(a)} --> {ts(b)}\n{t.replace(NB, ' ')}\n" for i, (a, b, t) in enumerate(subs_t()))
 
 
 def build():
-    src = open(os.path.join(HERE, "composition.tpl"), encoding="utf-8").read().replace("__SUBS__", subs_html())
+    src = remap_clips(open(os.path.join(HERE, "composition.tpl"), encoding="utf-8").read())
+    tm = json.dumps({"old": _TM["old"], "new": _TM["new"]}) if _TM else "null"
+    src = src.replace("__SUBS__", subs_html()).replace("__TMAP__", tm)
     with open(os.path.join(HERE, "index.html"), "w", encoding="utf-8") as f:
         f.write(src.replace("__FMT__", "h").replace("__W__", "1920").replace("__H__", "1080"))
     os.makedirs(V916, exist_ok=True)

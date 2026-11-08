@@ -9,13 +9,16 @@ A=.cache/audio10
 OUT=livrables
 mkdir -p "$OUT"
 
-# 1) bande son : la musique baisse sous la voix (sidechain), effets par-dessus, -14 LUFS
-ffmpeg -loglevel error -y -i "$A/vo.wav" -i "$A/music.wav" -i "$A/sfx.wav" -filter_complex "
-[0:a]aresample=44100,aformat=channel_layouts=stereo,highpass=f=80,acompressor=threshold=-18dB:ratio=3:attack=10:release=200,volume=1.6,asplit=2[vo][key];
-[1:a]volume=0.55[mus];
-[mus][key]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=350[duck];
-[2:a]volume=0.7[fx];
-[vo][duck][fx]amix=inputs=3:normalize=0,atrim=0:60,loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.82:level=false[a]" -map "[a]" -ar 48000 "$A/mix.wav"
+# 1) bande son : la VOIX FOURNIE est utilisée telle quelle (aucune coupe, aucun effet, aucun changement de volume ;
+#    seule conversion : 24 kHz mono -> 48 kHz stéréo pour l'AAC). La musique baisse sous la voix (sidechain).
+VOIX="entrees/Pub Missa TV.wav"
+END=$(python3 -c "import json;print(json.load(open('projects/missa-tv-360-v10/tmap.json'))['duration'])")
+ffmpeg -loglevel error -y -i "$VOIX" -i "$A/music.wav" -i "$A/sfx.wav" -filter_complex "
+[0:a]aresample=48000,pan=stereo|c0=c0|c1=c0,apad,asplit=2[vo][key];
+[1:a]aresample=48000,volume=0.16[mus];
+[mus][key]sidechaincompress=threshold=0.02:ratio=5:attack=20:release=350[duck];
+[2:a]aresample=48000,volume=0.22[fx];
+[vo][duck][fx]amix=inputs=3:normalize=0,atrim=0:$END[a]" -map "[a]" -ar 48000 "$A/mix.wav"
 
 for F in 16x9 9x16; do
   ffmpeg -loglevel error -y -i ".cache/rendus/v10-$F-video.mp4" -i "$A/mix.wav" -map 0:v -map 1:a \

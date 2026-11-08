@@ -1,10 +1,19 @@
 # MISSA TV 360 v10 — musique originale (afro-pop / amapiano léger, 116 BPM) + SFX synthétiques.
 # Tout est généré ici : aucun échantillon externe, aucun droit à gérer.
 # Usage (depuis la racine du dépôt) : python3 projects/missa-tv-360-v10/audio10.py
-import numpy as np, wave, os
+import numpy as np, wave, os, json, bisect
 
 SR = 44100
-DUR = 60.0
+# recalage sur la voix fournie (align10.py → tmap.json)
+_TM = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "tmap.json")))
+DUR = _TM["duration"]
+
+
+def M(t):
+    o, n = _TM["old"], _TM["new"]
+    i = min(max(bisect.bisect_right(o, t) - 1, 0), len(o) - 2)
+    return n[i] + (n[i + 1] - n[i]) * (t - o[i]) / (o[i + 1] - o[i])
+
 N = int(SR * DUR)
 OUT = ".cache/audio10"
 os.makedirs(OUT, exist_ok=True)
@@ -15,8 +24,8 @@ BEAT = 60 / BPM
 S16 = BEAT / 4
 
 # Repères de la composition (index.html) : break avant le prix, drop sur les prix.
-BREAK = (38.3, 40.3)
-DROP = 40.3
+BREAK = (M(38.3), M(40.3))
+DROP = M(40.3)
 
 
 def save(name, sig, norm=0.9):
@@ -64,11 +73,11 @@ def in_break(t):
 
 def section_gain(t):
     """Énergie par section (intro → montée → principal → relance → break → drop → final)."""
-    if t < 3.6: return 0.55
-    if t < 6.0: return 0.75
-    if t < 16.0: return 0.85
-    if t < 38.3: return 1.0
-    if t < 40.3: return 0.0
+    if t < M(3.6): return 0.55
+    if t < M(6.0): return 0.75
+    if t < M(16.0): return 0.85
+    if t < BREAK[0]: return 1.0
+    if t < BREAK[1]: return 0.0
     return 1.1
 
 
@@ -157,48 +166,48 @@ for b in range(nbars):
     chord, root = CH[b % 4]
     g = section_gain(t0)
     # accords
-    if not in_break(t0) and t0 < 59.0:
+    if not in_break(t0) and t0 < DUR - 1.0:
         for k in (0, 1.5, 2.5):
             tk = t0 + k * BEAT
-            if not in_break(tk) and tk < 59.0:
+            if not in_break(tk) and tk < DUR - 1.0:
                 add(tk, keys([hz(m) for m in chord], 1.2), 0.22 * max(g, 0.5), pan=-0.2)
-        if t0 >= 16.0:
+        if t0 >= M(16.0):
             add(t0, pad([hz(m + 12) for m in chord[1:]], BAR), 0.07 * g, pan=0.25)
     for s in range(16):
         ts = t0 + s * S16
-        if ts >= 59.2 or in_break(ts):
+        if ts >= DUR - 0.8 or in_break(ts):
             continue
         g = section_gain(ts)
         if g == 0:
             continue
         # kick 4 temps à partir de la montée
-        if s % 4 == 0 and ts >= 6.0:
+        if s % 4 == 0 and ts >= M(6.0):
             add(ts, kick(), 0.85 * g)
         # clap sur 2 et 4
-        if s in (4, 12) and ts >= 3.6:
+        if s in (4, 12) and ts >= M(3.6):
             add(ts, clap(), 0.45 * g, pan=0.1)
         # shaker
         add(ts, shaker(s % 2 == 1), 0.9 * g, pan=0.35)
         # log drum (motif amapiano)
-        if s in (0, 3, 6, 10, 11, 14) and ts >= 6.0:
+        if s in (0, 3, 6, 10, 11, 14) and ts >= M(6.0):
             f = hz(root) * (2 ** (7 / 12) if s == 11 else 1)
             add(ts, logdrum(f), 0.55 * g)
         # mélodie pluck (section principale et final)
-        if ts >= 16.0 and s in (2, 6, 9, 13):
+        if ts >= M(16.0) and s in (2, 6, 9, 13):
             note = MEL[(b * 4 + s // 4) % len(MEL)]
             add(ts, pluck(hz(note)), 0.12 * g, pan=0.4 if s % 2 else -0.4)
 
 # Break : une seule note de basse qui pulse (suspense « Et ça coûte combien ? »)
-for k in range(4):
+for k in range(max(1, int((BREAK[1] - BREAK[0] - 0.15) / BEAT))):
     add(BREAK[0] + 0.15 + k * BEAT, logdrum(hz(29), 0.45), 0.5)
 # Montée avant le drop + crash
 add(DROP - 1.0, noise_sweep(1.0, True), 0.25)
 crash = rng.standard_normal(int(1.6 * SR)); crash = (crash - lowpass(crash, 4)) * env(len(crash), 0.002, 2.6)
 add(DROP, crash, 0.35)
-add(48.6, crash, 0.3)
+add(M(48.6), crash, 0.3)
 # Accord final majeur
-add(59.0 - BAR, pad([hz(m) for m in (65, 69, 72, 77)], BAR + 1.0), 0.12)
-add(55.5, keys([hz(m) for m in (53, 57, 60, 65, 69)], 3.5), 0.35)
+add(DUR - 1.0 - BAR, pad([hz(m) for m in (65, 69, 72, 77)], BAR + 1.0), 0.12)
+add(M(55.5), keys([hz(m) for m in (53, 57, 60, 65, 69)], 3.5), 0.35)
 
 t = np.arange(N) / SR
 fade = np.clip(t / 0.8, 0, 1) * np.clip((DUR - t) / 1.4, 0, 1)
@@ -210,7 +219,7 @@ SL = np.zeros(N); SRr = np.zeros(N)
 
 
 def sfx(t0, x, gain=1.0, pan=0.0):
-    i0 = int(t0 * SR); i1 = min(N, i0 + len(x))
+    i0 = int(M(t0) * SR); i1 = min(N, i0 + len(x))
     l = np.sqrt(0.5 * (1 - pan)); r = np.sqrt(0.5 * (1 + pan))
     SL[i0:i1] += x[: i1 - i0] * gain * l * 1.414
     SRr[i0:i1] += x[: i1 - i0] * gain * r * 1.414

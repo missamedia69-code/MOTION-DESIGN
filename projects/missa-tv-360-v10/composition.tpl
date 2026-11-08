@@ -804,6 +804,18 @@
       tl.fromTo("#dl14", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35 }, 55.2);
       tl.fromTo("#legal14", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.35 }, 55.3);
 
+      // ── recalage sur l'audio fourni : chaque animation est déplacée à l'instant correspondant de la voix
+      const TMAP = __TMAP__;
+      if (TMAP) {
+        const O = TMAP.old, Nw = TMAP.new;
+        const Mt = (t) => { let i = Math.min(Math.max(Math.floor(t / 0.1), 0), O.length - 2); while (i > 0 && O[i] > t) i--; while (i < O.length - 2 && O[i + 1] <= t) i++;
+          return Nw[i] + (Nw[i + 1] - Nw[i]) * (t - O[i]) / (O[i + 1] - O[i]); };
+        tl.getChildren(false, true, true).forEach((c) => {
+          const s0 = c.startTime(), d0 = c.duration(), ns = Mt(s0);
+          if (d0 > 1.0 && !c.vars.repeat) c.duration(Math.max(0.3, Mt(s0 + d0) - ns));
+          c.startTime(ns);
+        });
+      }
       window.__timelines["main"] = tl;
     </script>
   </body>
