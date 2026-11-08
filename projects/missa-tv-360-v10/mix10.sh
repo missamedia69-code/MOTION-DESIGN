@@ -15,7 +15,7 @@ ffmpeg -loglevel error -y -i "$A/vo.wav" -i "$A/music.wav" -i "$A/sfx.wav" -filt
 [1:a]volume=0.55[mus];
 [mus][key]sidechaincompress=threshold=0.03:ratio=6:attack=20:release=350[duck];
 [2:a]volume=0.7[fx];
-[vo][duck][fx]amix=inputs=3:normalize=0,atrim=0:60,loudnorm=I=-14:TP=-1.5:LRA=11[a]" -map "[a]" -ar 48000 "$A/mix.wav"
+[vo][duck][fx]amix=inputs=3:normalize=0,atrim=0:60,loudnorm=I=-14:TP=-1.5:LRA=11,alimiter=limit=0.82:level=false[a]" -map "[a]" -ar 48000 "$A/mix.wav"
 
 for F in 16x9 9x16; do
   ffmpeg -loglevel error -y -i ".cache/rendus/v10-$F-video.mp4" -i "$A/mix.wav" -map 0:v -map 1:a \
