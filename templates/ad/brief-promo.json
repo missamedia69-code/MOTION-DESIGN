@@ -1,33 +1,33 @@
 {
   "template": "promo",
-  "name": "pub-box-missa",
-  "brand": "missa",
+  "name": "pub-demo",
+  "brand": "demo",
   "canvas": "9x16",
   "preset": "mp4-social",
   "duration": 15,
-  "hook": "Votre télé vous coûte trop cher ?",
+  "hook": "Et si tout devenait plus simple ?",
   "product": {
-    "image": "assets/images/box-mtn-cutout.png",
-    "name": "La Box MISSA TV",
-    "tagline": "Toute la télé africaine, partout"
+    "image": "assets/images/demo-produit.png",
+    "name": "Le Produit Démo",
+    "tagline": "Pensé pour votre quotidien"
   },
   "benefits": [
-    "Plus de 300 chaînes",
-    "Installation offerte",
-    "Sans engagement"
+    "Livraison en 24 h",
+    "Satisfait ou remboursé",
+    "Sans abonnement"
   ],
   "proof": {
-    "value": 10000,
+    "value": 5000,
     "prefix": "+",
-    "label": "familles abonnées"
+    "label": "clients satisfaits"
   },
   "offer": {
-    "price": 1000,
-    "old_price": 2000,
-    "currency": "FCFA",
-    "label": "par mois",
-    "badge": "-50 %"
+    "price": 29,
+    "old_price": 49,
+    "currency": "€",
+    "label": "seulement aujourd'hui",
+    "badge": "-40 %"
   },
-  "cta": "Je m'abonne",
-  "url": "missa.tv"
+  "cta": "J'en profite",
+  "url": "votre-site.com"
 }

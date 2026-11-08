@@ -53,11 +53,11 @@ def example() -> dict:
             "font": "Montserrat-Bold.ttf",
             "transition": "fade",
         },
-        "brand": {"logo": "assets/images/logo-missa.png"},
+        "brand": {"logo": "assets/images/demo-logo.png"},
         "narrative": {
             "hook": "Vos chiffres prennent vie",
             "insight": "Une progression nette sur la période",
-            "cta": "Missa TV 360 — on est ensemble !",
+            "cta": "Passez à la vitesse supérieure",
         },
         "data": [
             {"label": "Jan", "value": 12},

@@ -1,0 +1,22 @@
+{
+  "title": "Marque démo (exemple générique)",
+  "colors": {
+    "background": "#12131A",
+    "surface": "#23202A",
+    "primary": "#FFFFFF",
+    "accent": "#FF5C39",
+    "secondary": "#FFB547",
+    "muted": "#B3B7C4",
+    "text": "#FFFFFF",
+    "on_accent": "#12131A"
+  },
+  "fonts": {
+    "title": "Montserrat-Black.ttf",
+    "heading": "Montserrat-ExtraBold.ttf",
+    "body": "Montserrat-Bold.ttf"
+  },
+  "logo": "assets/images/demo-logo.png",
+  "texts": {
+    "signature": "Votre slogan ici"
+  }
+}

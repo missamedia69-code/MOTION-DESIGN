@@ -1,7 +1,8 @@
 # Manuel du pilote — moteur MOTION-DESIGN v2
 
-Tu pilotes un moteur de **vidéos publicitaires motion design**. Tu décris, le
-moteur anime : aucun code de rendu à écrire, seulement du JSON.
+Tu pilotes un moteur **générique** de vidéos publicitaires motion design : toute
+marque, tout produit, toute devise. Tu décris, le moteur anime : aucun code de
+rendu à écrire, seulement du JSON.
 
 ## Connexion
 
@@ -13,15 +14,28 @@ moteur anime : aucun code de rendu à écrire, seulement du JSON.
 
 ## Recevoir les éléments de l'utilisateur
 
-L'utilisateur dépose ses fichiers dans `entrees/` (upload GitHub sur `main`, voir
-`entrees/README.md`) ou les joint au message.
+À chaque pub, l'utilisateur dépose dans `entrees/` (upload GitHub sur `main`, ou pièces
+jointes) :
 
-1. `git pull origin main` pour récupérer les dépôts récents.
-2. `./md install entrees/*` range chaque fichier dans `assets/` (images, audio, vidéos,
-   polices), le valide et met à jour l'inventaire.
-3. Si l'utilisateur donne ses couleurs et polices, créer `brands/<marque>.json` à partir de
-   `brands/neutre.json`, puis utiliser `"brand": "<marque>"`.
-4. Référencer les fichiers par leur chemin (`assets/images/produit.png`) dans le brief.
+- **l'audio complet de la pub** (voix + musique mixées), qui fixe la durée et le rythme ;
+- **les logos** de la marque ;
+- **les détails en `.txt`** : offre, arguments, prix, contacts, ton ;
+- **des vidéos et images complémentaires**.
+
+Procédure :
+
+1. `git pull origin main`, puis **`md_intake`** (ou `./md entrees`). Tu obtiens la durée et
+   les respirations de l'audio, la transcription si Whisper est disponible, la palette
+   du logo, le contenu des détails, la liste des médias et un **brief pré-rempli**
+   (`audio_master`, `sync`, `duration`, `logo`, `style` d'après le logo, `media`).
+2. **Lis les détails texte** et complète le brief : `hook` (≤ 8 mots), `benefits`
+   (2 à 4), `offer`, `proof`, `cta`, `url`, légendes des `media`. Choisis le `template`.
+3. Si une transcription est disponible, aligne les scènes sur ce qui est dit avec
+   `cuts` (une coupe par changement de scène). Sinon, `sync: true` coupe sur les
+   respirations.
+4. Marque récurrente : `md_intake` avec `brand: "nom"` crée `brands/nom.json` d'après le
+   logo et copie les fichiers dans `assets/`. Ensuite, `"brand": "nom"` suffit.
+5. `md_lint` → `md_preview` → `md_render`.
 
 ## La boucle de vol (5 gestes)
 
@@ -44,32 +58,35 @@ L'utilisateur dépose ses fichiers dans `entrees/` (upload GitHub sur `main`, vo
 ```json
 {
   "template": "promo",
-  "brand": "missa",
+  "brand": "ma-marque",
   "canvas": "9x16",
-  "duration": 15,
-  "hook": "Votre télé vous coûte trop cher ?",
-  "product": {"image": "assets/images/box-mtn-cutout.png", "name": "La Box MISSA TV",
-              "tagline": "Toute la télé africaine, partout"},
-  "benefits": ["Plus de 300 chaînes", "Installation offerte", "Sans engagement"],
-  "proof": {"value": 10000, "prefix": "+", "label": "familles abonnées", "stars": 5},
-  "offer": {"price": 1000, "old_price": 2000, "currency": "FCFA", "label": "par mois",
-            "badge": "-50 %", "deadline": "Jusqu'à dimanche"},
-  "cta": "Je m'abonne",
-  "url": "missa.tv",
-  "music": {"file": "assets/audio/ma-musique.mp3", "loop": true},
-  "voiceover": "projects/ma-pub/vo/voix.mp3"
+  "audio_master": "entrees/pub-complete.mp3",
+  "logo": "entrees/logo.png",
+  "hook": "Et si tout devenait plus simple ?",
+  "product": {"image": "entrees/produit.png", "name": "Le Produit", "tagline": "Pensé pour vous"},
+  "media": [
+    {"file": "entrees/ambiance.jpg", "caption": "Partout avec vous"},
+    {"file": "entrees/demo.mp4", "caption": "Prise en main en 2 minutes", "start": 3}
+  ],
+  "benefits": ["Livraison en 24 h", "Satisfait ou remboursé", "Sans abonnement"],
+  "proof": {"value": 5000, "prefix": "+", "label": "clients satisfaits"},
+  "offer": {"price": 29, "old_price": 49, "currency": "€", "label": "aujourd'hui", "badge": "-40 %"},
+  "cta": "J'en profite",
+  "url": "votre-site.com"
 }
 ```
 
 | Template | Scènes | Usage |
 |---|---|---|
-| `promo` | accroche → produit → bénéfices → preuve → offre → CTA | présenter un produit |
+| `promo` | accroche → produit → médias → bénéfices → preuve → offre → CTA | présenter un produit |
 | `offre` | accroche → offre → bénéfices → CTA (rythme plus rapide) | soldes, promo limitée |
 | `annonce` | accroche → produit → bénéfices → CTA | lancement, nouveauté |
 | `preuve` | accroche → chiffre clé → bénéfices → CTA | preuve sociale |
 
-Une scène sans contenu est sautée. `duration` ajuste le rythme pour tomber sur
-6, 15 ou 30 s. Le compositeur adapte la mise en page à chaque format.
+Une scène sans contenu est sautée. Avec `audio_master`, la durée est celle de l'audio ;
+sans audio, `duration` ajuste le rythme (6, 15 ou 30 s). `scenes` impose un ordre précis,
+et `media` ajoute une scène par vidéo ou image complémentaire. Le compositeur adapte la
+mise en page à chaque format.
 
 ## Règles de mise en scène publicitaire
 
@@ -110,9 +127,11 @@ Exemple : `"pos": ["50%", "40%"], "size": "8vmin"`. Puis
 
 ## Kits de marque
 
-`brands/<nom>.json` → `"brand": "missa"` puis jetons `$accent`, `$background`,
+`brands/<nom>.json` (un kit par client) → `"brand": "<nom>"` puis jetons `$accent`, `$background`,
 `$text`, `$muted`, `$on_accent`, `$font.title`, `$font.body`, `$logo`. Un jeton
-inconnu est une erreur explicite. Nouvelle marque : copier `brands/neutre.json`.
+inconnu est une erreur explicite. Nouvelle marque : `md_intake` avec `brand` (déduit du
+logo), ou copier `brands/neutre.json`. Sans kit, le brief peut porter ses couleurs dans
+`style`.
 
 ## Diagnostic
 

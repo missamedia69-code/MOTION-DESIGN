@@ -244,6 +244,66 @@ class RenderTest(unittest.TestCase):
         self.assertIn("filtre_inexistant", str(cm.exception))
 
 
+class IntakeTest(unittest.TestCase):
+    """Réception d'une pub : audio complet, logo, détails, médias → brief calé sur l'audio."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        # audio « mixé » de 8 s avec deux respirations nettes (creux d'énergie) à 3 s et 5,5 s
+        ffmpeg.run(["-f", "lavfi", "-i",
+                    "aevalsrc='0.5*sin(2*PI*220*t)*(1-0.97*(between(t,2.85,3.15)+between(t,5.35,5.65)))'"
+                    ":s=44100:d=8", os.path.join(self.tmp, "pub complete.mp3")], echo=False)
+        shutil.copy(os.path.join(REPO, "assets/images/demo-logo.png"), os.path.join(self.tmp, "Logo Client"))
+        shutil.copy(os.path.join(REPO, "assets/images/demo-produit.png"), os.path.join(self.tmp, "produit.png"))
+        ffmpeg.run(["-f", "lavfi", "-i", "testsrc2=s=320x180:d=2", "-pix_fmt", "yuv420p",
+                    os.path.join(self.tmp, "plan.mp4")], echo=False)
+        with open(os.path.join(self.tmp, "details.txt"), "w") as f:
+            f.write("Accroche : Plus simple que jamais\nOffre : 29 €\n")
+
+    def tearDown(self):
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_scan_and_compose_synced(self):
+        from engine import intake
+        rep = intake.scan(self.tmp, with_transcript=False)
+        self.assertEqual(rep["manquants"], [])
+        self.assertAlmostEqual(rep["audio"]["duration_s"], 8, delta=0.1)
+        ts = [p["t"] for p in rep["audio"]["breaths"]]
+        self.assertTrue(any(abs(t - 3.0) < 0.2 for t in ts), ts)
+        self.assertTrue(any(abs(t - 5.5) < 0.2 for t in ts), ts)
+        self.assertEqual(rep["logos"][0]["palette"]["accent"].upper()[:3], "#FF")  # orange démo
+        self.assertEqual({m["kind"] for m in rep["medias"]}, {"image", "video"})
+        self.assertIn("Plus simple", rep["details"][0]["content"])
+        b = rep["brief_squelette"]
+        self.assertTrue(b["sync"] and b["audio_master"] and b["style"]["accent"])
+        b.update(hook="Plus simple que jamais", cta="J'en profite", benefits=["Rapide"],
+                 scenes=["hook", "media", "cta"])
+        proj = ads.compose(b)
+        self.assertEqual(proj["_ad"]["plan"], ["hook", "media:0", "media:1", "cta"])
+        starts, total = render.scene_starts(proj, proj["scenes"])
+        self.assertAlmostEqual(total, 8, delta=0.1)
+        # au moins une coupe calée sur une respiration
+        self.assertTrue(any(abs(s - t) < 0.06 for s in starts[1:] for t in ts), (starts, ts))
+        self.assertTrue(lint.lint(proj, REPO)["ok"])
+
+    def test_explicit_cuts_and_errors(self):
+        b = {"hook": "Test", "cta": "Go", "audio_master": os.path.join(self.tmp, "pub complete.mp3"),
+             "media": [{"file": os.path.join(self.tmp, "produit.png")}], "cuts": [2.0, 5.0]}
+        proj = ads.compose(b)
+        self.assertEqual(render.scene_starts(proj, proj["scenes"])[0], [0.0, 2.0, 5.0])
+        with self.assertRaises(SystemExit):
+            ads.compose(dict(b, cuts=[2.0]))
+        with self.assertRaises(SystemExit):
+            ads.compose(dict(b, scenes=["hook", "intro"]))
+
+    def test_brand_kit_from_logo(self):
+        from engine import intake
+        rep = intake.scan(self.tmp, with_transcript=False)
+        kit = intake.brand_from_logo("client", os.path.join(REPO, rep["logos"][0]["file"]))
+        self.assertEqual(kit["colors"]["accent"], rep["logos"][0]["palette"]["accent"])
+        self.assertGreaterEqual(lint.contrast(kit["colors"]["accent"], kit["colors"]["on_accent"]), 4.5)
+
+
 class ProjectAndCockpitTest(unittest.TestCase):
     def test_save_validates(self):
         name = "t-v2-save"
@@ -269,7 +329,7 @@ class ProjectAndCockpitTest(unittest.TestCase):
             self.assertIn(n, names)
         cap = json.loads(mcp.call_tool("md_cockpit", {})["content"][0]["text"])
         self.assertIn("punch", cap["animations"]["entrees"])
-        self.assertIn("missa", [b["name"] for b in cap["marques"]])
+        self.assertIn("demo", [b["name"] for b in cap["marques"]])
         res = mcp.call_tool("md_ad_compose", {"brief": ads.example()})
         payload = json.loads(res["content"][0]["text"])
         self.assertTrue(payload["lint"]["ok"])

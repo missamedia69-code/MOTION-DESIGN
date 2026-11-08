@@ -1,8 +1,19 @@
-# entrees/ — déposez ici les éléments de vos pubs
+# entrees/ — déposez ici les éléments de la pub en cours
 
-Logo, photos produit (PNG détouré de préférence), vidéos, musique, voix off, polices…
-L'agent les récupère, les range dans `assets/` (`./md install entrees/*`) et les
-utilise dans le brief ou le montage.
+Le moteur est générique : n'importe quelle marque, n'importe quel produit.
+À chaque pub, déposez :
+
+1. **L'audio complet de la pub** (voix + musique déjà mixées, .mp3 ou .wav). La vidéo
+   se cale dessus : même durée, coupes sur les respirations.
+2. **Les logos de la marque** (PNG transparent ; mettez « logo » dans le nom). Les
+   couleurs de la vidéo en sont déduites.
+3. **Les détails en texte** (`details.txt`) : accroche souhaitée, arguments, offre, prix,
+   site, ton.
+4. **Des vidéos et images complémentaires** (produit, ambiance, démonstration). Une scène
+   chacune.
+
+L'agent lance `./md entrees` (ou l'outil MCP `md_intake`) pour tout analyser, puis
+compose la pub.
 
 ## Méthode 1 — interface web GitHub (la plus simple)
 
@@ -10,7 +21,9 @@ utilise dans le brief ou le montage.
 2. Entrez dans ce dossier `entrees/`.
 3. **« Add file » → « Upload files »**, puis glissez-déposez vos fichiers.
 4. **« Commit changes »** directement sur `main`.
-5. Dites à l'agent : « c'est déposé dans entrees/, fais une pub avec ».
+5. Dites à l'agent : « c'est déposé dans entrees/, fais la pub ».
+
+Avant une nouvelle pub, demandez à l'agent de **vider `entrees/`**.
 
 L'interface web accepte aussi les vidéos et les sons (`.mp4`, `.mp3`), que git
 ignore d'habitude.
@@ -31,17 +44,19 @@ git push origin main
 
 ## Bien nommer ses fichiers
 
-Des noms explicites aident l'agent : `logo-marque.png`, `produit-box-detoure.png`,
-`musique-energique.mp3`, `voix-off-15s.mp3`.
+Des noms explicites aident l'agent : `logo-marque.png`, `produit-detoure.png`,
+`pub-complete.mp3`, `details.txt`, `demo-produit.mp4`.
 
-## Ce qu'il faut fournir pour une pub
+## Exemple de `details.txt`
 
-| Élément | Format conseillé | Obligatoire ? |
-|---|---|---|
-| Accroche, bénéfices, offre, appel à l'action | du texte, dans le message | oui (au moins l'accroche) |
-| Logo | PNG transparent, ≥ 600 px | conseillé |
-| Photo produit | PNG détouré, ≥ 1000 px | pour les templates `promo` et `annonce` |
-| Couleurs et polices de la marque | codes #RRGGBB, fichiers .ttf/.otf | pour créer un kit `brands/` |
-| Musique | MP3/WAV libre de droits | conseillé |
-| Voix off | MP3/WAV, ou un texte à faire lire par la TTS | optionnel |
-| Prix, chiffres | dans le message | pour les templates `offre` et `preuve` |
+```
+Marque : Ma Marque
+Produit : Le Produit (photo : produit.png)
+Accroche : Et si tout devenait plus simple ?
+Arguments : livraison en 24 h ; satisfait ou remboursé ; sans abonnement
+Offre : 29 € au lieu de 49 €, jusqu'à dimanche
+Appel à l'action : J'en profite
+Site : votre-site.com
+Format : 9:16 (Reels/TikTok), plus une version 1:1
+Ton : dynamique, chaleureux
+```

@@ -2,13 +2,16 @@
 
 L'agent (ou l'humain) décrit le *message*, pas l'animation :
 
-    {"template": "promo", "brand": "missa", "canvas": "9x16",
-     "hook": "La télé coûte trop cher ?",
-     "product": {"image": "assets/images/box-mtn-cutout.png", "name": "Box MISSA"},
-     "benefits": ["300 chaînes", "Installation offerte"],
-     "proof": {"value": 10000, "suffix": "+", "label": "abonnés"},
-     "offer": {"price": 1000, "old_price": 2000, "currency": "FCFA", "label": "par mois"},
-     "cta": "Je m'abonne", "url": "missa.tv", "music": "assets/audio/…"}
+    {"template": "promo", "brand": "<votre-marque>", "canvas": "9x16",
+     "hook": "Et si c'était plus simple ?",
+     "product": {"image": "entrees/produit.png", "name": "Le Produit"},
+     "benefits": ["Livraison en 24 h", "Satisfait ou remboursé"],
+     "proof": {"value": 5000, "prefix": "+", "label": "clients"},
+     "offer": {"price": 29, "old_price": 49, "currency": "€", "label": "aujourd'hui"},
+     "cta": "J'en profite", "url": "votre-site.com", "audio_master": "entrees/pub.mp3"}
+
+Le moteur est GÉNÉRIQUE : toute marque, tout produit, toute devise. L'identité
+vient d'un kit `brands/<nom>.json` (ou est déduite du logo fourni).
 
 Le compositeur choisit la mise en scène (rythme, hiérarchie, animations,
 couleurs du kit de marque) et produit un `project.json` standard. Toutes les
@@ -18,6 +21,7 @@ ou 16x9 sans retouche.
 from __future__ import annotations
 
 import copy
+import os
 import re
 
 from . import brand as brand_mod, presets
@@ -65,22 +69,23 @@ def templates() -> dict:
 
 
 def example() -> dict:
+    """Brief d'exemple GÉNÉRIQUE (marque démo) — à remplacer par les infos de la marque."""
     return {
         "template": "promo",
-        "name": "pub-box-missa",
-        "brand": "missa",
+        "name": "pub-demo",
+        "brand": "demo",
         "canvas": "9x16",
         "preset": "mp4-social",
         "duration": 15,
-        "hook": "Votre télé vous coûte trop cher ?",
-        "product": {"image": "assets/images/box-mtn-cutout.png", "name": "La Box MISSA TV",
-                    "tagline": "Toute la télé africaine, partout"},
-        "benefits": ["Plus de 300 chaînes", "Installation offerte", "Sans engagement"],
-        "proof": {"value": 10000, "prefix": "+", "label": "familles abonnées"},
-        "offer": {"price": 1000, "old_price": 2000, "currency": "FCFA", "label": "par mois",
-                  "badge": "-50 %"},
-        "cta": "Je m'abonne",
-        "url": "missa.tv",
+        "hook": "Et si tout devenait plus simple ?",
+        "product": {"image": "assets/images/demo-produit.png", "name": "Le Produit Démo",
+                    "tagline": "Pensé pour votre quotidien"},
+        "benefits": ["Livraison en 24 h", "Satisfait ou remboursé", "Sans abonnement"],
+        "proof": {"value": 5000, "prefix": "+", "label": "clients satisfaits"},
+        "offer": {"price": 29, "old_price": 49, "currency": "€", "label": "seulement aujourd'hui",
+                  "badge": "-40 %"},
+        "cta": "J'en profite",
+        "url": "votre-site.com",
     }
 
 
@@ -101,7 +106,13 @@ def schema() -> dict:
             "offer": "{price, old_price, currency, label, badge} → prix barré qui chute",
             "cta": "appel à l'action (bouton)",
             "url": "site / handle affiché sous le bouton",
-            "music": "fichier musique (bouclé, mixé sous la voix)",
+            "audio_master": "AUDIO COMPLET de la pub (voix + musique mixées) : fixe la durée, la vidéo se cale dessus",
+            "sync": "true (défaut) : coupes entre scènes calées sur les respirations de audio_master",
+            "cuts": "instants de coupe exacts [s] (n_scènes - 1 valeurs), ex. d'après la transcription",
+            "media": "vidéos/images complémentaires [{file, caption, start, duration, move, fit}] → une scène chacune",
+            "scenes": "ordre explicite des scènes (hook, product, media, benefits, proof, offer, cta)",
+            "logo": "logo à utiliser (remplace celui du kit de marque)",
+            "music": "fichier musique (bouclé, mixé sous la voix) — ignoré si audio_master",
             "voiceover": "fichier voix off (la musique baisse automatiquement dessous)",
             "style": "surcharges : background, surface, accent, text, muted, on_accent, "
                      "font_title, font_body, transition, background_style (gradient|solid)",
@@ -148,6 +159,89 @@ def _fmt_price(v) -> str:
     return str(v)
 
 
+def render_mod_starts(project: dict) -> list[float]:
+    from . import render as render_mod
+    return render_mod.scene_starts(project, project["scenes"])[0]
+
+
+def _timing(plan: list[str], durs: dict, tr: float, spec: dict, master_path: str | None) -> dict:
+    """Cale les coupes entre scènes.
+
+    Priorité : `cuts` (instants de coupe donnés par l'agent, ex. d'après la
+    transcription) > respirations de l'audio complet (`sync`) > rythme proportionnel.
+    La durée totale est conservée.
+    """
+    n = len(plan)
+    if n < 2:
+        return durs
+    d = [durs[k] for k in plan]
+    starts = [0.0]
+    for i in range(n - 1):
+        starts.append(starts[-1] + d[i] - tr)
+    total = starts[-1] + d[-1]
+    bounds = starts[1:]
+    cuts = spec.get("cuts")
+    if cuts:
+        if len(cuts) != n - 1:
+            _fail(f"'cuts' doit contenir {n - 1} instants (un par coupe entre {n} scènes : {plan})")
+        bounds = [float(c) for c in cuts]
+    elif master_path and spec.get("sync", True):
+        from . import intake
+        pts = intake.breath_points(master_path)
+        snapped = []
+        for b in bounds:
+            near = [p for p in pts if abs(p["t"] - b) <= 0.8]
+            if near:
+                best = max(near, key=lambda p: p["depth_db"] - 4 * abs(p["t"] - b))
+                b = best["t"]
+            snapped.append(b)
+        bounds = snapped
+    else:
+        return durs
+    # Bornes croissantes, scènes d'au moins 1,2 s, fin = durée totale.
+    fixed, prev = [], 0.0
+    for i, b in enumerate(bounds):
+        remaining = n - 1 - i
+        b = max(b, prev + 1.2 - (tr if i == 0 else 0))
+        b = min(b, total - 1.2 * remaining - 1.2)
+        fixed.append(round(b, 2))
+        prev = b
+    new_d = [fixed[0] + tr] + [fixed[i + 1] - fixed[i] + tr for i in range(n - 2)] + [total - fixed[-1]]
+    return {k: round(max(1.0, v), 2) for k, v in zip(plan, new_d)}
+
+
+def _media_layers(m: dict, D: float, C: dict, body_font: str, head_font: str, i: int) -> list[dict]:
+    """Scène d'un média complémentaire : photo plein cadre (Ken Burns), vidéo, ou objet détouré."""
+    from . import intake, render as render_mod
+    path = render_mod.resolve_path(m["file"], os.getcwd())
+    kind = m.get("kind") or ("video" if os.path.splitext(path)[1].lower() in intake.VIDEO_EXT else "image")
+    L: list[dict] = []
+    cutout = kind == "image" and (m.get("fit") == "contain" or (m.get("fit") is None and intake._has_alpha(path)))
+    if kind == "video":
+        L.append({"type": "video", "file": m["file"], "fit": "cover", "src_in": float(m.get("start", 0)),
+                  "loop": bool(m.get("loop", True)), "speed": float(m.get("speed", 1.0)),
+                  "in": 0, "anim": "none"})
+    elif cutout:
+        L += [{"type": "shape", "kind": "circle", "w": "64vmin", "h": "64vmin", "color": C["accent"],
+               "opacity": 0.14, "pos": ["50%", "45%"], "in": 0, "anim": "scale_in", "idle": "breathe"},
+              {"type": "image", "file": m["file"], "scale": {"w": m.get("width", "62vmin")},
+               "pos": ["50%", "45%"], "in": 0.1, "anim": "scale_in", "idle": "float"}]
+    else:
+        moves = ["kenburns_in", "kenburns_pan_right", "kenburns_out", "kenburns_pan_left"]
+        L.append({"type": "image", "file": m["file"], "full_bleed": True, "in": 0,
+                  "anim": m.get("move", moves[i % len(moves)]), "zoom": 0.15})
+    caption = str(m.get("caption") or "").strip()
+    if caption:
+        if not cutout:
+            L.append({"type": "shape", "kind": "rect", "w": "100vw", "h": "46vh", "pos": ["50%", "77%"],
+                      "gradient": ["#00000000", "#000000D9"], "angle": 180, "in": 0, "anim": "fade"})
+        L.append({"type": "text", "text": caption, "split": "word", "stagger": 0.07, "font": head_font,
+                  "size": m.get("size", "6.5vmin"), "color": C["text"], "max_width": "86vw",
+                  "pos": ["50%", "76%"], "in": 0.25, "anim": "fade_up", "ease": "back_out",
+                  "shadow": {"blur": 10, "opacity": 0.6}})
+    return L
+
+
 def compose(raw: dict, canvas: str | None = None) -> dict:
     """Retourne un project.json complet à partir d'un brief publicitaire.
 
@@ -156,7 +250,7 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
     """
     if not isinstance(raw, dict):
         _fail("objet JSON attendu")
-    spec = copy.deepcopy(raw)
+    spec = {k: v for k, v in copy.deepcopy(raw).items() if not str(k).startswith("_")}
     if canvas:
         spec["canvas"] = canvas
     tpl_name = spec.get("template", "promo")
@@ -186,8 +280,22 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
         vertical = cv["height"] >= cv["width"] * 0.95
 
     # ── Scènes disponibles selon le contenu ──
+    media = [m if isinstance(m, dict) else {"file": m} for m in (spec.get("media") or [])]
+    if len(media) > 8:
+        _fail("au plus 8 médias complémentaires (une scène chacun)")
+    order = list(spec.get("scenes") or tpl["scenes"])
+    unknown = [k for k in order if k not in BASE_DURATIONS and k != "media"]
+    if unknown:
+        _fail(f"scène(s) inconnue(s) {unknown} (hook, product, media, benefits, proof, offer, cta)")
+    if media and "media" not in order:
+        # Les médias complémentaires viennent illustrer après le produit (ou l'accroche).
+        anchor = "product" if "product" in order else "hook"
+        order.insert(order.index(anchor) + 1 if anchor in order else 1, "media")
     plan = []
-    for kind in tpl["scenes"]:
+    for kind in order:
+        if kind == "media":
+            plan += [f"media:{i}" for i in range(len(media))]
+            continue
         if kind == "product" and not (spec.get("product") or {}).get("image") \
                 and not (spec.get("product") or {}).get("name"):
             continue
@@ -200,16 +308,38 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
         if kind == "cta" and not spec.get("cta"):
             spec["cta"] = "En savoir plus"
         plan.append(kind)
+    if not plan:
+        _fail("aucune scène à monter")
 
-    durs = {k: BASE_DURATIONS[k] * tpl["pace"] for k in plan}
-    if "benefits" in durs:
-        durs["benefits"] = (1.2 + 0.75 * len(benefits)) * tpl["pace"]
+    def base_duration(kind: str) -> float:
+        if kind.startswith("media:"):
+            m = media[int(kind.split(":")[1])]
+            return float(m.get("duration", 2.4))
+        if kind == "benefits":
+            return 1.2 + 0.75 * len(benefits)
+        return BASE_DURATIONS[kind]
+
+    durs = {k: base_duration(k) * tpl["pace"] for k in plan}
     tr_dur = 0.4
+
+    # Audio complet fourni : il fixe la durée totale (la vidéo se cale dessus).
+    master = spec.get("audio_master")
+    master_path = None
+    if master:
+        from . import probe, render as render_mod
+        master_path = render_mod.resolve_path(master if isinstance(master, str) else master.get("file"),
+                                              os.getcwd())
+        audio_len = probe.probe(master_path).get("duration")
+        if not audio_len:
+            _fail(f"audio_master illisible : {master}")
+        if not spec.get("duration"):
+            spec["duration"] = audio_len
     target = spec.get("duration")
     if target:
         natural = sum(durs.values()) - tr_dur * (len(plan) - 1)
         k = (float(target) + tr_dur * (len(plan) - 1)) / (natural + tr_dur * (len(plan) - 1))
         durs = {key: max(1.6, round(v * k, 2)) for key, v in durs.items()}
+    durs = _timing(plan, durs, tr_dur, spec, master_path)
 
     big = "9vmin" if vertical else "8vmin"
     title_font, body_font = F["title"], F.get("body", F["title"])
@@ -226,6 +356,17 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
     def logo_layer(y: str, w: str, t_in: float, D: float):
         if not logo:
             return []
+        # Logo horizontal (sigle + nom) : plus large pour rester lisible.
+        try:
+            from . import probe, render as render_mod
+            info = probe.probe(render_mod.resolve_path(logo, os.getcwd()))
+            ratio = (info.get("width") or 1) / (info.get("height") or 1)
+        except SystemExit:
+            ratio = 1
+        if ratio >= 2.2:
+            w = "62vmin"
+        elif ratio >= 1.5:
+            w = "46vmin"
         return [{"type": "image", "file": logo, "scale": {"w": w}, "pos": ["50%", y],
                  "in": t_in, "out": D, "anim": "fade", "fade_out": 0.01}]
 
@@ -343,6 +484,9 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
                 L.append({"type": "text", "text": str(of["deadline"]), "font": body_font,
                           "size": "3.6vmin", "color": C["muted"], "max_width": "84vw", "pos": ["50%", "66%"],
                           "in": 1.5, "anim": "fade", "uppercase": True, "letter_spacing": 3})
+        elif kind.startswith("media:"):
+            m = media[int(kind.split(":")[1])]
+            L += _media_layers(m, D, C, body_font, head_font, int(kind.split(":")[1]))
         elif kind == "cta":
             L += logo_layer("28%", "30vmin", 0.1, D)
             if spec.get("cta_title") or spec.get("signature"):
@@ -365,7 +509,7 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
                           "in": 0.9, "anim": "fade"})
         for layer in L:
             layer.setdefault("out", D)
-        sc = {"duration": D, "background": background(kind), "layers": L, "_scene": kind}
+        sc = {"duration": D, "background": background(kind.split(":")[0]), "layers": L, "_scene": kind}
         if idx < len(plan) - 1:
             sc["transition"] = {"type": transition, "duration": tr_dur}
         scenes.append(sc)
@@ -380,7 +524,12 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
         "scenes": scenes,
         "_ad": {"template": tpl_name, "plan": plan},
     }
-    if spec.get("music"):
+    if master:
+        a = master if isinstance(master, dict) else {"file": master}
+        project["audio"] = {"volume": 1.0, "fade_in": 0, "fade_out": 0.25, **a}
+        project["_ad"]["audio_master"] = True
+        project["_ad"]["timing"] = [round(t, 2) for t in render_mod_starts(project)]
+    elif spec.get("music"):
         m = spec["music"]
         project["audio"] = {"file": m, "volume": 0.8, "loop": True, "fade_out": 1.2} \
             if isinstance(m, str) else m
