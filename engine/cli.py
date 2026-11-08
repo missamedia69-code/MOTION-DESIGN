@@ -158,7 +158,7 @@ def cmd_ad(args) -> None:
 
 def cmd_entrees(args) -> None:
     from engine import intake
-    rep = intake.scan(args.dossier, with_transcript=not args.no_transcript)
+    rep = intake.scan(args.dossier)
     if args.install or args.brand:
         rep["installation"] = intake.install(rep, args.brand)
     if args.json:
@@ -169,11 +169,8 @@ def cmd_entrees(args) -> None:
     if a:
         print(f"🎧 Audio complet : {a['file']} · {a['duration_s']}s · "
               f"{len(a['breaths'])} respirations (points de coupe)")
-        if a.get("transcript"):
-            for seg in a["transcript"]:
-                print(f"    {seg['start']:>6.2f}–{seg['end']:<6.2f} {seg['text']}")
-        elif a.get("transcript_note"):
-            print(f"    ({a['transcript_note']})")
+        for seg in a.get("script") or []:
+            print(f"    {seg['start']:>6.2f}–{seg['end']:<6.2f} {seg['text']}")
     for lg in rep.get("logos", []):
         print(f"🏷  Logo : {lg['file']} · accent suggéré {lg['palette'].get('accent')}")
     for d in rep.get("details", []):
@@ -344,7 +341,6 @@ def main() -> None:
     p.add_argument("dossier", nargs="?", help="dossier (défaut entrees/)")
     p.add_argument("--install", action="store_true", help="copier les éléments dans assets/")
     p.add_argument("--brand", help="créer brands/<nom>.json d'après le logo (implique --install)")
-    p.add_argument("--no-transcript", action="store_true", help="ne pas tenter la transcription")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_entrees)
 

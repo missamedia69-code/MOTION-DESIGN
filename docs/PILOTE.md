@@ -18,6 +18,7 @@ rendu à écrire, seulement du JSON.
 jointes) :
 
 - **l'audio complet de la pub** (voix + musique mixées), qui fixe la durée et le rythme ;
+- **le texte dit dans l'audio** (`script.txt`, une phrase par ligne) ;
 - **les logos** de la marque ;
 - **les détails en `.txt`** : offre, arguments, prix, contacts, ton ;
 - **des vidéos et images complémentaires**.
@@ -25,14 +26,16 @@ jointes) :
 Procédure :
 
 1. `git pull origin main`, puis **`md_intake`** (ou `./md entrees`). Tu obtiens la durée et
-   les respirations de l'audio, la transcription si Whisper est disponible, la palette
+   les respirations de l'audio, le **script calé phrase par phrase** (`audio.script` :
+   `[{start, end, text}]`), la palette
    du logo, le contenu des détails, la liste des médias et un **brief pré-rempli**
    (`audio_master`, `sync`, `duration`, `logo`, `style` d'après le logo, `media`).
 2. **Lis les détails texte** et complète le brief : `hook` (≤ 8 mots), `benefits`
    (2 à 4), `offer`, `proof`, `cta`, `url`, légendes des `media`. Choisis le `template`.
-3. Si une transcription est disponible, aligne les scènes sur ce qui est dit avec
-   `cuts` (une coupe par changement de scène). Sinon, `sync: true` coupe sur les
-   respirations.
+3. **Aligne les scènes sur ce qui est dit** : chaque scène montre ce que la voix
+   raconte. Donne les coupes avec `cuts` (les `start` des phrases où la scène change).
+   Sans script, `sync: true` coupe sur les respirations. Option `"subtitles": true` :
+   le script s'affiche en sous-titres synchronisés.
 4. Marque récurrente : `md_intake` avec `brand: "nom"` crée `brands/nom.json` d'après le
    logo et copie les fichiers dans `assets/`. Ensuite, `"brand": "nom"` suffit.
 5. `md_lint` → `md_preview` → `md_render`.

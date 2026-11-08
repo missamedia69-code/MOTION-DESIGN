@@ -3,12 +3,14 @@
 À chaque pub, l'utilisateur fournit :
   * l'**audio complet** de la pub (voix + musique déjà mixées) → il DICTE la durée
     et le rythme : la vidéo se cale dessus ;
+  * le **texte dit dans l'audio** (script de la voix off, fichier `script.txt` /
+    `texte.txt` / `voix.txt`…) → calé phrase par phrase sur l'audio ;
   * les **logos** de la marque ;
   * les **détails en texte** (.txt / .md) : offre, arguments, ton, contacts… ;
   * des **vidéos et images complémentaires** (produit, ambiance, plans).
 
-`scan()` trie tout ça, analyse l'audio (durée, respirations = points de coupe,
-transcription si Whisper est disponible), extrait la palette du logo, et
+`scan()` trie tout ça, analyse l'audio (durée, respirations = points de coupe),
+cale le script sur l'audio, extrait la palette du logo, et
 prépare un **brief squelette** que l'agent complète à partir des détails texte.
 """
 from __future__ import annotations
@@ -30,6 +32,7 @@ VIDEO_EXT = {".mp4", ".mov", ".webm", ".mkv", ".m4v", ".avi"}
 TEXT_EXT = {".txt", ".md", ".json"}
 FONT_EXT = {".ttf", ".otf"}
 LOGO_RE = re.compile(r"(logo|marque|brand|embl[eè]me|sigle)", re.I)
+SCRIPT_RE = re.compile(r"(script|texte|voix|vo\b|voice|parole|narration|lyrics|dialogue)", re.I)
 IGNORED = {"README.md", ".gitkeep", ".DS_Store"}
 
 
@@ -51,7 +54,7 @@ def _sniff(path: str) -> str:
 
 
 def classify(path: str) -> str:
-    """audio | logo | image | video | text | font | autre"""
+    """audio | logo | image | video | script | text | font | autre"""
     name = os.path.basename(path)
     ext = os.path.splitext(name)[1].lower() or _sniff(path)
     if ext in AUDIO_EXT:
@@ -62,13 +65,13 @@ def classify(path: str) -> str:
     if ext in IMAGE_EXT:
         return "logo" if LOGO_RE.search(name) else "image"
     if ext in TEXT_EXT:
-        return "text"
+        return "script" if SCRIPT_RE.search(os.path.splitext(name)[0]) else "text"
     if ext in FONT_EXT:
         return "font"
     return "autre"
 
 
-# ── Audio : durée, respirations, transcription ──────────────────────────────
+# ── Audio : durée, respirations, calage du script ──────────────────────────────
 
 def energy_envelope(path: str, hop: float = 0.05):
     """Enveloppe d'énergie (dB) de l'audio, fenêtres de `hop` secondes."""
@@ -112,37 +115,68 @@ def breath_points(path: str, min_gap: float = 0.8, min_depth: float = 6.0) -> li
     return pts
 
 
-def transcribe(path: str, language: str = "fr") -> list[dict] | None:
-    """Transcription horodatée si faster-whisper ET son modèle sont disponibles.
+def split_script(text: str) -> list[str]:
+    """Découpe le texte dit en phrases (lignes, puis ponctuation forte)."""
+    phrases = []
+    for line in text.splitlines():
+        line = line.strip().strip("-•*").strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = re.split(r"(?<=[.!?…])\s+", line)
+        phrases += [p.strip() for p in parts if p.strip()]
+    return phrases
 
-    Retourne [{start, end, text}] ou None (pas de modèle : ce n'est pas une erreur).
-    Modèle : MD_WHISPER_MODEL (défaut 'small'). Nécessite l'accès à huggingface.co
-    au premier usage, ou un modèle déjà présent en cache.
+
+def align_script(text: str, audio_path: str, duration: float | None = None,
+                 breaths: list[dict] | None = None) -> list[dict]:
+    """Cale le texte dit sur l'audio, sans reconnaissance vocale.
+
+    1. chaque phrase reçoit un temps proportionnel à sa longueur (débit constant),
+       entre le début et la fin de la parole (creux d'énergie de tête/queue exclus) ;
+    2. chaque début de phrase est accroché à la respiration la plus proche (±0,9 s).
+    Retourne [{start, end, text}] — une estimation fiable à ~0,3 s près sur une voix off.
     """
+    phrases = split_script(text)
+    if not phrases:
+        return []
+    dur = float(duration or probe.probe(audio_path).get("duration") or 0)
+    pts = breaths if breaths is not None else breath_points(audio_path)
+    # Début/fin de parole : premier/dernier point d'énergie significatif.
+    t0, t1 = 0.0, dur
     try:
-        from faster_whisper import WhisperModel
-    except ImportError:
-        return None
-    try:
-        model = WhisperModel(os.environ.get("MD_WHISPER_MODEL", "small"), device="cpu",
-                             compute_type="int8")
-        segs, _ = model.transcribe(path, language=language, vad_filter=False)
-        return [{"start": round(s.start, 2), "end": round(s.end, 2), "text": s.text.strip()}
-                for s in segs]
-    except Exception:  # noqa: BLE001 — modèle indisponible (réseau) : on continue sans
-        return None
+        import numpy as np
+        env, hop = energy_envelope(audio_path)
+        if len(env):
+            loud = np.where(env > float(np.median(env)) - 6)[0]
+            if len(loud):
+                t0 = max(0.0, loud[0] * hop - 0.05)
+                t1 = min(dur, loud[-1] * hop + 0.1)
+    except Exception:  # noqa: BLE001
+        pass
+    weights = [max(4, len(p)) for p in phrases]
+    total = sum(weights)
+    starts, acc = [], t0
+    for w in weights:
+        starts.append(acc)
+        acc += (t1 - t0) * w / total
+    # Accroche aux respirations (sauf la première phrase)
+    for i in range(1, len(starts)):
+        near = [p for p in pts if abs(p["t"] - starts[i]) <= 0.9 and p["t"] > starts[i - 1] + 0.4]
+        if near:
+            starts[i] = max(near, key=lambda p: p["depth_db"] - 5 * abs(p["t"] - starts[i]))["t"]
+    out = []
+    for i, ph in enumerate(phrases):
+        end = starts[i + 1] if i + 1 < len(starts) else t1
+        out.append({"start": round(starts[i], 2), "end": round(max(end, starts[i] + 0.3), 2), "text": ph})
+    return out
 
 
-def analyse_audio(path: str, with_transcript: bool = True) -> dict:
+def analyse_audio(path: str, script: str | None = None) -> dict:
     info = probe.probe(path)
-    out = {"file": os.path.relpath(path, REPO), "duration_s": info.get("duration"),
-           "breaths": breath_points(path)}
-    if with_transcript:
-        tr = transcribe(path)
-        out["transcript"] = tr
-        if tr is None:
-            out["transcript_note"] = ("transcription indisponible (modèle Whisper non téléchargé) : "
-                                      "caler le texte d'après les détails et les respirations")
+    pts = breath_points(path)
+    out = {"file": os.path.relpath(path, REPO), "duration_s": info.get("duration"), "breaths": pts}
+    if script:
+        out["script"] = align_script(script, path, info.get("duration"), pts)
     return out
 
 
@@ -213,12 +247,13 @@ def brand_from_logo(name: str, logo: str, title: str | None = None,
 
 # ── Réception complète ───────────────────────────────────────────────────────
 
-def scan(folder: str | None = None, with_transcript: bool = True) -> dict:
+def scan(folder: str | None = None, **_ignored) -> dict:
     """Inventaire + analyse des éléments déposés. Aucun fichier modifié."""
     folder = folder or INTAKE_DIR
     if not os.path.isdir(folder):
         raise SystemExit(f"ERREUR : dossier d'entrée introuvable : {folder}")
-    found: dict[str, list] = {k: [] for k in ("audio", "logo", "image", "video", "text", "font", "autre")}
+    found: dict[str, list] = {k: [] for k in ("audio", "logo", "image", "video", "script", "text",
+                                               "font", "autre")}
     for root, _, files in os.walk(folder):
         for f in sorted(files):
             if f in IGNORED or f.startswith("."):
@@ -231,8 +266,12 @@ def scan(folder: str | None = None, with_transcript: bool = True) -> dict:
 
     # Audio principal = le plus long (l'audio complet de la pub)
     audios = sorted(found["audio"], key=lambda p: probe.probe(p).get("duration") or 0, reverse=True)
+    script_text = ""
+    for p in found["script"]:
+        with open(p, encoding="utf-8", errors="replace") as f:
+            script_text += f.read() + "\n"
     if audios:
-        report["audio"] = analyse_audio(audios[0], with_transcript)
+        report["audio"] = analyse_audio(audios[0], script_text or None)
         if len(audios) > 1:
             report["audio_secondaires"] = [rel(p) for p in audios[1:]]
 
@@ -272,6 +311,7 @@ def scan(folder: str | None = None, with_transcript: bool = True) -> dict:
 
     report["manquants"] = [m for m, ok in (
         ("audio complet de la pub", bool(audios)), ("logo", bool(logos)),
+        ("texte dit dans l'audio (script.txt)", bool(found["script"])),
         ("détails texte (.txt)", bool(details))) if not ok]
     report["brief_squelette"] = skeleton(report)
     return report
@@ -303,6 +343,9 @@ def skeleton(report: dict) -> dict:
         b["audio_master"] = report["audio"]["file"]
         b["sync"] = True
         b["duration"] = report["audio"]["duration_s"]
+        if report["audio"].get("script"):
+            b["script"] = report["audio"]["script"]
+            b["subtitles"] = False
     if report.get("logos"):
         logo = report["logos"][0]["file"]
         b["logo"] = logo

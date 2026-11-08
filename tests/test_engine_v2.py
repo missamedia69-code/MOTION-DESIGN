@@ -259,13 +259,15 @@ class IntakeTest(unittest.TestCase):
                     os.path.join(self.tmp, "plan.mp4")], echo=False)
         with open(os.path.join(self.tmp, "details.txt"), "w") as f:
             f.write("Accroche : Plus simple que jamais\nOffre : 29 €\n")
+        with open(os.path.join(self.tmp, "script.txt"), "w") as f:
+            f.write("Fini les complications.\nVoici la solution simple et rapide.\nEssayez dès aujourd'hui !\n")
 
     def tearDown(self):
         shutil.rmtree(self.tmp, ignore_errors=True)
 
     def test_scan_and_compose_synced(self):
         from engine import intake
-        rep = intake.scan(self.tmp, with_transcript=False)
+        rep = intake.scan(self.tmp)
         self.assertEqual(rep["manquants"], [])
         self.assertAlmostEqual(rep["audio"]["duration_s"], 8, delta=0.1)
         ts = [p["t"] for p in rep["audio"]["breaths"]]
@@ -274,10 +276,16 @@ class IntakeTest(unittest.TestCase):
         self.assertEqual(rep["logos"][0]["palette"]["accent"].upper()[:3], "#FF")  # orange démo
         self.assertEqual({m["kind"] for m in rep["medias"]}, {"image", "video"})
         self.assertIn("Plus simple", rep["details"][0]["content"])
+        script = rep["audio"]["script"]
+        self.assertEqual([p["text"] for p in script][0], "Fini les complications.")
+        self.assertEqual(len(script), 3)
+        # phrases 2 et 3 accrochées aux respirations (3 s et 5,5 s)
+        self.assertAlmostEqual(script[1]["start"], 3.0, delta=0.2)
+        self.assertAlmostEqual(script[2]["start"], 5.5, delta=0.2)
         b = rep["brief_squelette"]
         self.assertTrue(b["sync"] and b["audio_master"] and b["style"]["accent"])
         b.update(hook="Plus simple que jamais", cta="J'en profite", benefits=["Rapide"],
-                 scenes=["hook", "media", "cta"])
+                 scenes=["hook", "media", "cta"], subtitles=True)
         proj = ads.compose(b)
         self.assertEqual(proj["_ad"]["plan"], ["hook", "media:0", "media:1", "cta"])
         starts, total = render.scene_starts(proj, proj["scenes"])
@@ -285,6 +293,8 @@ class IntakeTest(unittest.TestCase):
         # au moins une coupe calée sur une respiration
         self.assertTrue(any(abs(s - t) < 0.06 for s in starts[1:] for t in ts), (starts, ts))
         self.assertTrue(lint.lint(proj, REPO)["ok"])
+        subs = [l for sc in proj["scenes"] for l in sc["layers"] if l.get("_subtitle")]
+        self.assertGreaterEqual(len(subs), 3)
 
     def test_explicit_cuts_and_errors(self):
         b = {"hook": "Test", "cta": "Go", "audio_master": os.path.join(self.tmp, "pub complete.mp3"),
@@ -298,7 +308,7 @@ class IntakeTest(unittest.TestCase):
 
     def test_brand_kit_from_logo(self):
         from engine import intake
-        rep = intake.scan(self.tmp, with_transcript=False)
+        rep = intake.scan(self.tmp)
         kit = intake.brand_from_logo("client", os.path.join(REPO, rep["logos"][0]["file"]))
         self.assertEqual(kit["colors"]["accent"], rep["logos"][0]["palette"]["accent"])
         self.assertGreaterEqual(lint.contrast(kit["colors"]["accent"], kit["colors"]["on_accent"]), 4.5)

@@ -5,11 +5,14 @@ Le moteur est générique : n'importe quelle marque, n'importe quel produit.
 
 1. **L'audio complet de la pub** (voix + musique déjà mixées, .mp3 ou .wav). La vidéo
    se cale dessus : même durée, coupes sur les respirations.
-2. **Les logos de la marque** (PNG transparent ; mettez « logo » dans le nom). Les
+2. **Le texte dit dans l'audio** (`script.txt`) : exactement les phrases de la voix off,
+   une par ligne. Le moteur les cale sur l'audio pour synchroniser les scènes, et en
+   option des sous-titres.
+3. **Les logos de la marque** (PNG transparent ; mettez « logo » dans le nom). Les
    couleurs de la vidéo en sont déduites.
-3. **Les détails en texte** (`details.txt`) : accroche souhaitée, arguments, offre, prix,
+4. **Les détails en texte** (`details.txt`) : accroche souhaitée, arguments, offre, prix,
    site, ton.
-4. **Des vidéos et images complémentaires** (produit, ambiance, démonstration). Une scène
+5. **Des vidéos et images complémentaires** (produit, ambiance, démonstration). Une scène
    chacune.
 
 L'agent lance `./md entrees` (ou l'outil MCP `md_intake`) pour tout analyser, puis
@@ -45,7 +48,17 @@ git push origin main
 ## Bien nommer ses fichiers
 
 Des noms explicites aident l'agent : `logo-marque.png`, `produit-detoure.png`,
-`pub-complete.mp3`, `details.txt`, `demo-produit.mp4`.
+`pub-complete.mp3`, `script.txt`, `details.txt`, `demo-produit.mp4`.
+
+## Exemple de `script.txt` (le texte dit, tel quel)
+
+```
+Et si tout devenait plus simple ?
+Le Produit vous accompagne partout.
+Livraison en 24 heures, satisfait ou remboursé.
+Aujourd'hui seulement : 29 euros au lieu de 49.
+Rendez-vous sur votre-site.com !
+```
 
 ## Exemple de `details.txt`
 

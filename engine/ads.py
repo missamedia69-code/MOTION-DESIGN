@@ -108,7 +108,9 @@ def schema() -> dict:
             "url": "site / handle affiché sous le bouton",
             "audio_master": "AUDIO COMPLET de la pub (voix + musique mixées) : fixe la durée, la vidéo se cale dessus",
             "sync": "true (défaut) : coupes entre scènes calées sur les respirations de audio_master",
-            "cuts": "instants de coupe exacts [s] (n_scènes - 1 valeurs), ex. d'après la transcription",
+            "cuts": "instants de coupe exacts [s] (n_scènes - 1 valeurs), ex. d'après le script calé (début des phrases)",
+            "script": "texte dit dans l'audio, calé : [{start, end, text}] (fourni par md_intake)",
+            "subtitles": "true : affiche le script en sous-titres synchronisés avec la voix",
             "media": "vidéos/images complémentaires [{file, caption, start, duration, move, fit}] → une scène chacune",
             "scenes": "ordre explicite des scènes (hook, product, media, benefits, proof, offer, cta)",
             "logo": "logo à utiliser (remplace celui du kit de marque)",
@@ -168,7 +170,7 @@ def _timing(plan: list[str], durs: dict, tr: float, spec: dict, master_path: str
     """Cale les coupes entre scènes.
 
     Priorité : `cuts` (instants de coupe donnés par l'agent, ex. d'après la
-    transcription) > respirations de l'audio complet (`sync`) > rythme proportionnel.
+    script calé) > respirations de l'audio complet (`sync`) > rythme proportionnel.
     La durée totale est conservée.
     """
     n = len(plan)
@@ -210,7 +212,29 @@ def _timing(plan: list[str], durs: dict, tr: float, spec: dict, master_path: str
     return {k: round(max(1.0, v), 2) for k, v in zip(plan, new_d)}
 
 
-def _media_layers(m: dict, D: float, C: dict, body_font: str, head_font: str, i: int) -> list[dict]:
+def _add_subtitles(scenes: list[dict], script: list[dict], tr: float, C: dict, font: str) -> None:
+    """Sous-titres synchronisés : chaque phrase du script s'affiche pendant qu'elle est dite."""
+    starts, t = [], 0.0
+    for k, sc in enumerate(scenes):
+        starts.append(t)
+        t += sc["duration"] - (tr if k < len(scenes) - 1 else 0)
+    for ph in script:
+        s0, s1 = float(ph["start"]), float(ph["end"])
+        for k, sc in enumerate(scenes):
+            a, b = starts[k], starts[k] + sc["duration"]
+            lo, hi = max(s0, a), min(s1, b)
+            if hi - lo < 0.25:
+                continue
+            sc["layers"].append({
+                "type": "text", "text": str(ph["text"]), "font": font, "size": "4.4vmin",
+                "color": C["text"], "max_width": "84vw", "pos": ["50%", "77%"],
+                "box": {"color": "#000000", "opacity": 0.55}, "box_anim": "grow_x",
+                "in": round(lo - a, 2), "out": round(hi - a, 2), "anim": "fade",
+                "fade_in": 0.12, "fade_out": 0.12, "_subtitle": True})
+
+
+def _media_layers(m: dict, D: float, C: dict, body_font: str, head_font: str, i: int,
+                  caption_y: str = "76%") -> list[dict]:
     """Scène d'un média complémentaire : photo plein cadre (Ken Burns), vidéo, ou objet détouré."""
     from . import intake, render as render_mod
     path = render_mod.resolve_path(m["file"], os.getcwd())
@@ -237,7 +261,7 @@ def _media_layers(m: dict, D: float, C: dict, body_font: str, head_font: str, i:
                       "gradient": ["#00000000", "#000000D9"], "angle": 180, "in": 0, "anim": "fade"})
         L.append({"type": "text", "text": caption, "split": "word", "stagger": 0.07, "font": head_font,
                   "size": m.get("size", "6.5vmin"), "color": C["text"], "max_width": "86vw",
-                  "pos": ["50%", "76%"], "in": 0.25, "anim": "fade_up", "ease": "back_out",
+                  "pos": ["50%", caption_y], "in": 0.25, "anim": "fade_up", "ease": "back_out",
                   "shadow": {"blur": 10, "opacity": 0.6}})
     return L
 
@@ -486,7 +510,8 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
                           "in": 1.5, "anim": "fade", "uppercase": True, "letter_spacing": 3})
         elif kind.startswith("media:"):
             m = media[int(kind.split(":")[1])]
-            L += _media_layers(m, D, C, body_font, head_font, int(kind.split(":")[1]))
+            L += _media_layers(m, D, C, body_font, head_font, int(kind.split(":")[1]),
+                               caption_y="62%" if spec.get("subtitles") else "76%")
         elif kind == "cta":
             L += logo_layer("28%", "30vmin", 0.1, D)
             if spec.get("cta_title") or spec.get("signature"):
@@ -513,6 +538,9 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
         if idx < len(plan) - 1:
             sc["transition"] = {"type": transition, "duration": tr_dur}
         scenes.append(sc)
+
+    if spec.get("subtitles") and spec.get("script"):
+        _add_subtitles(scenes, spec["script"], tr_dur, C, body_font)
 
     project = {
         "name": spec.get("name") or _slug(hook)[:40],

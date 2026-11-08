@@ -52,12 +52,13 @@ On dépose dans **`entrees/`** (upload GitHub sur `main`, ou pièces jointes à 
 |---|---|
 | **L'audio complet de la pub** (voix + musique déjà mixées) | fixe la **durée** ; les coupes entre scènes se calent sur ses **respirations** |
 | **Les logos de la marque** | logo de fin de pub ; **couleurs de la vidéo déduites du logo** |
+| **Le texte dit dans l'audio** (`script.txt`) | calé phrase par phrase sur l'audio : l'agent sait ce qui est dit à chaque instant ; sous-titres synchronisés en option (`"subtitles": true`) |
 | **Les détails en `.txt`** | accroche, arguments, offre, prix, contacts : l'agent en tire le brief |
 | **Vidéos et images complémentaires** | une scène chacune : photo plein cadre en mouvement, vidéo, ou produit détouré, avec légende |
 
 ```bash
-./md entrees                       # analyse tout : durée et respirations de l'audio, palette du logo,
-                                   # contenu des détails, médias ; propose un brief pré-rempli
+./md entrees                       # analyse tout : durée et respirations de l'audio, script calé
+                                   # phrase par phrase, palette du logo, détails, médias ; brief pré-rempli
 ./md entrees --brand ma-marque     # + copie dans assets/ et crée brands/ma-marque.json d'après le logo
 ```
 
@@ -260,7 +261,7 @@ Sans MCP, la même chose en ligne de commande : `./md cockpit` (JSON des capacit
    il fixe la durée totale. Le moteur repère dans son enveloppe d'énergie les creux
    (respirations, fins de phrase), même sous une musique, et place les coupes entre
    scènes sur ces creux. Un agent peut aussi imposer les coupes exactes (`cuts`), par
-   exemple d'après une transcription.
+   exemple au début d'une phrase du script.
 
 7. **Assemblage et audio.** Les scènes sont enchaînées avec des transitions `xfade`
    (fondu, glissé, volet…). L'audio est placé sur la timeline globale : musique

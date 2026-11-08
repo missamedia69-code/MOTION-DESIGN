@@ -48,9 +48,8 @@ MD_TOOLS = [
      "inputSchema": {"type": "object", "properties": {}}},
     {"name": "md_guide", "description": "Manuel du pilote (docs/PILOTE.md) : règles de mise en scène pub, exemples, diagnostic.",
      "inputSchema": {"type": "object", "properties": {}}},
-    {"name": "md_intake", "description": "À APPELER EN PREMIER pour une nouvelle pub : analyse entrees/ (audio complet de la pub → durée, respirations, transcription si dispo ; logos → palette ; détails .txt → contenu ; vidéos/images complémentaires). Renvoie un brief squelette. install=true copie dans assets/ ; brand=\"nom\" crée le kit de marque d'après le logo.",
-     "inputSchema": {"type": "object", "properties": {"install": {"type": "boolean"}, "brand": {"type": "string"},
-                                                      "transcript": {"type": "boolean", "description": "tenter la transcription Whisper (défaut true)"}}}},
+    {"name": "md_intake", "description": "À APPELER EN PREMIER pour une nouvelle pub : analyse entrees/ (audio complet de la pub → durée, respirations ; script.txt = texte dit → calé phrase par phrase sur l'audio ; logos → palette ; détails .txt → contenu ; vidéos/images complémentaires). Renvoie un brief squelette. install=true copie dans assets/ ; brand=\"nom\" crée le kit de marque d'après le logo.",
+     "inputSchema": {"type": "object", "properties": {"install": {"type": "boolean"}, "brand": {"type": "string"}}}},
     {"name": "md_brands", "description": "Kits de marque (couleurs, polices, logo) utilisables via \"brand\" et les jetons $accent, $font.title, $logo.",
      "inputSchema": {"type": "object", "properties": {}}},
     {"name": "md_projects", "description": "Liste des projets enregistrés.",
@@ -176,7 +175,7 @@ def call_md_tool(name: str, args: dict) -> dict:
         return text(brand.list_brands())
     if name == "md_intake":
         from engine import intake
-        rep = intake.scan(with_transcript=args.get("transcript", True))
+        rep = intake.scan()
         if args.get("install") or args.get("brand"):
             rep["installation"] = intake.install(rep, args.get("brand"))
         return text(rep)
