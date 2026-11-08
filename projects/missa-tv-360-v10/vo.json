@@ -1,0 +1,77 @@
+{
+ "backend": "kokoro-onnx",
+ "voice": "ff_siwis",
+ "speed": 1.12,
+ "lines": [
+  {
+   "start": 0.4,
+   "end": 3.4,
+   "text": "Et si tout ton divertissement tenait dans une seule application ?"
+  },
+  {
+   "start": 3.8,
+   "end": 5.77,
+   "text": "Voici Missa TV 360 !"
+  },
+  {
+   "start": 6.2,
+   "end": 11.67,
+   "text": "Des milliers de films, des séries, des mangas, du sport, des documentaires et des centaines de chaînes en direct !"
+  },
+  {
+   "start": 12.1,
+   "end": 15.51,
+   "text": "Des radios du monde entier, des podcasts et toute ta musique préférée !"
+  },
+  {
+   "start": 16.1,
+   "end": 22.24,
+   "text": "Et le plus intéressant ? Même avec une connexion limitée, profite d'un streaming optimisé pour rester stable !"
+  },
+  {
+   "start": 22.7,
+   "end": 28.51,
+   "text": "Une simple box Wi-Fi, une connexion Internet… et tu accèdes à tout ton univers de divertissement !"
+  },
+  {
+   "start": 29.0,
+   "end": 31.02,
+   "text": "Sur téléphone, tablette ou télévision !"
+  },
+  {
+   "start": 31.8,
+   "end": 37.82,
+   "text": "Et ce n'est pas tout ! Après le téléchargement, profite de 24 heures entièrement gratuites pour tester l'application !"
+  },
+  {
+   "start": 38.6,
+   "end": 39.63,
+   "text": "Et ça coûte combien ?"
+  },
+  {
+   "start": 40.5,
+   "end": 43.95,
+   "text": "Seulement mille francs CFA par mois ! Ou dix mille francs pour toute l'année !"
+  },
+  {
+   "start": 44.3,
+   "end": 46.24,
+   "text": "Oui, toute une année, avec deux mois offerts !"
+  },
+  {
+   "start": 46.9,
+   "end": 48.08,
+   "text": "Pourquoi chercher ailleurs ?"
+  },
+  {
+   "start": 48.9,
+   "end": 53.59,
+   "text": "Missa TV 360 ! Tout ton divertissement, une seule application, un petit prix !"
+  },
+  {
+   "start": 54.3,
+   "end": 55.35,
+   "text": "Télécharge maintenant !"
+  }
+ ]
+}
