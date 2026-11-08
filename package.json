@@ -1,7 +1,7 @@
 {
   "name": "motion-design-engine",
   "version": "1.0.0",
-  "description": "Ce dépôt est un **moteur de montage motion design** : un espace de travail complet où l'on dépose des éléments (polices, logos, rushes, musiques), on décrit un montage de façon déclarative (`project.json`), et le moteur produit les livrables (MP4, GIF, WebM, ProRes alpha) dans `output/`.",
+  "description": "Moteur de vidéos publicitaires motion design : brief ou project.json → MP4 multi-formats, pilotable par agent IA (MCP).",
   "main": "index.js",
   "directories": {
     "doc": "docs"

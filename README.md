@@ -1,142 +1,357 @@
-# MOTION-DESIGN — moteur de montage
+# MOTION-DESIGN — moteur de vidéos publicitaires motion design
 
-Ce dépôt est un **moteur de montage motion design** : un espace de travail complet où
-l'on dépose des éléments (polices, logos, rushes, musiques), on décrit un montage de
-façon déclarative (`project.json`), et le moteur produit les livrables (MP4, GIF, WebM,
-ProRes alpha) livrés **en artefact** (rendus temporaires dans `.cache/rendus/`).
+On **décrit** une vidéo en JSON (un brief pub ou un montage détaillé) et le moteur
+la **fabrique** : animations, typographie, transitions, son, puis export prêt pour les
+réseaux sociaux en 9:16, 1:1, 4:5 et 16:9.
 
-## Démarrage rapide
+Le moteur sert aux humains comme aux **agents IA**. Un agent qui ouvre ce dossier s'y
+connecte automatiquement (MCP), comme un pilote dans un cockpit : il voit les
+instruments, compose, vérifie, regarde des aperçus et livre.
 
-```bash
-make bootstrap                      # dépendances + diagnostic
-./md new demo --canvas 16x9         # crée projects/demo/project.json
-#   … éditer project.json (le montage se décrit, il ne se code pas)
-./md render demo                    # → livrable livré en artefact
-./md preview                        # prévisualisation navigateur
+```
+brief / project.json ──► contrôle qualité ──► aperçu (planche contact) ──► rendu MP4 multi-formats
 ```
 
-## Pilotage par agent IA (moteur v2)
+---
 
-Le dépôt contient un `.mcp.json` : tout agent compatible MCP (Claude Code, Cursor…)
-ouvert dans le dossier se connecte au serveur `motion-design`, avec les outils `md_cockpit`,
-`md_ad_compose`, `md_lint`, `md_preview` (planche contact renvoyée en image),
-`md_render` (multi-formats) et `md_project_save`.
-Manuel du pilote : [docs/PILOTE.md](docs/PILOTE.md).
+## Sommaire
+
+1. [Installation](#1-installation)
+2. [Créer une pub en 2 minutes (brief)](#2-créer-une-pub-en-2-minutes-avec-un-brief)
+3. [Créer un montage sur mesure (project.json)](#3-créer-un-montage-sur-mesure-projectjson)
+4. [Piloter le moteur avec un agent IA](#4-piloter-le-moteur-avec-un-agent-ia)
+5. [Comment le moteur fonctionne](#5-comment-le-moteur-fonctionne)
+6. [Référence rapide](#6-référence-rapide)
+7. [Autres outils du dépôt](#7-autres-outils-du-dépôt)
+
+---
+
+## 1. Installation
 
 ```bash
-./md ad templates/ad/brief-promo.json --save --preview   # brief → montage → planche contact
-./md render pub-box-missa --preset mp4-social --formats 9x16,1x1,16x9
+make bootstrap          # Python (pillow, numpy, av, imageio-ffmpeg) + Node + ffmpeg
+./md doctor --full      # diagnostic + rendu d'essai : doit finir par « ✅ Moteur opérationnel »
 ```
 
-## Arborescence
+Prérequis : `python3`, `ffmpeg` (système, ou binaire statique installé par le
+bootstrap). Node n'est utile que pour HyperFrames (section 7).
+
+---
+
+## 2. Créer une pub en 2 minutes avec un brief
+
+Un **brief** décrit le *message*, pas l'animation. Le moteur choisit la mise en scène.
+
+**Étape 1 — écrire le brief** (ou copier `templates/ad/brief-promo.json`) :
+
+```json
+{
+  "template": "promo",
+  "brand": "missa",
+  "canvas": "9x16",
+  "duration": 15,
+  "hook": "Votre télé vous coûte trop cher ?",
+  "product": {"image": "assets/images/box-mtn-cutout.png", "name": "La Box MISSA TV",
+              "tagline": "Toute la télé africaine, partout"},
+  "benefits": ["Plus de 300 chaînes", "Installation offerte", "Sans engagement"],
+  "proof": {"value": 10000, "prefix": "+", "label": "familles abonnées"},
+  "offer": {"price": 1000, "old_price": 2000, "currency": "FCFA", "label": "par mois",
+            "badge": "-50 %"},
+  "cta": "Je m'abonne",
+  "url": "missa.tv",
+  "music": {"file": "assets/audio/ma-musique.mp3", "loop": true},
+  "voiceover": "projects/ma-pub/voix.mp3"
+}
+```
+
+**Étape 2 — vérifier et prévisualiser :**
+
+```bash
+./md ad mon-brief.json --save --preview
+```
+
+Le moteur enregistre le projet dans `projects/<nom>/`, affiche le contrôle qualité et
+produit une **planche contact** (images clés) dans `.cache/apercus/<nom>-apercu/planche.png`.
+
+**Étape 3 — rendre les vidéos finales :**
+
+```bash
+./md ad mon-brief.json --render --formats 9x16,1x1,16x9
+```
+
+Les MP4 arrivent dans `.cache/rendus/` (un fichier par format).
+
+### Les 4 templates
+
+| Template | Déroulé | Pour |
+|---|---|---|
+| `promo` | accroche → produit → bénéfices → preuve → offre → bouton | présenter un produit |
+| `offre` | accroche → prix barré qui chute → bénéfices → bouton (plus rapide) | soldes, promo limitée |
+| `annonce` | accroche → produit → bénéfices → bouton | lancement, nouveauté |
+| `preuve` | accroche → chiffre clé animé → bénéfices → bouton | preuve sociale |
+
+Tous les champs sauf `hook` sont optionnels. Une scène sans contenu est sautée.
+`duration` (6, 15, 30…) ajuste le rythme. Voir `./md ad --example` et
+`./md ad --templates`.
+
+---
+
+## 3. Créer un montage sur mesure (project.json)
+
+Pour un contrôle total, on écrit le montage scène par scène.
+
+```bash
+./md new ma-video --canvas 9x16 --template story   # crée projects/ma-video/project.json
+# … éditer le fichier
+./md lint ma-video                                 # contrôle qualité
+./md apercu ma-video                               # brouillon rapide + planche contact
+./md render ma-video --preset mp4-social --formats 9x16,1x1
+```
+
+Exemple minimal (une scène, unités relatives, kit de marque) :
+
+```json
+{
+  "brand": "missa",
+  "canvas": "9x16",
+  "export": {"preset": "mp4-social"},
+  "scenes": [{
+    "duration": 4,
+    "background": {"gradient": ["$background", "$surface"], "angle": 160},
+    "layers": [
+      {"type": "text", "text": "Offre de lancement", "split": "word", "font": "$font.title",
+       "size": "9vmin", "color": "$text", "pos": ["50%", "40%"], "anim": "fade_up",
+       "ease": "back_out"},
+      {"type": "counter", "to": 1000, "suffix": " FCFA", "size": "14vmin", "color": "$accent",
+       "pos": ["50%", "55%"], "in": 0.6, "anim": "punch"},
+      {"type": "image", "file": "$logo", "scale": {"w": "30vmin"}, "pos": ["50%", "75%"],
+       "in": 1, "anim": "pop", "idle": "float"}
+    ]
+  }]
+}
+```
+
+Chaque calque a une **fenêtre** (`in`/`out` en secondes), une **position** (`pos`),
+une **entrée** (`anim` + `ease`), une **sortie** (`exit`) et un **mouvement continu**
+(`idle`). Spécification complète : **[docs/SPEC-PROJET.md](docs/SPEC-PROJET.md)**.
+
+---
+
+## 4. Piloter le moteur avec un agent IA
+
+### Connexion
+
+Le fichier `.mcp.json` à la racine déclare le serveur **`motion-design`**. Un agent
+compatible MCP (Claude Code, Cursor…) ouvert dans ce dossier s'y connecte tout seul.
+Lancement manuel : `python3 -m lab.mcp` (JSON-RPC sur stdio, sans dépendance).
+
+### La boucle du pilote
+
+| Étape | Outil MCP | Ce que l'agent obtient |
+|---|---|---|
+| 1. Instruments | `md_cockpit` | formats, exports, animations, marques, templates, polices, assets |
+| 2. Composer | `md_ad_compose` ou `md_project_save` | un montage complet (brief) ou enregistré (sur mesure) |
+| 3. Contrôler | `md_lint` | erreurs bloquantes + alertes avec le champ exact à corriger |
+| 4. Regarder | `md_preview` | une **image** de planche contact du brouillon |
+| 5. Livrer | `md_render` / `md_ad_render` | les MP4, un par format |
+
+Autres outils : `md_guide` (manuel), `md_brands`, `md_projects`, `md_project_get`,
+`md_ad_example`. Le laboratoire « données → graphique animé » reste disponible
+via les outils `lab_*`.
+
+Manuel du pilote, avec les règles de mise en scène publicitaire :
+**[docs/PILOTE.md](docs/PILOTE.md)**.
+
+Sans MCP, la même chose en ligne de commande : `./md cockpit` (JSON des capacités),
+`./md cockpit --guide` (manuel).
+
+---
+
+## 5. Comment le moteur fonctionne
+
+### Vue d'ensemble
+
+```
+            ┌──────────── brief pub ────────────┐
+            │  engine/ads.py (compositeur)      │
+            └───────────────┬───────────────────┘
+                            ▼
+                     project.json  ◄──── écrit à la main ou par un agent
+                            │
+     ┌──────────────────────┼─────────────────────────────────────┐
+     │ 1. Normalisation     │ engine/brand.py + engine/layout.py  │
+     │    jetons $accent → couleurs, "50%"/"8vmin" → pixels       │
+     │ 2. Contrôle qualité  │ engine/lint.py                      │
+     │ 3. Calques générés   │ engine/text.py (Pillow)             │
+     │    textes, formes, dégradés, compteurs → images PNG        │
+     │ 4. Graphe par scène  │ engine/render.py                    │
+     │    fond + calques empilés, animations = expressions ffmpeg │
+     │    rendues EN PARALLÈLE, MISES EN CACHE                    │
+     │ 5. Assemblage        │ transitions xfade entre scènes      │
+     │ 6. Audio             │ musique + voix (ducking) + effets,  │
+     │                      │ normalisation -14 LUFS              │
+     │ 7. Export            │ preset (mp4-social, gif, prores…)   │
+     └──────────────────────┴─────────────────────────────────────┘
+                            ▼
+              .cache/rendus/<nom>-<format>-<preset>.mp4
+```
+
+### Les étapes en détail
+
+1. **Normalisation.** Les jetons de marque (`$accent`, `$font.title`, `$logo`) sont
+   remplacés par les valeurs du kit `brands/<nom>.json`. Les unités relatives (`"50%"`,
+   `"8vw"`, `"6vmin"`) sont converties en pixels **pour le format demandé**. C'est
+   pourquoi un même projet se rend en 9:16, 1:1 et 16:9.
+
+2. **Contrôle qualité** (`lint`). Avant de dépenser du temps de rendu, le moteur
+   vérifie les fichiers, les polices, les animations, les durées et les transitions. Il
+   applique aussi des règles pub : texte trop petit pour un mobile, texte caché par
+   l'interface TikTok/Reels (zones sûres), contraste insuffisant, accroche trop tardive
+   (après 1,5 s).
+
+3. **Calques générés.** ffmpeg ne dessine pas bien le texte, alors chaque texte, forme,
+   dégradé ou compteur est dessiné en image PNG transparente avec Pillow. Le texte
+   « mot par mot » (`split`) devient plusieurs images superposées qui apparaissent en
+   cascade. Un compteur devient une courte séquence d'images.
+
+4. **Graphe par scène.** Chaque scène devient un graphe de filtres ffmpeg : un fond,
+   puis chaque calque superposé (`overlay`) dans l'ordre de la liste. Les animations
+   sont des **expressions mathématiques évaluées à chaque image** : position, échelle,
+   rotation, transparence, masque de révélation, avec des courbes d'accélération
+   (`ease_out`, `back_out`…).
+
+5. **Parallélisme et cache.** Les scènes sont rendues en même temps (jusqu'à 4,
+   variable `MD_JOBS`). Chaque scène reçoit une empreinte calculée sur son contenu, ses
+   fichiers et la version du moteur. Une scène inchangée sort du cache, donc retoucher
+   une seule scène ne recalcule qu'elle.
+
+6. **Assemblage et audio.** Les scènes sont enchaînées avec des transitions `xfade`
+   (fondu, glissé, volet…). L'audio est placé sur la timeline globale : musique
+   (bouclée si besoin), voix off qui fait **baisser automatiquement la musique**
+   (ducking), effets sonores calés sur les scènes. Le tout passe ensuite par une
+   normalisation de volume (-14 LUFS, le standard des réseaux sociaux).
+
+7. **Export.** Le preset choisit l'encodage (`mp4-social` = H.264 compatible régies
+   pub). Le fichier est d'abord écrit en `.part`, puis renommé, ce qui évite de livrer
+   un fichier à moitié écrit. En cas d'échec, ffmpeg renvoie un message lisible qui
+   indique la cause.
+
+### Organisation du code
+
+| Fichier | Rôle |
+|---|---|
+| `md` | point d'entrée de la ligne de commande (`./md -h`) |
+| `engine/cli.py` | commandes `./md …` |
+| `engine/render.py` | cœur : graphes ffmpeg, animations, audio, parallélisme, cache |
+| `engine/text.py` | rendu Pillow : texte, texte cinétique, formes, dégradés, compteurs |
+| `engine/easing.py` | courbes d'accélération (expressions ffmpeg) |
+| `engine/layout.py` | unités relatives et normalisation |
+| `engine/brand.py` | kits de marque et jetons |
+| `engine/lint.py` | contrôle qualité |
+| `engine/ads.py` | compositeur publicitaire (brief → montage) |
+| `engine/frames.py` | aperçus : images clés et planche contact |
+| `engine/cockpit.py` | inventaire des capacités (partagé CLI / MCP) |
+| `engine/presets.py` | formats, exports, zones sûres, durées pub |
+| `lab/mcp.py` | serveur MCP (outils `md_*` et `lab_*`) |
+| `lab/` | laboratoire données → vidéo (compositeur, API HTTP) |
+| `tests/` | tests hors ligne (`make test`) |
+
+### Arborescence des données
 
 ```
 MOTION-DESIGN/
-├── md                  ← CLI du moteur (./md -h)
-├── Makefile            ← automatisations (make help)
-├── engine/             ← code du moteur (Python : rendu ffmpeg, texte Pillow…)
-├── projects/           ← 1 dossier = 1 projet (project.json = le montage)
-├── assets/             ← bibliothèque partagée (fonts, images, videos, audio, lottie)
-│   └── INVENTORY.md    ← inventaire généré automatiquement
-├── brands/             ← kits de marque (couleurs, polices, logo → jetons $accent…)
-├── templates/          ← modèles de projet (base, story) + briefs pub (ad/)
-├── docs/               ← procédures (PROCEDURES.md) et spec (SPEC-PROJET.md)
-├── .cache/rendus/        ← rendus temporaires, LIVRÉS EN ARTEFACT (pas de dossier output/)
-└── .cache/             ← intermédiaires de rendu (ignorés par git)
+├── assets/        ← bibliothèque partagée : fonts, images, videos, audio (./md install)
+├── brands/        ← kits de marque : missa.json, neutre.json
+├── projects/      ← 1 dossier = 1 projet (project.json)
+├── templates/     ← modèles de projet (base, story) et briefs pub (ad/)
+├── docs/          ← PILOTE.md, SPEC-PROJET.md, PROCEDURES.md, VOIX-TTS.md…
+├── livrables/     ← vidéos livrées et versionnées
+└── .cache/        ← rendus (rendus/), aperçus (apercus/), intermédiaires (non versionné)
 ```
 
-## Commandes principales
+---
+
+## 6. Référence rapide
+
+### Commandes
 
 | Commande | Rôle |
 |---|---|
 | `./md doctor [--full]` | diagnostic du moteur (+ rendu d'essai) |
-| `./md ad <brief.json> --render --formats 9x16,1x1,16x9` | **pub depuis un brief** (accroche, produit, offre, CTA) |
-| `./md lint <nom>` | contrôle qualité : erreurs, lisibilité, zones sûres TikTok/Reels, contraste |
-| `./md apercu <nom>` | brouillon rapide + planche contact des images clés |
-| `./md render <nom> --formats 9x16,1x1 [--draft]` | déclinaisons multi-formats, brouillon |
-| `./md cockpit [--guide]` | capacités complètes en JSON pour un agent IA / manuel du pilote |
-| `./md brands` | kits de marque (`brands/*.json`) |
-| `./md install <fichiers\|URLs>` | installe des éléments dans `assets/` (+ validation + inventaire) |
-| `./md new <nom> --canvas 9x16` | crée un projet depuis un modèle |
-| `./md render <nom> [--preset gif]` | rend le projet (livrable livré en artefact) |
-| `./md vo <nom> [--dry-run]` | génère les voix off depuis `vo.json` (TTS edge-tts / VoxCPM) — voir [docs/VOIX-TTS.md](docs/VOIX-TTS.md) |
-| `./md lab demo` / `./md lab run spec.json` | **Laboratoire** : données en entrée → vidéo motion design |
-| `./md lab serve` / `./md lab mcp` | paillasse HTTP + API JSON, ou serveur MCP pour agent IA |
-| `./md preview` | serveur de prévisualisation des sorties |
-| `./md inventory` / `./md fonts` / `./md presets` | bibliothèque, polices, presets |
-| `./md info <media>` | analyse d'un média (durée, résolution, codecs) |
-| `./md clean <nom>` | purge les intermédiaires |
+| `./md ad <brief.json> [--save] [--preview] [--render] [--formats …]` | pub depuis un brief |
+| `./md ad --example` / `--templates` | brief d'exemple / liste des templates |
+| `./md new <nom> --canvas 9x16 [--template story]` | nouveau projet |
+| `./md lint <nom> [--canvas 1x1]` | contrôle qualité |
+| `./md apercu <nom> [--at 0.5,2,4] [--canvas 1x1]` | brouillon + planche contact |
+| `./md render <nom> [--preset …] [--formats …] [--draft]` | rendu final |
+| `./md brands` / `./md fonts` / `./md presets` | marques, polices, formats et exports |
+| `./md cockpit [--guide]` | capacités en JSON / manuel du pilote |
+| `./md install <fichiers\|URLs>` | ajouter des éléments à `assets/` |
+| `./md vo <nom>` | voix off TTS depuis `vo.json` ([docs/VOIX-TTS.md](docs/VOIX-TTS.md)) |
+| `./md info <média>` | durée, résolution, codecs d'un fichier |
+| `./md clean <nom>` | vider le cache d'un projet |
+| `make help` | les mêmes actions en cibles `make` |
 
-## Le montage : déclaratif
+### Formats (`canvas`)
 
-Le montage vit dans `projects/<nom>/project.json` : scènes, calques (texte, image,
-vidéo, formes), fenêtres temporelles, animations (fondu, glissement, Ken Burns, pop,
-barres qui se déploient…), transitions xfade entre scènes, mixage audio.
-Format complet : **[docs/SPEC-PROJET.md](docs/SPEC-PROJET.md)** ·
-Procédures de production : **[docs/PROCEDURES.md](docs/PROCEDURES.md)**
+`9x16` (Reels/TikTok/Shorts) · `9x16-60` · `1x1` · `4x5` · `16x9` · `1.91x1`
+(pub lien) · `2x3` (Pinterest) · `21x9` · `4k` · `720p` · ou `{"width", "height", "fps"}`.
 
-## Capacités du moteur
+### Exports (`preset`)
 
-- **Rendu** : ffmpeg 7 (libx264, libx265, VP9, ProRes 4444 **avec alpha**, GIF palette)
-- **Texte** : rendu typographique Pillow (polices TTF/OTF, contour, ombre, interlettrage,
-  césure) — compense l'absence de `drawtext` du binaire statique
-- **Animation** : fondus, slides, pop, Ken Burns (zoompan), barres progressives, rotation
-- **Montage** : multi-scènes chaînées en xfade (21 transitions), mixage audio multi-pistes
-  avec fondus
-- **Voix off** : segments déclaratifs dans `vo.json`, génération `./md vo`
-  (edge-tts / VoxCPM), `--dry-run` hors ligne et contrôle d'alignement avec le mix
-- **Formats** : 16:9, 9:16 (Reels/TikTok), 1:1, 4:5, 21:9, 720p — fps configurable
+`mp4-social` (pub, -14 LUFS) · `mp4-hq` · `mp4-web` · `mp4-h265` · `mp4-draft`
+(brouillon) · `gif` · `webm-vp9` · `mov-alpha` (ProRes avec transparence).
 
-## Moteur n°2 : HyperFrames (HTML → vidéo)
+### Animations
 
-Le dépôt embarque aussi **HyperFrames** (HeyGen) et **107 skills d'agent**
-(noyau HeyGen 21 + LottieFiles 1 + design-motion-principles 1 + frankxai 5 +
-OpenMontage 79), dans `.agents/skills/` avec miroirs `.claude/skills/` et
-`agent/skills/`, verrouillés par `skills-lock.json`. CLI via `./scripts/hf`,
-rendu Chromium headless embarqué adapté au sandbox
-(voir [docs/HYPERFRAMES.md](docs/HYPERFRAMES.md)).
+| Type | Valeurs |
+|---|---|
+| Entrées `anim` | `fade`, `fade_up/down/left/right`, `slide_up/down/left/right`, `pop`, `scale_in`, `zoom_in`, `punch`, `rotate_in`, `grow_x`, `grow_y`, `kenburns_in/out/pan_left/pan_right` |
+| Courbes `ease` | `ease_out`, `ease_in`, `ease_in_out`, `expo_out`, `back_out`, `back_in`, `elastic_out`, `snap`, `linear` |
+| Sorties `exit` | `fade`, `fade_up`, `fade_down`, `slide_*`, `scale_out` |
+| Continu `idle` | `float`, `drift`, `pulse`, `sway`, `breathe` |
 
-Ajout d'un skill : `npx skills add <owner>/<repo> -a claude-code -a eve -y` ;
-contrôle : `make skills-check`. Procédure et catalogue :
-[docs/plan-skills.md](docs/plan-skills.md) · annuaire des dépôts, prompts et
-ressources : [docs/RESSOURCES-MOTION.md](docs/RESSOURCES-MOTION.md).
+### Calques
+
+`text` (avec `split`, `box`, `shadow`…), `counter`, `image`, `video`, `shape`
+(`rect`, `circle`, `ring`, `line`, `triangle`, dégradés), `audio`.
+
+### Variables d'environnement
+
+| Variable | Effet |
+|---|---|
+| `MD_JOBS` | scènes rendues en parallèle (défaut : min(4, nombre de CPU)) |
+| `MD_FFMPEG_TIMEOUT` | délai maximal d'une commande ffmpeg en secondes (défaut 1800) |
+| `MD_FFMPEG` | chemin d'un binaire ffmpeg précis |
+| `MD_VERBOSE` | affiche les commandes ffmpeg complètes |
+
+### Ajouter sa marque
+
+Copier `brands/neutre.json` vers `brands/ma-marque.json` et remplir `colors`,
+`fonts` et `logo`. Ensuite, `"brand": "ma-marque"` dans un brief ou un projet suffit.
+Les jetons `$accent`, `$background`, `$text`, `$muted`, `$on_accent`, `$font.title`,
+`$font.body` et `$logo` deviennent utilisables.
+
+---
+
+## 7. Autres outils du dépôt
+
+- **Laboratoire données → vidéo** : des chiffres (`{"label", "value"}`) deviennent
+  une vidéo de graphique animé en 4 scènes. Voir `./md lab demo`, `./md lab serve`
+  (interface web et API HTTP), [docs/LAB-MOTION.md](docs/LAB-MOTION.md) et
+  [lab/AGENT.md](lab/AGENT.md).
+- **HyperFrames (HTML → vidéo)** : second moteur, pour des compositions HTML/CSS/GSAP.
+  Il s'accompagne de 107 skills d'agent dans `.agents/skills/`. Voir `./scripts/hf`
+  et [docs/HYPERFRAMES.md](docs/HYPERFRAMES.md).
+- **Voix off** : génération TTS (edge-tts, VoxCPM) depuis un `vo.json`, voir
+  [docs/VOIX-TTS.md](docs/VOIX-TTS.md).
+- **Procédures de production** : [docs/PROCEDURES.md](docs/PROCEDURES.md).
+
+## Tests
 
 ```bash
-./scripts/hf check  projects/hf-demo                 # gate qualité
-./scripts/hf render projects/hf-demo --quality draft --output .cache/rendus/hf-demo.mp4
+make test        # 54 tests hors ligne, dont de vrais rendus ffmpeg (~10 s)
 ```
-
-## Le Laboratoire : données → vidéo, pilotable par une IA
-
-Le moteur est aussi une **machine adressable par programme** : une IA s'y
-connecte comme un laborantin, dépose un échantillon de données, consulte les
-instruments, lance une expérience et récupère un MP4.
-
-```bash
-./md lab demo                          # données d'exemple → livrables/lab/*.mp4
-./md lab run spec.json --dry-run       # valider/compiler sans rendre
-./md lab serve --port 8080             # paillasse web + API /api/runs
-./md lab mcp                           # serveur MCP stdio (tools/list, tools/call)
-python3 scripts/lab-connect.py --session lab/samples/session.json \
-    --report livrables/lab/session.json   # session MCP : 3 formats → 3 MP4
-```
-
-Échantillons prêts à l'emploi : **[lab/samples/README.md](lab/samples/README.md)** ·
-rapport d'expériences : `livrables/lab/session.json` ·
-planche de contrôle : `livrables/lab/planche-motion.jpg`.
-
-Entrée minimale : `{"title":"…","data":[{"label":"Jan","value":12}, …]}`.
-Le compositeur fabrique 4 scènes (hook → KPI → barres animées → CTA) dans le
-format `project.json` existant, puis `render_project_data()` l'envoie à ffmpeg.
-Documentation complète : **[docs/LAB-MOTION.md](docs/LAB-MOTION.md)** ·
-manuel de l'agent : **[lab/AGENT.md](lab/AGENT.md)**.
-
-## Dépendances
-
-`python3` · `imageio-ffmpeg` (binaire ffmpeg statique) · `av` (PyAV) · `pillow` ·
-ImageMagick (optionnel, conversion SVG→PNG) · `node ≥22` (`hyperframes`,
-`@sparticuz/chromium`, `gsap` épinglés dans `package.json`).
-Installation complète : `make bootstrap`.
 
 ---
 Licence Apache-2.0 — voir [LICENSE](LICENSE).
