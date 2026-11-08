@@ -1,0 +1,428 @@
+# MISSA TV 360 — Direction artistique du motion design publicitaire
+
+**Version** : 2 (script voix off mis à jour : ajout de l'essai gratuit de 24 h)
+**Format** : spot publicitaire ~60 s (+ déclinaisons 30 s et 15 s), 16:9 et 9:16
+**Ton** : énergique, chaleureux, ultra-lisible, « tout est là, tout de suite, pour pas cher, et on peut essayer gratuitement »
+**Public** : jeunes et familles francophones d'Afrique centrale, consommation mobile (WhatsApp, Facebook, TikTok, YouTube) et TV
+
+---
+
+## Ce qui change dans la version 2 (à lire en premier par l'agent)
+
+| # | Changement | Où | Conséquence |
+|---|---|---|---|
+| 1 | **Nouvelle phrase** : « Et ce n'est pas tout ! Après le téléchargement, profite de 24 heures entièrement gratuites pour tester l'application ! » | Après « Sur téléphone, tablette ou télévision ! » | **Nouvelle scène 8 « L'essai gratuit 24 h »**. Les anciennes scènes 8 à 13 deviennent **9 à 14**. |
+| 2 | Les prix sont maintenant **écrits en toutes lettres** dans le script : « mille francs CFA », « dix mille francs » | Scène 10 | La **voix off dit les mots**, mais **l'écran affiche toujours les chiffres** : « 1 000 FCFA », « 10 000 FCFA ». Ne jamais écrire « mille » à l'écran. |
+| 3 | « Oui, toute une année, avec deux mois offerts ! » (une seule phrase au lieu de deux) | Scène 11 | Lecture d'un seul souffle, sans pause entre « année » et « avec ». |
+| 4 | Le script passe de ~130 à **146 mots** | Tout le spot | **Minutage entièrement recalé** (section 0). Débit voix off porté à **≈ 2,9 mots/s**. Plusieurs scènes raccourcies. |
+| 5 | Nouvelle promesse commerciale (essai gratuit) | Scène 8, mentions légales, section 10 | Nouvelle **promesse à honorer** dans l'application + **conditions de l'essai à fournir**. |
+| 6 | Déclinaisons 30 s et 15 s | Section 9 | Numéros de scènes mis à jour ; l'essai gratuit est ajouté à la version 30 s. |
+
+> **Règle absolue pour l'agent** : le texte de la voix off ci-dessous est **validé par le client**. Ne pas le reformuler, ne pas le raccourcir, ne pas changer la ponctuation. Les cartons de texte à l'écran, eux, sont des **extraits courts** (6 mots max) et ne doivent pas recopier toute la phrase.
+
+---
+
+## 0. Script voix off validé et minutage de référence
+
+**Texte intégral (à lire mot pour mot)** :
+
+> Et si tout ton divertissement tenait dans une seule application ?
+> Voici Missa TV 360 !
+> Des milliers de films, des séries, des mangas, du sport, des documentaires et des centaines de chaînes en direct !
+> Des radios du monde entier, des podcasts et toute ta musique préférée !
+> Et le plus intéressant ? Même avec une connexion limitée, profite d'un streaming optimisé pour rester stable !
+> Une simple box Wi-Fi, une connexion Internet… et tu accèdes à tout ton univers de divertissement !
+> Sur téléphone, tablette ou télévision !
+> Et ce n'est pas tout ! Après le téléchargement, profite de 24 heures entièrement gratuites pour tester l'application !
+> Et ça coûte combien ?
+> Seulement mille francs CFA par mois ! Ou dix mille francs pour toute l'année !
+> Oui, toute une année, avec deux mois offerts !
+> Pourquoi chercher ailleurs ?
+> Missa TV 360 ! Tout ton divertissement, une seule application, un petit prix !
+> Télécharge maintenant !
+
+**Prononciation imposée** : « 360 » = « trois-cent-soixante » ; « 24 heures » = « vingt-quatre heures » ; « CFA » = « cé-èf-a » ; « Wi-Fi » = « oui-fi ».
+
+**Minutage (master 60 s)**
+
+| Scène | Timecode | Durée | Phrase VO | Mots |
+|---|---|---|---|---|
+| 1 — Accroche | 0:00 → 0:04 | 4,0 s | « Et si tout ton divertissement… » | 10 |
+| 2 — Logo | 0:04 → 0:06 | 2,0 s | « Voici Missa TV 360 ! » | 4 |
+| 3 — Catalogue | 0:06 → 0:13 | 7,0 s | « Des milliers de films… » | 19 |
+| 4 — Radio / podcasts / musique | 0:13 → 0:17 | 4,0 s | « Des radios du monde entier… » | 12 |
+| 5 — Streaming optimisé | 0:17 → 0:23 | 6,0 s | « Et le plus intéressant ?… » | 17 |
+| 6 — Box Wi-Fi + Internet | 0:23 → 0:29 | 6,0 s | « Une simple box Wi-Fi… » | 17 |
+| 7 — Tous tes écrans | 0:29 → 0:31 | 2,0 s | « Sur téléphone, tablette ou télévision ! » | 5 |
+| **8 — Essai gratuit 24 h (NOUVEAU)** | **0:31 → 0:38** | **7,0 s** | « Et ce n'est pas tout !… » | 19 |
+| 9 — Suspense du prix | 0:38 → 0:40 | 2,0 s | « Et ça coûte combien ? » + break | 4 |
+| 10 — Les deux prix | 0:40 → 0:45 | 5,0 s | « Seulement mille francs CFA… » | 14 |
+| 11 — L'année offerte | 0:45 → 0:48 | 3,0 s | « Oui, toute une année… » | 8 |
+| 12 — Pourquoi chercher ailleurs ? | 0:48 → 0:49,5 | 1,5 s | « Pourquoi chercher ailleurs ? » | 3 |
+| 13 — Message final | 0:49,5 → 0:55 | 5,5 s | « Missa TV 360 ! Tout ton… » | 12 |
+| 14 — Appel à l'action | 0:55 → 1:00 | 5,0 s | « Télécharge maintenant ! » + tenue | 2 |
+| **Total** | | **60 s** | | **146** |
+
+**Contrainte de durée** : 146 mots demandent un débit d'environ **2,9 mots/seconde** (≈ 50 s de parole) pour laisser la place au break de la scène 9 et à la tenue finale de la scène 14. C'est rapide mais normal pour une pub énergique.
+
+**Procédure si la voix enregistrée dépasse 57 s** (dans cet ordre, **sans toucher au texte**) :
+1. Réduire les respirations entre phrases à 0,2 s maximum (montage audio).
+2. Ramener le break de la scène 9 de 1 s à 0,6 s.
+3. Ramener la tenue finale de la scène 14 de ~4 s à 3 s (le prix et le bouton restent quand même lisibles).
+4. Si c'est encore trop long : **ne pas couper le texte soi-même** → remonter l'information au client avec deux options : master à 65 s, ou phrase à raccourcir choisie par lui.
+
+Les timecodes des scènes ci-dessous sont **indicatifs** : ils se recalent sur la voix réellement enregistrée, puis sur les temps forts de la musique.
+
+---
+
+## 1. Le concept créatif
+
+### Grande idée : « UN SEUL ÉCRAN, TOUT UN MONDE »
+
+Le spot raconte une seule transformation : **le chaos du divertissement éparpillé devient un écran unique, simple et lumineux.**
+
+- **Début (0:00)** : un monde jaune saturé où des dizaines de petites icônes (clap de cinéma, ballon, casque, micro, radio, globe, manga, caméra, TV…) flottent en désordre — c'est « tout ton divertissement », mais dispersé.
+- **Bascule (0:04)** : toutes ces icônes sont **aspirées par l'écran du logo TV** (la TV rétro à antennes de la bannière). L'écran s'allume : c'est Missa TV 360.
+- **Suite** : l'application « s'ouvre » comme une fenêtre sombre au centre du monde jaune, et chaque mot du texte allume un menu (Films, Séries, Docs & Live, Courts…).
+- **L'offre (0:31 → 0:48)** : on revient dans le monde jaune pour tout ce qui concerne l'argent : d'abord **24 h gratuites pour essayer** (on lève le risque), puis le prix, puis les 2 mois offerts. Progression logique : *essaie gratuitement → ça ne coûte presque rien → et l'année est encore moins chère*.
+- **Fin (0:49,5)** : le monde jaune, calme, ordonné : le logo, les trois écrans (TV, tablette, téléphone), le prix, l'appel à l'action.
+
+**Fil rouge visuel** : un **cadre en forme d'écran de TV aux angles arrondis** qui s'agrandit, se rétrécit, se déplace et sert de transition entre toutes les scènes (le logo contient déjà cet écran).
+
+**Signature mémorable** : le **badge « 360 »** (pastille verte) fait un **tour complet à 360°** à chaque apparition importante, et **seulement** à ces trois moments : reveal du logo (scène 2), carte du prix annuel (scène 10), appel à l'action (scène 14). Ne pas le faire tourner ailleurs, sinon la signature perd sa force.
+
+---
+
+## 2. Ce que j'ai observé dans tes deux visuels
+
+| Élément | Image 1 : capture de l'app | Image 2 : bannière |
+|---|---|---|
+| Fond | Noir quasi pur (interface sombre) | Jaune vif très saturé |
+| Couleur d'accent | Jaune doré (menu actif, pastille « Tout ») | Bleu roi + vert |
+| Badge | « 360+ » en vert, forme de pastille | « 360 » blanc sur pastille verte |
+| Formes | Pastilles arrondies, cartes aux coins arrondis, anneau de focus **vert** autour de « Voir tout » | Logo TV rétro à 2 antennes, bouton lecture vert, bandes diagonales vertes dans les coins |
+| Typographie | Sans-serif géométrique arrondie (famille Product Sans, déjà dans le projet) | Mot « MISSA » en bleu, « TV » en vert, lettres larges et épaisses |
+| Atmosphère | Cinéma / streaming premium | Joyeux, populaire, accessible |
+
+**Conclusion DA** : la marque vit dans **deux mondes** qu'il faut assumer et faire dialoguer :
+1. **Le monde « Marque »** (jaune / bleu / vert, joyeux, populaire) → accroche, logo, **essai gratuit**, prix, call to action.
+2. **Le monde « Application »** (noir / jaune doré, premium) → démonstration du produit.
+
+Le spot alterne ces deux mondes avec la transition « écran TV » : jaune → noir (on entre dans l'appli) → jaune (on en sort, convaincu).
+
+---
+
+## 3. Palette de couleurs
+
+> Les codes ci-dessous sont **estimés à l'œil** depuis tes images. **L'agent doit les échantillonner à la pipette** sur `missa_tv_360_banner.png` (logo) et sur la capture d'écran (interface) avant de valider.
+
+| Rôle | Couleur | Code estimé | Usage |
+|---|---|---|---|
+| Jaune Marque | Jaune vif | `#FFE800` | Fond des scènes « marque », flashs |
+| Bleu Marque | Bleu roi | `#1F34C8` | « MISSA », textes forts sur fond jaune, contours |
+| Vert Marque | Vert franc | `#0B9A2F` | « TV », pastille 360, boutons, mots-clés, rubans « OFFERTS » et « GRATUIT » |
+| Vert focus | Vert menthe | `#2ECC71` | Anneau de focus, halo, éclat « validation », anneau de progression du cadran 24 h |
+| Jaune App | Jaune doré | `#F6BE00` | Menu actif, pastilles actives dans l'appli |
+| Noir App | Noir bleuté | `#0B0D12` | Fond de l'interface, fenêtre « appli » |
+| Gris App | Gris anthracite | `#14171F` | Pastilles inactives, cartes |
+| Blanc | Blanc pur | `#FFFFFF` | Textes sur fond sombre, chiffres des prix, « 24 H » sur le cadran vert |
+
+**Répartition à l'écran (scènes marque)** : jaune 60 % — bleu 20 % — vert 15 % — blanc 5 %.
+**Répartition (scènes appli)** : noir 70 % — jaune doré 15 % — blanc 10 % — vert 5 %.
+
+**Règles de contraste**
+- Sur fond jaune : texte **bleu** (`#1F34C8`) ou **noir**. Jamais de blanc sur jaune.
+- Sur fond noir : texte **blanc**, accents jaune doré.
+- Blanc autorisé **uniquement sur un aplat vert ou bleu** (pastille 360, cadran 24 h, cartes de prix, bouton).
+- Le vert sert de **ponctuation** (validation, offre, bouton) : jamais en grande surface sauf les bandes diagonales d'angle.
+
+---
+
+## 4. Typographie
+
+| Usage | Police | Poids | Remarque |
+|---|---|---|---|
+| Logo / mots-clés (MISSA, TV, 360) | Reprendre le **logo vectoriel** (ne pas retaper) | — | Utiliser le fichier logo, pas une police |
+| Titres à l'écran | **Product Sans** (fichiers `productsans_*.ttf` déjà dans le projet : `shared/src/commonMain/composeResources/font/`) | Bold / Black | Cohérence avec l'interface de l'appli |
+| Prix (1 000 / 10 000) | Product Sans | **Black**, très grand | Chiffres 2 à 3 fois plus grands que « FCFA » |
+| « 24 H » du cadran (scène 8) | Product Sans | **Black**, très grand | Même traitement que les prix : « 24 » 2 à 3 fois plus grand que « H » |
+| Sous-textes, mentions | Product Sans | Medium | Jamais sous 36 px en 1080p |
+
+**Règles**
+- Maximum **6 mots** par carton de texte (le spot est parlé : l'écran renforce, il ne double pas tout).
+- Mots-clés animés **mot par mot** en synchro avec la voix off.
+- Majuscules uniquement pour : « TOUT », « OFFERTS », « GRATUIT(ES) », « MAINTENANT », et les cartons en capitales explicitement listés dans le storyboard.
+- **Chiffres toujours en chiffres à l'écran** (« 1 000 », « 10 000 », « 24 H », « 2 MOIS »), même si la voix dit « mille », « dix mille », « vingt-quatre ».
+- Espace insécable entre le nombre et l'unité : « 1 000 FCFA », « 24 H » (pas de retour à la ligne entre les deux).
+- **« GRATUIT » ≠ « OFFERT »** : « GRATUIT » est réservé à l'essai de 24 h (scène 8), « OFFERTS » est réservé aux 2 mois de l'abonnement annuel (scène 11). Ne jamais les intervertir, pour que le public ne confonde pas les deux avantages.
+- Sous-titres **incrustés** obligatoires sur toutes les versions réseaux sociaux (beaucoup de lecture sans son).
+
+---
+
+## 5. Langage de mouvement (motion language)
+
+### Principes
+1. **Rebond léger, jamais mou** : les éléments arrivent avec un petit dépassement (overshoot ≈ 6–8 %) puis se stabilisent. Ambiance joyeuse et populaire.
+2. **Tout est arrondi** : mêmes rayons que l'appli (pastilles pleines, cartes à coins arrondis).
+3. **Une idée par plan** : 1 plan = 1 message = 1 mot-clé animé.
+4. **Rythme calé sur la musique** : chaque nouveau mot-clé tombe sur un temps fort (≈ 116 BPM, soit un temps toutes les 0,52 s et une mesure toutes les 2,07 s).
+
+### Courbes d'accélération (easing)
+| Mouvement | Courbe | Durée |
+|---|---|---|
+| Apparition d'un élément | ease-out avec overshoot (`cubic-bezier(0.34, 1.56, 0.64, 1)`) | 350–450 ms |
+| Sortie d'un élément | ease-in (`cubic-bezier(0.4, 0, 1, 1)`) | 250 ms |
+| Transition « écran TV » | ease-in-out (`cubic-bezier(0.65, 0, 0.35, 1)`) | 600–700 ms |
+| Tour du badge 360 | ease-in-out + léger rebond final | 900 ms |
+| Remplissage de l'anneau 24 h (scène 8) | ease-in-out (`cubic-bezier(0.65, 0, 0.35, 1)`) | 1 200 ms |
+| Mouvements de caméra (push-in) | ease-out lent | 2–4 s |
+
+> Les scènes étant plus courtes en v2, aucune animation d'entrée ne doit dépasser **450 ms** (sauf transitions et anneau 24 h) : le texte doit être lisible au plus tard 0,5 s après le mot prononcé.
+
+### Éléments signature (à réutiliser dans tout le spot)
+- **Le cadre-écran TV** : rectangle à coins très arrondis qui sert de masque de transition (il s'ouvre depuis le centre du logo ou depuis un bouton « play »).
+- **Les bandes diagonales** vert/jaune des coins de la bannière : elles balaient l'écran comme un **rideau** entre les grandes séquences (0,5 s). En v2, le rideau est utilisé à **trois** endroits seulement : sortie de l'appli (fin scène 4 → scène 5), entrée de l'offre (fin scène 7 → scène 8), entrée du final (fin scène 12 → scène 13).
+- **L'anneau de focus vert** (comme sur « Voir tout » dans la capture) : il saute d'un élément à l'autre pour guider l'œil et simule la télécommande.
+- **Le tour de badge 360** : le badge vert tourne sur lui-même aux trois moments forts (scènes 2, 10, 14).
+- **Les pastilles du menu** : elles s'allument en jaune doré l'une après l'autre (Home → Movies → Series → Docs & Live → Shorts), au rythme de la voix.
+
+### Profondeur et lumière
+- Caméra 2.5D (calques avec parallaxe légère), pas de 3D lourde.
+- Halo doux autour du logo et des écrans (glow vert/jaune, 20–30 % d'opacité).
+- Ombres portées douces sous les cartes et les appareils.
+- Grain très léger (2–3 %) sur les fonds noirs pour éviter les aplats « morts » à la compression.
+
+---
+
+## 6. Spécifications techniques
+
+| Paramètre | Valeur |
+|---|---|
+| Master | 1920×1080, 30 i/s, 16:9 |
+| Version verticale | 1080×1920, 30 i/s, 9:16 (WhatsApp statut, TikTok, Reels, Facebook Stories) |
+| Version carrée (option) | 1080×1080 (fil Facebook / Instagram) |
+| Durée master | **60 s** (voir procédure de dépassement, section 0) |
+| Déclinaisons | **30 s** (scènes 1, 2, 3, 5, 8, 10, 13, 14) et **15 s** (scènes 1, 2, 10, 14) |
+| Export réseaux | H.264, 8–10 Mb/s, AAC 192 kb/s |
+| **Export léger** (connexion limitée) | H.264 720p, ~1,5 Mb/s : indispensable, car ton public a une connexion limitée |
+| Zones de sécurité | 5 % de marge sur les bords ; en 9:16, garder texte et prix hors des 250 px du haut et des 350 px du bas (interfaces des réseaux) |
+| Sous-titres | Incrustés (français), fichier `.srt` séparé en plus, **calé sur la voix enregistrée** (pas sur le minutage indicatif) |
+| Langues | Français (master) ; version anglaise recommandée (Cameroun bilingue) |
+
+---
+
+## 7. Storyboard détaillé (plan par plan)
+
+**Légende** : VO = voix off. Les durées sont indicatives et se calent sur la voix enregistrée puis sur la musique.
+
+### Scène 1 — L'accroche (0:00 → 0:04)
+- **VO** : « Et si tout ton divertissement tenait dans une seule application ? »
+- **Visuel** : fond jaune `#FFE800`. Une quarantaine de petites icônes (clap, ballon, casque, micro, radio, globe, œil de manga, caméra, manette, note de musique) flottent en désordre, certaines se chevauchent — sensation de trop-plein.
+- **Mouvement** : sur « tout ton divertissement », les icônes tourbillonnent ; sur « une seule application », elles sont **aspirées vers un point central** qui devient un petit écran de TV.
+- **Texte écran** : « TOUT TON DIVERTISSEMENT » (bleu) puis « UNE SEULE APPLICATION » (vert), mot par mot.
+- **Son** : bruissement, petits « pop » aléatoires, puis **« whoosh » d'aspiration**.
+
+### Scène 2 — Le logo (0:04 → 0:06)
+- **VO** : « Voici Missa TV 360 ! »
+- **Visuel** : l'écran de TV s'illumine, le **logo** se construit : le cadre de TV, les antennes qui vibrent, le bouton lecture vert qui « pop », « MISSA » (bleu) puis « TV » (vert) glissent en place, enfin le **badge 360 fait son tour complet** (tour n° 1 sur 3).
+- **Mouvement** : explosion de lumière douce (flash jaune clair), petites particules vertes/bleues. **Scène raccourcie à 2 s en v2** : la construction du logo se fait en ~1,3 s (éléments qui se chevauchent dans le temps, pas l'un après l'autre), le tour du badge tombe **exactement sur « 360 »**.
+- **Son** : **impact musical + jingle de 2 notes** sur « 360 ».
+
+### Scène 3 — L'immensité du catalogue (0:06 → 0:13)
+- **VO** : « Des milliers de films, des séries, des mangas, du sport, des documentaires et des centaines de chaînes en direct ! »
+- **Visuel** : le cadre-écran grandit et remplit l'écran : on **entre dans l'application** (passage au noir `#0B0D12`). On voit le menu du haut comme sur la capture. **Chaque mot de la voix allume une pastille** :
+  - « films » → *Movies* s'allume
+  - « séries » → *Series*
+  - « mangas » → rangée de couvertures de mangas
+  - « sport » → ballon + score animé
+  - « documentaires » → *Docs & Live*
+  - « chaînes en direct » → mosaïque de petits écrans avec le voyant rouge « DIRECT »
+- **Mouvement** : rangées de cartes qui défilent en parallaxe (haut → gauche, bas → droite), anneau de focus vert qui saute de carte en carte. Compteurs animés : « **1 000+** » films et séries, « **100+** » chaînes (cohérents avec « milliers » et « centaines »).
+- **Son** : montée de la musique, « tic » discret à chaque pastille allumée.
+
+> ⚠️ **Droits** : ne PAS réutiliser dans la publicité les affiches réelles visibles sur ta capture (April X, Geo-Storm, etc.) ni les logos de chaînes réelles. Utiliser des **affiches fictives créées pour le spot** (illustrations génériques aux couleurs de la marque).
+
+### Scène 4 — Radio, podcasts, musique (0:13 → 0:17)
+- **VO** : « Des radios du monde entier, des podcasts et toute ta musique préférée ! »
+- **Visuel** : un **globe terrestre** stylisé en bleu/vert avec des ondes radio qui sortent de plusieurs pays ; un casque ; un micro de podcast ; un **égaliseur** (barres animées jaune doré) qui bat au rythme de la musique.
+- **Mouvement** : le globe tourne, les barres de l'égaliseur forment le mot « MUSIQUE » puis se dissolvent. Fin de scène : **rideau diagonal** vert/jaune → retour au monde jaune.
+- **Texte écran** : « RADIOS · PODCASTS · MUSIQUE ».
+- **Son** : la musique du spot « s'ouvre » (filtre qui s'ouvre), petits accords de radio qui se règle.
+
+### Scène 5 — Le streaming optimisé (0:17 → 0:23)
+- **VO** : « Et le plus intéressant ? Même avec une connexion limitée, profite d'un streaming optimisé pour rester stable ! »
+- **Visuel** : monde jaune. Un téléphone affiche **une seule barre de réseau** ; à côté, une application « concurrente » générique (sans nom ni logo) montre un **cercle de chargement qui tourne**. Sur Missa TV 360, la vidéo continue **sans coupure**, un petit bouclier vert « STABLE » apparaît.
+- **Métaphore** : un fin ruisseau d'images qui coule régulièrement dans un tuyau étroit : « peu de débit, flux fluide ».
+- **Texte écran** : « CONNEXION LIMITÉE ? » (bleu) → « STREAMING STABLE » (vert, avec coche).
+- **Son** : pendant le chargement concurrent, son de « buffering » étouffé ; côté Missa, **son net et brillant**.
+
+> ⚠️ **Promesse à honorer** : cette scène annonce un streaming stable à faible débit. Avant diffusion, il faut que l'application le tienne réellement (voir le mode économie de données, action A12 du rapport d'audit, et la limite de définition 720p / 480p décidée pour MISSA TV).
+
+### Scène 6 — Ce qu'il faut pour commencer (0:23 → 0:29)
+- **VO** : « Une simple box Wi-Fi, une connexion Internet… et tu accèdes à tout ton univers de divertissement ! »
+- **Visuel** : illustration simple d'une **box Wi-Fi** avec ondes qui se propagent vers une TV ; une petite icône « Internet » (globe) qui rejoint la box ; puis un **« + » → « = »** : Box + Internet = Missa TV 360 allumé.
+- **Mouvement** : les ondes wifi s'élargissent comme des cercles verts, la TV s'allume à leur contact. Sur les points de suspension « … » de la VO : micro-pause visuelle (tout se fige 0,3 s), puis la TV s'allume sur « et tu accèdes ».
+- **Texte écran** : « BOX WI-FI + INTERNET ».
+- **Son** : « bip » de connexion, petit accord positif.
+
+### Scène 7 — Tous tes écrans (0:29 → 0:31)
+- **VO** : « Sur téléphone, tablette ou télévision ! »
+- **Visuel** : reprise de la composition de ta bannière : **TV, tablette, téléphone** côte à côte. Un même film (illustration fictive) **glisse d'un appareil à l'autre** d'un seul mouvement continu. **Attention à l'ordre** : la VO dit « téléphone → tablette → télévision », donc l'image part du **téléphone**, traverse la **tablette** et finit sur la **TV** (sens inverse de la v1), chaque appareil s'allumant sur son mot.
+- **Texte écran** : « TÉLÉPHONE · TABLETTE · TÉLÉ » (mots qui s'allument avec l'appareil correspondant).
+- **Mouvement** : scène très courte (2 s) → les trois appareils sont **déjà en place** à l'ouverture, seul le film voyage. Fin de scène : **rideau diagonal** vert/jaune vers la scène 8.
+- **Son** : trois notes montantes (une par appareil).
+
+### Scène 8 — L'essai gratuit 24 h (0:31 → 0:38) — NOUVELLE SCÈNE
+- **VO** : « Et ce n'est pas tout ! Après le téléchargement, profite de 24 heures entièrement gratuites pour tester l'application ! »
+- **Rôle dans le récit** : c'est **le lever de risque** juste avant de parler d'argent. Le spectateur doit comprendre : « je peux essayer sans payer ». Elle prépare la question « Et ça coûte combien ? » de la scène 9.
+- **Monde** : **Marque** (fond jaune `#FFE800`), car c'est une offre commerciale.
+- **Découpage en 3 temps** (calés sur la VO) :
+  1. **« Et ce n'est pas tout ! »** (~1,2 s) : le rideau diagonal finit de passer ; carton **« ET CE N'EST PAS TOUT ! »** en bleu, qui arrive avec un rebond marqué (overshoot 8 %) et une petite secousse de caméra (2–3 px, 150 ms). Ton « surprise ».
+  2. **« Après le téléchargement, »** (~1,5 s) : au centre, un **téléphone** (même modèle que la scène 7) affiche un **bouton vert « Télécharger »** ; un doigt virtuel tape dessus ; une **barre de progression verte** se remplit d'un coup (0,6 s) et se transforme en **coche verte**. Pas de logo de magasin d'applications (ni Google Play, ni App Store) : utiliser une icône générique de téléchargement (flèche vers le bas dans un cercle).
+  3. **« profite de 24 heures entièrement gratuites pour tester l'application ! »** (~4 s) : la coche s'envole vers la droite et laisse place au **cadran 24 h** : un grand disque **vert** `#0B9A2F` avec **« 24 H »** en blanc Product Sans Black au centre. Autour, un **anneau de progression vert menthe** `#2ECC71` **fait un tour complet à 360°** en 1,2 s, comme une horloge qui file (clin d'œil à la signature 360, mais **le badge 360 lui-même ne tourne pas ici**). Sur « gratuites », un **ruban vert « GRATUIT »** se colle en travers du cadran (petit effet tampon, rebond). Sur « tester l'application », le téléphone réapparaît à côté du cadran et montre l'interface sombre de l'appli (mini-version de la scène 3) avec l'anneau de focus vert qui saute sur une carte.
+- **Texte écran (cartons successifs)** :
+  - « ET CE N'EST PAS TOUT ! » (bleu)
+  - « 24 H GRATUITES » (« 24 H » sur le cadran en blanc, « GRATUITES » en vert à côté ou sous le cadran)
+  - « POUR TESTER L'APPLI » (bleu, plus petit) — on écrit « APPLI » à l'écran pour tenir en largeur ; la VO, elle, dit « l'application ».
+- **Mention légale** (bas d'écran, Product Sans Medium, ≥ 36 px, noir ou bleu sur jaune, visible pendant au moins 3 s) : **« Essai gratuit de 24 h dès le téléchargement — [conditions à fournir] »**. Ne pas inventer les conditions : laisser le texte entre crochets tant que le client ne les a pas fournies.
+- **Ce qu'il ne faut PAS faire** : pas de sablier qui se vide (connotation négative de « temps qui manque »), pas de compte à rebours anxiogène, pas de « OFFERT » (mot réservé à la scène 11), pas de chiffre de prix dans cette scène.
+- **Son** : sur « Et ce n'est pas tout ! », petit **« ta-dam »** de relance ; « clic » au toucher du bouton ; **tic-tac rapide et joyeux** pendant le tour de l'anneau (pas un tic-tac lent de suspense) ; « stamp » léger sur le ruban « GRATUIT ».
+
+> ⚠️ **Promesse à honorer** : l'application doit réellement offrir **24 h d'accès complet gratuit après le téléchargement** (sans carte bancaire ni paiement Mobile Money préalable, sinon le dire dans les conditions). À vérifier avant diffusion : mécanisme d'essai en place dans l'appli, limite (un essai par appareil ? par compte ? par numéro ?), et ce qui se passe à la fin des 24 h (blocage, écran d'abonnement). Si l'essai ne donne pas accès à **tout** le catalogue, le mot « entièrement » de la VO pose problème → remonter au client.
+
+### Scène 9 — Le suspense du prix (0:38 → 0:40)
+- **VO** : « Et ça coûte combien ? »
+- **Transition depuis la scène 8** : le cadran 24 h **rétrécit et se transforme** en point du point d'interrogation (morphing de 400 ms) : le « gratuit » devient une question, ça fait le lien « gratuit… et ensuite ? ».
+- **Visuel** : tout se fige sur un **grand point d'interrogation** bleu sur fond jaune ; la musique **coupe presque complètement** (environ 1 s de quasi-silence avec une seule note de basse ; 0,6 s minimum si la VO est longue, voir section 0) ; le point d'interrogation pulse au rythme de la basse.
+- **Mouvement** : zoom lent vers le point d'interrogation, puis il s'ouvre comme une porte vers la scène suivante.
+- **Son** : **break musical** (effet « drop » après la question), tension, puis relance du rythme.
+
+### Scène 10 — Les deux prix (0:40 → 0:45)
+- **VO** : « Seulement mille francs CFA par mois ! Ou dix mille francs pour toute l'année ! »
+- **Visuel** : deux grandes cartes arrondies entrent depuis les côtés :
+  - Carte 1 (bleue) : **« 1 000 FCFA / mois »** — entre sur « mille francs CFA par mois »
+  - Carte 2 (verte, légèrement plus grande, couronne « MEILLEUR PRIX ») : **« 10 000 FCFA / an »** — entre sur « dix mille francs pour toute l'année »
+- **Chiffres à l'écran** : la VO dit « mille » et « dix mille » en mots, l'écran affiche **toujours les chiffres** « 1 000 » et « 10 000 » (lisibilité immédiate, y compris sans le son). La VO dit « dix mille francs » sans « CFA » : l'écran affiche quand même « FCFA » sur les deux cartes, par cohérence.
+- **Mouvement** : chaque chiffre « roule » comme un compteur de 0 jusqu'à sa valeur (durée 0,6 s max, la scène est courte) ; le **badge 360 tourne** quand la carte annuelle apparaît (tour n° 2 sur 3) ; pluie douce de petites pièces/confettis jaunes.
+- **Texte écran** : les deux prix, **« SEULEMENT »** en petit au-dessus.
+- **Durée d'affichage des prix** : les deux cartes restent visibles **jusqu'à la fin de la scène 11** (elles glissent sur le côté pour laisser la place au calendrier, sans disparaître), ce qui garantit plus de 3 s de lecture.
+- **Son** : tintement de caisse très discret + impact léger sur chaque prix.
+
+### Scène 11 — L'année offerte (0:45 → 0:48)
+- **VO** : « Oui, toute une année, avec deux mois offerts ! » (une seule phrase, d'un seul souffle)
+- **Visuel** : un **calendrier de 12 mois** dont les pages se tournent vite ; les **deux derniers mois sont tamponnés « OFFERTS »** par un ruban vert. Petite équation animée : **12 × 1 000 = 12 000 → 10 000** avec « 2 MOIS OFFERTS » qui s'affiche en grand.
+- **Mouvement** : scène raccourcie à 3 s → les pages tournent pendant « Oui, toute une année », le tampon « OFFERTS » tombe **exactement sur « offerts »**. L'équation n'est visible que ~1,5 s : la faire apparaître d'un bloc, sans animer chaque terme.
+- **Son** : défilement de pages, tampon « clac », petit « ta-da ».
+
+### Scène 12 — Pourquoi chercher ailleurs ? (0:48 → 0:49,5)
+- **VO** : « Pourquoi chercher ailleurs ? »
+- **Visuel** : on rappelle les petites icônes éparpillées de la scène 1 ; elles **s'éloignent et disparaissent** les unes après les autres tandis que la caméra avance vers le logo.
+- **Mouvement** : caméra qui « pousse » vers l'avant, fond qui passe du chaos au calme. Scène de 1,5 s : 8 à 10 icônes seulement (pas 40). Fin de scène : **rideau diagonal** vers la scène 13.
+- **Son** : la musique remonte en tension.
+
+### Scène 13 — Le message final (0:49,5 → 0:55)
+- **VO** : « Missa TV 360 ! Tout ton divertissement, une seule application, un petit prix ! »
+- **Visuel** : **recomposition de ta bannière** : logo à gauche, ligne verticale verte, TV + tablette + téléphone à droite, bandes diagonales vert/jaune dans les coins. Le slogan apparaît en trois temps : « Tout ton divertissement » / « Une seule application » / « Un petit prix ».
+- **Son** : final musical plein (accord majeur) avec le jingle de 2 notes du logo sur « Missa TV 360 ».
+
+### Scène 14 — Appel à l'action (0:55 → 1:00)
+- **VO** : « Télécharge maintenant ! »
+- **Visuel** : gros bouton vert « **TÉLÉCHARGER MAINTENANT** » avec flèche vers le bas qui rebondit, le badge 360 tourne une dernière fois (tour n° 3 sur 3). Juste sous le bouton, petite pastille rappel **« 24 H GRATUITES »** (vert sur blanc ou blanc sur vert) pour que l'essai reste en tête au moment de l'action. Dessous : **[lien de téléchargement / QR code / numéro WhatsApp — à fournir]**. Petite mention en bas : conditions d'abonnement, conditions de l'essai gratuit et « Prix en FCFA ».
+- **Mouvement** : le bouton « respire » (pulsation douce) jusqu'à la fin ; fondu final sur le logo.
+- **Son** : jingle final + petite note de « clic » quand le doigt virtuel touche le bouton.
+
+---
+
+## 8. Direction sonore
+
+### Voix off
+- **Voix** : jeune, souriante, naturelle, **accent francophone local** (Cameroun / Afrique centrale) pour créer la proximité. Éviter une voix « publicité de supermarché » trop formelle.
+- **Énergie** : monte progressivement ; **relance enthousiaste** sur « Et ce n'est pas tout ! » (comme quand on garde le meilleur pour la fin) ; ton généreux et rassurant sur « 24 heures entièrement gratuites » (insister légèrement sur « entièrement ») ; **pause d'une demi-seconde** avant « Et ça coûte combien ? » ; ton complice et rassurant sur les prix ; ton plein et joyeux sur « Missa TV 360 ! ».
+- **Rythme** : environ **2,9 mots/seconde** (le script fait **146 mots** ≈ 50 s de parole + respirations + break). Enregistrer **deux prises complètes** : une à 2,9 mots/s, une un peu plus rapide (~3,1 mots/s) pour la version 30 s et les marges.
+- **Prononciation** : voir section 0 (« trois-cent-soixante », « vingt-quatre heures », « cé-èf-a », « oui-fi »).
+
+### Musique
+- **Style** : afro-pop / amapiano léger, optimiste, 112–118 BPM, percussions chaleureuses, basse ronde, petits accents de synthé brillants.
+- **Structure** : intro légère (scène 1) → impact logo (scène 2) → montée (3–4) → mélodie principale (5–7) → **relance** (scène 8, petit fill de percussions sur « Et ce n'est pas tout ! ») → **break** (scène 9) → drop festif (10–11) → final plein (13–14).
+- **Droits** : musique **originale ou sous licence commerciale** (pas de titre commercial connu sans autorisation).
+
+### Effets sonores (liste)
+Whoosh d'aspiration · impact logo · « pop » d'icônes · « tic » de pastilles · ondes radio · bip de connexion · notes montantes (3 appareils) · **« ta-dam » de relance · clic de téléchargement · tic-tac rapide et joyeux · stamp « GRATUIT »** · basse de suspense · tintement discret · tampon « clac » · clic de bouton.
+
+---
+
+## 9. Déclinaisons
+
+### Version 30 s (réseaux sociaux)
+Scènes 1 (2 s) → 2 (2,5 s) → 3 (5 s) → 5 (4 s) → 8 (4 s) → 10 (6 s) → 13-14 (6,5 s).
+VO : « Et si tout ton divertissement tenait dans une seule application ? Voici Missa TV 360 ! Films, séries, sport, chaînes en direct, radios, musique… même avec une connexion limitée ! Et 24 heures gratuites pour tester ! Seulement mille francs par mois, ou dix mille francs pour l'année ! Télécharge maintenant ! »
+
+> Cette VO 30 s est une **adaptation** du script validé : la faire **valider par le client** avant enregistrement. La scène 8 y est réduite au cadran 24 h + ruban « GRATUIT » (sans le passage du téléchargement) ; la scène 9 (suspense) est supprimée, on passe directement de l'essai gratuit au prix.
+
+### Version 15 s (teaser / pré-roll)
+Scènes 1 (3 s) → 2 (3 s) → 10 (5 s) → 14 (4 s).
+VO : « Tout ton divertissement, une seule application : Missa TV 360 ! Mille francs par mois ! Télécharge maintenant ! »
+- La pastille « 24 H GRATUITES » sous le bouton de la scène 14 est **conservée** : l'essai est ainsi présent à l'écran sans allonger la VO.
+- Également à faire valider par le client.
+
+### Adaptation verticale 9:16
+- Le logo passe **au-dessus**, les appareils **en dessous** (au lieu de côte à côte).
+- Le menu de l'appli est affiché en **défilement vertical** de pastilles.
+- **Scène 8** : le téléphone en haut, le cadran 24 h en dessous (centré, environ 60 % de la largeur), carton « 24 H GRATUITES » sous le cadran ; tout le bloc dans la zone sûre (hors des 250 px du haut et des 350 px du bas).
+- Les deux cartes de prix sont **empilées** (mensuel en haut, annuel en bas, plus grand).
+- Sous-titres en grandes lettres, centrés, dans la zone centrale.
+
+---
+
+## 10. À faire / à éviter
+
+**À faire**
+- Fond jaune pour tout ce qui est « marque » (y compris l'essai gratuit et les prix), fond noir pour tout ce qui est « application ».
+- Un mot-clé = une animation = un temps de musique.
+- Garder le badge 360 comme signature récurrente (3 tours, pas plus : scènes 2, 10, 14).
+- Rendre le prix **impossible à manquer** (taille, contraste, durée à l'écran d'au moins 3 secondes).
+- Rendre l'essai gratuit **lisible sans le son** : « 24 H GRATUITES » à l'écran au moins 2 s en scène 8, plus le rappel sous le bouton en scène 14.
+- Afficher les nombres en chiffres à l'écran même quand la VO les dit en lettres.
+- Tester le spot **sans le son** : le message doit rester compréhensible grâce aux textes.
+
+**À éviter**
+- Les affiches de films réels, logos de chaînes, de plateformes concurrentes, de magasins d'applications ou de clubs de sport : risque de droits d'auteur et de marque.
+- Plus de 6 mots par carton de texte.
+- Du blanc sur fond jaune (illisible).
+- Confondre « GRATUIT » (essai 24 h) et « OFFERTS » (2 mois de l'abonnement annuel).
+- Modifier le texte de la voix off validé (section 0).
+- Des transitions différentes à chaque scène : n'utiliser que le cadre-écran, le rideau diagonal, le focus vert (et le morphing cadran → point d'interrogation entre les scènes 8 et 9).
+- Promettre ce que l'application ne tient pas encore (stabilité à faible débit, catalogue annoncé, **essai gratuit de 24 h entièrement fonctionnel**).
+
+---
+
+## 11. Livrables et ressources à rassembler
+
+| Élément | Source / état | Action |
+|---|---|---|
+| Logo vectoriel (SVG, fond transparent) | La bannière fournie est une image (PNG) à fond jaune | **Détourer / vectoriser** le logo TV + « MISSA TV 360 » ; sinon demander le fichier d'origine |
+| Visuel TV + tablette + téléphone | Bannière PNG | Extraire les appareils en calques séparés |
+| Écrans de l'application | Capture fournie | **Refaire des captures propres** (1920×1080, sans affiches protégées) ou **recréer l'interface en maquette** avec des visuels fictifs |
+| Cadran 24 h + ruban « GRATUIT » (scène 8) | À créer | Vectoriel, mêmes rayons et épaisseurs que la pastille 360 |
+| Police | `productsans_*.ttf` dans le projet | Installer pour le montage |
+| Icônes (≈ 40) | À créer | Style plat, arrondi, 2 couleurs maximum, même épaisseur de trait (+ icône générique de téléchargement pour la scène 8) |
+| Voix off | À enregistrer | Studio ou voix locale ; fournir le texte validé (section 0) + indications d'intention + prononciations |
+| Musique | À composer / acheter | Licence commerciale écrite |
+| Lien / QR / WhatsApp de téléchargement | **À fournir** | Obligatoire pour la scène 14 |
+| Mentions légales de l'offre | **À fournir** | Durée de l'abonnement, conditions, monnaie |
+| **Conditions de l'essai gratuit 24 h** | **À fournir** | Point de départ des 24 h, accès complet ou non, un essai par appareil / compte / numéro, paiement demandé ou non à l'inscription, ce qui se passe à la fin. Obligatoire pour les scènes 8 et 14 |
+| Validation des VO 30 s et 15 s | **À obtenir** | Ces deux textes sont des adaptations, pas le script validé |
+
+---
+
+## 12. Brief prêt à copier pour un outil de génération (vidéo / image IA)
+
+> **Style** : motion design publicitaire 2.5D, plat et lumineux, coins très arrondis, couleurs saturées. Monde « marque » : fond jaune vif (#FFE800), bleu roi (#1F34C8), vert (#0B9A2F), blanc. Monde « application » : interface sombre (#0B0D12) avec pastilles arrondies jaune doré (#F6BE00), anneau de focus vert menthe. Logo : télévision rétro bleue à deux antennes avec bouton lecture vert, texte « MISSA TV » (MISSA bleu, TV vert) et pastille verte « 360 ». Animation joyeuse avec rebond léger, transitions en cadre d'écran TV et rideau de bandes diagonales vert/jaune. Pas de marques ni de personnages réels. Typographie sans-serif géométrique arrondie (Product Sans). Format 16:9, 30 i/s.
+
+> **Brief spécifique scène 8 (essai gratuit)** : fond jaune vif (#FFE800). Au centre, un grand disque vert (#0B9A2F) portant « 24 H » en blanc, typographie sans-serif géométrique arrondie très grasse. Un anneau de progression vert menthe (#2ECC71) fait un tour complet autour du disque. Un ruban vert « GRATUIT » en travers, effet tampon. À côté, un smartphone générique (sans marque) montrant une interface sombre avec des cartes arrondies. Style plat 2.5D, ombres douces, rebond léger. Pas de sablier, pas de logo de magasin d'applications.
+
+**Consignes de cohérence pour l'agent** : générer chaque scène séparément avec les mêmes paramètres de palette et de typographie ; caler les animations sur la voix enregistrée (section 0) ; vérifier les règles de la section 10 avant l'assemblage ; ne jamais régénérer le logo (toujours utiliser le fichier fourni) ; ne jamais modifier le texte de la voix off validé.
+
+---
+
+*Fin du document.*
