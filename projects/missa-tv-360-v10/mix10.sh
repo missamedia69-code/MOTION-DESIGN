@@ -15,9 +15,9 @@ VOIX="entrees/Pub Missa TV.wav"
 END=$(python3 -c "import json;print(json.load(open('projects/missa-tv-360-v10/tmap.json'))['duration'])")
 ffmpeg -loglevel error -y -i "$VOIX" -i "$A/music.wav" -i "$A/sfx.wav" -filter_complex "
 [0:a]aresample=48000,pan=stereo|c0=c0|c1=c0,apad,asplit=2[vo][key];
-[1:a]aresample=48000,volume=0.16[mus];
-[mus][key]sidechaincompress=threshold=0.02:ratio=5:attack=20:release=350[duck];
-[2:a]aresample=48000,volume=0.22[fx];
+[1:a]aresample=48000,volume=0.7[mus];
+[mus][key]sidechaincompress=threshold=0.05:ratio=3:attack=20:release=350[duck];
+[2:a]aresample=48000,volume=0.55[fx];
 [vo][duck][fx]amix=inputs=3:normalize=0,atrim=0:$END[a]" -map "[a]" -ar 48000 "$A/mix.wav"
 
 for F in 16x9 9x16; do
