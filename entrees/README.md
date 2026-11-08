@@ -1,34 +1,47 @@
-# entrees/ — déposez ici vos fichiers sources
+# entrees/ — déposez ici les éléments de vos pubs
 
-Déposez dans ce dossier les éléments à intégrer aux vidéos :
-logo original (PNG/SVG), photos produits, jingle audio, etc.
+Logo, photos produit (PNG détouré de préférence), vidéos, musique, voix off, polices…
+L'agent les récupère, les range dans `assets/` (`./md install entrees/*`) et les
+utilise dans le brief ou le montage.
 
-## Méthode recommandée : interface web GitHub
+## Méthode 1 — interface web GitHub (la plus simple)
 
-1. Sur GitHub, ouvrez le dépôt puis choisissez la branche
-   `arena/71cd3126-motion-design` (sélecteur de branche en haut à gauche).
+1. Ouvrez le dépôt sur GitHub, branche **`main`**.
 2. Entrez dans ce dossier `entrees/`.
-3. Bouton **« Add file » → « Upload files »**, glissez-déposez vos fichiers.
-4. **« Commit changes »** directement sur la branche.
-5. Dans le chat Arena, dites simplement « c'est déposé ».
+3. **« Add file » → « Upload files »**, puis glissez-déposez vos fichiers.
+4. **« Commit changes »** directement sur `main`.
+5. Dites à l'agent : « c'est déposé dans entrees/, fais une pub avec ».
 
-L'agent récupère les fichiers (git fetch), les intègre et re-rend la vidéo.
+L'interface web accepte aussi les vidéos et les sons (`.mp4`, `.mp3`), que git
+ignore d'habitude.
 
-## Depuis un clone local (alternative)
+## Méthode 2 — dans la conversation
+
+Joignez les fichiers directement au message de l'agent (images surtout). Précisez ce
+que c'est : « logo », « photo produit », « musique de fond ».
+
+## Méthode 3 — depuis un clone local
 
 ```bash
-git checkout arena/71cd3126-motion-design
-cp ~/mon-logo.png entrees/
-git add entrees/          # pour une vidéo ou un audio : git add -f
-git commit -m "apport logo original"
-git push origin arena/71cd3126-motion-design
+cp ~/mon-logo.png ~/produit.png entrees/
+git add -f entrees/       # -f pour inclure aussi vidéos et sons
+git commit -m "Éléments pub : logo + produit"
+git push origin main
 ```
 
-## Notes
+## Bien nommer ses fichiers
 
-- La branche `main` fonctionne aussi : l'agent sait y piocher les fichiers.
-- Le `.gitignore` du dépôt exclut `*.mp4`/`*.mp3`… : l'interface web GitHub
-  ne respecte pas .gitignore (donc aucun blocage), mais depuis un clone local
-  il faut `git add -f` pour forcer l'ajout d'une vidéo ou d'un audio.
-- Les formats conseillés : PNG/SVG pour les logos, JPG/PNG/WEBP pour les
-  photos, MP3/WAV pour l'audio.
+Des noms explicites aident l'agent : `logo-marque.png`, `produit-box-detoure.png`,
+`musique-energique.mp3`, `voix-off-15s.mp3`.
+
+## Ce qu'il faut fournir pour une pub
+
+| Élément | Format conseillé | Obligatoire ? |
+|---|---|---|
+| Accroche, bénéfices, offre, appel à l'action | du texte, dans le message | oui (au moins l'accroche) |
+| Logo | PNG transparent, ≥ 600 px | conseillé |
+| Photo produit | PNG détouré, ≥ 1000 px | pour les templates `promo` et `annonce` |
+| Couleurs et polices de la marque | codes #RRGGBB, fichiers .ttf/.otf | pour créer un kit `brands/` |
+| Musique | MP3/WAV libre de droits | conseillé |
+| Voix off | MP3/WAV, ou un texte à faire lire par la TTS | optionnel |
+| Prix, chiffres | dans le message | pour les templates `offre` et `preuve` |

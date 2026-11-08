@@ -11,6 +11,18 @@ moteur anime : aucun code de rendu à écrire, seulement du JSON.
 | CLI | `./md cockpit`, `./md ad`, `./md lint`, `./md apercu`, `./md render` |
 | HTTP | `./md lab serve` (laboratoire données → vidéo) |
 
+## Recevoir les éléments de l'utilisateur
+
+L'utilisateur dépose ses fichiers dans `entrees/` (upload GitHub sur `main`, voir
+`entrees/README.md`) ou les joint au message.
+
+1. `git pull origin main` pour récupérer les dépôts récents.
+2. `./md install entrees/*` range chaque fichier dans `assets/` (images, audio, vidéos,
+   polices), le valide et met à jour l'inventaire.
+3. Si l'utilisateur donne ses couleurs et polices, créer `brands/<marque>.json` à partir de
+   `brands/neutre.json`, puis utiliser `"brand": "<marque>"`.
+4. Référencer les fichiers par leur chemin (`assets/images/produit.png`) dans le brief.
+
 ## La boucle de vol (5 gestes)
 
 1. **Tableau de bord** : `md_cockpit` liste les formats, exports, animations,
