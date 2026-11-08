@@ -3,7 +3,7 @@
 
 MD := ./md
 
-.PHONY: help doctor new render vo lab lab-serve lab-demo lab-mcp preview inventory install fonts presets list clean bootstrap skills-check test
+.PHONY: help doctor new render lint apercu ad cockpit brands vo lab lab-serve lab-demo lab-mcp preview inventory install fonts presets list clean bootstrap skills-check test
 
 help: ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
@@ -11,16 +11,33 @@ help: ## Affiche cette aide
 bootstrap: ## Installe TOUT (Python + Node + ffmpeg/ffprobe + Chromium)
 	bash scripts/bootstrap.sh
 
-doctor: ## Diagnostic complet du moteur
-	$(MD) doctor
+doctor: ## Diagnostic complet du moteur (+ rendu d'essai)
+	$(MD) doctor --full
 
 new: ## Créer un projet : make new NAME=ma-video CANVAS=9x16 [TEMPLATE=base|story]
 	@test -n "$(NAME)" || (echo "Usage : make new NAME=ma-video CANVAS=9x16" && exit 1)
 	$(MD) new $(NAME) --canvas $(or $(CANVAS),16x9) --template $(or $(TEMPLATE),base)
 
-render: ## Rendre un projet : make render P=ma-video [PRESET=mp4-hq]
+render: ## Rendre un projet : make render P=ma-video [PRESET=mp4-social] [FORMATS=9x16,1x1] [DRAFT=1]
 	@test -n "$(P)" || (echo "Usage : make render P=ma-video [PRESET=gif]" && exit 1)
-	$(MD) render $(P) $(if $(PRESET),--preset $(PRESET),)
+	$(MD) render $(P) $(if $(PRESET),--preset $(PRESET),) $(if $(FORMATS),--formats $(FORMATS),) $(if $(DRAFT),--draft,)
+
+lint: ## Contrôle qualité avant rendu : make lint P=ma-video [CANVAS=9x16]
+	@test -n "$(P)" || (echo "Usage : make lint P=ma-video" && exit 1)
+	$(MD) lint $(P) $(if $(CANVAS),--canvas $(CANVAS),)
+
+apercu: ## Brouillon + planche contact : make apercu P=ma-video
+	@test -n "$(P)" || (echo "Usage : make apercu P=ma-video" && exit 1)
+	$(MD) apercu $(P)
+
+ad: ## Pub depuis un brief : make ad BRIEF=templates/ad/brief-promo.json [FORMATS=9x16,1x1,16x9]
+	$(MD) ad $(or $(BRIEF),templates/ad/brief-promo.json) --save --render $(if $(FORMATS),--formats $(FORMATS),)
+
+cockpit: ## Capacités du moteur en JSON (pour agent IA)
+	$(MD) cockpit
+
+brands: ## Kits de marque disponibles
+	$(MD) brands
 
 preview: ## Serveur de prévisualisation des sorties (port 8080)
 	$(MD) preview --port $(or $(PORT),8080)

@@ -1,5 +1,10 @@
 # Manuel du laborantin (agent IA)
 
+> Pour produire des **vidéos publicitaires** (brief, montage libre, multi-formats,
+> aperçus en image), utiliser les outils `md_*` du même serveur MCP. Voir
+> [docs/PILOTE.md](../docs/PILOTE.md). Ce manuel couvre le laboratoire
+> « données chiffrées → vidéo ».
+
 Tu es connecté au **Laboratoire MOTION-DESIGN**. Ton travail : transformer des
 **données** en une **vidéo motion design**, sans écrire de code de rendu.
 

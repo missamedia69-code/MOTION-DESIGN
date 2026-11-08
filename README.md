@@ -15,6 +15,19 @@ make bootstrap                      # dépendances + diagnostic
 ./md preview                        # prévisualisation navigateur
 ```
 
+## Pilotage par agent IA (moteur v2)
+
+Le dépôt contient un `.mcp.json` : tout agent compatible MCP (Claude Code, Cursor…)
+ouvert dans le dossier se connecte au serveur `motion-design`, avec les outils `md_cockpit`,
+`md_ad_compose`, `md_lint`, `md_preview` (planche contact renvoyée en image),
+`md_render` (multi-formats) et `md_project_save`.
+Manuel du pilote : [docs/PILOTE.md](docs/PILOTE.md).
+
+```bash
+./md ad templates/ad/brief-promo.json --save --preview   # brief → montage → planche contact
+./md render pub-box-missa --preset mp4-social --formats 9x16,1x1,16x9
+```
+
 ## Arborescence
 
 ```
@@ -25,7 +38,8 @@ MOTION-DESIGN/
 ├── projects/           ← 1 dossier = 1 projet (project.json = le montage)
 ├── assets/             ← bibliothèque partagée (fonts, images, videos, audio, lottie)
 │   └── INVENTORY.md    ← inventaire généré automatiquement
-├── templates/          ← modèles de projet (base, story)
+├── brands/             ← kits de marque (couleurs, polices, logo → jetons $accent…)
+├── templates/          ← modèles de projet (base, story) + briefs pub (ad/)
 ├── docs/               ← procédures (PROCEDURES.md) et spec (SPEC-PROJET.md)
 ├── .cache/rendus/        ← rendus temporaires, LIVRÉS EN ARTEFACT (pas de dossier output/)
 └── .cache/             ← intermédiaires de rendu (ignorés par git)
@@ -35,7 +49,13 @@ MOTION-DESIGN/
 
 | Commande | Rôle |
 |---|---|
-| `./md doctor` | diagnostic du moteur |
+| `./md doctor [--full]` | diagnostic du moteur (+ rendu d'essai) |
+| `./md ad <brief.json> --render --formats 9x16,1x1,16x9` | **pub depuis un brief** (accroche, produit, offre, CTA) |
+| `./md lint <nom>` | contrôle qualité : erreurs, lisibilité, zones sûres TikTok/Reels, contraste |
+| `./md apercu <nom>` | brouillon rapide + planche contact des images clés |
+| `./md render <nom> --formats 9x16,1x1 [--draft]` | déclinaisons multi-formats, brouillon |
+| `./md cockpit [--guide]` | capacités complètes en JSON pour un agent IA / manuel du pilote |
+| `./md brands` | kits de marque (`brands/*.json`) |
 | `./md install <fichiers\|URLs>` | installe des éléments dans `assets/` (+ validation + inventaire) |
 | `./md new <nom> --canvas 9x16` | crée un projet depuis un modèle |
 | `./md render <nom> [--preset gif]` | rend le projet (livrable livré en artefact) |

@@ -1,0 +1,21 @@
+{
+  "title": "Missa TV 360",
+  "colors": {
+    "background": "#0B1020",
+    "surface": "#16203A",
+    "primary": "#FFFFFF",
+    "accent": "#FFD400",
+    "muted": "#9FB4D8",
+    "text": "#FFFFFF",
+    "on_accent": "#0B1020"
+  },
+  "fonts": {
+    "title": "Montserrat-Black.ttf",
+    "heading": "Montserrat-ExtraBold.ttf",
+    "body": "Montserrat-Bold.ttf"
+  },
+  "logo": "assets/images/logo-missa.png",
+  "texts": {
+    "signature": "On est ensemble !"
+  }
+}

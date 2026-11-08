@@ -9,6 +9,26 @@ CANVAS_PRESETS: dict[str, dict] = {
     "4x5":    {"width": 1080, "height": 1350, "fps": 30, "label": "Feed Instagram portrait"},
     "21x9":   {"width": 2560, "height": 1080, "fps": 30, "label": "Cinématique ultralarge"},
     "720p":   {"width": 1280, "height": 720,  "fps": 30, "label": "HD léger (tests rapides)"},
+    "1.91x1": {"width": 1200, "height": 628,  "fps": 30, "label": "Pub lien Facebook / LinkedIn"},
+    "2x3":    {"width": 1000, "height": 1500, "fps": 30, "label": "Pinterest épingle"},
+    "4k":     {"width": 3840, "height": 2160, "fps": 30, "label": "UHD 4K (TV, DOOH)"},
+    "9x16-60": {"width": 1080, "height": 1920, "fps": 60, "label": "Vertical 60 i/s (fluidité max)"},
+}
+
+# Zones sûres (fraction de la hauteur/largeur masquée par l'interface des plateformes)
+SAFE_ZONES: dict[str, dict] = {
+    "9x16":    {"top": 0.14, "bottom": 0.20, "left": 0.06, "right": 0.12,
+                "note": "TikTok / Reels / Shorts : pseudo + légende en bas, boutons à droite"},
+    "9x16-60": {"top": 0.14, "bottom": 0.20, "left": 0.06, "right": 0.12, "note": "idem 9x16"},
+    "4x5":     {"top": 0.05, "bottom": 0.08, "left": 0.05, "right": 0.05, "note": "feed : marges"},
+    "1x1":     {"top": 0.05, "bottom": 0.05, "left": 0.05, "right": 0.05, "note": "feed : marges"},
+    "16x9":    {"top": 0.05, "bottom": 0.12, "left": 0.05, "right": 0.05,
+                "note": "YouTube : barre de lecture en bas"},
+}
+
+# Durées recommandées pour la publicité (secondes)
+AD_DURATIONS: dict[str, list] = {
+    "9x16": [6, 15, 30], "4x5": [6, 15], "1x1": [6, 15, 30], "16x9": [6, 15, 30, 60],
 }
 
 # Presets d'export → arguments ffmpeg (vidéo + audio)
@@ -46,6 +66,21 @@ EXPORT_PRESETS: dict[str, dict] = {
         "args": ["-c:v", "libvpx-vp9", "-crf", "32", "-b:v", "0", "-row-mt", "1",
                  "-c:a", "libopus", "-b:a", "128k"],
         "label": "WebM VP9 (web, fond transparent possible)",
+    },
+    "mp4-social": {
+        "ext": ".mp4",
+        "args": ["-c:v", "libx264", "-crf", "19", "-preset", "medium",
+                 "-pix_fmt", "yuv420p", "-profile:v", "high", "-level", "4.2",
+                 "-maxrate", "12M", "-bufsize", "24M", "-g", "60",
+                 "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-movflags", "+faststart"],
+        "label": "MP4 réseaux sociaux / régies pub (H.264 High, -14 LUFS)",
+        "loudnorm": -14,
+    },
+    "mp4-draft": {
+        "ext": ".mp4",
+        "args": ["-c:v", "libx264", "-crf", "30", "-preset", "ultrafast",
+                 "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "96k"],
+        "label": "Brouillon ultra-rapide (15 i/s, pour itérer)",
     },
     "mov-alpha": {
         "ext": ".mov",

@@ -109,6 +109,60 @@ L'audio des rushes est ignoré (mixage géré par `audio` projet — v1).
 | `kenburns_in` `kenburns_out` | zoom progressif (pleine canvas) | image |
 | `kenburns_pan_left` `kenburns_pan_right` | travelling latéral | image |
 
+## Moteur v2 — options avancées
+
+### Projet
+
+| Clé | Description |
+|---|---|
+| `brand` | kit `brands/<nom>.json` → jetons `$accent`, `$font.title`, `$logo`… dans tout le projet |
+| `background` | aussi `{"gradient": ["#a", "#b"], "angle": 135}`, `{"gradient": [...], "type": "radial"}` ou `{"image": "…"}` |
+| `audio` | musique : fichier, objet `{file, volume, loop, fade_in, fade_out, at, src_in}` ou **liste** |
+| `voiceover` | voix off (même format) : la musique est baissée automatiquement dessous (ducking) |
+| `sfx` | effets `[{"file": "…", "at": 1.2, "volume": 0.8}]` (timeline globale) |
+| `mix` | `{"duck": true, "duck_ratio": 8, "duck_threshold": 0.03, "loudnorm": -14}` |
+| `export.loudnorm` | normalisation (LUFS), automatique avec `mp4-social` |
+
+Un calque `{"type": "audio", "file": "…", "in": 0.4}` **dans une scène** se cale sur le
+début de la scène (effet synchronisé). Une vidéo avec `"keep_audio": true` garde son son.
+
+### Unités relatives
+
+Toute dimension accepte `120`, `"120px"`, `"50%"` (axe du champ : x et largeur → W,
+y et hauteur → H), `"8vw"`, `"8vh"`, `"6vmin"`, `"6vmax"`. Un projet en unités relatives se
+décline en plusieurs formats : `./md render <nom> --formats 9x16,1x1,16x9`.
+
+### Calques : mouvement
+
+| Clé | Valeurs |
+|---|---|
+| `anim` | + `scale_in`, `zoom_in`, `punch`, `rotate_in` ; `slide_*` entrent depuis le hors-champ (sauf si `amplitude` est donné) ; `grow_x/grow_y` = vraie révélation masquée |
+| `ease` | `linear, ease_in, ease_out (défaut), ease_in_out, expo_out, back_out, back_in, elastic_out, snap` |
+| `exit` | `fade, fade_up, fade_down, slide_up, slide_down, slide_left, slide_right, scale_out` (+ `exit_duration`, `exit_ease`) |
+| `idle` | `float, drift, pulse, sway, breathe` (+ `idle_amplitude`, `idle_period`) |
+| `anchor` | point du calque placé sur `pos` : `center, top_left, top, top_right, left, right, bottom_left, bottom, bottom_right` |
+| `opacity` / `rotate` | 0→1 / degrés |
+| `enabled` | `false` = calque ignoré |
+
+### Nouveaux types et options
+
+- **Texte cinétique** : `"split": "word" | "line" | "char"`, `"stagger": 0.08` (les morceaux apparaissent en cascade avec l'`anim` du calque).
+- **Pastille** : `"box": {"color": "#000", "opacity": 0.6, "padding": [24, 12], "radius": 16}` (révélée par `box_anim`, défaut `grow_x`).
+- **Compteur** : `{"type": "counter", "from": 0, "to": 10000, "prefix": "+", "suffix": " €", "decimals": 0, "count_duration": 1.5, "ease": "expo_out"}` + champs texte.
+- **Formes** : `kind` `rect | circle | ring | line | triangle`, `gradient` + `angle`, `stroke` + `stroke_color`, `ring_width`.
+- **Vidéo** : `speed`, `loop`, `keep_audio`, `audio_role`.
+
+### Formats et exports ajoutés
+
+Canvas : `1.91x1` (1200×628 pub lien), `2x3` (Pinterest), `4k`, `9x16-60`.
+Exports : `mp4-social` (H.264 High, débit plafonné, -14 LUFS), `mp4-draft` (brouillon 15 i/s).
+
+### Pipeline
+
+Les scènes sont rendues **en parallèle** (`MD_JOBS`, défaut min(4, CPU)) et **mises en cache**
+par empreinte (contenu, fichiers, code du moteur) : seules les scènes modifiées sont
+recalculées. Le livrable est écrit de façon atomique (`.part` puis renommage).
+
 ## Exemples
 
 ### Logo + titre sur fond vidéo

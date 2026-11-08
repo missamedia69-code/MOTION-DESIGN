@@ -1,0 +1,24 @@
+{
+  "template": "offre",
+  "name": "pub-offre-flash",
+  "brand": "missa",
+  "canvas": "9x16",
+  "preset": "mp4-social",
+  "duration": 10,
+  "hook": "Offre flash : -50 % ce week-end",
+  "benefits": [
+    "Plus de 300 chaînes",
+    "Installation offerte",
+    "Sans engagement"
+  ],
+  "offer": {
+    "price": 1000,
+    "old_price": 2000,
+    "currency": "FCFA",
+    "label": "par mois",
+    "badge": "-50 %",
+    "deadline": "Jusqu’à dimanche minuit"
+  },
+  "cta": "Je m'abonne",
+  "url": "missa.tv"
+}

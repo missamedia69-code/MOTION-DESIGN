@@ -12,7 +12,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECTS_DIR = os.path.join(REPO, "projects")
 TEMPLATES_DIR = os.path.join(REPO, "templates")
 
-LAYER_TYPES = {"image", "text", "video", "shape", "audio"}
+LAYER_TYPES = {"image", "text", "video", "shape", "audio", "counter"}
 
 
 def slugify(name: str) -> str:
@@ -102,5 +102,30 @@ def validate(data: dict, pdir: str) -> None:
                 fail(f"scène {si} calque {li} : 'file' manquant")
             if lt == "text" and "text" not in layer:
                 fail(f"scène {si} calque {li} : 'text' manquant")
-            if float(layer.get("out", 0) or 0) and float(layer["out"]) <= float(layer.get("in", 0)):
-                fail(f"scène {si} calque {li} : out <= in")
+            try:
+                t_in = float(layer.get("in", 0) or 0)
+                t_out = layer.get("out")
+                if t_out is not None and float(t_out) <= t_in:
+                    fail(f"scène {si} calque {li} : out <= in")
+            except (TypeError, ValueError):
+                fail(f"scène {si} calque {li} : 'in'/'out' doivent être des nombres")
+
+
+def save(name: str, data: dict, overwrite: bool = True) -> str:
+    """Écrit projects/<name>/project.json (écriture atomique, validation préalable)."""
+    name = slugify(name)
+    dest = project_dir(name)
+    pj = os.path.join(dest, "project.json")
+    if os.path.exists(pj) and not overwrite:
+        raise SystemExit(f"ERREUR : le projet '{name}' existe déjà (overwrite=false).")
+    if not isinstance(data, dict):
+        raise SystemExit("ERREUR : project.json doit être un objet JSON.")
+    data = dict(data)
+    data["name"] = name
+    os.makedirs(dest, exist_ok=True)
+    validate(data, dest)
+    tmp = pj + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    os.replace(tmp, pj)
+    return pj

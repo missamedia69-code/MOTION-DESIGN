@@ -1,11 +1,12 @@
 """CLI du moteur MOTION-DESIGN.
 
 Usage : ./md <commande> [options]
-Commandes : doctor, new, render, vo, lab, list, info, inventory, install, fonts, presets, preview, clean
+Commandes : doctor, new, render, lint, apercu, ad, brands, cockpit, vo, lab, list, info, inventory, install, fonts, presets, preview, clean
 """
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import shutil
 import sys
@@ -34,6 +35,11 @@ def cmd_doctor(_args) -> None:
         print(f"Pillow      : {PIL.__version__}")
     except ImportError:
         print("Pillow      : ABSENT → pip3 install pillow"); ok = False
+    try:
+        import numpy
+        print(f"numpy       : {numpy.__version__} (dégradés)")
+    except ImportError:
+        print("numpy       : ABSENT → pip3 install numpy (dégradés)"); ok = False
     from engine import text as text_mod
     fonts = text_mod.list_fonts()
     print(f"Polices     : {len(fonts)} disponibles")
@@ -52,6 +58,32 @@ def cmd_doctor(_args) -> None:
         if not writable:
             ok = False
         print(f"Dossier {d:<14}: {'OK' if writable else 'NON ACCESSIBLE'}")
+    from engine import brand, render
+    print(f"Moteur      : v{render.ENGINE_VERSION} · {len(render.ANIMS)} entrées · "
+          f"{len(render.EXITS)} sorties · {len(render.IDLES)} idle · kits : "
+          f"{', '.join(b['name'] for b in brand.list_brands()) or 'aucun'}")
+    if ok and getattr(_args, "full", False):
+        import contextlib
+        import io
+        import time
+        t0 = time.time()
+        proj = {"canvas": {"width": 320, "height": 180, "fps": 15}, "scenes": [
+            {"duration": 1, "background": {"gradient": ["#0B1020", "#3b1d7a"]}, "layers": [
+                {"type": "text", "text": "Auto test", "split": "word", "size": 28, "anim": "fade_up"},
+                {"type": "shape", "kind": "rect", "w": 200, "h": 6, "pos": ["50%", "75%"],
+                 "anim": "grow_x", "color": "#FFD400"}]},
+            {"duration": 1, "background": "#0B1020", "layers": [
+                {"type": "counter", "to": 100, "size": 40, "anim": "punch", "count_duration": 0.6}]}]}
+        try:
+            with contextlib.redirect_stdout(io.StringIO()):
+                out = render.render_project_data(proj, REPO, "doctor-selftest",
+                                                 out_path=os.path.join(REPO, ".cache", "doctor.mp4"))
+            print(f"Rendu test  : OK ({time.time() - t0:.1f}s) → {os.path.relpath(out, REPO)}")
+        except SystemExit as exc:
+            ok = False
+            print(f"Rendu test  : ÉCHEC\n{exc}")
+        finally:
+            shutil.rmtree(os.path.join(REPO, ".cache", "doctor-selftest"), ignore_errors=True)
     print("\n" + ("✅ Moteur opérationnel." if ok else "⚠️  Des dépendances manquent."))
     sys.exit(0 if ok else 1)
 
@@ -63,8 +95,83 @@ def cmd_new(args) -> None:
 
 def cmd_render(args) -> None:
     from engine import render
+    formats = [f.strip() for f in args.formats.split(",") if f.strip()] if args.formats else None
     render.render_project(args.name, export_name=args.preset, out_path=args.out,
-                          dry_run=args.dry_run, fps_override=args.fps)
+                          dry_run=args.dry_run, fps_override=args.fps,
+                          formats=formats, draft=args.draft)
+
+
+def cmd_lint(args) -> None:
+    from engine import lint, project
+    proj, pdir = project.load(args.name)
+    rep = lint.lint(proj, pdir, args.canvas)
+    if args.json:
+        print(json.dumps(rep, ensure_ascii=False, indent=2))
+    else:
+        print(lint.format_report(rep))
+    sys.exit(0 if rep["ok"] else 1)
+
+
+def cmd_apercu(args) -> None:
+    from engine import frames, project
+    proj, pdir = project.load(args.name)
+    at = [float(t) for t in args.at.split(",")] if args.at else None
+    res = frames.preview(proj, pdir, args.name, at=at, count=args.count,
+                         canvas_override=args.canvas, draft=not args.final)
+    print(json.dumps(res, ensure_ascii=False, indent=2))
+
+
+def cmd_ad(args) -> None:
+    from engine import ads, frames, lint, project, render
+    if args.example:
+        print(json.dumps(ads.example(), ensure_ascii=False, indent=2))
+        return
+    if args.templates:
+        print(json.dumps(ads.templates(), ensure_ascii=False, indent=2))
+        return
+    if not args.brief:
+        raise SystemExit("ERREUR : fournir un brief JSON (./md ad brief.json) ou --example")
+    with open(args.brief, encoding="utf-8") as f:
+        brief = json.load(f)
+    proj = ads.compose(brief)
+    name = project.slugify(args.name or proj["name"])
+    pdir = REPO
+    if args.save:
+        pj = project.save(name, proj)
+        pdir = os.path.dirname(pj)
+        print(f"💾 Projet enregistré : {os.path.relpath(pj, REPO)}")
+    rep = lint.lint(proj, pdir)
+    print(lint.format_report(rep))
+    if not rep["ok"]:
+        sys.exit(1)
+    if args.preview:
+        print(json.dumps(frames.preview(proj, pdir, name), ensure_ascii=False, indent=2))
+    if args.render:
+        formats = [f.strip() for f in args.formats.split(",")] if args.formats else [None]
+        for fmt in formats:
+            p_fmt = ads.compose(brief, canvas=fmt) if fmt else proj
+            render.render_project_data(p_fmt, pdir, name, export_name=args.preset,
+                                       canvas_override=fmt, draft=args.draft)
+    elif not args.save and not args.preview:
+        print(json.dumps(proj, ensure_ascii=False, indent=2))
+
+
+def cmd_brands(_args) -> None:
+    from engine import brand
+    for b in brand.list_brands():
+        if "error" in b:
+            print(f"{b['name']:<14} ⚠ {b['error']}")
+            continue
+        cols = " ".join(f"{k}={v}" for k, v in b["colors"].items())
+        print(f"{b['name']:<14} {b['title']}\n{'':<14} {cols}\n{'':<14} logo={b.get('logo')}")
+
+
+def cmd_cockpit(args) -> None:
+    from engine import cockpit
+    if args.guide:
+        print(cockpit.guide())
+    else:
+        print(json.dumps(cockpit.capabilities(), ensure_ascii=False, indent=2))
 
 
 def cmd_vo(args) -> None:
@@ -107,6 +214,11 @@ def cmd_install(args) -> None:
 
 
 def cmd_fonts(_args) -> None:
+    try:
+        import numpy
+        print(f"numpy       : {numpy.__version__} (dégradés)")
+    except ImportError:
+        print("numpy       : ABSENT → pip3 install numpy (dégradés)"); ok = False
     from engine import text as text_mod
     fonts = text_mod.list_fonts()
     if not fonts:
@@ -146,21 +258,58 @@ def main() -> None:
     ap = argparse.ArgumentParser(prog="md", description="Moteur de montage MOTION-DESIGN")
     sub = ap.add_subparsers(dest="cmd", required=True)
 
-    sub.add_parser("doctor", help="diagnostic du moteur").set_defaults(fn=cmd_doctor)
+    p = sub.add_parser("doctor", help="diagnostic du moteur")
+    p.add_argument("--full", action="store_true", help="inclut un rendu d'essai complet")
+    p.set_defaults(fn=cmd_doctor)
 
     p = sub.add_parser("new", help="créer un projet")
     p.add_argument("name")
-    p.add_argument("--canvas", default="16x9", help="format : 16x9|9x16|1x1|4x5|21x9|720p")
+    p.add_argument("--canvas", default="16x9", help="format : 16x9|9x16|1x1|4x5|21x9|720p|1.91x1|2x3|4k")
     p.add_argument("--template", default="base")
     p.set_defaults(fn=cmd_new)
 
     p = sub.add_parser("render", help="rendre un projet (livrable livré en artefact)")
     p.add_argument("name")
-    p.add_argument("--preset", help="mp4-hq|mp4-web|mp4-h265|gif|webm-vp9|mov-alpha")
+    p.add_argument("--preset", help="mp4-hq|mp4-social|mp4-web|mp4-h265|mp4-draft|gif|webm-vp9|mov-alpha")
     p.add_argument("--out", help="chemin de sortie personnalisé")
     p.add_argument("--fps", type=float)
     p.add_argument("--dry-run", action="store_true", help="afficher la commande sans exécuter")
+    p.add_argument("--formats", help="décliner en plusieurs formats : 9x16,1x1,16x9")
+    p.add_argument("--draft", action="store_true", help="brouillon rapide (15 i/s, ultrafast)")
     p.set_defaults(fn=cmd_render)
+
+    p = sub.add_parser("lint", help="contrôle qualité avant rendu (erreurs, lisibilité, zones sûres)")
+    p.add_argument("name")
+    p.add_argument("--canvas", help="contrôler pour un autre format (ex. 9x16)")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_lint)
+
+    p = sub.add_parser("apercu", help="brouillon + images clés + planche contact")
+    p.add_argument("name")
+    p.add_argument("--at", help="instants en secondes : 0.5,2,4.2")
+    p.add_argument("--count", type=int, default=6, help="nombre d'images (si pas de --at)")
+    p.add_argument("--canvas", help="format à prévisualiser")
+    p.add_argument("--final", action="store_true", help="qualité finale au lieu du brouillon")
+    p.set_defaults(fn=cmd_apercu)
+
+    p = sub.add_parser("ad", help="pub depuis un brief (accroche, produit, offre, CTA…)")
+    p.add_argument("brief", nargs="?", help="brief JSON")
+    p.add_argument("--example", action="store_true", help="afficher un brief d'exemple")
+    p.add_argument("--templates", action="store_true", help="lister les templates pub")
+    p.add_argument("--name", help="nom du projet")
+    p.add_argument("--save", action="store_true", help="enregistrer dans projects/<nom>/")
+    p.add_argument("--preview", action="store_true", help="planche contact du brouillon")
+    p.add_argument("--render", action="store_true", help="rendre la vidéo")
+    p.add_argument("--formats", help="9x16,1x1,16x9")
+    p.add_argument("--preset", help="export (défaut : celui du brief, mp4-social)")
+    p.add_argument("--draft", action="store_true")
+    p.set_defaults(fn=cmd_ad)
+
+    sub.add_parser("brands", help="kits de marque disponibles").set_defaults(fn=cmd_brands)
+
+    p = sub.add_parser("cockpit", help="capacités complètes du moteur (JSON pour agent IA)")
+    p.add_argument("--guide", action="store_true", help="afficher le manuel du pilote")
+    p.set_defaults(fn=cmd_cockpit)
 
     p = sub.add_parser("vo", help="générer les voix off d'un projet (TTS)")
     p.add_argument("name", help="nom du projet")

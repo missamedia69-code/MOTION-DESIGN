@@ -1,0 +1,33 @@
+{
+  "template": "promo",
+  "name": "pub-box-missa",
+  "brand": "missa",
+  "canvas": "9x16",
+  "preset": "mp4-social",
+  "duration": 15,
+  "hook": "Votre télé vous coûte trop cher ?",
+  "product": {
+    "image": "assets/images/box-mtn-cutout.png",
+    "name": "La Box MISSA TV",
+    "tagline": "Toute la télé africaine, partout"
+  },
+  "benefits": [
+    "Plus de 300 chaînes",
+    "Installation offerte",
+    "Sans engagement"
+  ],
+  "proof": {
+    "value": 10000,
+    "prefix": "+",
+    "label": "familles abonnées"
+  },
+  "offer": {
+    "price": 1000,
+    "old_price": 2000,
+    "currency": "FCFA",
+    "label": "par mois",
+    "badge": "-50 %"
+  },
+  "cta": "Je m'abonne",
+  "url": "missa.tv"
+}
