@@ -54,7 +54,13 @@ SOURCES = {
     "remix": {"style": "ligne", "iconify": "ri", "label": "Remix Icon (ligne + plein)", "licence": "Apache-2.0"},
     "mingcute": {"style": "ligne", "iconify": "mingcute", "label": "MingCute (ligne + plein, arrondi)", "licence": "Apache-2.0"},
     "material": {"style": "plein", "iconify": "material-symbols", "label": "Material Symbols (Google)", "licence": "Apache-2.0"},
+    "iconvault": {"style": "ligne", "label": "IconVaultKit (serveur MCP) : 91 bibliothèques, licence vérifiée par bibliothèque",
+                  "licence": "vérifiée", "url": "https://iconvaultkit.com/api/mcp"},
 }
+ICONVAULT = "https://iconvaultkit.com/api/mcp"
+# bibliothèques de logos de marques (marques déposées) : jamais en pub
+BRAND_SETS = {"simple-icons", "logos", "cib", "fa-brands", "fa6-brands", "skill-icons", "devicon", "devicon-plain",
+              "vscode-icons", "brandico", "entypo-social", "bxl", "mdi-brand", "streamline-logos", "token-branded"}
 LICENCES_OK = {"MIT", "ISC", "Apache-2.0", "CC0-1.0"}
 STYLES = {"3d": "objets 3D brillants (emojis Fluent)", "couleur": "illustrations couleur à dégradés",
           "plat": "illustrations en aplats", "ligne": "pictogrammes au trait (recolorables)",
@@ -207,6 +213,41 @@ def _iconify_svg(data: dict, name: str, color: str | None, size: int) -> str:
             f'viewBox="0 0 {w} {h}">{body}</svg>\n')
 
 
+# ── IconVaultKit (serveur MCP HTTP, 91 bibliothèques Iconify) ──
+def _vault_call(tool: str, arguments: dict) -> str:
+    body = json.dumps({"jsonrpc": "2.0", "id": 1, "method": "tools/call",
+                       "params": {"name": tool, "arguments": arguments}}).encode()
+    req = urllib.request.Request(ICONVAULT, data=body, headers={**UA, "Content-Type": "application/json",
+                                                                "Accept": "application/json, text/event-stream"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        res = json.loads(r.read())
+    if "error" in res:
+        raise RuntimeError(res["error"].get("message", "erreur IconVaultKit"))
+    return res["result"]["content"][0]["text"]
+
+
+def _set_licence(prefix: str) -> str:
+    """Licence d'une bibliothèque Iconify (registry npm @iconify-json/<prefix>), mise en cache."""
+    path = os.path.join(CACHE, "licences-iconify.json")
+    cache = json.load(open(path, encoding="utf-8")) if os.path.exists(path) else {}
+    if prefix not in cache:
+        try:
+            cache[prefix] = json.loads(_get(f"https://registry.npmjs.org/@iconify-json/{prefix}/latest", 30)).get("license", "?")
+        except Exception:
+            cache[prefix] = "?"
+        os.makedirs(CACHE, exist_ok=True)
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(cache, f)
+    return cache[prefix]
+
+
+def _vault_ok(prefix: str) -> tuple[bool, str]:
+    if prefix in BRAND_SETS or "logo" in prefix or "brand" in prefix:
+        return False, "logos de marques"
+    lic = _set_licence(prefix)
+    return lic in LICENCES_OK, lic
+
+
 # ── Microsoft Fluent Emoji (git partiel : seuls les fichiers demandés sont téléchargés) ──
 def _fluent_repo() -> str:
     d = os.path.join(CACHE, "fluentui-emoji")
@@ -299,6 +340,25 @@ def search(query, style: str | None = None, source: str | None = None, limit: in
             if sc:
                 results.append({"id": f"{s}:{name}", "score": sc, "source": s, "style": SOURCES[s]["style"],
                                 "licence": data["_licence"]})
+    if "iconvault" in srcs:
+        try:
+            seen = set()
+            for g in _groups(query):
+                txt = _vault_call("search_icons", {"query": g[0], "limit": 100})
+                for line in txt.splitlines():
+                    m = re.match(r"\s*([a-z0-9-]+):([a-z0-9-]+)\s", line + " ")
+                    if not m or line.startswith("Found") or m.group(0) in seen:
+                        continue
+                    seen.add(m.group(0))
+                    prefix, nm = m.group(1), m.group(2)
+                    if source != "iconvault" and prefix in {v.get("iconify") for v in SOURCES.values()}:
+                        continue  # déjà couvert par une source dédiée
+                    ok, lic = _vault_ok(prefix)
+                    if ok:
+                        results.append({"id": f"iconvault:{prefix}:{nm}", "score": _score(nm.replace("-", " "), [], groups) - 5,
+                                        "source": "iconvault", "style": "ligne", "licence": lic})
+        except Exception as ex:
+            errors["iconvault"] = str(ex)
     results.sort(key=lambda r: (-r["score"], len(r["id"])))
     out = {"requete": query if isinstance(query, str) else " ".join(query), "termes": terms,
            "resultats": results[:limit], "total": len(results)}
@@ -362,6 +422,21 @@ def get(ids: list[str], dest: str | None = None, color: str | None = None, size:
                 with open(os.path.join(dest, fname), "wb") as f:
                     f.write(_fluent_file(entry[src]))
                 origin, lic = f"Fluent Emoji « {entry['name']} » ({entry[src]})", "MIT"
+            elif src == "iconvault":
+                if ":" not in name:
+                    raise KeyError("format attendu : iconvault:bibliotheque:icone")
+                prefix, nm = name.split(":", 1)
+                ok_lic, lic = _vault_ok(prefix)
+                if not ok_lic:
+                    raise ValueError(f"bibliothèque {prefix} refusée ({lic}) : licence non compatible pub sans attribution")
+                svg = _vault_call("get_icon_svg", {"collection": prefix, "name": nm, "size": size,
+                                                   **({"color": color} if color else {})})
+                if not svg.lstrip().startswith("<svg"):
+                    raise KeyError(svg[:120])
+                fname = f"{prefix}-{_slug(nm)}" + (f"-{_slug(color)}" if color else "") + ".svg"
+                with open(os.path.join(dest, fname), "w", encoding="utf-8") as f:
+                    f.write(svg.strip() + "\n")
+                origin = f"IconVaultKit « {prefix}:{nm} » (bibliothèque Iconify {prefix})"
             else:
                 data = _iconify_set(SOURCES[src]["iconify"])
                 svg = _iconify_svg(data, name, color, size)

@@ -45,11 +45,15 @@ class ElementsTest(unittest.TestCase):
 
     def test_sources_et_kits_coherents(self):
         for k, v in elements.SOURCES.items():
-            self.assertIn(v["licence"], elements.LICENCES_OK, k)
+            self.assertIn(v["licence"], elements.LICENCES_OK | {"vérifiée"}, k)
             self.assertIn(v["style"], elements.STYLES, k)
         for name, ids in elements.KITS.items():
             for i in ids:
                 self.assertIn(i.split(":", 1)[0], elements.SOURCES, f"{name}: {i}")
+
+    def test_iconvault_refuse_logos_de_marques(self):
+        self.assertEqual(elements._vault_ok("simple-icons"), (False, "logos de marques"))
+        self.assertFalse(elements._vault_ok("logos")[0])
 
     def test_ids_invalides(self):
         with tempfile.TemporaryDirectory() as d:

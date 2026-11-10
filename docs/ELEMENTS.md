@@ -21,6 +21,17 @@ Module : `engine/elements.py` · Outils MCP : `md_elements_search`, `md_elements
 | `remix` | Remix Icon | ligne + fill | Apache-2.0 |
 | `mingcute` | MingCute (arrondi) | ligne + fill | Apache-2.0 |
 | `material` | Material Symbols (Google) | plein | Apache-2.0 |
+| `iconvault` | **IconVaultKit** (serveur MCP) : 91 bibliothèques (Material Design, Boxicons, Huge Icons, IconPark…) | ligne / plein | **vérifiée par bibliothèque** |
+
+### IconVaultKit
+
+Serveur MCP `https://iconvaultkit.com/api/mcp` (déclaré dans `.mcp.json` : un agent y a aussi accès
+directement par ses outils `search_icons`, `get_icon_svg`…). Le moteur l'interroge comme une source :
+ids `iconvault:<bibliothèque>:<icône>` (ex. `iconvault:mdi:popcorn`). Comme le serveur n'indique pas les
+licences, le moteur **vérifie la licence de chaque bibliothèque** (registry npm `@iconify-json/<bibliothèque>`)
+et **refuse** celles qui imposent une attribution (ex. Font Awesome `fa6-solid` en CC-BY-4.0) ainsi que
+les **logos de marques** (`simple-icons`, `logos`, `fa6-brands`…). L'hôte `iconvaultkit.com` doit être
+autorisé dans le réseau de l'environnement (c'est le cas pour l'environnement MOTION-DESIGN).
 
 Licences acceptées : MIT, ISC, Apache-2.0, CC0 (usage commercial, pas d'attribution obligatoire).
 Les collections sous CC-BY / CC-BY-SA (attribution ou partage imposés) sont refusées automatiquement.
@@ -35,6 +46,7 @@ Cache : `.cache/elements/` (`./md elements vider-cache`).
 ./md elements sources                                   # sources, styles, licences, kits
 ./md elements chercher télé popcorn --style 3d           # mots en français ou en anglais
 ./md elements chercher télécharger wifi --style ligne --max 10
+./md elements chercher popcorn --source iconvault         # 91 bibliothèques via IconVaultKit
 ./md elements prendre fluent-3d:television "fluent-3d:soccer ball" tabler:download
 ./md elements prendre tabler:download --couleur "#3dff6e" --png   # icône recolorée + PNG transparent
 ./md elements kits                                      # kits prêts à l'emploi
