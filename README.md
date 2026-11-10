@@ -391,6 +391,10 @@ Les jetons `$accent`, `$background`, `$text`, `$muted`, `$on_accent`, `$font.tit
   en français et récupérés avec leur licence (`assets/elements/LICENCES.md`) :
   `./md elements chercher télé popcorn --style 3d`, `./md elements kit offre`. Kits prêts dans
   `assets/elements/`. Voir [docs/ELEMENTS.md](docs/ELEMENTS.md).
+- **Modèles et guides OpenDesign** : 13 skills repris de nexu-io/open-design (plans vidéo
+  HyperFrames : fin de pub avec logo, ouverture cinéma, titre glitch, fond liquide… ; 160 effets
+  Motion.Lab ; styles artistiques) et guides de métier dans `docs/craft/`. Voir
+  [docs/OPEN-DESIGN.md](docs/OPEN-DESIGN.md).
 - **Voix off** : génération TTS (edge-tts, VoxCPM) depuis un `vo.json`, voir
   [docs/VOIX-TTS.md](docs/VOIX-TTS.md).
 - **Procédures de production** : [docs/PROCEDURES.md](docs/PROCEDURES.md).

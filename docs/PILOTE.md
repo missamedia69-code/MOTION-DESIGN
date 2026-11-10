@@ -138,6 +138,15 @@ avec `LICENCES.md` (MIT / ISC / Apache-2.0 uniquement : usage pub autorisé). Le
 déjà installés. N'utilise jamais de personnages ou logos de marques tierces trouvés ailleurs.
 Détails : docs/ELEMENTS.md.
 
+## Modèles de plans et règles de métier (OpenDesign)
+
+Pour une ouverture, une transition ou une fin de pub, pars d'un modèle : skills `frame-logo-outro`
+(carte de fin), `frame-light-leak-cinema`, `frame-glitch-title`, `frame-liquid-bg-hero`,
+`vfx-text-cursor`, `mockup-device-3d`, `poster-hero` (fichier `example.html` dans
+`.agents/skills/<nom>/`). Rends-les autonomes (polices locales, pas de CDN) et adapte-les à la marque.
+Avant de livrer, relis `docs/craft/animation-discipline.md` et `docs/craft/anti-ai-slop.md`.
+Détails : docs/OPEN-DESIGN.md.
+
 ## Kits de marque
 
 `brands/<nom>.json` (un kit par client) → `"brand": "<nom>"` puis jetons `$accent`, `$background`,

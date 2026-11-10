@@ -151,6 +151,36 @@
       "skillPath": ".agents/skills/flux-best-practices/SKILL.md",
       "computedHash": "a5a348cb8c94264b302b4af24b77c27f6f4332e430fbd6f767caf13c55403d93"
     },
+    "frame-data-chart-nyt": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/frame-data-chart-nyt/SKILL.md",
+      "computedHash": "7f4dc45257c3d75ac28e489ca9e64be15920b205899cef388359427b212ec588"
+    },
+    "frame-glitch-title": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/frame-glitch-title/SKILL.md",
+      "computedHash": "a95e6acc717524576637c2ac65bf4ebbe306b2333681fe11d8b2713583157de7"
+    },
+    "frame-light-leak-cinema": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/frame-light-leak-cinema/SKILL.md",
+      "computedHash": "ea93a8bee5cbc23a184d45588d98ae739a8b91fcca5aa8a25d89e74046cf6aea"
+    },
+    "frame-liquid-bg-hero": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/frame-liquid-bg-hero/SKILL.md",
+      "computedHash": "ff1d533bdecbddbb06ac7f5e70cd756b9b12aad77513ecfde3f5adcc412c87c0"
+    },
+    "frame-logo-outro": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/frame-logo-outro/SKILL.md",
+      "computedHash": "ad17f6604843f4365deb4ba3135d84700327f0ad2673486ead4cca329db3cdbe"
+    },
     "framer-motion": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
@@ -234,6 +264,12 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/heygen/SKILL.md",
       "computedHash": "e2c5db9c36904294497fcd18ee4f003cdf0f79746d46a57f1cc352d83957018f"
+    },
+    "huashu-art-motion": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/huashu-art-motion/SKILL.md",
+      "computedHash": "baa8f4b525abe45222b0b349d21a1cda5e6b71b00a7014fcd7c5a72555f99a45"
     },
     "hyperframes": {
       "source": "heygen-com/hyperframes",
@@ -349,6 +385,12 @@
       "skillPath": ".agents/skills/minimax-h3/SKILL.md",
       "computedHash": "09dcc91fc408e67e1c6ae7397ea3b3d607e08fc329991b5e950b0a86d8c5ceaa"
     },
+    "mockup-device-3d": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/mockup-device-3d/SKILL.md",
+      "computedHash": "046a60b0fe1fabb0e9f2e856f448fd38761625fb7def2891689da89432f0f1ab"
+    },
     "motion-design": {
       "source": "LottieFiles/motion-design-skill",
       "sourceType": "github",
@@ -367,6 +409,12 @@
       "skillPath": "skills/motion-graphics/SKILL.md",
       "computedHash": "73420963bea97e1008257c32f89b172486e87b87132ee4ebc83d21e1805ffd25"
     },
+    "motion-lab": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/motion-lab/SKILL.md",
+      "computedHash": "9d7904b87310bdf2e64bf0b0f6ad6f2e7a1739ff12e401a94a25065157134d9a"
+    },
     "music": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
@@ -379,6 +427,12 @@
       "skillPath": "skills/music-to-video/SKILL.md",
       "computedHash": "66793a5bc8dfb9ce03b7721fe42f4a685d8a95bc727602e6d661ec1f4aa9711d"
     },
+    "oil-motion": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/oil-motion/SKILL.md",
+      "computedHash": "b2ffeeb0a7c58edd0be2d933627a279d176b6a3b73856ad7b3ec887e757b4144"
+    },
     "playwright-recording": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
@@ -390,6 +444,12 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/pose-library-design/SKILL.md",
       "computedHash": "4fca9f6c9774fcdd4a71293d2745cc5492cce960d8e0947679702aaea9dc6030"
+    },
+    "poster-hero": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/poster-hero/SKILL.md",
+      "computedHash": "d8afdbaee1c9e4b2ed21943247a2b2c43fedc7638a3cb1aa580bd6e163afa041"
     },
     "pr-to-video": {
       "source": "heygen-com/hyperframes",
@@ -438,6 +498,12 @@
       "sourceType": "github",
       "skillPath": "skills/remotion-video-agent/SKILL.md",
       "computedHash": "07cac77693241f7453f23da33445bcf444a9532e9770b032d3a6e2f3ade4a5ab"
+    },
+    "review-animations": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/review-animations/SKILL.md",
+      "computedHash": "37862b223b42a35b814922ca75a37e8a5476c005f269aee2792196a9b1f4caf5"
     },
     "seedance-2-0": {
       "source": "calesthio/OpenMontage",
@@ -589,6 +655,12 @@
       "skillPath": ".agents/skills/vercel-react-best-practices/SKILL.md",
       "computedHash": "98cb0a546a53fe77a8a95592a6cc3f05b7e64a5db90ba47617817c831a7be887"
     },
+    "vfx-text-cursor": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/vfx-text-cursor/SKILL.md",
+      "computedHash": "f00815e9941d6d04b76ac0346260ced8d13be636986f6cc8ea32f7704cc82021"
+    },
     "video-download": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
@@ -600,6 +672,12 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/video-edit/SKILL.md",
       "computedHash": "c392bc176158a9d0deed541752fc0fe5bcccd910aa3568beca5741ec2b2827e0"
+    },
+    "video-hyperframes": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/video-hyperframes/SKILL.md",
+      "computedHash": "d293392d017df5599558e92276b890b4b3533b486ffc76f61cae46d07cb44e06"
     },
     "video-toolkit": {
       "source": "calesthio/OpenMontage",
