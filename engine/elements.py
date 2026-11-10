@@ -101,6 +101,9 @@ FR = {
     "fleche": ["arrow"], "bas": ["down"], "haut": ["up"], "recherche": ["search", "magnifying glass"], "loupe": ["magnifying glass", "search"],
     "notification": ["bell", "notification"], "cloche": ["bell"], "message": ["message", "chat", "speech balloon"], "whatsapp": ["chat", "message", "phone"],
     "partage": ["share"], "aime": ["like", "thumbs up", "heart"], "pouce": ["thumbs up"], "sourire": ["smile", "smiling face"],
+    "journal": ["news", "newspaper"], "info": ["news", "newspaper"], "infos": ["news", "newspaper"],
+    "actualite": ["news", "newspaper"], "actualites": ["news", "newspaper"], "drame": ["drama", "theater", "masks"],
+    "court": ["short", "clip"], "jeux": ["game", "gamepad", "video game"], "dessin-anime": ["cartoon", "kid"],
     "qualite": ["hd", "high definition", "star"], "hd": ["hd"], "satellite": ["satellite", "satellite antenna"], "antenne": ["antenna", "satellite antenna"],
 }
 

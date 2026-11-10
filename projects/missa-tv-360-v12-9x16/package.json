@@ -1,0 +1,9 @@
+{
+  "name": "missa-tv-360-v12",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "npx --yes hyperframes@0.8.142 check",
+    "render": "npx --yes hyperframes@0.8.142 render"
+  }
+}

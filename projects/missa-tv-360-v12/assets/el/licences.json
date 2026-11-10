@@ -1,0 +1,86 @@
+[
+ {
+  "fichier": "ninja-3d.png",
+  "source": "fluent-3d",
+  "origine": "Fluent Emoji « Ninja » (assets/Ninja/Default/3D/ninja_3d_default.png)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "eyes-3d.png",
+  "source": "fluent-3d",
+  "origine": "Fluent Emoji « Eyes » (assets/Eyes/3D/eyes_3d.png)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "rocket-3d.png",
+  "source": "fluent-3d",
+  "origine": "Fluent Emoji « Rocket » (assets/Rocket/3D/rocket_3d.png)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "couch-and-lamp-3d.png",
+  "source": "fluent-3d",
+  "origine": "Fluent Emoji « Couch and lamp » (assets/Couch and lamp/3D/couch_and_lamp_3d.png)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "film-projector-3d.png",
+  "source": "fluent-3d",
+  "origine": "Fluent Emoji « Film projector » (assets/Film projector/3D/film_projector_3d.png)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "tabler-movie-ffffff.svg",
+  "source": "tabler",
+  "origine": "Tabler Icons (ligne + filled) « movie » (@iconify-json/tabler@1.2.43)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "tabler-device-tv-ffffff.svg",
+  "source": "tabler",
+  "origine": "Tabler Icons (ligne + filled) « device-tv » (@iconify-json/tabler@1.2.43)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "tabler-ball-football-ffffff.svg",
+  "source": "tabler",
+  "origine": "Tabler Icons (ligne + filled) « ball-football » (@iconify-json/tabler@1.2.43)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "tabler-news-ffffff.svg",
+  "source": "tabler",
+  "origine": "Tabler Icons (ligne + filled) « news » (@iconify-json/tabler@1.2.43)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "tabler-mood-kid-ffffff.svg",
+  "source": "tabler",
+  "origine": "Tabler Icons (ligne + filled) « mood-kid » (@iconify-json/tabler@1.2.43)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "tabler-music-ffffff.svg",
+  "source": "tabler",
+  "origine": "Tabler Icons (ligne + filled) « music » (@iconify-json/tabler@1.2.43)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "tabler-radio-ffffff.svg",
+  "source": "tabler",
+  "origine": "Tabler Icons (ligne + filled) « radio » (@iconify-json/tabler@1.2.43)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "tabler-player-play-filled-ffffff.svg",
+  "source": "tabler",
+  "origine": "Tabler Icons (ligne + filled) « player-play-filled » (@iconify-json/tabler@1.2.43)",
+  "licence": "MIT"
+ },
+ {
+  "fichier": "tabler-device-gamepad-2-ffffff.svg",
+  "source": "tabler",
+  "origine": "Tabler Icons (ligne + filled) « device-gamepad-2 » (@iconify-json/tabler@1.2.43)",
+  "licence": "MIT"
+ }
+]
