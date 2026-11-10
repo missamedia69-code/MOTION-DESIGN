@@ -386,6 +386,11 @@ Les jetons `$accent`, `$background`, `$text`, `$muted`, `$on_accent`, `$font.tit
 - **HyperFrames (HTML → vidéo)** : second moteur, pour des compositions HTML/CSS/GSAP.
   Il s'accompagne de 107 skills d'agent dans `.agents/skills/`. Voir `./scripts/hf`
   et [docs/HYPERFRAMES.md](docs/HYPERFRAMES.md).
+- **Éléments graphiques libres de droits** (équivalent ouvert d'IconScout) : emojis 3D
+  Microsoft Fluent (~1 600 objets), Unicons d'IconScout, Tabler, Lucide, Phosphor… cherchés
+  en français et récupérés avec leur licence (`assets/elements/LICENCES.md`) :
+  `./md elements chercher télé popcorn --style 3d`, `./md elements kit offre`. Kits prêts dans
+  `assets/elements/`. Voir [docs/ELEMENTS.md](docs/ELEMENTS.md).
 - **Voix off** : génération TTS (edge-tts, VoxCPM) depuis un `vo.json`, voir
   [docs/VOIX-TTS.md](docs/VOIX-TTS.md).
 - **Procédures de production** : [docs/PROCEDURES.md](docs/PROCEDURES.md).

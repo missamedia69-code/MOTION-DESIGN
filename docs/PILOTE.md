@@ -128,6 +128,16 @@ mise en page à chaque format.
 Exemple : `"pos": ["50%", "40%"], "size": "8vmin"`. Puis
 `./md render ma-pub --formats 9x16,1x1,16x9`.
 
+## Éléments graphiques (emojis 3D, icônes) libres de droits
+
+Avant de dessiner un objet ou de demander une image, cherche-le : `md_elements_search`
+(« cadeau », « chrono », « télé », « ballon foot »…, style `3d`, `couleur`, `plat`, `ligne`,
+`plein`) puis `md_elements_get` (ids ou kit `divertissement`, `offre`, `appareils`,
+`interface` ; `color` recolore les icônes). Les fichiers arrivent dans `assets/elements/`
+avec `LICENCES.md` (MIT / ISC / Apache-2.0 uniquement : usage pub autorisé). Les kits sont
+déjà installés. N'utilise jamais de personnages ou logos de marques tierces trouvés ailleurs.
+Détails : docs/ELEMENTS.md.
+
 ## Kits de marque
 
 `brands/<nom>.json` (un kit par client) → `"brand": "<nom>"` puis jetons `$accent`, `$background`,

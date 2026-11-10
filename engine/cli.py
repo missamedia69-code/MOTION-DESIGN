@@ -245,6 +245,38 @@ def cmd_install(args) -> None:
     install.install(args.sources)
 
 
+def cmd_elements(args) -> None:
+    import json as _json
+    from engine import elements
+    act = args.action
+    if act == "sources":
+        print(_json.dumps(elements.sources(), ensure_ascii=False, indent=2))
+    elif act == "kits":
+        for k, v in elements.KITS.items():
+            print(f"{k:16s} {len(v):3d} éléments : " + ", ".join(i.split(':', 1)[1] for i in v))
+    elif act == "chercher":
+        r = elements.search(args.mots, style=args.style, source=args.source, limit=args.max)
+        print(f"Termes : {', '.join(r['termes'])} — {r['total']} résultat(s)")
+        for x in r["resultats"]:
+            print(f"  {x.get('apercu', ' '):2s} {x['id']:48s} {x['style']:8s} {x['licence']}")
+        for k, v in r.get("erreurs", {}).items():
+            print(f"⚠️  {k} : {v}")
+    elif act in ("prendre", "kit"):
+        if act == "kit":
+            r = elements.kit(args.mots[0], dest=args.vers, color=args.couleur, png=args.png)
+        else:
+            r = elements.get(args.mots, dest=args.vers, color=args.couleur, size=args.taille, png=args.png)
+        for f in r["recuperes"]:
+            print(f"✅ {f}")
+        for k, v in r["erreurs"].items():
+            print(f"❌ {k} : {v}")
+        print(f"Licences : {r['licences']}")
+    elif act == "planche":
+        print(elements.sheet(args.vers))
+    elif act == "vider-cache":
+        elements.clear_cache(); print("cache des éléments vidé")
+
+
 def cmd_fonts(_args) -> None:
     try:
         import numpy
@@ -390,6 +422,18 @@ def main() -> None:
     p = sub.add_parser("install", help="installer des éléments dans assets/")
     p.add_argument("sources", nargs="+", help="fichiers, dossiers ou URLs")
     p.set_defaults(fn=cmd_install)
+
+    p = sub.add_parser("elements", help="éléments graphiques libres de droits (emojis 3D, icônes) + licences")
+    p.add_argument("action", choices=["sources", "kits", "chercher", "prendre", "kit", "planche", "vider-cache"])
+    p.add_argument("mots", nargs="*", help="mots à chercher (fr/en), ids source:nom, ou nom du kit")
+    p.add_argument("--style", choices=["3d", "couleur", "plat", "ligne", "plein"])
+    p.add_argument("--source", help="limiter à une source (voir : elements sources)")
+    p.add_argument("--max", type=int, default=24, help="nombre de résultats")
+    p.add_argument("--vers", help="dossier de destination (défaut assets/elements/)")
+    p.add_argument("--couleur", help="couleur des icônes ligne/plein, ex. #3dff6e")
+    p.add_argument("--taille", type=int, default=512, help="taille en px des SVG/PNG d'icônes")
+    p.add_argument("--png", action="store_true", help="convertir aussi les SVG en PNG transparents")
+    p.set_defaults(fn=cmd_elements)
 
     sub.add_parser("fonts", help="liste des polices").set_defaults(fn=cmd_fonts)
     sub.add_parser("presets", help="liste des presets").set_defaults(fn=cmd_presets)

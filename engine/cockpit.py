@@ -94,6 +94,10 @@ def capabilities() -> dict:
         "polices": [f["file"] for f in text.list_fonts() if f["source"] == "assets"],
         "polices_systeme": len([f for f in text.list_fonts() if f["source"] != "assets"]),
         "assets": assets,
+        "elements": {"usage": "./md elements chercher <mots> | prendre <source:nom>… | kit <nom> (MCP : md_elements_search, md_elements_get)",
+                     "styles": ["3d", "couleur", "plat", "ligne", "plein"],
+                     "kits": ["divertissement", "offre", "appareils", "interface"],
+                     "destination": "assets/elements/ (+ LICENCES.md)"},
         "projets": [p["name"] for p in project_mod.list_projects()],
         "boucle_pilote": [
             "1. md_cockpit (ce tableau) puis md_guide si besoin",

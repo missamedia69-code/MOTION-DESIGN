@@ -34,6 +34,7 @@ SERVER_VERSION = "2.0.0"
 INSTRUCTIONS = (
     "Moteur MOTION-DESIGN (vidéos publicitaires motion design). Boucle du pilote : "
     "md_intake (éléments déposés : audio complet, logos, détails, médias) → md_cockpit → "
+    "md_elements_search / md_elements_get (emojis 3D, icônes libres de droits) → "
     "md_ad_compose (brief pub) ou project.json → md_lint → md_preview "
     "(regarder les images) → md_render. md_guide donne le manuel complet."
 )
@@ -71,6 +72,14 @@ MD_TOOLS = [
         "preset": {"type": "string", "description": "mp4-social (pub), mp4-hq, mp4-web, gif, webm-vp9, mov-alpha…"},
         "formats": {"type": "array", "items": {"type": "string"}},
         "draft": {"type": "boolean"}}}},
+    {"name": "md_elements_search", "description": "Cherche des éléments graphiques LIBRES DE DROITS pour la pub (alternative à IconScout) : emojis 3D Microsoft Fluent (~1 600 objets : TV, popcorn, ballon, cadeau, horloge…), icônes ligne/plein (Unicons d'IconScout, Tabler, Lucide, Phosphor, Remix, MingCute, Material). Mots en français ou anglais. Renvoie des ids source:nom + licence.",
+     "inputSchema": {"type": "object", "properties": {"query": {"type": "string"},
+        "style": {"type": "string", "enum": ["3d", "couleur", "plat", "ligne", "plein"]},
+        "source": {"type": "string"}, "limit": {"type": "integer"}}, "required": ["query"]}},
+    {"name": "md_elements_get", "description": "Télécharge des éléments (ids de md_elements_search, ou un kit : divertissement, offre, appareils, interface) dans assets/elements/ et met à jour LICENCES.md. color recolore les icônes ligne/plein ; png=true ajoute des PNG transparents. Renvoie aussi une planche contact en image.",
+     "inputSchema": {"type": "object", "properties": {"ids": {"type": "array", "items": {"type": "string"}},
+        "kit": {"type": "string"}, "dest": {"type": "string"}, "color": {"type": "string"},
+        "size": {"type": "integer"}, "png": {"type": "boolean"}}}},
     {"name": "md_ad_example", "description": "Brief publicitaire d'exemple + schéma des champs + templates (promo, offre, annonce, preuve).",
      "inputSchema": {"type": "object", "properties": {}}},
     {"name": "md_ad_compose", "description": "Brief pub (accroche, produit, bénéfices, preuve, offre, CTA, musique, voix) → project.json complet et rythmé. save=true l'enregistre dans projects/.",
@@ -216,6 +225,24 @@ def call_md_tool(name: str, args: dict) -> dict:
         outs = _render_outputs(proj, pdir, pname, args.get("preset"), args.get("formats"),
                                args.get("draft"))
         return text({"outputs": outs, "warnings": rep["warnings"]})
+    if name == "md_elements_search":
+        from engine import elements
+        return text(elements.search(args["query"], style=args.get("style"), source=args.get("source"),
+                                    limit=int(args.get("limit", 24))))
+    if name == "md_elements_get":
+        from engine import elements
+        dest = os.path.join(REPO, args["dest"]) if args.get("dest") else None
+        if args.get("kit"):
+            res = elements.kit(args["kit"], dest=dest, color=args.get("color"), png=bool(args.get("png")))
+        else:
+            res = elements.get(args.get("ids") or [], dest=dest, color=args.get("color"),
+                               size=int(args.get("size", 512)), png=bool(args.get("png")))
+        blocks = [{"type": "text", "text": json.dumps(res, ensure_ascii=False, indent=2)}]
+        try:
+            blocks.append(_image_block(os.path.join(REPO, elements.sheet(dest))))
+        except Exception:
+            pass
+        return {"content": blocks}
     if name == "md_ad_example":
         return text(ads.schema())
     if name in ("md_ad_compose", "md_ad_render"):
