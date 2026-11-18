@@ -6,31 +6,33 @@
 
 ---
 
-## 1. Texte de la voix off (≈ 100 mots, 40 s)
+## 1. Texte de la voix off (≈ 106 mots, 40 s) — v2 avec la recherche
 
 | Temps | Séquence | Voix off | Ton |
 |---|---|---|---|
-| 00,0 – 03,5 | Accroche | Tu paies chaque mois… pour regarder toujours la même chose ? | Las, ironique |
-| 03,5 – 05,5 | Pivot | Franchement… on mérite mieux ! | Coup de poing, sourire |
-| 05,5 – 09,0 | Révélation | Voici MISSA TV 360 : tout ton divertissement, dans une seule appli. | Fier, énergique |
-| 09,0 – 17,0 | Le catalogue | Des milliers de films, séries et mangas. Des centaines de chaînes en direct, du sport, la radio, les podcasts… et même des jeux ! | Rapide, enthousiaste |
-| 17,0 – 22,5 | La technique | Ta box WiFi suffit. Même en petit débit, ça reste fluide… et ça économise tes données. | Complice, rassurant |
-| 22,5 – 25,0 | Les écrans | Sur ton téléphone, ta tablette ou ta télé. | Rythmé (3 temps) |
-| 25,0 – 28,0 | L'essai | Et tu testes gratuitement pendant vingt-quatre heures ! | Généreux |
-| 28,0 – 34,0 | Le prix | Ensuite ? Mille francs CFA par mois… ou dix mille francs pour toute l'année : deux mois offerts ! | Malin, la surprise |
-| 34,0 – 40,0 | Appel final | Télécharge MISSA TV 360 maintenant. Ton écran mérite mieux ! | Fort, fier, final |
+| 00,0 – 03,0 | Accroche | Tu paies chaque mois… pour toujours la même chose ? | Las, ironique |
+| 03,0 – 05,0 | Pivot | On mérite mieux ! | Coup de poing, sourire |
+| 05,0 – 08,5 | Révélation | Voici MISSA TV 360 : tout ton divertissement dans une seule appli. | Fier, énergique |
+| 08,5 – 15,0 | Le catalogue | Des milliers de films, séries, mangas, des centaines de chaînes en direct, du sport, la radio… et même des jeux ! | Rapide, enthousiaste |
+| 15,0 – 19,5 | **La recherche** | Un film en tête ? Tape son nom dans la recherche… il est là ! | Complice, « magique » |
+| 19,5 – 24,5 | La technique | Avec ta box WiFi, même en petit débit, c'est fluide… et ça économise tes données. | Rassurant |
+| 24,5 – 26,0 | Les écrans | Téléphone, tablette ou télé. | Rythmé (3 temps) |
+| 26,0 – 28,5 | L'essai | Et tu testes gratuitement pendant vingt-quatre heures ! | Généreux |
+| 28,5 – 34,5 | Le prix | Ensuite ? Mille francs CFA par mois… ou dix mille par an : deux mois offerts ! | Malin, la surprise |
+| 34,5 – 40,0 | Appel final | Télécharge MISSA TV 360 maintenant. Ton écran mérite mieux ! | Fort, fier, final |
 
 ### Version à coller dans le logiciel de voix
 
 ```
-Tu paies chaque mois... pour regarder toujours la même chose ?
-Franchement... on mérite mieux !
-Voici Missa Télé trois cent soixante : tout ton divertissement, dans une seule appli.
-Des milliers de films, séries et mangas. Des centaines de chaînes en direct, du sport, la radio, les podcasts... et même des jeux !
-Ta box WiFi suffit. Même en petit débit, ça reste fluide... et ça économise tes données.
-Sur ton téléphone, ta tablette ou ta télé.
+Tu paies chaque mois... pour toujours la même chose ?
+On mérite mieux !
+Voici Missa Télé trois cent soixante : tout ton divertissement dans une seule appli.
+Des milliers de films, séries, mangas, des centaines de chaînes en direct, du sport, la radio... et même des jeux !
+Un film en tête ? Tape son nom dans la recherche... il est là !
+Avec ta box WiFi, même en petit débit, c'est fluide... et ça économise tes données.
+Téléphone, tablette ou télé.
 Et tu testes gratuitement pendant vingt-quatre heures !
-Ensuite ? Mille francs CFA par mois... ou dix mille francs pour toute l'année : deux mois offerts !
+Ensuite ? Mille francs CFA par mois... ou dix mille par an : deux mois offerts !
 Télécharge Missa Télé trois cent soixante maintenant. Ton écran mérite mieux !
 ```
 
@@ -48,15 +50,16 @@ Télécharge Missa Télé trois cent soixante maintenant. Ton écran mérite mie
 
 | Temps | Visuel motion design |
 |---|---|
-| 00–03,5 | Écran de télé gris et terne, télécommande qui zappe : la même émission se répète en boucle. Un ticket de caisse « ABONNEMENT » défile, les montants s'empilent. Monde gris, désaturé, sans jaune. |
-| 03,5–05,5 | Coupure au noir. « ON MÉRITE MIEUX. » claque en typographie, puis un flash jaune `#F5BB00`. |
-| 05,5–09 | Le jaune remplit l'écran, le logo MISSA TV 360 se pose et la pastille 360 tourne. Un téléphone entre en 3D et affiche l'accueil de l'appli. |
-| 09–17 | Vitrine des univers : la barre d'univers défile (Films, Séries, Mangas, TV Direct avec badge LIVE rouge, Sport, Radio, Podcasts, Jeux). Vignettes qui pulsent sur chaque mot de la voix. |
-| 17–22,5 | Une box WiFi avec des ondes animées. Une jauge de débit descend mais la lecture reste fluide (barre de lecture verte). Compteur « DATA » qui reste bas. |
-| 22,5–25 | Le même écran saute du téléphone à la tablette puis à la télé (Android TV), une transition par mot. |
-| 25–28 | Badge « 24 H OFFERTES », chrono circulaire qui tourne. |
-| 28–34 | Cartes de prix : **XAF 1 000 / mois** puis **XAF 10 000 / an**, et une étiquette verte « 2 MOIS OFFERTS » tamponnée. |
-| 34–40 | Fond jaune, logo, bouton « Télécharger », QR code et lien, et « TON ÉCRAN MÉRITE MIEUX. » en signature. |
+| 00–03 | Écran de télé gris et terne, télécommande qui zappe : la même émission se répète en boucle. Un ticket de caisse « ABONNEMENT » défile, les montants s'empilent. Monde gris, désaturé, sans jaune. |
+| 03–05 | Coupure au noir. « ON MÉRITE MIEUX. » claque en typographie, puis un flash jaune `#F5BB00`. |
+| 05–08,5 | Le jaune remplit l'écran, le logo MISSA TV 360 se pose et la pastille 360 tourne. Un téléphone entre en 3D et affiche l'accueil de l'appli. |
+| 08,5–15 | Vitrine des univers : la barre d'univers défile (Films, Séries, Mangas, TV Direct avec badge LIVE rouge, Sport, Radio, Jeux). Vignettes qui pulsent sur chaque mot de la voix. |
+| 15–19,5 | **Zoom sur la loupe de recherche.** Le clavier apparaît, le nom d'un film fictif se tape lettre par lettre avec un curseur qui clignote. Les résultats tombent instantanément, l'affiche s'agrandit et le bouton jaune « Regarder » s'allume sur « il est là ! ». |
+| 19,5–24,5 | Une box WiFi avec des ondes animées. Une jauge de débit descend mais la lecture reste fluide (barre de lecture verte). Compteur « DATA » qui reste bas. |
+| 24,5–26 | Le même écran saute du téléphone à la tablette puis à la télé (Android TV), une transition par mot. |
+| 26–28,5 | Badge « 24 H OFFERTES », chrono circulaire qui tourne. |
+| 28,5–34,5 | Cartes de prix : **XAF 1 000 / mois** puis **XAF 10 000 / an**, et une étiquette verte « 2 MOIS OFFERTS » tamponnée. |
+| 34,5–40 | Fond jaune, logo, bouton « Télécharger », QR code et lien, et « TON ÉCRAN MÉRITE MIEUX. » en signature. |
 
 Sous-titres mot à mot pendant toute la vidéo (lisible sans le son).
 
@@ -78,7 +81,7 @@ Sous-titres mot à mot pendant toute la vidéo (lisible sans le son).
 | 1 | **Audio de la voix** | Voix **seule** (sans musique), WAV 48 kHz de préférence, ou MP3 320 kbps. | ✅ |
 | 2 | **Texte exact de la prise** | `script.txt` avec une phrase par ligne, si tu as modifié des mots par rapport au texte ci-dessus. | ✅ si modifié |
 | 3 | **Logo en PNG transparent** | Les logos actuels ont un fond opaque. Il me faut le logo seul sur fond transparent, en grand (≥ 1500 px). | ✅ |
-| 4 | **Captures d'écran de l'appli (téléphone, portrait)** | Accueil · un univers Films/Séries · TV Direct (avec LIVE) · Radio ou Podcasts · Jeux · la recherche · la page d'essai/QR/code d'activation. | ✅ |
+| 4 | **Captures d'écran de l'appli (téléphone, portrait)** | Accueil · un univers Films/Séries · TV Direct (avec LIVE) · Radio ou Podcasts · Jeux · la page d'essai/QR/code d'activation · **la recherche : l'écran vide avec le clavier, puis l'écran des résultats après avoir tapé un nom de film**. | ✅ |
 | 5 | **Captures Android TV** | Accueil et un univers, en 1920×1080. | Recommandé |
 | 6 | **Lien de téléchargement officiel** | Le lien court affiché à la fin et encodé dans le QR code. | ✅ |
 | 7 | **Modes de paiement** | Mobile Money, Orange Money, etc., si tu veux les afficher à la fin. | Optionnel |
