@@ -51,7 +51,7 @@ Télécharge Missa Télé trois cent soixante maintenant. Ton écran mérite mie
 | Temps | Visuel motion design |
 |---|---|
 | 00–03 | Écran de télé gris et terne, télécommande qui zappe : la même émission se répète en boucle. Un ticket de caisse « ABONNEMENT » défile, les montants s'empilent. Monde gris, désaturé, sans jaune. |
-| 03–05 | Coupure au noir. « ON MÉRITE MIEUX. » claque en typographie, puis un flash jaune `#F5BB00`. |
+| 03–05 | Coupure au noir. « ON MÉRITE MIEUX. » claque en typographie, puis un flash jaune `#FDE503`. |
 | 05–08,5 | Le jaune remplit l'écran, le logo MISSA TV 360 se pose et la pastille 360 tourne. Un téléphone entre en 3D et affiche l'accueil de l'appli. |
 | 08,5–15 | Vitrine des univers : la barre d'univers défile (Films, Séries, Mangas, TV Direct avec badge LIVE rouge, Sport, Radio, Jeux). Vignettes qui pulsent sur chaque mot de la voix. |
 | 15–19,5 | **Zoom sur la loupe de recherche.** Le clavier apparaît, le nom d'un film fictif se tape lettre par lettre avec un curseur qui clignote. Les résultats tombent instantanément, l'affiche s'agrandit et le bouton jaune « Regarder » s'allume sur « il est là ! ». |
@@ -62,6 +62,27 @@ Télécharge Missa Télé trois cent soixante maintenant. Ton écran mérite mie
 | 34,5–40 | Fond jaune, logo, bouton « Télécharger », QR code et lien, et « TON ÉCRAN MÉRITE MIEUX. » en signature. |
 
 Sous-titres mot à mot pendant toute la vidéo (lisible sans le son).
+
+---
+
+## 2 bis. Palette (relevée dans le logo officiel)
+
+![palette](palette.png)
+
+| Rôle | Couleur | Usage |
+|---|---|---|
+| Jaune MISSA | `#FDE503` | Couleur du logo. Accent principal, plein écran de révélation, boutons d'action, prix |
+| Bleu MISSA | `#0141AA` | Couleur du logo. Titres, boutons secondaires, contours et matière des objets 3D |
+| Bleu nuit | `#06122E` | Fond principal du monde MISSA (remplace le noir) |
+| Bleu nuit 2 | `#0B2560` | Dégradés de fond, ombres et reflets 3D |
+| Vert MISSA | `#08992D` | Couleur du logo. Pastille 360, étiquette « 2 mois offerts » |
+| Vert citron | `#A6E31B` | Éclats lumineux, néons, barres de lecture et de chargement, curseur de recherche |
+| Blanc | `#FFFFFF` | Texte courant, sous-titres |
+| Rouge LIVE | `#E53935` | Badge LIVE uniquement |
+
+- L'accroche (0–3 s) reste dans un monde **gris-bleu désaturé**, sans jaune ni vert. Au pivot, la palette MISSA s'allume d'un coup.
+- Le jaune remplace l'ancien `#F5BB00` (plus doré) : le logo est un jaune citron plus vif.
+- Proportions visées : **60 % bleu nuit · 25 % jaune · 10 % vert/vert citron · 5 % blanc et bleu MISSA**.
 
 ---
 
@@ -86,7 +107,7 @@ Sous-titres mot à mot pendant toute la vidéo (lisible sans le son).
 | 6 | **Lien de téléchargement officiel** | Le lien court affiché à la fin et encodé dans le QR code. | ✅ |
 | 7 | **Modes de paiement** | Mobile Money, Orange Money, etc., si tu veux les afficher à la fin. | Optionnel |
 | 8 | **Musique** | Musique libre de droits (ou dont tu détiens la licence). Sinon je propose un fond sonore sans musique protégée. | Optionnel |
-| 9 | **Couleurs ou police officielles** | Seulement si elles diffèrent de la charte actuelle (jaune `#F5BB00`, vert `#009E49`, noir). | Optionnel |
+| 9 | **Couleurs ou police officielles** | Seulement si elles diffèrent de la charte actuelle (voir la palette ci-dessus). | Optionnel |
 
 **Attention aux captures** : dans une pub, les affiches de vrais films ou séries et les logos de vraies chaînes posent un problème de droits. Deux solutions :
 1. Tu me confirmes que tu as le droit de les montrer.
