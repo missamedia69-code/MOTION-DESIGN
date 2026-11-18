@@ -22,9 +22,9 @@ for ci, ch in enumerate(chunks):
     spans = "".join(f'<span id="w{ci}_{k}">{html.escape(w["w"])}</span>' for k, w in enumerate(ch))
     subs.append(f'<div class="sub clip" data-start="{s:.3f}" data-duration="{e - s:.3f}" data-track-index="{20 + ci % 2}"><p>{spans}</p></div>')
     for k, w in enumerate(ch):
-        js.append(f'tl.set("#w{ci}_{k}", {{ color: "#FDE503", scale: 1.08 }}, {w["s"]:.3f});')
+        js.append(f'tl.set("#w{ci}_{k}", {{ color: "#FDE503" }}, {w["s"]:.3f});')
         nxt = ch[k + 1]["s"] if k + 1 < len(ch) else e
-        js.append(f'tl.set("#w{ci}_{k}", {{ color: "#ffffff", scale: 1 }}, {nxt:.3f});')
+        js.append(f'tl.set("#w{ci}_{k}", {{ color: "#ffffff" }}, {nxt:.3f});')
     srt.append(f"{ci + 1}\n{ts(s)} --> {ts(e)}\n{' '.join(w['w'] for w in ch)}\n")
 keys = "".join(f"<i>{c}</i>" for c in "AZERTYUIOPQSDFGHJKLMWXCVBN1234")
 out = open(os.path.join(HERE, "composition.tpl"), encoding="utf-8").read()

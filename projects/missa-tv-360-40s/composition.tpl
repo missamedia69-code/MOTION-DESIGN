@@ -180,7 +180,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 /* --- sous-titres --- */
 .sub { position:absolute; left:60px; right:60px; top:1395px; display:flex; justify-content:center; }
 .sub p { background:rgba(6,18,46,.86); border-radius:26px; padding:14px 30px; font-family:"Nunito"; font-weight:900; font-size:52px; line-height:1.15; text-align:center; color:#fff; box-shadow:0 10px 30px rgba(0,0,0,.35); }
-.sub p span { display:inline-block; margin:0 .14em; }
+.sub p span { display:inline-block; margin:0 .16em; }
 </style>
 </head>
 <body>
