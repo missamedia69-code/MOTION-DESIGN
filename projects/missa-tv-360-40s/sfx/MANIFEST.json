@@ -1,0 +1,59 @@
+{
+  "sample_rate": 44100,
+  "channels": 1,
+  "bit_depth": 16,
+  "generator": "sfx/generate.py",
+  "seed": 360,
+  "files": [
+    {
+      "file": "wav/whoosh.wav",
+      "duration_s": 0.7,
+      "description": "Souffle de transition / ouverture"
+    },
+    {
+      "file": "wav/impact.wav",
+      "duration_s": 0.55,
+      "description": "Impact sourd d'ouverture"
+    },
+    {
+      "file": "wav/pop.wav",
+      "duration_s": 0.11,
+      "description": "Pop court : apparition d'un pictogramme"
+    },
+    {
+      "file": "wav/click.wav",
+      "duration_s": 0.045,
+      "description": "Clic sec : recherche, révélation de prix"
+    },
+    {
+      "file": "wav/tick.wav",
+      "duration_s": 0.05,
+      "description": "Tick d'horloge pour le badge 24 h"
+    },
+    {
+      "file": "wav/key.wav",
+      "duration_s": 0.03,
+      "description": "Frappe clavier : saisie du code"
+    },
+    {
+      "file": "wav/beep.wav",
+      "duration_s": 0.2,
+      "description": "Bip de scan du QR code"
+    },
+    {
+      "file": "wav/chime.wav",
+      "duration_s": 0.5,
+      "description": "Tintement discret de l'essai gratuit"
+    },
+    {
+      "file": "wav/riser.wav",
+      "duration_s": 0.75,
+      "description": "Montée courte avant la signature"
+    },
+    {
+      "file": "wav/final_impact.wav",
+      "duration_s": 0.9,
+      "description": "Impact final + tone de signature"
+    }
+  ]
+}
