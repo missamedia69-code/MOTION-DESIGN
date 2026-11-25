@@ -53,8 +53,8 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 #tvscreen .lab .a { font-family:"Mont"; font-size:58px; letter-spacing:.02em; }
 #tvscreen .lab .b { font-family:"MontXB"; font-size:30px; margin-top:6px; }
 #chan { left:690px; top:760px; font-family:"MontXB"; font-size:34px; color:#d8dbe0; }
-#ticket { z-index:0; left:730px; top:300px; width:300px; padding:24px 22px 34px; background:#e6e2d8; color:#161616; font-family:monospace; font-size:18px; line-height:1.45; transform:rotate(6deg);
-  box-shadow: 0 20px 40px rgba(0,0,0,.5); -webkit-mask: linear-gradient(#000 92%, transparent); }
+#ticket { z-index:0; left:730px; top:300px; width:300px; padding:24px 22px 34px; background:#e6e2d8; color:#101010; font-family:monospace; font-size:18px; line-height:1.45; font-weight:700; transform:rotate(6deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,.5); }
 #ticket .row { display:flex; justify-content:space-between; }
 .t1 { z-index:5; top:230px; font-size:92px; color:#e9ebef; text-shadow:0 8px 30px rgba(0,0,0,.6); }
 .t1 span { display:inline-block; }
@@ -84,8 +84,9 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 .ui-logo b { font-size:20px; background:var(--vert); color:#fff; padding:2px 10px; border-radius:20px; margin-left:6px; vertical-align:middle; }
 .ui-ic { width:44px; height:44px; border-radius:50%; background:#18213a; }
 .pills { position:absolute; top:140px; left:24px; display:flex; gap:12px; }
-.pills i { font-style:normal; font-family:"Nunito"; font-weight:800; font-size:22px; padding:8px 18px; border-radius:30px; background:#18213a; color:#FFFFFF; }
-.pills i.on { background:var(--jaune); color:var(--nuit); }
+.pills i { font-style:normal; font-family:"Nunito"; font-weight:800; font-size:22px; padding:8px 18px; border-radius:30px; background:var(--jaune); color:var(--nuit); }
+.pills i.on { background:#06122E; color:#FFFFFF; }
+
 .hero { position:absolute; left:24px; right:24px; top:200px; height:330px; border-radius:28px; overflow:hidden; background-size:cover; background-position:center 30%; }
 .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(5,9,20,.95)); }
 .hero .ht { position:absolute; left:24px; bottom:74px; z-index:2; font-family:"Mont"; font-size:40px; color:#fff; }
@@ -221,17 +222,17 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
  <div class="cam" id="cam1">
   <div id="ticket" class="abs" data-layout-allow-overlap data-layout-allow-occlusion>
    <div data-layout-allow-occlusion style="text-align:center;font-weight:bold">ABONNEMENT TÉLÉ</div><div data-layout-allow-occlusion>------------------</div>
-   <div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>JANVIER</span><span data-layout-allow-occlusion>PAYÉ</span></div><div class="row"><span data-layout-allow-occlusion>FÉVRIER</span><span>PAYÉ</span></div>
-   <div class="row"><span>MARS</span><span>PAYÉ</span></div><div class="row"><span>AVRIL</span><span>PAYÉ</span></div>
-   <div class="row"><span>MAI</span><span>PAYÉ</span></div><div class="row"><span>JUIN</span><span>PAYÉ</span></div>
-   <div class="row"><span>JUILLET</span><span>PAYÉ</span></div><div class="row"><span>AOÛT</span><span>PAYÉ</span></div>
-   <div>------------------</div><div style="text-align:center" data-layout-allow-overlap data-layout-allow-occlusion>PROGRAMME :</div><div style="text-align:center;font-weight:bold" data-layout-allow-overlap data-layout-allow-occlusion>TOUJOURS LE MÊME</div>
+   <div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>JANVIER</span><span data-layout-allow-occlusion>PAYÉ</span></div><div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>FÉVRIER</span><span data-layout-allow-occlusion>PAYÉ</span></div>
+   <div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>MARS</span><span data-layout-allow-occlusion>PAYÉ</span></div><div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>AVRIL</span><span data-layout-allow-occlusion>PAYÉ</span></div>
+   <div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>MAI</span><span data-layout-allow-occlusion>PAYÉ</span></div><div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>JUIN</span><span data-layout-allow-occlusion>PAYÉ</span></div>
+   <div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>JUILLET</span><span data-layout-allow-occlusion>PAYÉ</span></div><div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>AOÛT</span><span data-layout-allow-occlusion>PAYÉ</span></div>
+   <div data-layout-allow-occlusion>------------------</div><div style="text-align:center" data-layout-allow-overlap data-layout-allow-occlusion>PROGRAMME :</div><div style="text-align:center;font-weight:bold" data-layout-allow-overlap data-layout-allow-occlusion>TOUJOURS LE MÊME</div>
   </div>
   <div id="tvgris" class="abs retro-tv"></div>
   <div id="tvscreen" class="abs"><div class="lab"><div class="a" data-layout-allow-occlusion>REDIFF</div><div class="b" id="rediff" data-layout-allow-occlusion>ÉPISODE 1</div></div></div>
   <div id="chan" class="abs" data-layout-allow-occlusion>CH 01</div>
-  <div id="t1a" class="abs c H t1"><span>TU PAIES</span><br><span>CHAQUE MOIS…</span></div>
-  <div id="t1b" class="abs c H t1 o0"><span>POUR TOUJOURS</span></div>
+  <div id="t1a" class="abs c H t1"><span data-layout-allow-occlusion>TU PAIES</span><br><span data-layout-allow-occlusion>CHAQUE MOIS…</span></div>
+  <div id="t1b" class="abs c H t1 o0"><span data-layout-allow-occlusion>POUR TOUJOURS</span></div>
   <div id="g2" class="abs c H o0" data-layout-allow-overlap><div class="r" data-layout-allow-overlap>LA MÊME CHOSE ?</div><div class="cy" data-layout-allow-overlap>LA MÊME CHOSE ?</div><div data-layout-allow-overlap>LA MÊME CHOSE ?</div></div>
   <div class="grain"></div>
  </div>
@@ -258,7 +259,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
   
   <img class="el" id="logo3" src="assets/logo-3d-transparent.png" />
   <div id="tag1" class="abs c H it">TOUT TON<br>DIVERTISSEMENT,</div>
-  <div id="tag2" class="abs c"><span>DANS UNE SEULE APPLI !</span></div>
+  <div id="tag2" class="abs c"><span data-layout-allow-occlusion>DANS UNE SEULE APPLI !</span></div>
  </div>
  <div class="flash" id="fl3"></div>
 </div>
@@ -276,12 +277,12 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
     <div id="feed4" class="abs" style="left:0;right:0;top:0">
      <div class="hero art-hero"><div class="ht" data-layout-allow-occlusion>TON CINÉMA</div><div class="hb" data-layout-allow-occlusion>▶ Regarder</div></div>
      <div class="rowt" style="top:560px" data-layout-allow-occlusion>Films & séries</div>
-     <div class="thumbs" style="top:600px"><div class="art-card art-a"><b data-layout-allow-occlusion>CINÉMA</b><span>GRAND FORMAT</span></div><div class="art-card art-b"><b>ROMANCE</b><span>À DÉCOUVRIR</span></div><div class="art-card art-c"><b>AVENTURE</b><span>ÉVASION</span></div></div>
+     <div class="thumbs" style="top:600px"><div class="art-card art-a"><b data-layout-allow-occlusion>CINÉMA</b><span data-layout-allow-occlusion>GRAND FORMAT</span></div><div class="art-card art-b"><b data-layout-allow-occlusion>ROMANCE</b><span data-layout-allow-occlusion>À DÉCOUVRIR</span></div><div class="art-card art-c"><b data-layout-allow-occlusion>AVENTURE</b><span data-layout-allow-occlusion>ÉVASION</span></div></div>
      <div class="rowt" style="top:830px" data-layout-allow-occlusion>En direct</div>
-     <div class="thumbs" style="top:870px"><div class="art-card art-d"><b>SPORT</b><span>EN DIRECT</span></div><div class="art-card art-e"><b>DRAME</b><span>SÉRIE</span></div><div class="art-card art-f"><b>ENQUÊTE</b><span>THRILLER</span></div></div>
-     <div class="live" style="left:36px;top:882px" data-layout-allow-occlusion>LIVE</div>
+     <div class="thumbs" style="top:870px"><div class="art-card art-d"><b data-layout-allow-occlusion>SPORT</b><span data-layout-allow-occlusion>EN DIRECT</span></div><div class="art-card art-e"><b data-layout-allow-occlusion>DRAME</b><span data-layout-allow-occlusion>SÉRIE</span></div><div class="art-card art-f"><b data-layout-allow-occlusion>ENQUÊTE</b><span data-layout-allow-occlusion>THRILLER</span></div></div>
+     
      <div class="rowt" style="top:1100px" data-layout-allow-occlusion>Mangas</div>
-     <div class="thumbs" style="top:1140px"><div class="art-card art-c"><b>MANGA</b><span>UNIVERS</span></div><div class="art-card art-d"><b>FANTASY</b><span>IMAGINATION</span></div><div class="art-card art-a"><b>DOCU</b><span>RÉALITÉ</span></div></div>
+     <div class="thumbs" style="top:1140px"><div class="art-card art-c"><b data-layout-allow-occlusion>MANGA</b><span data-layout-allow-occlusion>UNIVERS</span></div><div class="art-card art-d"><b data-layout-allow-occlusion>FANTASY</b><span data-layout-allow-occlusion>IMAGINATION</span></div><div class="art-card art-a"><b data-layout-allow-occlusion>DOCU</b><span data-layout-allow-occlusion>RÉALITÉ</span></div></div>
     </div>
    </div>
   </div>
@@ -308,8 +309,8 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
   <div id="h5" class="abs c H">UN FILM <span class="box-accent">EN TÊTE ?</span></div>
   <div id="sbar" class="abs"><svg class="mg" viewBox="0 0 24 24" fill="none" stroke="#0141AA" stroke-width="3" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M15.5 15.5 21 21"/></svg><span class="q" id="q5"></span><span class="cur" id="cur5"></span></div>
   <div id="kb" class="abs">__KEYS__</div>
-  <div id="res" class="abs o0"><div class="art-card art-a result-card"><b>FILM</b><span>À VOIR</span></div><div class="art-card art-b result-card"><b>SÉRIE</b><span>À SUIVRE</span></div><div class="art-card art-c result-card"><b>MANGA</b><span>À EXPLORER</span></div></div>
-  <div id="big" class="abs o0"><div class="art-poster"><span>À DÉCOUVRIR</span><b>TON<br>PROCHAIN<br>COUP DE CŒUR</b></div><div class="play">▶ REGARDER</div></div>
+  <div id="res" class="abs o0"><div class="art-card art-a result-card"><b data-layout-allow-occlusion>FILM</b><span data-layout-allow-occlusion>À VOIR</span></div><div class="art-card art-b result-card"><b data-layout-allow-occlusion>SÉRIE</b><span data-layout-allow-occlusion>À SUIVRE</span></div><div class="art-card art-c result-card"><b data-layout-allow-occlusion>MANGA</b><span data-layout-allow-occlusion>À EXPLORER</span></div></div>
+  <div id="big" class="abs o0"><div class="art-poster"><span data-layout-allow-occlusion>À DÉCOUVRIR</span><b data-layout-allow-occlusion>TON<br>PROCHAIN<br>COUP DE CŒUR</b></div><div class="play">▶ REGARDER</div></div>
   
   <div id="stamp5" class="abs H o0">IL EST LÀ !</div>
   
@@ -334,7 +335,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
    </svg>
    <div class="c6t" style="top:310px;color:#ff8a3d">PETIT DÉBIT</div>
   </div>
-  <div id="player" class="card6 o0"><div class="player-art"><span>LIVE</span><b>SPORT</b></div><div class="bar"><i id="pbar"></i></div><div class="c6t" id="fluide" style="top:320px;color:var(--citron)">FLUIDE ✓</div></div>
+  <div id="player" class="card6 o0"><div class="player-art"><span data-layout-allow-occlusion>LIVE</span><b data-layout-allow-occlusion>SPORT</b></div><div class="bar"><i id="pbar"></i></div><div class="c6t" id="fluide" style="top:320px;color:var(--citron)">FLUIDE ✓</div></div>
   <div id="data" class="card6 o0"><div class="dl">DONNÉES</div><div class="db"><i id="dbar"></i></div><div class="dl" style="color:var(--citron)">ÉCONOMISÉES</div></div>
  </div>
 </div>
@@ -347,7 +348,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
   <div id="tab7" class="tab o0" style="left:420px;top:820px"><div class="scr show-art"><div class="ov"></div><div class="tb" style="font-size:28px">MISSA TV 360</div><div class="tt" style="font-size:48px">DIVERTISSEMENT</div></div></div>
   <div id="ph7" class="phone o0" style="left:120px;top:640px;transform:scale(.62);transform-origin:0 0">
    <div class="scr"><div class="notch"></div><div class="hero art-hero" style="top:80px;height:600px"><div class="ht">TON UNIVERS</div><div class="hb">▶ Regarder</div></div>
-    <div class="rowt" style="top:720px">Films & séries</div><div class="thumbs" style="top:760px"><div class="art-card art-a"><b>FILM</b><span>EXCLUSIF</span></div><div class="art-card art-b"><b>SÉRIE</b><span>ÉPISODES</span></div><div class="art-card art-c"><b>SPORT</b><span>LIVE</span></div></div></div>
+    <div class="rowt" style="top:720px">Films & séries</div><div class="thumbs" style="top:760px"><div class="art-card art-a"><b data-layout-allow-occlusion>FILM</b><span data-layout-allow-occlusion>EXCLUSIF</span></div><div class="art-card art-b"><b data-layout-allow-occlusion>SÉRIE</b><span data-layout-allow-occlusion>ÉPISODES</span></div><div class="art-card art-c"><b data-layout-allow-occlusion>SPORT</b><span data-layout-allow-occlusion>LIVE</span></div></div></div>
   </div>
   <div class="dlab H o0" id="d1" style="left:80px;top:230px;color:#fff">TÉLÉPHONE,</div>
   <div class="dlab H o0" id="d2" style="left:280px;top:230px;color:var(--citron)">TABLETTE</div>
@@ -375,9 +376,9 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
  <div class="cam" id="cam9">
   <div class="dots" id="dots9"></div>
   <div id="h9" class="abs c H it">ENSUITE <span class="box-accent">?</span></div>
-  <div id="pc1" class="pcard o0"><div class="s">SEULEMENT</div><div class="n" id="n1">1 000</div><div class="u"><b>FCFA</b>/ mois</div></div>
+  <div id="pc1" class="pcard o0"><div class="s">SEULEMENT</div><div class="n" id="n1">1 000</div><div class="u"><b data-layout-allow-occlusion>FCFA</b>/ mois</div></div>
   <div id="ou" class="abs o0">OU</div>
-  <div id="pc2" class="pcard o0"><div class="s">TOUTE L'ANNÉE</div><div class="n" style="font-size:150px;top:118px">10 000</div><div class="u"><b>FCFA</b>/ an</div></div>
+  <div id="pc2" class="pcard o0"><div class="s">TOUTE L'ANNÉE</div><div class="n" style="font-size:150px;top:118px">10 000</div><div class="u"><b data-layout-allow-occlusion>FCFA</b>/ an</div></div>
   <div id="offert" class="abs o0">2 MOIS OFFERTS !</div>
   
   
@@ -390,9 +391,9 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
   <div class="rays" id="rays10"></div>
   <div class="corner tl"><i></i><i></i><i></i></div><div class="corner br"><i></i><i></i><i></i></div>
   <img class="el" id="logo10" src="assets/logo-3d-transparent.png" />
-  <div id="slogan" class="abs c H o0">TON ÉCRAN <b>MÉRITE MIEUX !</b></div>
-  <div id="cta" class="abs"><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 10l6 6 6-6M4 21h16"/></svg><div class="tx">TÉLÉCHARGE<br><b>MAINTENANT !</b></div></div>
-  <div id="qrc" class="abs o0"><img src="assets/qr-missatv.png"/><div class="qt">SCANNE<br>ET TÉLÉCHARGE<span>missatv.pages.dev</span></div></div>
+  <div id="slogan" class="abs c H o0">TON ÉCRAN <b data-layout-allow-occlusion>MÉRITE MIEUX !</b></div>
+  <div id="cta" class="abs"><svg class="ar" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 10l6 6 6-6M4 21h16"/></svg><div class="tx">TÉLÉCHARGE<br><b data-layout-allow-occlusion>MAINTENANT !</b></div></div>
+  <div id="qrc" class="abs o0"><img src="assets/qr-missatv.png"/><div class="qt">SCANNE<br>ET TÉLÉCHARGE<span data-layout-allow-occlusion>missatv.pages.dev</span></div></div>
  </div>
  <div class="flash" id="fl10"></div>
 </div>
