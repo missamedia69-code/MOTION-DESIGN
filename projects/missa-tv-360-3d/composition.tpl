@@ -53,7 +53,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 #tvscreen .lab .a { font-family:"Mont"; font-size:58px; letter-spacing:.02em; }
 #tvscreen .lab .b { font-family:"MontXB"; font-size:30px; margin-top:6px; }
 #chan { left:690px; top:760px; font-family:"MontXB"; font-size:34px; color:#d8dbe0; }
-#ticket { z-index:0; left:770px; top:300px; width:300px; padding:28px 26px 40px; background:#e6e2d8; color:#2b2b2b; font-family:monospace; font-size:24px; line-height:1.55; transform:rotate(8deg);
+#ticket { z-index:0; left:730px; top:300px; width:300px; padding:24px 22px 34px; background:#e6e2d8; color:#161616; font-family:monospace; font-size:18px; line-height:1.45; transform:rotate(6deg);
   box-shadow: 0 20px 40px rgba(0,0,0,.5); -webkit-mask: linear-gradient(#000 92%, transparent); }
 #ticket .row { display:flex; justify-content:space-between; }
 .t1 { z-index:5; top:230px; font-size:92px; color:#e9ebef; text-shadow:0 8px 30px rgba(0,0,0,.6); }
@@ -149,7 +149,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 #player .player-art b { z-index:1; font-family:"Mont"; font-size:64px; color:#fff; text-shadow:0 8px 22px #000; }
 #player .player-art span { position:absolute; z-index:2; left:18px; top:18px; padding:6px 14px; border-radius:8px; background:#d91f36; color:#fff; font:900 18px "MontXB"; }
 #player .bar { position:absolute; left:30px; right:30px; top:286px; height:16px; border-radius:10px; background:#23407f; overflow:hidden; }
-#player .bar i { position:absolute; left:0; top:0; bottom:0; width:100%; background:var(--citron); box-shadow:0 0 14px var(--citron); transform-origin:0 50%; }
+#player .bar i { position:absolute; left:0; top:0; bottom:0; width:100%; background:#fff; box-shadow:0 0 14px rgba(255,255,255,.55); transform-origin:0 50%; }
 .c6t { position:absolute; left:0; right:0; text-align:center; font-family:"Mont"; font-size:40px; }
 #data { left:60px; top:1262px; width:960px; height:110px; display:flex; align-items:center; padding:0 36px; gap:24px; }
 #data .dl { font-family:"Mont"; font-size:38px; white-space:nowrap; }
@@ -219,17 +219,17 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 <!-- 1 · accroche : le monde gris -->
 <div id="sc1" class="scene clip greybg" data-start="0" data-duration="3.0" data-track-index="0">
  <div class="cam" id="cam1">
-  <div id="ticket" class="abs" data-layout-allow-overlap>
-   <div style="text-align:center;font-weight:bold">ABONNEMENT TÉLÉ</div><div>------------------</div>
-   <div class="row"><span>JANVIER</span><span>PAYÉ</span></div><div class="row"><span>FÉVRIER</span><span>PAYÉ</span></div>
+  <div id="ticket" class="abs" data-layout-allow-overlap data-layout-allow-occlusion>
+   <div data-layout-allow-occlusion style="text-align:center;font-weight:bold">ABONNEMENT TÉLÉ</div><div data-layout-allow-occlusion>------------------</div>
+   <div class="row" data-layout-allow-occlusion><span data-layout-allow-occlusion>JANVIER</span><span data-layout-allow-occlusion>PAYÉ</span></div><div class="row"><span data-layout-allow-occlusion>FÉVRIER</span><span>PAYÉ</span></div>
    <div class="row"><span>MARS</span><span>PAYÉ</span></div><div class="row"><span>AVRIL</span><span>PAYÉ</span></div>
    <div class="row"><span>MAI</span><span>PAYÉ</span></div><div class="row"><span>JUIN</span><span>PAYÉ</span></div>
    <div class="row"><span>JUILLET</span><span>PAYÉ</span></div><div class="row"><span>AOÛT</span><span>PAYÉ</span></div>
-   <div>------------------</div><div style="text-align:center" data-layout-allow-overlap>PROGRAMME :</div><div style="text-align:center;font-weight:bold" data-layout-allow-overlap>TOUJOURS LE MÊME</div>
+   <div>------------------</div><div style="text-align:center" data-layout-allow-overlap data-layout-allow-occlusion>PROGRAMME :</div><div style="text-align:center;font-weight:bold" data-layout-allow-overlap data-layout-allow-occlusion>TOUJOURS LE MÊME</div>
   </div>
   <div id="tvgris" class="abs retro-tv"></div>
-  <div id="tvscreen" class="abs"><div class="lab"><div class="a">REDIFF</div><div class="b" id="rediff">ÉPISODE 1</div></div></div>
-  <div id="chan" class="abs">CH 01</div>
+  <div id="tvscreen" class="abs"><div class="lab"><div class="a" data-layout-allow-occlusion>REDIFF</div><div class="b" id="rediff" data-layout-allow-occlusion>ÉPISODE 1</div></div></div>
+  <div id="chan" class="abs" data-layout-allow-occlusion>CH 01</div>
   <div id="t1a" class="abs c H t1"><span>TU PAIES</span><br><span>CHAQUE MOIS…</span></div>
   <div id="t1b" class="abs c H t1 o0"><span>POUR TOUJOURS</span></div>
   <div id="g2" class="abs c H o0" data-layout-allow-overlap><div class="r" data-layout-allow-overlap>LA MÊME CHOSE ?</div><div class="cy" data-layout-allow-overlap>LA MÊME CHOSE ?</div><div data-layout-allow-overlap>LA MÊME CHOSE ?</div></div>
@@ -276,7 +276,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
     <div id="feed4" class="abs" style="left:0;right:0;top:0">
      <div class="hero art-hero"><div class="ht" data-layout-allow-occlusion>TON CINÉMA</div><div class="hb" data-layout-allow-occlusion>▶ Regarder</div></div>
      <div class="rowt" style="top:560px" data-layout-allow-occlusion>Films & séries</div>
-     <div class="thumbs" style="top:600px"><div class="art-card art-a"><b>CINÉMA</b><span>GRAND FORMAT</span></div><div class="art-card art-b"><b>ROMANCE</b><span>À DÉCOUVRIR</span></div><div class="art-card art-c"><b>AVENTURE</b><span>ÉVASION</span></div></div>
+     <div class="thumbs" style="top:600px"><div class="art-card art-a"><b data-layout-allow-occlusion>CINÉMA</b><span>GRAND FORMAT</span></div><div class="art-card art-b"><b>ROMANCE</b><span>À DÉCOUVRIR</span></div><div class="art-card art-c"><b>AVENTURE</b><span>ÉVASION</span></div></div>
      <div class="rowt" style="top:830px" data-layout-allow-occlusion>En direct</div>
      <div class="thumbs" style="top:870px"><div class="art-card art-d"><b>SPORT</b><span>EN DIRECT</span></div><div class="art-card art-e"><b>DRAME</b><span>SÉRIE</span></div><div class="art-card art-f"><b>ENQUÊTE</b><span>THRILLER</span></div></div>
      <div class="live" style="left:36px;top:882px" data-layout-allow-occlusion>LIVE</div>
@@ -466,9 +466,7 @@ tl.fromTo("#logo3", { opacity: 0, scale: 0.2, rotationY: -80, transformPerspecti
   { opacity: 1, scale: 1, rotationY: 0, filter: "blur(0px)", duration: 0.7, ease: "back.out(1.6)" }, 4.20);
 tl.to("#logo3", { scale: 1.08, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out" }, 5.00);
 floaty("#logo3", 5.3, 8.5, 12, 1.5);
-[["#e3a", 4.55, -20], ["#e3b", 4.70, 20], ["#e3c", 5.05, 15], ["#e3d", 5.20, -15], ["#e3e", 5.40, 10]].forEach(([s, t, r], i) => {
-  rise(s, t, { rot: r }); floaty(s, t + 0.4, 8.5, 14 + i * 3, 1.3 + i * 0.2);
-});
+// Les objets 3D de cette scène sont générés et animés par motion3d.js.
 tl.fromTo("#tag1", { opacity: 0, x: -200, skewX: -12 }, { opacity: 1, x: 0, skewX: 0, duration: 0.35, ease: "back.out(2)" }, 5.92);
 pop("#tag2", 7.30, { from: 0.3, ease: "back.out(3)" });
 tl.to("#tag2 span", { scale: 1.06, duration: 0.14, yoyo: true, repeat: 1 }, 7.83);
@@ -479,19 +477,19 @@ cam("#cam4", 8.48, 13.80, 1.04, 1.0);
 tl.fromTo("#ph4", { y: 900, rotationY: -40 }, { y: 0, rotationY: -16, duration: 0.5, ease: "power3.out" }, 8.48);
 tl.to("#feed4", { y: -560, duration: 4.8, ease: "none" }, 8.9);
 pop("#h4a", 8.50, { from: 2.4 });
-rise("#e4film", 8.87, { rot: -25 }); pop("#l4film", 8.95, { from: 0.4 });
-rise("#e4ser", 9.07, { rot: 25 }); pop("#l4ser", 9.15, { from: 0.4 });
+pop("#l4film", 8.95, { from: 0.4 });
+pop("#l4ser", 9.15, { from: 0.4 });
 pop("#l4man", 9.36, { from: 0.3, rot: -20, rotTo: -6 });
 tl.to("#h4a", { opacity: 0, y: -40, duration: 0.15 }, 9.84);
 pop("#h4b", 9.99, { from: 2.2 });
-rise("#e4tv", 10.43, { rot: 20 }); pop("#l4live", 10.90, { from: 0.3 });
+pop("#l4live", 10.90, { from: 0.3 });
 tl.to("#l4live", { opacity: 0.4, duration: 0.25, yoyo: true, repeat: 7 }, 11.2);
-rise("#e4ball", 11.52, { rot: -180, d: 0.5 }); pop("#l4sport", 11.60, { from: 0.4 });
-rise("#e4radio", 11.82, { rot: 25 }); pop("#l4radio", 11.90, { from: 0.4 });
+pop("#l4sport", 11.60, { from: 0.4 });
+pop("#l4radio", 11.90, { from: 0.4 });
 tl.to("#h4b", { opacity: 0, duration: 0.15 }, 12.6);
-tl.fromTo("#e4game", { opacity: 0, scale: 0.2, rotation: -30 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2.5)" }, 13.02);
+// La manette 3D est animée dans motion3d.js.
 pop("#l4game", 13.10, { from: 0.3 });
-["#e4film", "#e4ser", "#e4tv", "#e4ball", "#e4radio"].forEach((s, i) => floaty(s, 9.3 + i * 0.3, 13.8, 12, 1.2 + i * 0.15));
+tl.fromTo("#feed4 .art-card", { opacity: 0, scale: 0.72 }, { opacity: 1, scale: 1, duration: 0.28, stagger: 0.08, ease: "back.out(1.5)" }, 9.0);
 tl.to("#cam4", { scale: 1.9, opacity: 0, filter: "blur(10px)", duration: 0.22, ease: "power2.in" }, 13.58);
 
 /* ---------- 5 · recherche ---------- */
@@ -499,8 +497,7 @@ cam("#cam5", 13.76, 16.30, 1.0, 1.05);
 pop("#h5", 13.78, { from: 2.2 });
 tl.fromTo("#sbar", { opacity: 0, scaleX: 0.3 }, { opacity: 1, scaleX: 1, duration: 0.3, ease: "back.out(1.6)" }, 13.90);
 tl.fromTo("#kb", { opacity: 0, y: 300 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, 14.0);
-tl.fromTo("#mag5", { opacity: 0, x: 400, y: 300, rotation: 40, scale: 1.5 }, { opacity: 1, x: -600, y: -150, rotation: -10, scale: 0.6, duration: 0.55, ease: "power3.inOut" }, 13.99);
-tl.to("#mag5", { opacity: 0, duration: 0.12 }, 14.54);
+// La loupe est un objet 3D procédural animé dans motion3d.js.
 tl.to("#cur5", { opacity: 0, duration: 0.01, repeat: 9, yoyo: true, repeatDelay: 0.12 }, 13.95);
 const QTXT = "Horizon 2030", T0 = 14.66, T1 = 15.40;
 for (let i = 1; i <= QTXT.length; i++) {
@@ -511,11 +508,11 @@ for (let i = 1; i <= QTXT.length; i++) {
 }
 tl.to("#kb", { opacity: 0, y: 300, duration: 0.2, ease: "power2.in" }, 15.42);
 tl.fromTo("#res", { opacity: 0, y: -80 }, { opacity: 1, y: 0, duration: 0.2, ease: "back.out(2)" }, 15.48);
-tl.fromTo("#res img", { scale: 0.5 }, { scale: 1, duration: 0.2, stagger: 0.04, ease: "back.out(2)" }, 15.48);
+tl.fromTo("#res .art-card", { scale: 0.5 }, { scale: 1, duration: 0.2, stagger: 0.04, ease: "back.out(2)" }, 15.48);
 tl.to("#res", { opacity: 0, duration: 0.1 }, 15.70);
 tl.fromTo("#big", { opacity: 0, scale: 0.5, rotationY: 50, transformPerspective: 1600 }, { opacity: 1, scale: 1, rotationY: 0, duration: 0.3, ease: "back.out(1.8)" }, 15.70);
 pop("#stamp5", 15.83, { from: 2.5, rot: -20, rotTo: -8 });
-rise("#pop5", 15.86, { rot: -30 });
+// Les confettis sont générés dans la scène 3D.
 tl.to("#cam5", { scale: 1.6, opacity: 0, duration: 0.14, ease: "power2.in" }, 16.16);
 
 /* ---------- 6 · technique ---------- */
@@ -551,8 +548,7 @@ tl.fromTo("#fl7", { opacity: 0 }, { opacity: 1, duration: 0.15, ease: "power2.in
 /* ---------- 8 · essai ---------- */
 cam("#cam8", 22.80, 25.10, 1.0, 1.07);
 tl.fromTo("#rays8", { rotation: 0 }, { rotation: 30, duration: 2.3, ease: "none" }, 22.8);
-tl.fromTo("#sw", { opacity: 0, scale: 0.2, rotation: -90 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(2)" }, 22.85);
-tl.to("#sw", { rotation: 8, duration: 0.1, yoyo: true, repeat: 15, ease: "sine.inOut" }, 23.3);
+// Le chronomètre 3D est généré et animé dans motion3d.js.
 tl.fromTo("#arc8c", { attr: { "stroke-dashoffset": 1445 } }, { attr: { "stroke-dashoffset": 0 }, duration: 2.1, ease: "power1.inOut" }, 22.9);
 pop("#gratuit", 23.63, { from: 2.6, rot: -15, rotTo: -5, ease: "back.out(2.5)" });
 pop("#h24", 23.28, { from: 3 });
@@ -569,8 +565,7 @@ tl.fromTo(cnt, { v: 0 }, { v: 1000, duration: 0.6, ease: "power2.out", onUpdate:
 pop("#ou", 27.22, { from: 0.2, ease: "back.out(3)" });
 rise("#pc2", 27.42, { rot: 6, y: 200 });
 pop("#offert", 28.32, { from: 2.5, rot: -12, rotTo: -3 });
-rise("#gift", 28.55, { rot: 25 }); rise("#popper", 28.80, { rot: -25 });
-floaty("#gift", 29.0, 29.5, 10, 0.5);
+// Les objets cadeau et confettis sont animés en 3D dans motion3d.js.
 tl.to("#cam9", { scale: 1.8, opacity: 0, duration: 0.2, ease: "power2.in" }, 29.32);
 
 /* ---------- 10 · appel final ---------- */
