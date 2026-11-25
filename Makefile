@@ -3,10 +3,13 @@
 
 MD := ./md
 
-.PHONY: help doctor new render lint apercu ad cockpit brands vo lab lab-serve lab-demo lab-mcp preview inventory install fonts presets list clean bootstrap skills-check test
+.PHONY: pub help doctor new render lint apercu ad cockpit brands vo lab lab-serve lab-demo lab-mcp preview inventory install fonts presets list clean bootstrap skills-check test
 
 help: ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-12s\033[0m %s\n", $$1, $$2}'
+
+pub: ## ★ Pub depuis entrees/ : make pub [FORMATS=9x16,1x1,16x9] [APERCU=1]
+	$(MD) pub $(if $(FORMATS),--formats $(FORMATS),) $(if $(APERCU),--apercu,)
 
 bootstrap: ## Installe TOUT (Python + Node + ffmpeg/ffprobe + Chromium)
 	bash scripts/bootstrap.sh

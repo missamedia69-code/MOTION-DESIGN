@@ -100,7 +100,17 @@ def capabilities() -> dict:
                      "kits": ["divertissement", "offre", "appareils", "interface"],
                      "destination": "assets/elements/ (+ LICENCES.md)"},
         "projets": [p["name"] for p in project_mod.list_projects()],
-        "boucle_pilote": [
+        "geste_principal": {
+            "outil": "md_pub (CLI : ./md pub)",
+            "entrees_minimales": ["audio de la pub (entrees/)", "logo (entrees/)"],
+            "options": ["script.txt", "details.txt (Marque, Site, Bouton, Style, Couleur, Sous-titres)",
+                        "images/vidéos", "brief.scenes (storyboard)", "brief.decor (éléments)"],
+            "types_de_scene": __import__("engine.studio", fromlist=["SCENE_TYPES"]).SCENE_TYPES,
+            "styles": list(__import__("engine.studio", fromlist=["STYLES"]).STYLES),
+            "boucle": ["md_pub (aperçu)", "regarder la planche", "corriger brief.scenes",
+                       "md_pub render=true", "lire le verdict", "livrer"],
+        },
+        "boucle_pilote_mode_rapide": [
             "1. md_cockpit (ce tableau) puis md_guide si besoin",
             "2. md_ad_compose (brief pub) OU écrire un project.json",
             "3. md_lint → corriger errors/warnings",

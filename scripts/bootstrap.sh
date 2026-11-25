@@ -5,8 +5,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 echo "── 1/4 Dépendances Python ──"
-pip3 install --break-system-packages -q imageio-ffmpeg pillow numpy av || \
-  pip3 install -q imageio-ffmpeg pillow numpy av
+pip3 install --break-system-packages -q imageio-ffmpeg pillow numpy av faster-whisper || \
+  pip3 install -q imageio-ffmpeg pillow numpy av faster-whisper
+# faster-whisper : transcription locale de la voix (le modèle « base » se télécharge au 1er usage)
 
 echo "── 2/4 Dépendances Node (hyperframes + chromium embarqué) ──"
 npm install --no-audit --no-fund

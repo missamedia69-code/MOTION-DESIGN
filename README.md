@@ -1,33 +1,46 @@
-# MOTION-DESIGN — moteur générique de vidéos publicitaires motion design
+# MOTION-DESIGN — moteur de pubs motion design pour agents IA
 
-On **décrit** une vidéo en JSON (un brief pub ou un montage détaillé) et le moteur
-la **fabrique** : animations, typographie, transitions, son, puis export prêt pour les
-réseaux sociaux en 9:16, 1:1, 4:5 et 16:9.
+**Vous déposez l'audio de la pub et le logo. Le moteur livre une pub motion design vérifiée,
+dans tous les formats.**
 
-Le moteur est **générique** : il sert n'importe quelle marque, n'importe quel produit,
-n'importe quelle devise ou langue. L'identité visuelle vient d'un kit de marque
-(`brands/<nom>.json`) ou est **déduite automatiquement du logo fourni**.
-
-Il sert aux humains comme aux **agents IA**. Un agent qui ouvre ce dossier s'y
-connecte automatiquement (MCP), comme un pilote dans un cockpit : il voit les
-instruments, compose, vérifie, regarde des aperçus et livre.
+N'importe quel agent IA qui ouvre ce dossier (Claude Code, Codex, Cursor…) s'y connecte
+automatiquement (serveur MCP `motion-design`, consignes dans [AGENTS.md](AGENTS.md)) et sait
+quoi faire : écouter l'audio, déduire la marque du logo, construire le storyboard, composer,
+regarder l'aperçu, corriger, rendre, juger la vidéo, livrer.
 
 ```
-brief / project.json ──► contrôle qualité ──► aperçu (planche contact) ──► rendu MP4 multi-formats ──► vérification du rendu
+entrees/ (audio + logo [+ script.txt, details.txt, images, vidéos])
+   │
+   ├─ écoute       ce qui est dit et quand, au mot près (script.txt ou faster-whisper)
+   ├─ marque       couleurs déduites du logo (ou kit brands/<nom>.json)
+   ├─ storyboard   une scène par phrase : accroche · logo · chiffre · liste · prix · bouton
+   ├─ éléments     icônes et emojis 3D libres de droits trouvés automatiquement
+   ├─ composition  HyperFrames + GSAP : texte au rythme de la voix, caméra, transitions, fond vivant
+   ├─ rendu        MP4 9:16 · 1:1 · 4:5 · 16:9, son normalisé -14 LUFS
+   └─ vérification image vide, figés, fin, énergie du mouvement, volume → OK / À AMÉLIORER / À CORRIGER
 ```
 
-**Nouveau en 2.1** : grammaire de mouvement « pro » par défaut (coupes franches en plein
-mouvement, caméra sur chaque scène, entrées `land` / `mask_*` / `whip_*`, fond vivant, fin
-courte), **vérification automatique de la vidéo rendue** (`./md verifier`), **calage sur le
-rythme de la musique** (`./md rythme`) et 30 skills professionnels de motion design ajoutés
-(voir [docs/SKILLS-SOURCES.md](docs/SKILLS-SOURCES.md)).
+```bash
+make bootstrap                        # une fois
+./md pub                              # entrees/ → aperçu + vidéo 9:16 vérifiée
+./md pub --formats 9x16,1x1,16x9      # déclinaisons
+./md pub --apercu                     # aperçu seul, pour valider avant de rendre
+```
+
+Quoi déposer : [entrees/README.md](entrees/README.md). Manuel de l'agent : [AGENTS.md](AGENTS.md)
+et [docs/PILOTE.md](docs/PILOTE.md).
+
+Le dépôt contient aussi un **mode rapide** (ffmpeg, sans navigateur : `./md ad brief.json`)
+pour produire des déclinaisons en volume à partir d'un brief écrit, et 150 skills de motion
+design ([docs/SKILLS-SOURCES.md](docs/SKILLS-SOURCES.md)). Les sections suivantes décrivent
+ce mode rapide et l'architecture.
 
 ---
 
 ## Sommaire
 
 1. [Installation](#1-installation)
-2. [Créer une pub : les éléments à fournir, puis le brief](#2-créer-une-pub-en-2-minutes-avec-un-brief)
+2. [Mode rapide : une pub depuis un brief](#2-créer-une-pub-en-2-minutes-avec-un-brief)
 3. [Créer un montage sur mesure (project.json)](#3-créer-un-montage-sur-mesure-projectjson)
 4. [Piloter le moteur avec un agent IA](#4-piloter-le-moteur-avec-un-agent-ia)
 5. [Comment le moteur fonctionne](#5-comment-le-moteur-fonctionne)
@@ -39,7 +52,7 @@ rythme de la musique** (`./md rythme`) et 30 skills professionnels de motion des
 ## 1. Installation
 
 ```bash
-make bootstrap          # Python (pillow, numpy, av, imageio-ffmpeg) + Node + ffmpeg
+make bootstrap          # Python (pillow, numpy, av, faster-whisper) + Node (HyperFrames, GSAP) + ffmpeg + Chromium
 ./md doctor --full      # diagnostic + rendu d'essai : doit finir par « ✅ Moteur opérationnel »
 ```
 
@@ -186,6 +199,7 @@ Lancement manuel : `python3 -m lab.mcp` (JSON-RPC sur stdio, sans dépendance).
 
 | Étape | Outil MCP | Ce que l'agent obtient |
 |---|---|---|
+| ★ Tout-en-un | `md_pub` | entrees/ → storyboard + aperçu en image ; `render: true` → vidéo + verdict |
 | 0. Réception | `md_intake` | analyse de `entrees/` : audio (durée, respirations), logos (palette), détails, médias + brief pré-rempli |
 | 1. Instruments | `md_cockpit` | formats, exports, animations, marques, templates, polices, assets |
 | 2. Composer | `md_ad_compose` ou `md_project_save` | un montage complet (brief) ou enregistré (sur mesure) |
@@ -296,6 +310,8 @@ Sans MCP, la même chose en ligne de commande : `./md cockpit` (JSON des capacit
 |---|---|
 | `md` | point d'entrée de la ligne de commande (`./md -h`) |
 | `engine/cli.py` | commandes `./md …` |
+| `engine/studio.py` | ★ moteur principal : storyboard depuis la voix, scènes HyperFrames, rendu, aperçu |
+| `engine/listen.py` | écoute de l'audio : phrases et mots horodatés (script.txt / faster-whisper) |
 | `engine/render.py` | cœur : graphes ffmpeg, animations, audio, parallélisme, cache |
 | `engine/text.py` | rendu Pillow : texte, texte cinétique, formes, dégradés, compteurs |
 | `engine/easing.py` | courbes d'accélération (expressions ffmpeg) |
@@ -335,6 +351,7 @@ MOTION-DESIGN/
 
 | Commande | Rôle |
 |---|---|
+| `./md pub [dossier] [--formats …] [--apercu] [--brief …] [--style …] [--sous-titres]` | ★ éléments fournis → pub HyperFrames vérifiée |
 | `./md doctor [--full]` | diagnostic du moteur (+ rendu d'essai) |
 | `./md entrees [--brand nom] [--json]` | réception des éléments déposés + brief pré-rempli |
 | `./md ad <brief.json> [--save] [--preview] [--render] [--formats …]` | pub depuis un brief |

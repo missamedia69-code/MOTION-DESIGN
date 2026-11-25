@@ -47,6 +47,18 @@ def cmd_doctor(_args) -> None:
     print(f"ImageMagick : {'OK (SVG→PNG)' if which('convert') else 'absent (SVG non convertis)'}")
     presets_list = ", ".join(presets.EXPORT_PRESETS)
     print(f"Exports     : {presets_list}")
+    # Moteur principal (./md pub) : HyperFrames + GSAP + Chromium, écoute de la voix
+    hf = os.path.join(REPO, "node_modules", ".bin", "hyperframes")
+    gs = os.path.join(REPO, "node_modules", "gsap", "dist", "gsap.min.js")
+    print(f"HyperFrames : {'OK' if os.path.isfile(hf) else 'ABSENT → npm ci'}")
+    print(f"GSAP        : {'OK' if os.path.isfile(gs) else 'ABSENT → npm ci'}")
+    if not (os.path.isfile(hf) and os.path.isfile(gs)):
+        ok = False
+    from engine import studio as _studio
+    br = _studio._hf_env().get("HYPERFRAMES_BROWSER_PATH")
+    print(f"Chromium    : {br or 'non trouvé (make bootstrap, ou HYPERFRAMES_BROWSER_PATH)'}")
+    from engine import listen as _listen
+    print(f"Écoute voix : {'faster-whisper OK' if _listen.available() else 'faster-whisper absent → script.txt requis (pip3 install faster-whisper)'}")
     print(f"Formats     : {', '.join(presets.CANVAS_PRESETS)}")
     # test d'écriture (plus de dossier output/ : livrables dans .cache/rendus/)
     for d in (".cache/rendus", "projects", "assets"):
@@ -113,6 +125,44 @@ def cmd_render(args) -> None:
                                  dry_run=args.dry_run, fps_override=args.fps,
                                  formats=formats, draft=args.draft)
     _auto_verify(outs, args)
+
+
+def cmd_pub(args) -> None:
+    """LE geste principal : éléments fournis → pub motion design (HyperFrames) vérifiée."""
+    from engine import studio, verify
+    if args.brief:
+        with open(args.brief, encoding="utf-8") as f:
+            brief = json.load(f)
+    else:
+        brief = studio.brief_from_folder(args.dossier)
+        if not brief.get("audio") and not brief.get("hook"):
+            raise SystemExit("ERREUR : aucun audio trouvé dans " + (args.dossier or "entrees/") +
+                             " (déposer l'audio de la pub + le logo)")
+    if args.style:
+        brief["style"] = args.style
+    if args.sous_titres:
+        brief["subtitles"] = True
+    formats = [x.strip() for x in (args.formats or brief.get("formats") or brief.get("canvas") or "9x16").split(",") if x.strip()]
+    if args.plan:
+        for fmt in formats:
+            plan = studio.build(brief, canvas=fmt, name=args.name)
+            print(json.dumps({k: v for k, v in plan.items() if k != "dir"}, ensure_ascii=False, indent=2))
+        return
+    res = studio.produce(brief, formats=formats, quality=args.qualite, name=args.name,
+                         do_render=not args.apercu, do_preview=True)
+    if args.json:
+        print(json.dumps(res, ensure_ascii=False, indent=2))
+        return
+    for it in res["results"]:
+        print(f"── {it['format']} · {it['project']} · {it['duration']:.1f} s · "
+              f"{len(it['storyboard'])} scènes ──")
+        for s in it["storyboard"]:
+            print(f"  {s['start']:6.2f} s  {s['type']:9s} {str(s.get('text', ''))[:60]}")
+        print(f"  contrôle HyperFrames : {it['check']['errors']} erreur(s), {it['check']['warnings']} avertissement(s)")
+        print(f"  🖼  aperçu : {it['preview']['sheet']}")
+        if it.get("video"):
+            print(f"  🎬 vidéo  : {it['video']}")
+            verify.print_report({**it["verification"], "rapport_brut": ""})
 
 
 def cmd_verifier(args) -> None:
@@ -397,6 +447,19 @@ def main() -> None:
     p.add_argument("--draft", action="store_true", help="brouillon rapide (15 i/s, ultrafast)")
     p.add_argument("--sans-verif", action="store_true", help="ne pas juger la vidéo après le rendu")
     p.set_defaults(fn=cmd_render)
+
+    p = sub.add_parser("pub", help="★ éléments fournis (audio + logo…) → pub motion design HyperFrames vérifiée")
+    p.add_argument("dossier", nargs="?", help="dossier des éléments (défaut : entrees/)")
+    p.add_argument("--brief", help="brief / storyboard JSON (au lieu d'un dossier)")
+    p.add_argument("--formats", help="9x16,1x1,4x5,16x9 (défaut : 9x16)")
+    p.add_argument("--name", help="nom du projet")
+    p.add_argument("--style", choices=["energique", "premium", "doux"])
+    p.add_argument("--sous-titres", action="store_true", help="sous-titres synchronisés")
+    p.add_argument("--qualite", default="standard", choices=["draft", "standard", "high"])
+    p.add_argument("--plan", action="store_true", help="construire seulement (storyboard JSON), sans rendu")
+    p.add_argument("--apercu", action="store_true", help="aperçu (images clés) sans rendu vidéo")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_pub)
 
     p = sub.add_parser("verifier", help="juger une vidéo rendue (image vide, figés, fin, énergie, volume)")
     p.add_argument("cible", help="fichier vidéo ou nom de projet (ses rendus dans .cache/rendus/)")

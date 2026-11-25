@@ -1,8 +1,40 @@
-# Manuel du pilote — moteur MOTION-DESIGN v2
+# Manuel du pilote — moteur MOTION-DESIGN v3
 
-Tu pilotes un moteur **générique** de vidéos publicitaires motion design : toute
-marque, tout produit, toute devise. Tu décris, le moteur anime : aucun code de
-rendu à écrire, seulement du JSON.
+Tu pilotes un moteur **générique** de pubs motion design : toute marque, tout produit,
+toute devise. L'utilisateur fournit l'audio de la pub et le logo ; tu livres une pub
+vérifiée. Résumé opérationnel : [AGENTS.md](../AGENTS.md).
+
+## Le geste principal : `md_pub` (CLI : `./md pub`)
+
+1. **Aperçu** : `md_pub` sans `render` (ou `./md pub --apercu`). Le moteur lit `entrees/`,
+   écoute la voix, déduit la marque du logo, construit le storyboard et renvoie une
+   **planche d'images rendues par HyperFrames**. Regarde-la.
+2. **Corriger** : la réponse contient `storyboard` (aussi dans
+   `projects/<nom>-<format>/storyboard.json`). Modifie-le et renvoie-le en `brief.scenes` :
+   changer un type de scène, raccourcir un texte, donner des `items` à une liste, des
+   `stats` exacts, un `button`, ajouter des éléments (`brief.decor`, `items[].icon` avec des
+   ids de `md_elements_search`), une scène `media` avec `file`, un `product` avec `image`.
+3. **Rendre** : `md_pub` avec `render: true` et `formats`. Chaque vidéo est **jugée**
+   (`verification.verdict`) : corrige tout `À CORRIGER`, explique tout `À AMÉLIORER`.
+4. **Livrer** : chemins des MP4 (`.cache/rendus/`) + planche.
+
+| Type de scène | Ce qu'il montre | Champs |
+|---|---|---|
+| `hook` | la phrase d'accroche, mot à mot au rythme de la voix | `text` |
+| `phrase` | une phrase dite (3 mises en page en alternance) | `text` |
+| `logo` | le logo arrive en grand, éclats et anneaux | `text` |
+| `product` | le produit en 3D (rotation, reflet, ombre) | `image`, `text`, `tagline` |
+| `media` | image/vidéo plein cadre en mouvement + texte | `file`, `text` |
+| `benefits` | liste qui glisse, icônes 3D ou coches dessinées | `items` (texte ou `{text, icon}`) |
+| `stat` | chiffres qui défilent dans des anneaux | `stats` [{value, prefix, suffix, label}] |
+| `price` | ancien prix barré qui tombe, nouveau prix qui s'impose | `price`, `old_price`, `currency`, `label`, `badge` |
+| `cta` | logo + bouton qui brille + site | `button`, `url` |
+
+Styles : `energique` (défaut : punch, volets de couleur), `premium` (lent, sobre),
+`doux`. Sous-titres synchronisés : `subtitles: true`.
+
+Le **mode rapide** (moteur ffmpeg, brief écrit, sans navigateur) reste disponible
+pour les déclinaisons en volume : sections suivantes.
 
 ## Connexion
 

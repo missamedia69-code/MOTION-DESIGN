@@ -30,13 +30,16 @@ from engine import probe  # noqa: E402
 
 PROTOCOL_VERSION = "2024-11-05"
 SUPPORTED_PROTOCOLS = ("2024-11-05", "2025-03-26", "2025-06-18")
-SERVER_VERSION = "2.0.0"
+SERVER_VERSION = "3.0.0"
 INSTRUCTIONS = (
-    "Moteur MOTION-DESIGN (vidéos publicitaires motion design). Boucle du pilote : "
-    "md_intake (éléments déposés : audio complet, logos, détails, médias) → md_cockpit → "
-    "md_elements_search / md_elements_get (emojis 3D, icônes libres de droits) → "
-    "md_ad_compose (brief pub) ou project.json → md_lint → md_preview "
-    "(regarder les images) → md_render. md_guide donne le manuel complet."
+    "Moteur MOTION-DESIGN : pubs motion design de qualité à partir des éléments fournis. "
+    "GESTE PRINCIPAL : md_pub (lit entrees/ : l'audio de la pub + le logo suffisent) → regarder "
+    "l'aperçu renvoyé → corriger en renvoyant brief.scenes (storyboard) → md_pub render=true "
+    "→ lire le verdict de vérification (OK / À AMÉLIORER / À CORRIGER) et corriger avant de livrer. "
+    "Éléments : md_elements_search / md_elements_get (emojis 3D, icônes libres de droits), "
+    "à passer dans brief.decor ou benefits[].icon. md_rythme pour une musique. "
+    "Mode rapide (ffmpeg, sans navigateur) : md_ad_compose / md_ad_render. "
+    "md_guide = manuel complet (docs/PILOTE.md)."
 )
 
 _PROJECT_ARGS = {
@@ -45,6 +48,14 @@ _PROJECT_ARGS = {
 }
 
 MD_TOOLS = [
+    {"name": "md_pub", "description": "★ GESTE PRINCIPAL. Éléments fournis → pub motion design de qualité (HyperFrames). Sans brief : lit entrees/ (audio de la pub + logo suffisent ; script.txt, details.txt « clé: valeur », images, vidéos en option), écoute la voix (texte et timing au mot), déduit la marque du logo, construit le storyboard (une scène par phrase : accroche, logo, chiffre, liste, prix, CTA), compose, contrôle, renvoie l'APERÇU en image. render=true rend aussi la vidéo et la JUGE (md_verify). Pour corriger : relancer avec brief.scenes (storyboard modifié, voir storyboard renvoyé).",
+     "inputSchema": {"type": "object", "properties": {
+        "folder": {"type": "string", "description": "dossier des éléments (défaut entrees/)"},
+        "brief": {"type": "object", "description": "optionnel : {audio, logo, script, brand_name, url, cta, style (energique|premium|doux), subtitles, colors, fonts, product:{image}, media_pool:[…], decor:[ids éléments], scenes:[storyboard explicite {type, start, text, …}]}"},
+        "formats": {"type": "array", "items": {"type": "string"}, "description": "ex. [\"9x16\", \"1x1\", \"16x9\"]"},
+        "name": {"type": "string"},
+        "render": {"type": "boolean", "description": "rendre la vidéo + vérification (plus long)"},
+        "quality": {"type": "string", "enum": ["draft", "standard", "high"]}}}},
     {"name": "md_cockpit", "description": "Toutes les capacités du moteur : formats, exports, animations, easing, idle, sorties, calques et leurs champs, kits de marque, templates pub, polices, assets, projets. À appeler en premier.",
      "inputSchema": {"type": "object", "properties": {}}},
     {"name": "md_guide", "description": "Manuel du pilote (docs/PILOTE.md) : règles de mise en scène pub, exemples, diagnostic.",
@@ -233,6 +244,22 @@ def call_md_tool(name: str, args: dict) -> dict:
         outs = _render_outputs(proj, pdir, pname, args.get("preset"), args.get("formats"),
                                args.get("draft"))
         return text({"outputs": outs, "warnings": rep["warnings"]})
+    if name == "md_pub":
+        from engine import studio
+        brief = dict(args.get("brief") or {})
+        if not brief or not (brief.get("audio") or brief.get("hook") or brief.get("scenes")):
+            base = studio.brief_from_folder(args.get("folder"))
+            base.update(brief)
+            brief = base
+        res = studio.produce(brief, formats=args.get("formats"), quality=args.get("quality", "standard"),
+                             name=args.get("name"), do_render=bool(args.get("render")), do_preview=True)
+        blocks = [{"type": "text", "text": json.dumps(res, ensure_ascii=False, indent=2)}]
+        for it in res["results"]:
+            blocks.append(_image_block(os.path.join(REPO, it["preview"]["sheet"])))
+            v = it.get("verification") or {}
+            if v.get("fichiers", {}).get("planche"):
+                blocks.append(_image_block(v["fichiers"]["planche"]))
+        return {"content": blocks}
     if name == "md_verify":
         import glob
         from engine import verify
