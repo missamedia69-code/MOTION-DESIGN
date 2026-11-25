@@ -44,7 +44,9 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 .flash { position:absolute; inset:0; background:#fff; opacity:0; pointer-events:none; }
 
 /* --- scène 1 : monde gris --- */
-#tvgris { z-index:1; left:190px; top:520px; width:700px; filter: grayscale(1) brightness(.85) contrast(1.1) drop-shadow(0 30px 40px rgba(0,0,0,.6)); }
+#tvgris { z-index:1; left:190px; top:520px; width:700px; height:570px; border-radius:54px; background:linear-gradient(145deg,#e2e7ef 0%,#777f8e 38%,#242b38 39%,#0e1522 100%); box-shadow:inset 0 0 0 7px #c2cad5, inset 0 -18px 0 rgba(0,0,0,.3), 0 30px 40px rgba(0,0,0,.6); }
+#tvgris::before { content:""; position:absolute; left:42px; top:40px; width:470px; height:420px; border:18px solid #101722; border-radius:28px; background:linear-gradient(135deg,#9ba4b1,#3e4653 58%,#1b2432); box-shadow:inset 0 0 30px rgba(0,0,0,.55); }
+#tvgris::after { content:""; position:absolute; right:58px; top:175px; width:84px; height:84px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#dbe2eb,#586273 54%,#171e2a 58%); box-shadow:0 0 0 10px #313a49,0 0 0 13px #111722; }
 #tvscreen { z-index:2; left:330px; top:740px; width:420px; height:300px; border-radius:26px; overflow:hidden;
   background: repeating-linear-gradient(0deg, #8a8f98 0 3px, #6c717a 3px 6px); }
 #tvscreen .lab { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#f7f8fb; text-shadow:0 3px 12px rgba(0,0,0,.75); }
@@ -91,7 +93,24 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 .rowt { position:absolute; left:28px; font-family:"MontXB"; font-size:24px; color:#fff; }
 .rowt::before { content:""; display:inline-block; width:6px; height:24px; background:var(--jaune); margin-right:10px; vertical-align:-3px; border-radius:3px; }
 .thumbs { position:absolute; left:24px; display:flex; gap:14px; }
-.thumbs img { width:132px; height:200px; object-fit:cover; border-radius:16px; }
+.thumbs .art-card { width:132px; height:200px; flex:0 0 132px; border-radius:16px; } 
+.art-card { position:relative; display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; padding:14px 12px; color:#fff; background:linear-gradient(145deg,#0c4a6e,#172554 58%,#111827); box-shadow:0 14px 26px rgba(0,0,0,.32); isolation:isolate; }
+.art-card::before { content:""; position:absolute; z-index:-1; width:150%; aspect-ratio:1; left:14%; top:18%; border:2px solid rgba(255,255,255,.38); border-radius:50%; box-shadow:0 0 0 18px rgba(255,255,255,.08),0 0 0 42px rgba(255,255,255,.05); }
+.art-card::after { content:""; position:absolute; z-index:-1; left:-20%; right:-20%; bottom:24%; height:24%; transform:rotate(-28deg); background:linear-gradient(90deg,transparent,rgba(255,255,255,.24),transparent); }
+.art-card b { font-family:"Mont"; font-size:20px; line-height:1; letter-spacing:.02em; }
+.art-card span { font-family:"MontXB"; font-size:12px; letter-spacing:.08em; color:rgba(255,255,255,.82); }
+.art-a { background:linear-gradient(145deg,#0e7490,#312e81 58%,#111827); }
+.art-b { background:linear-gradient(145deg,#7c2d12,#9d174d 52%,#1e1b4b); }
+.art-c { background:linear-gradient(145deg,#166534,#164e63 52%,#172554); }
+.art-d { background:linear-gradient(145deg,#7e22ce,#312e81 52%,#0f172a); }
+.art-e { background:linear-gradient(145deg,#92400e,#b45309 50%,#1e293b); }
+.art-f { background:linear-gradient(145deg,#1d4ed8,#0e7490 54%,#0f172a); }
+.art-hero { background:radial-gradient(circle at 72% 28%,rgba(255,230,0,.8),transparent 20%),linear-gradient(135deg,#0e7490,#1e1b4b 50%,#111827); }
+.art-poster { position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; padding:40px; background:radial-gradient(circle at 72% 24%,rgba(255,230,0,.85),transparent 19%),linear-gradient(150deg,#0e7490,#312e81 56%,#090f20); }
+.art-poster::before { content:""; position:absolute; width:70%; aspect-ratio:1; right:-12%; top:10%; border:3px solid rgba(255,255,255,.6); border-radius:50%; box-shadow:0 0 0 22px rgba(255,255,255,.08),0 0 0 48px rgba(255,255,255,.05); }
+.art-poster span,.art-poster b { position:relative; z-index:1; color:#fff; font-family:"Mont"; }
+.art-poster span { font-size:24px; letter-spacing:.18em; }
+.art-poster b { font-size:62px; line-height:.95; margin-top:16px; }
 .live { position:absolute; font-family:"MontXB"; font-size:22px; background:var(--rouge); color:#fff; padding:4px 14px; border-radius:8px; }
 .live::before { content:"●"; margin-right:6px; }
 
@@ -111,7 +130,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 #res { left:70px; top:570px; width:940px; display:flex; gap:22px; }
 #res img { width:290px; height:420px; object-fit:cover; border-radius:26px; box-shadow:0 20px 40px rgba(0,0,0,.5); }
 #big { left:250px; top:540px; width:580px; height:860px; border-radius:40px; overflow:hidden; box-shadow:0 0 0 8px var(--jaune), 0 0 80px rgba(253,229,3,.6), 0 40px 70px rgba(0,0,0,.6); }
-#big img { width:100%; height:100%; object-fit:cover; }
+#big .art-poster { width:100%; height:100%; border-radius:32px; }
 #big .play { position:absolute; left:50%; bottom:60px; transform:translateX(-50%); font-family:"Mont"; font-size:46px; color:var(--nuit); background:var(--jaune); padding:20px 50px; border-radius:60px; white-space:nowrap; box-shadow:0 12px 0 #c9a800; }
 #stamp5 { left:590px; top:500px; font-size:84px; color:var(--nuit); background:var(--citron); padding:10px 34px; border-radius:24px; transform:rotate(-8deg); box-shadow:0 18px 40px rgba(0,0,0,.45); }
 
@@ -125,7 +144,10 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 .card6 { position:absolute; border-radius:36px; background:rgba(11,37,96,.85); border:3px solid #23407f; box-shadow:0 30px 50px rgba(0,0,0,.4); }
 #gauge { left:60px; top:840px; width:460px; height:400px; }
 #player { left:560px; top:840px; width:460px; height:400px; overflow:hidden; }
-#player img { position:absolute; left:20px; top:20px; width:420px; height:236px; object-fit:cover; border-radius:22px; }
+#player .player-art { position:absolute; left:20px; top:20px; width:420px; height:236px; border-radius:22px; overflow:hidden; background:radial-gradient(circle at 50% 42%,rgba(166,227,27,.55),transparent 22%),linear-gradient(135deg,#064e3b,#1e3a8a 55%,#111827); display:flex; align-items:center; justify-content:center; }
+#player .player-art::before { content:""; position:absolute; width:170px; height:170px; border:10px solid rgba(255,255,255,.22); border-radius:50%; }
+#player .player-art b { z-index:1; font-family:"Mont"; font-size:64px; color:#fff; text-shadow:0 8px 22px #000; }
+#player .player-art span { position:absolute; z-index:2; left:18px; top:18px; padding:6px 14px; border-radius:8px; background:#d91f36; color:#fff; font:900 18px "MontXB"; }
 #player .bar { position:absolute; left:30px; right:30px; top:286px; height:16px; border-radius:10px; background:#23407f; overflow:hidden; }
 #player .bar i { position:absolute; left:0; top:0; bottom:0; width:100%; background:var(--citron); box-shadow:0 0 14px var(--citron); transform-origin:0 50%; }
 .c6t { position:absolute; left:0; right:0; text-align:center; font-family:"Mont"; font-size:40px; }
@@ -137,6 +159,9 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 /* --- scène 7 : écrans --- */
 .tvset { position:absolute; width:980px; height:580px; border-radius:22px; background:#0a0f1d; padding:14px; box-shadow:0 0 0 3px #2b3550, 0 40px 80px rgba(0,0,0,.6); }
 .tvset .scr, .tab .scr { position:relative; width:100%; height:100%; border-radius:12px; overflow:hidden; background-size:cover; background-position:center 30%; }
+.show-art { background:radial-gradient(circle at 72% 28%,rgba(255,230,0,.75),transparent 20%),linear-gradient(135deg,#0e7490,#312e81 54%,#111827); }
+.result-card { width:290px; height:420px; flex:0 0 290px; border-radius:26px; padding:26px 20px; }
+
 .tvset .foot { position:absolute; left:50%; bottom:-70px; width:300px; height:70px; margin-left:-150px; background:linear-gradient(#1a2238,#0a0f1d); clip-path:polygon(40% 0,60% 0,100% 100%,0 100%); }
 .tab { position:absolute; width:620px; height:440px; border-radius:40px; background:#0a0f1d; padding:18px; box-shadow:0 0 0 3px #2b3550, 0 40px 80px rgba(0,0,0,.6); }
 .scr .ov { position:absolute; inset:0; background:linear-gradient(180deg, transparent 45%, rgba(5,9,20,.9)); }
@@ -202,7 +227,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
    <div class="row"><span>JUILLET</span><span>PAYÉ</span></div><div class="row"><span>AOÛT</span><span>PAYÉ</span></div>
    <div>------------------</div><div style="text-align:center" data-layout-allow-overlap>PROGRAMME :</div><div style="text-align:center;font-weight:bold" data-layout-allow-overlap>TOUJOURS LE MÊME</div>
   </div>
-  <img id="tvgris" class="abs" src="assets/elements/television-3d.png" />
+  <div id="tvgris" class="abs retro-tv"></div>
   <div id="tvscreen" class="abs"><div class="lab"><div class="a">REDIFF</div><div class="b" id="rediff">ÉPISODE 1</div></div></div>
   <div id="chan" class="abs">CH 01</div>
   <div id="t1a" class="abs c H t1"><span>TU PAIES</span><br><span>CHAQUE MOIS…</span></div>
@@ -226,11 +251,11 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
  <div class="cam" id="cam3">
   <div class="rays" id="rays3"></div>
   <div class="corner tl"><i></i><i></i><i></i></div><div class="corner br"><i></i><i></i><i></i></div>
-  <img class="el" id="e3a" src="assets/elements/clapper-board-3d.png" style="left:40px;top:120px;width:220px" />
-  <img class="el" id="e3b" src="assets/elements/popcorn-3d.png" style="left:820px;top:140px;width:210px" />
-  <img class="el" id="e3c" src="assets/elements/headphone-3d.png" style="left:850px;top:760px;width:200px" />
-  <img class="el" id="e3d" src="assets/elements/studio-microphone-3d.png" style="left:30px;top:760px;width:190px" />
-  <img class="el" id="e3e" src="assets/elements/film-frames-3d.png" style="left:840px;top:1285px;width:170px" />
+  
+  
+  
+  
+  
   <img class="el" id="logo3" src="assets/logo-3d-transparent.png" />
   <div id="tag1" class="abs c H it">TOUT TON<br>DIVERTISSEMENT,</div>
   <div id="tag2" class="abs c"><span>DANS UNE SEULE APPLI !</span></div>
@@ -249,29 +274,29 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
     <div class="ui-top"><div class="ui-logo" data-layout-allow-occlusion>MISSA TV<b data-layout-allow-occlusion>360+</b></div><div class="ui-ic"></div></div>
     <div class="pills"><i class="on" data-layout-allow-occlusion>Accueil</i><i data-layout-allow-occlusion>Films</i><i data-layout-allow-occlusion>Séries</i><i data-layout-allow-occlusion>Live</i></div>
     <div id="feed4" class="abs" style="left:0;right:0;top:0">
-     <div class="hero" style="background-image:url(assets/vignettes/royaume.jpg)"><div class="ht" data-layout-allow-occlusion>ROYAUME</div><div class="hb" data-layout-allow-occlusion>▶ Regarder</div></div>
+     <div class="hero art-hero"><div class="ht" data-layout-allow-occlusion>TON CINÉMA</div><div class="hb" data-layout-allow-occlusion>▶ Regarder</div></div>
      <div class="rowt" style="top:560px" data-layout-allow-occlusion>Films & séries</div>
-     <div class="thumbs" style="top:600px"><img src="assets/vignettes/horizon-2030.jpg"/><img src="assets/vignettes/amour-eternel.jpg"/><img src="assets/vignettes/operation-omega.jpg"/></div>
+     <div class="thumbs" style="top:600px"><div class="art-card art-a"><b>CINÉMA</b><span>GRAND FORMAT</span></div><div class="art-card art-b"><b>ROMANCE</b><span>À DÉCOUVRIR</span></div><div class="art-card art-c"><b>AVENTURE</b><span>ÉVASION</span></div></div>
      <div class="rowt" style="top:830px" data-layout-allow-occlusion>En direct</div>
-     <div class="thumbs" style="top:870px"><img src="assets/vignettes/ligue-360.jpg"/><img src="assets/vignettes/nouveau-depart.jpg"/><img src="assets/vignettes/detective.jpg"/></div>
+     <div class="thumbs" style="top:870px"><div class="art-card art-d"><b>SPORT</b><span>EN DIRECT</span></div><div class="art-card art-e"><b>DRAME</b><span>SÉRIE</span></div><div class="art-card art-f"><b>ENQUÊTE</b><span>THRILLER</span></div></div>
      <div class="live" style="left:36px;top:882px" data-layout-allow-occlusion>LIVE</div>
      <div class="rowt" style="top:1100px" data-layout-allow-occlusion>Mangas</div>
-     <div class="thumbs" style="top:1140px"><img src="assets/vignettes/secret-foret.jpg"/><img src="assets/vignettes/royaume.jpg"/><img src="assets/vignettes/horizon-2030.jpg"/></div>
+     <div class="thumbs" style="top:1140px"><div class="art-card art-c"><b>MANGA</b><span>UNIVERS</span></div><div class="art-card art-d"><b>FANTASY</b><span>IMAGINATION</span></div><div class="art-card art-a"><b>DOCU</b><span>RÉALITÉ</span></div></div>
     </div>
    </div>
   </div>
-  <img class="el glow" id="e4film" src="assets/elements/clapper-board-3d.png" style="left:40px;top:430px;width:230px" />
+  
   <div class="lbl o0" id="l4film" style="left:50px;top:650px" data-layout-allow-occlusion>FILMS</div>
-  <img class="el glow" id="e4ser" src="assets/elements/film-frames-3d.png" style="left:800px;top:400px;width:240px" />
+  
   <div class="lbl o0" id="l4ser" style="left:800px;top:620px" data-layout-allow-occlusion>SÉRIES</div>
   <div class="lbl o0" id="l4man" style="left:40px;top:780px;font-size:52px;background:var(--rouge);border-color:#fff">MANGAS</div>
-  <img class="el glow" id="e4tv" src="assets/elements/television-3d.png" style="left:800px;top:720px;width:240px" />
+  
   <div class="live o0" id="l4live" style="left:850px;top:720px;font-size:30px">LIVE</div>
-  <img class="el glow" id="e4ball" src="assets/elements/soccer-ball-3d.png" style="left:40px;top:960px;width:220px" />
+  
   <div class="lbl o0" id="l4sport" style="left:50px;top:1170px">SPORT</div>
-  <img class="el glow" id="e4radio" src="assets/elements/radio-3d.png" style="left:810px;top:1000px;width:240px" />
+  
   <div class="lbl o0" id="l4radio" style="left:820px;top:1190px">RADIO</div>
-  <img class="el glow" id="e4game" src="assets/elements/video-game-3d.png" style="left:340px;top:1060px;width:400px" />
+  
   <div class="lbl o0" id="l4game" style="left:430px;top:1290px;font-size:52px">JEUX</div>
  </div>
 </div>
@@ -283,11 +308,11 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
   <div id="h5" class="abs c H">UN FILM <span class="box-accent">EN TÊTE ?</span></div>
   <div id="sbar" class="abs"><svg class="mg" viewBox="0 0 24 24" fill="none" stroke="#0141AA" stroke-width="3" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M15.5 15.5 21 21"/></svg><span class="q" id="q5"></span><span class="cur" id="cur5"></span></div>
   <div id="kb" class="abs">__KEYS__</div>
-  <div id="res" class="abs o0"><img src="assets/vignettes/horizon-2030.jpg"/><img src="assets/vignettes/operation-omega.jpg"/><img src="assets/vignettes/secret-foret.jpg"/></div>
-  <div id="big" class="abs o0"><img src="assets/vignettes/horizon-2030.jpg"/><div class="play">▶ REGARDER</div></div>
-  <img class="el" id="mag5" src="assets/elements/magnifying-glass-tilted-left-3d.png" style="left:700px;top:560px;width:300px" />
+  <div id="res" class="abs o0"><div class="art-card art-a result-card"><b>FILM</b><span>À VOIR</span></div><div class="art-card art-b result-card"><b>SÉRIE</b><span>À SUIVRE</span></div><div class="art-card art-c result-card"><b>MANGA</b><span>À EXPLORER</span></div></div>
+  <div id="big" class="abs o0"><div class="art-poster"><span>À DÉCOUVRIR</span><b>TON<br>PROCHAIN<br>COUP DE CŒUR</b></div><div class="play">▶ REGARDER</div></div>
+  
   <div id="stamp5" class="abs H o0">IL EST LÀ !</div>
-  <img class="el o0" id="pop5" src="assets/elements/party-popper-3d.png" style="left:40px;top:1100px;width:240px" />
+  
  </div>
 </div>
 
@@ -309,7 +334,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
    </svg>
    <div class="c6t" style="top:310px;color:#ff8a3d">PETIT DÉBIT</div>
   </div>
-  <div id="player" class="card6 o0"><img src="assets/vignettes/ligue-360.jpg"/><div class="bar"><i id="pbar"></i></div><div class="c6t" id="fluide" style="top:320px;color:var(--citron)">FLUIDE ✓</div></div>
+  <div id="player" class="card6 o0"><div class="player-art"><span>LIVE</span><b>SPORT</b></div><div class="bar"><i id="pbar"></i></div><div class="c6t" id="fluide" style="top:320px;color:var(--citron)">FLUIDE ✓</div></div>
   <div id="data" class="card6 o0"><div class="dl">DONNÉES</div><div class="db"><i id="dbar"></i></div><div class="dl" style="color:var(--citron)">ÉCONOMISÉES</div></div>
  </div>
 </div>
@@ -318,11 +343,11 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 <div id="sc7" class="scene clip nightbg" data-start="20.61" data-duration="2.24" data-track-index="6">
  <div class="cam" id="cam7">
   <div class="dots" id="dots7"></div>
-  <div id="tv7" class="tvset o0" style="left:50px;top:420px"><div class="scr" style="background-image:url(assets/vignettes/royaume.jpg)"><div class="ov"></div><div class="tb" style="font-size:40px">MISSA TV 360</div><div class="tt" style="font-size:70px">ROYAUME</div></div><div class="foot"></div></div>
-  <div id="tab7" class="tab o0" style="left:420px;top:820px"><div class="scr" style="background-image:url(assets/vignettes/royaume.jpg)"><div class="ov"></div><div class="tb" style="font-size:28px">MISSA TV 360</div><div class="tt" style="font-size:48px">ROYAUME</div></div></div>
+  <div id="tv7" class="tvset o0" style="left:50px;top:420px"><div class="scr show-art"><div class="ov"></div><div class="tb" style="font-size:40px">MISSA TV 360</div><div class="tt" style="font-size:70px">CINÉMA</div></div><div class="foot"></div></div>
+  <div id="tab7" class="tab o0" style="left:420px;top:820px"><div class="scr show-art"><div class="ov"></div><div class="tb" style="font-size:28px">MISSA TV 360</div><div class="tt" style="font-size:48px">DIVERTISSEMENT</div></div></div>
   <div id="ph7" class="phone o0" style="left:120px;top:640px;transform:scale(.62);transform-origin:0 0">
-   <div class="scr"><div class="notch"></div><div class="hero" style="top:80px;height:600px;background-image:url(assets/vignettes/royaume.jpg)"><div class="ht">ROYAUME</div><div class="hb">▶ Regarder</div></div>
-    <div class="rowt" style="top:720px">Films & séries</div><div class="thumbs" style="top:760px"><img src="assets/vignettes/horizon-2030.jpg"/><img src="assets/vignettes/amour-eternel.jpg"/><img src="assets/vignettes/ligue-360.jpg"/></div></div>
+   <div class="scr"><div class="notch"></div><div class="hero art-hero" style="top:80px;height:600px"><div class="ht">TON UNIVERS</div><div class="hb">▶ Regarder</div></div>
+    <div class="rowt" style="top:720px">Films & séries</div><div class="thumbs" style="top:760px"><div class="art-card art-a"><b>FILM</b><span>EXCLUSIF</span></div><div class="art-card art-b"><b>SÉRIE</b><span>ÉPISODES</span></div><div class="art-card art-c"><b>SPORT</b><span>LIVE</span></div></div></div>
   </div>
   <div class="dlab H o0" id="d1" style="left:80px;top:230px;color:#fff">TÉLÉPHONE,</div>
   <div class="dlab H o0" id="d2" style="left:280px;top:230px;color:var(--citron)">TABLETTE</div>
@@ -338,7 +363,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
   <div class="corner tl"><i></i><i></i><i></i></div><div class="corner br"><i></i><i></i><i></i></div>
   <svg id="arc8" class="abs" viewBox="0 0 520 520"><circle cx="260" cy="300" r="230" fill="none" stroke="rgba(1,65,170,.15)" stroke-width="22"/>
    <circle id="arc8c" cx="260" cy="300" r="230" fill="none" stroke="#08992D" stroke-width="22" stroke-linecap="round" stroke-dasharray="1445" stroke-dashoffset="1445" transform="rotate(-90 260 300)"/></svg>
-  <img class="el" id="sw" src="assets/elements/stopwatch-3d.png" />
+  
   <div id="h24" class="abs H">24H</div>
   <div id="essai" class="abs H">D'ESSAI</div>
   <div id="gratuit" class="abs H">GRATUIT</div>
@@ -354,8 +379,8 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
   <div id="ou" class="abs o0">OU</div>
   <div id="pc2" class="pcard o0"><div class="s">TOUTE L'ANNÉE</div><div class="n" style="font-size:150px;top:118px">10 000</div><div class="u"><b>FCFA</b>/ an</div></div>
   <div id="offert" class="abs o0">2 MOIS OFFERTS !</div>
-  <img class="el o0" id="gift" src="assets/elements/wrapped-gift-3d.png" />
-  <img class="el o0" id="popper" src="assets/elements/party-popper-3d.png" />
+  
+  
  </div>
 </div>
 
