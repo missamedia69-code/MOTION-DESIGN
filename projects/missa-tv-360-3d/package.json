@@ -1,0 +1,13 @@
+{
+  "name": "missa-tv-360-3d-pub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 tools/build.py",
+    "audio": "python3 sfx/generate.py && python3 tools/mix.py",
+    "check": "npx --yes hyperframes@0.8.142 check",
+    "render": "npx --yes hyperframes@0.8.142 render --fps 30 --quality delivery"
+  },
+  "devDependencies": {"three": "0.160.0"}
+}
