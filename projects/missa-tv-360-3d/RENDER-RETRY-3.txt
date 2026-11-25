@@ -1,0 +1,1 @@
+Relance après balisage individuel des textes sous le canvas WebGL.
