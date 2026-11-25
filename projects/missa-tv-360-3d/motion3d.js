@@ -111,8 +111,7 @@ reveal(coinB,26.45,29.2,{x:4,y:4,z:-3},{x:1.55,y:2.75,z:.8},{x:0,y:0,z:0},{x:1.2
 reveal(coinC,27,29.2,{x:-4,y:4,z:-3},{x:.05,y:2.75,z:.9},{x:0,y:0,z:0},{x:.6,y:-1.2,z:1.4},.40);
 // Signature — a final 3D orbit and a controlled pull-back behind the official logo.
 tl.fromTo(particles.scale,{x:.001,y:.001,z:.001},{x:1.25,y:1.25,z:1.25,duration:.6,ease:"power3.out",immediateRender:false},29.48);
-tl.fromTo(orbit.scale,{x:.001,y:.001,z:.001},{x:1.18,y:1.18,z:1.18,duration:.55,ease:"back.out(1.7)",immediateRender:false},29.52);
-tl.to(orbit.rotation,{x:Math.PI*1.7,y:Math.PI*2.25,z:.45,duration:3.3,ease:"none"},29.55);
+// Keep the final logo/CTA unobstructed: the large orbit rings belong only to the brand reveal.
 tl.to(camera.position,{x:0,y:0,z:20.8,duration:3,ease:"power2.out"},29.55);
 const l3=document.getElementById("logo3"),l10=document.getElementById("logo10");
 if(l3)tl.to(l3,{rotationX:8,rotationY:360,rotationZ:-1,transformPerspective:1800,duration:3.1,ease:"power2.inOut"},4.25);
