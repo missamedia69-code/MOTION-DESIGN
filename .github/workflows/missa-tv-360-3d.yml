@@ -3,7 +3,7 @@ name: Missa TV 360 — rendu publicitaire 3D
 on:
   push:
     branches:
-      - missa-tv-360-3d-final2
+      - missa-tv-360-3d-final3
     paths:
       - 'projects/missa-tv-360-3d/**'
       - '.github/workflows/missa-tv-360-3d.yml'
@@ -13,7 +13,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: missa-tv-360-3d-final2-render
+  group: missa-tv-360-3d-final3-render
   cancel-in-progress: true
 
 jobs:

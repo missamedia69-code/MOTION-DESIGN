@@ -310,7 +310,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
   <div id="sbar" class="abs"><svg class="mg" viewBox="0 0 24 24" fill="none" stroke="#0141AA" stroke-width="3" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M15.5 15.5 21 21"/></svg><span class="q" id="q5"></span><span class="cur" id="cur5"></span></div>
   <div id="kb" class="abs">__KEYS__</div>
   <div id="res" class="abs o0"><div class="art-card art-a result-card"><b data-layout-allow-occlusion>FILM</b><span data-layout-allow-occlusion>À VOIR</span></div><div class="art-card art-b result-card"><b data-layout-allow-occlusion>SÉRIE</b><span data-layout-allow-occlusion>À SUIVRE</span></div><div class="art-card art-c result-card"><b data-layout-allow-occlusion>MANGA</b><span data-layout-allow-occlusion>À EXPLORER</span></div></div>
-  <div id="big" class="abs o0"><div class="art-poster"><span data-layout-allow-occlusion>À DÉCOUVRIR</span><b data-layout-allow-occlusion>TON<br>PROCHAIN<br>COUP DE CŒUR</b></div><div class="play">▶ REGARDER</div></div>
+  <div id="big" class="abs o0"><div class="art-poster"><span data-layout-allow-occlusion>À DÉCOUVRIR</span><b data-layout-allow-occlusion>TON<br>PROCHAIN<br>COUP DE CŒUR</b></div></div>
   
   <div id="stamp5" class="abs H o0">IL EST LÀ !</div>
   
