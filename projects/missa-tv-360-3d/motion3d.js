@@ -118,7 +118,7 @@ const l3=document.getElementById("logo3"),l10=document.getElementById("logo10");
 if(l3)tl.to(l3,{rotationX:8,rotationY:360,rotationZ:-1,transformPerspective:1800,duration:3.1,ease:"power2.inOut"},4.25);
 if(l10)tl.to(l10,{rotationX:5,rotationY:360,rotationZ:0,transformPerspective:1800,duration:3,ease:"power2.inOut"},30);
 function draw(){renderer.render(scene,camera);}
+// Draw on timeline seeks/updates only; no idle 60fps loop during browser QA.
 tl.eventCallback("onUpdate",draw);
-if(window.gsap&&window.gsap.ticker)window.gsap.ticker.add(draw);
 draw();window.__MISSA_3D__={renderer,scene,camera};
 })();
