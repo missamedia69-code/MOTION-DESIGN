@@ -1,0 +1,66 @@
+name: Render Missa TV 360 campaign
+
+on:
+  push:
+    branches:
+      - missa-tv-360-ad-2026
+    paths:
+      - "entrees/**"
+      - "projects/missa-tv-360-ad-2026/**"
+      - ".github/workflows/render-missa-tv-360.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install render dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          make bootstrap
+
+      - name: Generate original visuals and sound design
+        run: |
+          python3 projects/missa-tv-360-ad-2026/generate_visuals.py
+          python3 projects/missa-tv-360-ad-2026/generate_sfx.py
+
+      - name: Prepare audio-synced project
+        run: python3 projects/missa-tv-360-ad-2026/prepare.py
+
+      - name: Quality checks
+        run: |
+          ./md doctor --full
+          ./md lint missa-tv-360-ad-2026
+          ./md apercu missa-tv-360-ad-2026
+
+      - name: Render vertical master and landscape cut
+        run: |
+          ./md render missa-tv-360-ad-2026 --preset mp4-social --formats 9x16,16x9
+
+      - name: Upload deliverables
+        uses: actions/upload-artifact@v4
+        with:
+          name: missa-tv-360-publicite
+          path: |
+            .cache/rendus/*.mp4
+            .cache/apercus/missa-tv-360-ad-2026-apercu/planche.png
+            projects/missa-tv-360-ad-2026/project.json
+            projects/missa-tv-360-ad-2026/manifest.json
+            projects/missa-tv-360-ad-2026/script-aligne.json
+            projects/missa-tv-360-ad-2026/generated/*.png
+            projects/missa-tv-360-ad-2026/sfx/*.wav
+          if-no-files-found: error
+          retention-days: 30
