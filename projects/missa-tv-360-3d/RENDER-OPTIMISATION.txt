@@ -1,0 +1,1 @@
+Déclencheur de relance après optimisation du rendu WebGL synchronisé à la timeline.
