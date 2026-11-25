@@ -1,0 +1,1 @@
+Relance du rendu après suppression des anneaux 3D dans la scène finale afin de laisser le logo et le CTA lisibles.
