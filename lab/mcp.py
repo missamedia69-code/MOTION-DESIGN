@@ -72,6 +72,14 @@ MD_TOOLS = [
         "preset": {"type": "string", "description": "mp4-social (pub), mp4-hq, mp4-web, gif, webm-vp9, mov-alpha…"},
         "formats": {"type": "array", "items": {"type": "string"}},
         "draft": {"type": "boolean"}}}},
+    {"name": "md_verify", "description": "JUGE LA VIDÉO RENDUE (à appeler après chaque md_render) : la vidéo bouge, pas d'image vide, carton de fin ≤ 1,4 s, passages figés, coupes, énergie du mouvement comparée aux films pros (4,4–9,8), volume. Renvoie un verdict (OK / À AMÉLIORER / À CORRIGER) avec la correction à appliquer + la planche contact en image.",
+     "inputSchema": {"type": "object", "properties": {
+        "video": {"type": "string", "description": "chemin du MP4 (ex. .cache/rendus/x-9x16-mp4-social.mp4)"},
+        "project": {"type": "string", "description": "ou nom de projet : juge tous ses rendus"},
+        "expect": {"type": "number", "description": "durée attendue (s)"},
+        "audio": {"type": "boolean", "description": "exiger une piste son non muette"}}}},
+    {"name": "md_rythme", "description": "Tempo (BPM), temps, premiers temps de mesure et montées d'une musique : pour caler les coupes (\"cuts\") et le moment fort sur la musique.",
+     "inputSchema": {"type": "object", "properties": {"audio": {"type": "string"}}, "required": ["audio"]}},
     {"name": "md_elements_search", "description": "Cherche des éléments graphiques LIBRES DE DROITS pour la pub (alternative à IconScout) : emojis 3D Microsoft Fluent (~1 600 objets : TV, popcorn, ballon, cadeau, horloge…), icônes ligne/plein (Unicons d'IconScout, Tabler, Lucide, Phosphor, Remix, MingCute, Material). Mots en français ou anglais. Renvoie des ids source:nom + licence.",
      "inputSchema": {"type": "object", "properties": {"query": {"type": "string"},
         "style": {"type": "string", "enum": ["3d", "couleur", "plat", "ligne", "plein"]},
@@ -225,6 +233,28 @@ def call_md_tool(name: str, args: dict) -> dict:
         outs = _render_outputs(proj, pdir, pname, args.get("preset"), args.get("formats"),
                                args.get("draft"))
         return text({"outputs": outs, "warnings": rep["warnings"]})
+    if name == "md_verify":
+        import glob
+        from engine import verify
+        if args.get("video"):
+            vids = [os.path.join(REPO, args["video"]) if not os.path.isabs(args["video"]) else args["video"]]
+        elif args.get("project"):
+            vids = sorted(glob.glob(os.path.join(REPO, ".cache", "rendus", f"{args['project']}*.mp4")))
+        else:
+            raise SystemExit("ERREUR : fournir video ou project")
+        if not vids:
+            raise SystemExit("ERREUR : aucun rendu trouvé (lancer md_render d'abord)")
+        blocks = []
+        for v in vids:
+            r = verify.verify(v, expect=args.get("expect"), expect_audio=bool(args.get("audio")))
+            r.pop("rapport_brut", None)
+            blocks.append({"type": "text", "text": json.dumps(r, ensure_ascii=False, indent=2)})
+            if r["fichiers"].get("planche"):
+                blocks.append(_image_block(r["fichiers"]["planche"]))
+        return {"content": blocks}
+    if name == "md_rythme":
+        from engine import beats, render as render_mod
+        return text(beats.analyse(render_mod.resolve_path(args["audio"], REPO)))
     if name == "md_elements_search":
         from engine import elements
         return text(elements.search(args["query"], style=args.get("style"), source=args.get("source"),

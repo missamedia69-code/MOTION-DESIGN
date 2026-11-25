@@ -57,7 +57,7 @@ PROJECT_FIELDS = {
     "brand": "kit de marque (brands/<nom>.json) → jetons $accent, $font.title, $logo…",
     "export": "{preset, filename, loudnorm (-14 ou true)}",
     "transitions": "{type, duration} par défaut entre scènes",
-    "scenes": "[{duration, background, layers, transition}]",
+    "scenes": "[{duration, background, layers, transition, camera, motion_blur}]",
     "background": "#hex, chemin d'image, {gradient:[…], angle, type:linear|radial} ou {image}",
     "audio": "musique : fichier, {file, volume, loop, fade_in, fade_out, at} ou liste",
     "voiceover": "voix off (même format) — la musique est baissée automatiquement dessous",
@@ -85,6 +85,7 @@ def capabilities() -> dict:
         "transitions": presets.XFADE_TRANSITIONS,
         "animations": {"entrees": {a: render.ANIM_HELP.get(a, "") for a in render.ANIMS},
                        "sorties": render.EXITS, "idle": render.IDLES,
+                       "camera": render.CAMERA_MOVES,
                        "easing": easing.EASINGS, "ancres": render.ANCHORS},
         "unites": ["120 (px)", "'120px'", "'50%'", "'8vw'", "'8vh'", "'6vmin'", "'6vmax'"],
         "calques": LAYER_FIELDS,
@@ -105,6 +106,17 @@ def capabilities() -> dict:
             "3. md_lint → corriger errors/warnings",
             "4. md_preview → regarder les images clés, ajuster",
             "5. md_render (preset mp4-social, formats 9x16/1x1/16x9)",
+            "6. md_verify → juger la vidéo rendue ; appliquer les corrections ; re-rendre",
+        ],
+        "grammaire_pro": [
+            "coupes franches (transition 'cut') en plein mouvement, pas de fondus entre scènes",
+            "chaque scène a une caméra (camera: push_in|pull_out|drift_left|drift_right|rise|fall)",
+            "entrées : land (arrive surdimensionné), mask_up/down/left/right (révélation masquée), whip_left/right",
+            "mouvement médian ~0,33 s, longue traîne, un seul rebond visible par film",
+            "aucune image morte : une chose vivante par plan ; carton de fin ≤ 1,4 s immobile",
+            "musique : md_rythme ; les coupes tombent sur les mesures (beat_sync)",
+            "skills : motionmaxxing (direction + lois), business-motion-film (critique indépendant), "
+            "ad-creative-video (variantes A/B), beat-sync-editing, motion-effects (16 effets)",
         ],
     }
 

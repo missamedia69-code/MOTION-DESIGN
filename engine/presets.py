@@ -96,7 +96,11 @@ XFADE_TRANSITIONS = [
     "slideleft", "slideright", "slideup", "slidedown", "circleopen", "circleclose",
     "dissolve", "pixelize", "diagtl", "diagbr", "hlslice", "hrslice", "smoothleft",
     "smoothright", "zoomin",
+    # « cut » : coupe franche (1 image de fondu, durée conseillée 0.04 s) — les pros
+    # coupent en plein mouvement au lieu d'enchaîner des fondus.
+    "cut",
 ]
+CUT_DURATION = 0.04
 
 DEFAULT_CANVAS = "16x9"
 DEFAULT_EXPORT = "mp4-hq"

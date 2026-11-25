@@ -40,7 +40,7 @@ Procédure :
    logo et copie les fichiers dans `assets/`. Ensuite, `"brand": "nom"` suffit.
 5. `md_lint` → `md_preview` → `md_render`.
 
-## La boucle de vol (5 gestes)
+## La boucle de vol (6 gestes)
 
 1. **Tableau de bord** : `md_cockpit` liste les formats, exports, animations,
    courbes, kits de marque, templates pub, polices, assets et projets.
@@ -53,8 +53,13 @@ Procédure :
    brouillon). Vérifie la hiérarchie, les chevauchements et la lisibilité, puis
    ajuste. Les scènes inchangées sortent du cache : itérer coûte peu.
 5. **Livrer** : `md_render` avec `preset: "mp4-social"` et
-   `formats: ["9x16", "1x1", "16x9"]`. Donne les chemins `outputs[].path` à
-   l'utilisateur.
+   `formats: ["9x16", "1x1", "16x9"]`.
+6. **Juger le rendu** : `md_verify` (ou `./md verifier <projet>`, lancé aussi
+   automatiquement après `./md render`) analyse la **vidéo finale** : image vide,
+   passages figés, carton de fin trop long, coupes, énergie du mouvement comparée
+   aux films pros, volume. Applique les corrections proposées, re-rends, re-juge.
+   Ne livre qu'un verdict `OK` (ou `À AMÉLIORER` assumé et expliqué). Donne
+   ensuite les chemins `outputs[].path` à l'utilisateur.
 
 ## Brief publicitaire (le plus rapide)
 
@@ -108,11 +113,42 @@ mise en page à chaque format.
 - **Son** : musique en `audio` (bouclée). La voix en `voiceover` fait baisser
   la musique automatiquement (ducking). `mp4-social` normalise à -14 LUFS.
 
+## Grammaire « pro » (moteur 2.1, par défaut dans les briefs)
+
+Lois mesurées sur des films professionnels (skill `motionmaxxing`, ~4 300 mouvements) :
+
+- **On coupe en plein mouvement, jamais au repos** : transition `cut` (coupe franche)
+  plutôt que des fondus. Les fondus sont l'exception.
+- **Aucune image morte** : chaque scène a une `camera` (`push_in`, `pull_out`,
+  `drift_left`, `drift_right`, `rise`, `fall`) ; la première entrée arrive dans
+  les 0,1 s ; un halo de couleur d'accent dérive derrière.
+- **Presque rien ne fond** : on arrive en bougeant (`whip_left/right`), en se
+  démasquant (`mask_up/down/left/right`, mot par mot dans sa ligne) ou en
+  décélérant depuis un objet surdimensionné (`land`, 180 % → 100 %).
+- **Mouvement médian ≈ 0,33 s**, longue traîne, pas de rebond (un seul ressort
+  visible par film au plus).
+- **Fin courte** : image immobile finale ≤ 1,4 s, dernier plan ≤ 25 % du film.
+- **Musique** : `md_rythme` / `./md rythme <fichier>` donne tempo, temps, mesures
+  et montées ; avec `"music"` dans le brief, les coupes tombent sur les mesures
+  (`beat_sync`, défaut). Placer le moment fort sur une montée.
+- Ancien style : `"style": {"motion": "classique"}`.
+
+Pour aller plus loin que le moteur ffmpeg (3D, effets, interface animée), les
+skills installés donnent la méthode : `motionmaxxing` (direction + contrôles
+chiffrés), `business-motion-film` (critique indépendant « Gauntlet »),
+`ad-creative-video` (variantes A/B), `beat-sync-editing`, `motion-effects`
+(16 effets premium), `kinetic-typography`, `logo-animation`, `promo-video`,
+`huashu-motion`, `bang-motion`, `reel-export`. Liste et licences :
+docs/SKILLS-SOURCES.md.
+
 ## Vocabulaire du mouvement
 
 | Champ | Valeurs |
 |---|---|
-| `anim` (entrée) | `fade`, `fade_up/down/left/right`, `slide_up/down/left/right` (depuis le hors-champ), `pop`, `scale_in`, `zoom_in`, `punch` (impact 140 %→100 %), `rotate_in`, `grow_x`, `grow_y` (révélation masquée), `kenburns_*` |
+| `anim` (entrée) | **pro** : `land` (surdimensionné → 100 %), `mask_up/down/left/right` (révélation masquée), `whip_left/right` (entrée éclair) · `fade`, `fade_up/down/left/right`, `slide_up/down/left/right` (depuis le hors-champ), `pop`, `scale_in`, `zoom_in`, `punch` (impact 140 %→100 %), `rotate_in`, `grow_x`, `grow_y`, `kenburns_*` |
+| `camera` (scène) | `push_in`, `pull_out`, `drift_left`, `drift_right`, `rise`, `fall` ; ou `{"move", "amount": 0.06, "ease"}` |
+| `motion_blur` (scène) | `true` : flou de mouvement (obturateur ~180°) |
+| transition | `cut` (coupe franche, durée 0.04) + toutes les transitions xfade |
 | `ease` | `ease_out` (défaut), `ease_in`, `ease_in_out`, `expo_out`, `back_out` (rebond), `back_in`, `elastic_out`, `snap`, `linear` |
 | `exit` (sortie) | `fade`, `fade_up`, `fade_down`, `slide_*`, `scale_out` |
 | `idle` (continu) | `float`, `drift`, `pulse`, `sway`, `breathe` |

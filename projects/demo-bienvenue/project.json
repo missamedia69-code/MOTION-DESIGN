@@ -3,19 +3,21 @@
   "title": "Démo moteur MOTION-DESIGN",
   "version": 1,
   "canvas": "9x16",
-  "export": { "preset": "mp4-hq" },
-  "transitions": { "type": "fade", "duration": 0.5 },
-  "audio": {
-    "file": "assets/audio/nappe-sonore.mp3",
-    "volume": 0.9,
-    "fade_in": 0.8,
-    "fade_out": 1.5
+  "export": {
+    "preset": "mp4-hq"
+  },
+  "transitions": {
+    "type": "fade",
+    "duration": 0.5
   },
   "scenes": [
     {
       "duration": 4.5,
       "background": "assets/images/fond-degrade.png",
-      "transition": { "type": "slideleft", "duration": 0.6 },
+      "transition": {
+        "type": "slideleft",
+        "duration": 0.6
+      },
       "layers": [
         {
           "type": "image",
@@ -28,8 +30,13 @@
         {
           "type": "image",
           "file": "assets/images/pastille.png",
-          "pos": [540, 620],
-          "scale": { "w": 260 },
+          "pos": [
+            540,
+            620
+          ],
+          "scale": {
+            "w": 260
+          },
           "in": 0.2,
           "out": 4.3,
           "anim": "pop"
@@ -42,8 +49,18 @@
           "color": "#ffffff",
           "align": "center",
           "letter_spacing": 4,
-          "shadow": { "color": "#000000", "blur": 16, "offset": [0, 8] },
-          "pos": [540, 1080],
+          "shadow": {
+            "color": "#000000",
+            "blur": 16,
+            "offset": [
+              0,
+              8
+            ]
+          },
+          "pos": [
+            540,
+            1080
+          ],
           "in": 0.4,
           "out": 4.3,
           "anim": "fade_up",
@@ -54,7 +71,10 @@
           "text": "moteur de montage",
           "size": 44,
           "color": "#ffd08a",
-          "pos": [540, 1260],
+          "pos": [
+            540,
+            1260
+          ],
           "in": 1.0,
           "out": 4.3,
           "anim": "fade",
@@ -65,7 +85,10 @@
     {
       "duration": 4.5,
       "background": "#101a30",
-      "transition": { "type": "circleopen", "duration": 0.7 },
+      "transition": {
+        "type": "circleopen",
+        "duration": 0.7
+      },
       "layers": [
         {
           "type": "text",
@@ -74,7 +97,10 @@
           "size": 96,
           "color": "#ffffff",
           "align": "center",
-          "pos": [540, 760],
+          "pos": [
+            540,
+            760
+          ],
           "in": 0.2,
           "out": 4.3,
           "anim": "fade_up"
@@ -85,7 +111,10 @@
           "w": 700,
           "h": 8,
           "color": "#ff8c3c",
-          "pos": [540, 980],
+          "pos": [
+            540,
+            980
+          ],
           "in": 0.6,
           "out": 4.3,
           "anim": "grow_x",
@@ -96,7 +125,10 @@
           "text": "project.json → ffmpeg",
           "size": 46,
           "color": "#9fb4d8",
-          "pos": [540, 1120],
+          "pos": [
+            540,
+            1120
+          ],
           "in": 0.9,
           "out": 4.3,
           "anim": "fade",
@@ -115,7 +147,10 @@
           "size": 88,
           "color": "#ffffff",
           "align": "center",
-          "pos": [540, 720],
+          "pos": [
+            540,
+            720
+          ],
           "in": 0.2,
           "out": 4.1,
           "anim": "fade_up"
@@ -127,7 +162,10 @@
           "h": 120,
           "radius": 60,
           "color": "#ff8c3c",
-          "pos": [540, 1180],
+          "pos": [
+            540,
+            1180
+          ],
           "in": 0.8,
           "out": 4.3,
           "anim": "fade_up"
@@ -137,7 +175,10 @@
           "text": "./md render",
           "size": 48,
           "color": "#0b1020",
-          "pos": [540, 1180],
+          "pos": [
+            540,
+            1180
+          ],
           "in": 1.1,
           "out": 4.3,
           "anim": "fade"

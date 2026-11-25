@@ -22,7 +22,7 @@ import time
 from . import easing, ffmpeg, layout, presets, probe, text
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ENGINE_VERSION = "2.0"
+ENGINE_VERSION = "2.1"
 
 # ── Catalogue de mouvements ──────────────────────────────────────────────────
 
@@ -30,10 +30,15 @@ ANIMS = ["none", "fade", "fade_up", "fade_down", "fade_left", "fade_right",
          "slide_up", "slide_down", "slide_left", "slide_right",
          "pop", "scale_in", "zoom_in", "punch", "rotate_in",
          "grow_x", "grow_y", "kenburns_in", "kenburns_out",
-         "kenburns_pan_left", "kenburns_pan_right"]
+         "kenburns_pan_left", "kenburns_pan_right",
+         # 2.1 — grammaire « pro » (lois mesurées, skill motionmaxxing) :
+         "land", "whip_left", "whip_right",
+         "mask_up", "mask_down", "mask_left", "mask_right"]
 EXITS = ["none", "fade", "fade_up", "fade_down", "slide_up", "slide_down",
          "slide_left", "slide_right", "scale_out"]
 IDLES = ["none", "float", "drift", "pulse", "sway", "breathe"]
+# Mouvement de caméra d'une scène entière (aucune image morte, la scène démarre déjà en mouvement)
+CAMERA_MOVES = ["none", "push_in", "pull_out", "drift_left", "drift_right", "rise", "fall"]
 ANCHORS = ["center", "top_left", "top", "top_right", "left", "right",
            "bottom_left", "bottom", "bottom_right"]
 LAYER_TYPES = ["image", "text", "video", "shape", "counter", "audio"]
@@ -49,16 +54,28 @@ ANIM_HELP = {
     "grow_y": "révélation bas→haut", "kenburns_in": "zoom lent (plein cadre)",
     "kenburns_out": "dézoom lent", "kenburns_pan_left": "travelling gauche",
     "kenburns_pan_right": "travelling droite",
+    "land": "arrive surdimensionné (180 %) et décélère jusqu'à 100 %, sans rebond (expo_out)",
+    "whip_left": "entre très vite par la droite (0,35 s, expo_out)",
+    "whip_right": "entre très vite par la gauche (0,35 s, expo_out)",
+    "mask_up": "monte dans un masque (révélation par le bas, sans fondu)",
+    "mask_down": "descend dans un masque (révélation par le haut)",
+    "mask_left": "glisse vers la gauche dans un masque",
+    "mask_right": "glisse vers la droite dans un masque",
 }
 
 _FADE_IN = {"fade", "fade_up", "fade_down", "fade_left", "fade_right", "pop",
             "zoom_in", "punch", "rotate_in"}
 _SCALE_IN = {"pop": (0.6, "back_out"), "scale_in": (0.0, "back_out"),
              "zoom_in": (0.7, "ease_out"), "punch": (1.4, "expo_out"),
-             "rotate_in": (0.7, "back_out")}
+             "rotate_in": (0.7, "back_out"), "land": (1.8, "expo_out")}
 _DEFAULT_EASE = {"grow_x": "ease_in_out", "grow_y": "ease_in_out",
                  "slide_up": "expo_out", "slide_down": "expo_out",
-                 "slide_left": "expo_out", "slide_right": "expo_out"}
+                 "slide_left": "expo_out", "slide_right": "expo_out",
+                 "whip_left": "expo_out", "whip_right": "expo_out",
+                 "mask_up": "expo_out", "mask_down": "expo_out",
+                 "mask_left": "expo_out", "mask_right": "expo_out"}
+_DEFAULT_ANIM_DURATION = {"whip_left": 0.35, "whip_right": 0.35, "land": 0.5}
+_MASKS = {"mask_up", "mask_down", "mask_left", "mask_right"}
 
 
 # ── Utilitaires ──────────────────────────────────────────────────────────────
@@ -209,9 +226,51 @@ def build_scene_graph(scene: dict, canvas: dict, project_dir: str, cache_dir: st
         for sub_i, sub in enumerate(_expand_layer(layer, li, tag, canvas, D, project_dir, cache_dir)):
             prev = _add_layer(g, sub, li, f"{tag}k{sub_i}", canvas, D, project_dir, cache_dir, prev)
 
-    g.filters.append(f"[{prev}]format=yuv420p" if not transparent_bg else f"[{prev}]format=rgba")
+    prev = _camera(g, scene, prev, W, H, D, scene_idx)
+    if scene.get("motion_blur"):
+        # obturateur ~180° simulé : moyenne pondérée de 3 images (le statique reste net)
+        g.filters.append(f"[{prev}]tmix=frames=3:weights='1 2 1'[s{scene_idx}mb]")
+        prev = f"s{scene_idx}mb"
+    # Marge de 2 images (dernière image figée) : les scènes sont quantifiées à l'image près,
+    # xfade exige que le clip couvre offset + durée de transition (sinon la vidéo est tronquée).
+    g.filters.append(f"[{prev}]tpad=stop_mode=clone:stop_duration={_num(2 / FPS)},"
+                     + ("format=yuv420p" if not transparent_bg else "format=rgba"))
     g.filters[-1] += "[vout]"
     return g, "vout", D
+
+
+def _camera(g: SceneGraph, scene: dict, prev: str, W: int, H: int, D: float, si: int) -> str:
+    """Mouvement de caméra sur toute la scène composée : push, pull, dérive, montée.
+
+    `camera` : "push_in" | {"move": "push_in", "amount": 0.06, "ease": "ease_in_out"}.
+    """
+    cam = scene.get("camera")
+    if not cam:
+        return prev
+    if isinstance(cam, str):
+        cam = {"move": cam}
+    move = cam.get("move", "push_in")
+    if move not in CAMERA_MOVES:
+        _fail(f"scène {si} : camera inconnue '{move}' ({', '.join(CAMERA_MOVES)})")
+    if move == "none":
+        return prev
+    amt = _clamp(float(cam.get("amount", 0.06)), 0.005, 0.5)
+    p = easing.ease(cam.get("ease", "linear"), easing.progress("t", 0, D))
+    if move == "push_in":
+        s, dx, dy = f"(1+{_num(amt)}*{p})", "0", "0"
+    elif move == "pull_out":
+        s, dx, dy = f"(1+{_num(amt)}*(1-{p}))", "0", "0"
+    else:
+        s = f"{_num(1 + amt)}"
+        span_x, span_y = f"{_num(W * amt / 2)}", f"{_num(H * amt / 2)}"
+        lin = f"(2*{p}-1)"
+        dx = {"drift_left": f"{span_x}*{lin}", "drift_right": f"-{span_x}*{lin}"}.get(move, "0")
+        dy = {"rise": f"-{span_y}*{lin}", "fall": f"{span_y}*{lin}"}.get(move, "0")
+    out = f"s{si}cam"
+    g.filters.append(
+        f"[{prev}]scale=w='2*trunc({W}*{s}/2)':h='2*trunc({H}*{s}/2)':eval=frame,"
+        f"crop={W}:{H}:x='(iw-{W})/2+({dx})':y='(ih-{H})/2+({dy})'[{out}]")
+    return out
 
 
 def _expand_layer(layer: dict, li: int, tag: str, canvas: dict, D: float,
@@ -237,6 +296,17 @@ def _expand_layer(layer: dict, li: int, tag: str, canvas: dict, D: float,
             idx = k - 1 if has_box else k
             sub["in"] = round(t_in + (0.15 if has_box else 0) + idx * stagger, 3)
             sub["anim"] = layer.get("anim", "fade_up") if layer.get("anim", "none") != "none" else "fade_up"
+            if sub["anim"] in ("mask_up", "mask_down"):
+                # masque limité à la ligne du mot : il ne traverse pas les autres lignes
+                try:
+                    from PIL import Image
+                    with Image.open(p) as im:
+                        bb = im.getchannel("A").getbbox()
+                    if bb:
+                        pad = max(2, int((bb[3] - bb[1]) * 0.12))
+                        sub["_mask_band"] = [max(0, bb[1] - pad), bb[3] + pad]
+                except OSError:
+                    pass
             sub.setdefault("amplitude", max(12, float(layer.get("size", 64)) * 0.5))
         if float(sub.get("out", D)) <= float(sub["in"]):
             sub["in"] = max(0.0, float(sub.get("out", D)) - 0.05)
@@ -344,7 +414,7 @@ def _add_layer(g: SceneGraph, layer: dict, li: int, tag: str, canvas: dict, D: f
     i, chain, fw, fh, kind = _source(g, layer, li, tag, canvas, L, project_dir, cache_dir)
     chain.append("format=rgba")
 
-    ad = max(0.05, float(layer.get("anim_duration", 0.6)))
+    ad = max(0.05, float(layer.get("anim_duration", _DEFAULT_ANIM_DURATION.get(anim, 0.6))))
     ed = _clamp(float(layer.get("exit_duration", 0.45)), 0.05, max(0.05, L / 2))
     curve = layer.get("ease") or _DEFAULT_EASE.get(anim) or (
         _SCALE_IN[anim][1] if anim in _SCALE_IN else easing.DEFAULT)
@@ -377,7 +447,10 @@ def _add_layer(g: SceneGraph, layer: dict, li: int, tag: str, canvas: dict, D: f
 
     # ── Fondus alpha ──
     legacy_fade_out = exit_ == "none" and "exit" not in layer and anim.startswith("fade")
-    if anim in _FADE_IN:
+    if anim == "land":
+        fi = _clamp(float(layer.get("fade_in", 0.08)), 0.01, L / 2)
+        chain.append(f"fade=t=in:st=0:d={_num(fi)}:alpha=1")
+    elif anim in _FADE_IN:
         default_fi = 0.5 if anim.startswith("fade") else ad * 0.6
         fi = _clamp(float(layer.get("fade_in", default_fi)), 0.01, L / 2)
         chain.append(f"fade=t=in:st=0:d={_num(fi)}:alpha=1")
@@ -391,6 +464,25 @@ def _add_layer(g: SceneGraph, layer: dict, li: int, tag: str, canvas: dict, D: f
         e_mask = easing.ease(curve, easing.progress("T", 0, ad))
         cond = f"lte(X,W*{e_mask})" if anim == "grow_x" else f"gte(Y,H*(1-{e_mask}))"
         chain.append(f"geq=r='r(X,Y)':g='g(X,Y)':b='b(X,Y)':a='if({cond},alpha(X,Y),0)'")
+    if anim in _MASKS:
+        # Le contenu glisse à l'intérieur de sa propre boîte (masque fixe) : rien ne fond.
+        e_mask = easing.ease(curve, easing.progress("T", 0, ad))
+        band = layer.get("_mask_band")          # [y0, y1] : masque d'une ligne (texte cinétique)
+        if anim in ("mask_up", "mask_down") and band:
+            y0, y1 = int(band[0]), int(band[1])
+            dist = max(2, y1 - y0)
+            off = f"({dist}*(1-{e_mask}))" if anim == "mask_up" else f"(-{dist}*(1-{e_mask}))"
+            sx, sy = "X", f"(Y+{off})"
+            ok = f"between(Y,{y0},{y1})*between(Y+{off},{y0},{y1})"
+        elif anim in ("mask_up", "mask_down"):
+            off = f"(H*(1-{e_mask}))" if anim == "mask_up" else f"(-H*(1-{e_mask}))"
+            sx, sy, ok = "X", f"(Y+{off})", f"between(Y+{off},0,H-1)"
+        else:
+            off = f"(W*(1-{e_mask}))" if anim == "mask_left" else f"(-W*(1-{e_mask}))"
+            sx, sy, ok = f"(X+{off})", "Y", f"between(X+{off},0,W-1)"
+        chain.append(f"geq=r='r({sx},{sy})':g='g({sx},{sy})':b='b({sx},{sy})':"
+                     f"a='if({ok},alpha({sx},{sy}),0)'")
+        animated = True
 
     # ── Échelle animée (entrée × sortie × idle) ──
     factors = []
@@ -435,9 +527,9 @@ def _add_layer(g: SceneGraph, layer: dict, li: int, tag: str, canvas: dict, D: f
         dy.append(f"{_num(amp)}*(1-{E_in})" if explicit_amp else f"(H-({yb}))*(1-{E_in})")
     elif anim == "slide_down":
         dy.append(f"-{_num(amp)}*(1-{E_in})" if explicit_amp else f"-(({yb})+h)*(1-{E_in})")
-    elif anim == "slide_left":
+    elif anim in ("slide_left", "whip_left"):
         dx.append(f"{_num(amp)}*(1-{E_in})" if explicit_amp else f"(W-({xb}))*(1-{E_in})")
-    elif anim == "slide_right":
+    elif anim in ("slide_right", "whip_right"):
         dx.append(f"-{_num(amp)}*(1-{E_in})" if explicit_amp else f"-(({xb})+w)*(1-{E_in})")
 
     if exit_ == "fade_up":
@@ -764,6 +856,7 @@ def render_project_data(proj: dict, project_dir: str, name: str,
         mix["loudnorm"] = exp["loudnorm"]
 
     t0 = time.time()
+    cut_events: list[dict] = []
     if len(scenes) == 1:
         sc = scenes[0]
         D = float(sc.get("duration", canvas.get("duration", 5)))
@@ -811,6 +904,8 @@ def render_project_data(proj: dict, project_dir: str, name: str,
             tk_type, tk_dur = bounds[k - 1]
             off = starts[k]
             lbl = f"x{k}" if k < len(clips) - 1 else "vchain"
+            if tk_type == "cut":
+                tk_type = "fade"
             filters.append(f"[{prev_lbl}][{k}:v]xfade=transition={tk_type}:"
                            f"duration={_num(tk_dur)}:offset={_num(off)}[{lbl}]")
             prev_lbl = lbl
@@ -828,12 +923,17 @@ def render_project_data(proj: dict, project_dir: str, name: str,
         args += ["-t", f"{total}"]
         args += exp["args"] if export_name != "gif" else []
         args += [tmp_path]
+        cut_events = [{"type": "cut", "t": round(starts[k] + bounds[k - 1][1] / 2, 4),
+                       "scene": k} for k in range(1, len(clips))]
         _execute(args, dry_run)
 
     if not dry_run:
         if not os.path.isfile(tmp_path) or os.path.getsize(tmp_path) == 0:
             _fail("ffmpeg n'a produit aucun fichier.")
         os.replace(tmp_path, out_path)
+        # Coupes exactes pour `./md verifier` (look.py lit <film>.events.json)
+        with open(out_path + ".events.json", "w", encoding="utf-8") as f:
+            json.dump(cut_events, f)
         info = probe.probe(out_path)
         manifest = {
             "projet": name,
@@ -883,7 +983,7 @@ def _render_scenes(scenes, canvas, project_dir, cache_dir, dry_run, draft):
             args += inp
         part = clip + ".part.mp4"
         args += ["-filter_complex", ";".join(g.filters), "-map", "[vout]",
-                 "-t", f"{D_i}", "-r", f"{canvas['fps']}", *enc,
+                 "-t", f"{D_i + 2 / float(canvas['fps']):.4f}", "-r", f"{canvas['fps']}", *enc,
                  "-pix_fmt", "yuv420p", "-an", part]
         print(f"── Scène {si + 1}/{len(scenes)} ({D_i}s) ──")
         _execute(args, dry_run)

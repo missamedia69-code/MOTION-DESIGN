@@ -55,12 +55,12 @@ class UnitsAndBrandTest(unittest.TestCase):
             layout.to_px("12em", "x", W, H)
 
     def test_normalize_tokens_and_units(self):
-        proj = {"brand": "missa", "canvas": "9x16", "duration": 2, "layers": [
+        proj = {"brand": "demo", "canvas": "9x16", "duration": 2, "layers": [
             {"type": "text", "text": "Prix : $9.99", "color": "$accent", "font": "$font.title",
              "size": "5vmin", "pos": ["50%", "25%"], "box": {"padding": ["2vw", 10]}}]}
         out = layout.normalize(proj, presets.canvas("9x16"))
         l0 = out["layers"][0]
-        self.assertEqual(l0["color"], "#FFD400")
+        self.assertEqual(l0["color"], "#FF5C39")
         self.assertEqual(l0["font"], "Montserrat-Black.ttf")
         self.assertEqual(l0["text"], "Prix : $9.99")  # pas un jeton
         self.assertEqual(l0["pos"], [540, 480])
@@ -69,7 +69,7 @@ class UnitsAndBrandTest(unittest.TestCase):
 
     def test_unknown_token_and_brand(self):
         with self.assertRaises(SystemExit):
-            brand.resolve_project({"brand": "missa", "layers": [{"color": "$nope"}]})
+            brand.resolve_project({"brand": "demo", "layers": [{"color": "$nope"}]})
         with self.assertRaises(SystemExit):
             brand.load("marque-inexistante")
         with self.assertRaises(SystemExit):  # jeton sans kit
@@ -179,8 +179,14 @@ class AdsTest(unittest.TestCase):
                 ads.compose(bad)
 
     def test_audio_graph_ducking(self):
-        b = dict(ads.example(), music={"file": "assets/audio/Voive Template.mp3", "loop": True},
-                 voiceover="assets/audio/Voive Template.mp3", duration=6)
+        import subprocess
+        from engine import ffmpeg as ff
+        tone = os.path.join(REPO, ".cache", "t-duck-tone.wav")
+        os.makedirs(os.path.dirname(tone), exist_ok=True)
+        subprocess.run([ff.ffmpeg_exe(), "-v", "error", "-y", "-f", "lavfi", "-i",
+                        "sine=f=220:d=3", tone], check=True)
+        b = dict(ads.example(), music={"file": tone, "loop": True},
+                 voiceover=tone, duration=6, beat_sync=False)
         _, out = quiet(render.render_project_data, ads.compose(b), REPO, "t-duck",
                        canvas_override="720p", dry_run=True)
         self.assertIn("sidechaincompress", out)

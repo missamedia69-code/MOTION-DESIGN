@@ -93,12 +93,66 @@ def cmd_new(args) -> None:
     project.new(args.name, canvas_preset=args.canvas, template=args.template)
 
 
+def _auto_verify(paths, args, expect_audio: bool = False) -> None:
+    """Après un rendu final : l'œil du moteur juge la vidéo (désactivable : --sans-verif)."""
+    if getattr(args, "dry_run", False) or getattr(args, "draft", False) or getattr(args, "sans_verif", False):
+        return
+    from engine import verify
+    for p in ([paths] if isinstance(paths, str) else (paths or [])):
+        if p and os.path.isfile(p) and p.endswith((".mp4", ".mov", ".webm")):
+            try:
+                verify.print_report(verify.verify(p, expect_audio=expect_audio))
+            except SystemExit as exc:
+                print(f"⚠ vérification impossible : {exc}")
+
+
 def cmd_render(args) -> None:
     from engine import render
     formats = [f.strip() for f in args.formats.split(",") if f.strip()] if args.formats else None
-    render.render_project(args.name, export_name=args.preset, out_path=args.out,
-                          dry_run=args.dry_run, fps_override=args.fps,
-                          formats=formats, draft=args.draft)
+    outs = render.render_project(args.name, export_name=args.preset, out_path=args.out,
+                                 dry_run=args.dry_run, fps_override=args.fps,
+                                 formats=formats, draft=args.draft)
+    _auto_verify(outs, args)
+
+
+def cmd_verifier(args) -> None:
+    """Juge une vidéo rendue (ou les rendus d'un projet) : gates, énergie, figés, volume."""
+    from engine import verify
+    target = args.cible
+    if os.path.isfile(target):
+        videos = [target]
+    else:
+        import glob
+        videos = sorted(glob.glob(os.path.join(REPO, ".cache", "rendus", f"{target}*.mp4")))
+        if not videos:
+            raise SystemExit(f"ERREUR : ni fichier ni rendu trouvé pour « {target} » "
+                             "(rendre d'abord : ./md render <projet>)")
+    reports = [verify.verify(v, expect=args.expect, expect_audio=args.audio) for v in videos]
+    if args.json:
+        for r in reports:
+            r.pop("rapport_brut", None)
+        print(json.dumps(reports if len(reports) > 1 else reports[0], ensure_ascii=False, indent=2))
+    else:
+        for r in reports:
+            verify.print_report(r)
+    sys.exit(1 if any(r["verdict"] == "À CORRIGER" for r in reports) else 0)
+
+
+def cmd_rythme(args) -> None:
+    """Tempo, temps et montées d'une musique (pour caler les coupes)."""
+    from engine import beats
+    r = beats.analyse(args.audio)
+    if args.json:
+        print(json.dumps(r, ensure_ascii=False, indent=2))
+        return
+    fps = args.fps
+    print(f"── Rythme · {args.audio} · {r['duration']:.2f} s ──")
+    print(f"  tempo      : {r['bpm']} BPM  (1 temps = {r['beat_period']:.3f} s = "
+          f"{r['beat_period'] * fps:.1f} images à {fps:g} i/s)")
+    print(f"  temps      : {len(r['beats'])} · premiers : {', '.join(f'{t:.2f}' for t in r['beats'][:8])}")
+    print(f"  mesures    : {', '.join(f'{t:.2f}' for t in r['downbeats'][:12])}")
+    print(f"  montées    : {', '.join(f'{t:.2f}' for t in r['drops']) or 'aucune nette'}")
+    print("  → dans un brief : \"music\": \"<fichier>\" (coupes calées sur les mesures, beat_sync)")
 
 
 def cmd_lint(args) -> None:
@@ -150,8 +204,9 @@ def cmd_ad(args) -> None:
         formats = [f.strip() for f in args.formats.split(",")] if args.formats else [None]
         for fmt in formats:
             p_fmt = ads.compose(brief, canvas=fmt) if fmt else proj
-            render.render_project_data(p_fmt, pdir, name, export_name=args.preset,
-                                       canvas_override=fmt, draft=args.draft)
+            out = render.render_project_data(p_fmt, pdir, name, export_name=args.preset,
+                                             canvas_override=fmt, draft=args.draft)
+            _auto_verify(out, args)
     elif not args.save and not args.preview:
         print(json.dumps(proj, ensure_ascii=False, indent=2))
 
@@ -340,7 +395,21 @@ def main() -> None:
     p.add_argument("--dry-run", action="store_true", help="afficher la commande sans exécuter")
     p.add_argument("--formats", help="décliner en plusieurs formats : 9x16,1x1,16x9")
     p.add_argument("--draft", action="store_true", help="brouillon rapide (15 i/s, ultrafast)")
+    p.add_argument("--sans-verif", action="store_true", help="ne pas juger la vidéo après le rendu")
     p.set_defaults(fn=cmd_render)
+
+    p = sub.add_parser("verifier", help="juger une vidéo rendue (image vide, figés, fin, énergie, volume)")
+    p.add_argument("cible", help="fichier vidéo ou nom de projet (ses rendus dans .cache/rendus/)")
+    p.add_argument("--expect", type=float, help="durée attendue (s)")
+    p.add_argument("--audio", action="store_true", help="exiger une piste son non muette")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_verifier)
+
+    p = sub.add_parser("rythme", help="tempo, temps et montées d'une musique")
+    p.add_argument("audio")
+    p.add_argument("--fps", type=float, default=30)
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_rythme)
 
     p = sub.add_parser("lint", help="contrôle qualité avant rendu (erreurs, lisibilité, zones sûres)")
     p.add_argument("name")
@@ -367,6 +436,7 @@ def main() -> None:
     p.add_argument("--formats", help="9x16,1x1,16x9")
     p.add_argument("--preset", help="export (défaut : celui du brief, mp4-social)")
     p.add_argument("--draft", action="store_true")
+    p.add_argument("--sans-verif", action="store_true", help="ne pas juger la vidéo après le rendu")
     p.set_defaults(fn=cmd_ad)
 
     p = sub.add_parser("entrees", help="réception des éléments d'une pub (audio, logos, détails, médias)")

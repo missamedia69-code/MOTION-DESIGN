@@ -94,7 +94,7 @@ avec `npx skills add`.
 Les dépôts de génération vocale (VoiceStudio, voicebox, voice-studio, VoxCPM,
 AI-voice-generator, speech-studio) sont comparés, licences et contraintes
 sandbox vérifiées, dans **[VOIX-TTS.md](VOIX-TTS.md)** — avec les 6 textes de VO
-attendus par `projects/missa-tv-360-v9/mix9.sh`. Ce ne sont pas des skills
+attendus par `projects/demo-voix/mix.sh`. Ce ne sont pas des skills
 agent : ils ne s'installent pas via `npx skills add`.
 
 ---

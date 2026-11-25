@@ -1,0 +1,41 @@
+{
+  "project": "demo-voix",
+  "backend": "edge-tts",
+  "voice": "fr-FR-HenriNeural",
+  "rate": "-4%",
+  "out_dir": ".cache/vo-demo",
+  "format": "mp3",
+  "segments": [
+    {
+      "id": "s1",
+      "start": 0.2,
+      "text": "Chaque mois, vous payez un abonnement… et vous ne trouvez rien à regarder ?"
+    },
+    {
+      "id": "s2",
+      "start": 8.35,
+      "text": "Découvrez le Produit Démo !"
+    },
+    {
+      "id": "s3",
+      "start": 13.97,
+      "text": "Tout ce que vous aimez, au même endroit, même avec une petite connexion."
+    },
+    {
+      "id": "s4",
+      "start": 22.52,
+      "text": "Du sport aux grands films, des séries aux documentaires : tout y est."
+    },
+    {
+      "id": "s5",
+      "start": 31.7,
+      "text": "Arrêtez de payer pour ce que vous ne regardez pas. Passez au Produit Démo !"
+    },
+    {
+      "id": "s6",
+      "start": 38.2,
+      "text": "Le Produit Démo : vous vous connectez, vous choisissez, vous profitez !"
+    }
+  ],
+  "note": "Projet d'exemple : textes = captions de index.html ; 'start' = adelay de mix.sh."
+}

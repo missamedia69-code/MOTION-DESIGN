@@ -58,8 +58,8 @@ presets: ## Liste des formats, exports et transitions
 list: ## Liste des projets
 	$(MD) list
 
-vo: ## Voix off : make vo P=missa-tv-360-v9 [BACKEND=edge-tts|voxcpm] [DRY=1]
-	@test -n "$(P)" || (echo "Usage : make vo P=missa-tv-360-v9 [DRY=1]" && exit 1)
+vo: ## Voix off : make vo P=demo-voix [BACKEND=edge-tts|voxcpm] [DRY=1]
+	@test -n "$(P)" || (echo "Usage : make vo P=demo-voix [DRY=1]" && exit 1)
 	$(MD) vo $(P) $(if $(BACKEND),--backend $(BACKEND),) $(if $(DRY),--dry-run,)
 
 lab: ## Laboratoire : make lab A=run INPUT=spec.json | A=demo | A=schema | A=runs

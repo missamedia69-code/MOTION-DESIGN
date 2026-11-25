@@ -1,7 +1,7 @@
-# Échantillons du Laboratoire — MISSA TV 360
+# Échantillons du Laboratoire (marque fictive)
 
 Trois spécifications prêtes à l'emploi, une par format de diffusion. Elles
-utilisent uniquement des assets versionnés (`assets/images/logo-missa.png`,
+utilisent uniquement des assets versionnés (`assets/images/demo-logo.png`,
 `assets/fonts/Montserrat-*.ttf`) et des données fictives.
 
 | Fichier | Canvas | Résolution | Accent | Transition | Logo |

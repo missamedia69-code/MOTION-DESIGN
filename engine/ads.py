@@ -116,8 +116,10 @@ def schema() -> dict:
             "logo": "logo à utiliser (remplace celui du kit de marque)",
             "music": "fichier musique (bouclé, mixé sous la voix) — ignoré si audio_master",
             "voiceover": "fichier voix off (la musique baisse automatiquement dessous)",
+            "beat_sync": "true (défaut) : sans audio_master, coupes calées sur les temps de la musique",
             "style": "surcharges : background, surface, accent, text, muted, on_accent, "
-                     "font_title, font_body, transition, background_style (gradient|solid)",
+                     "font_title, font_body, transition (défaut cut), background_style (gradient|solid), "
+                     "motion (pro = coupes franches, caméra, entrées masquées · classique = v2.0)",
         },
         "templates": templates(),
         "example": example(),
@@ -198,6 +200,18 @@ def _timing(plan: list[str], durs: dict, tr: float, spec: dict, master_path: str
                 b = best["t"]
             snapped.append(b)
         bounds = snapped
+    elif spec.get("music") and spec.get("beat_sync", True):
+        # Musique seule : les coupes tombent sur les temps (premiers temps de mesure d'abord).
+        from . import beats, render as render_mod
+        m = spec["music"] if isinstance(spec["music"], str) else spec["music"].get("file")
+        try:
+            info = beats.analyse(render_mod.resolve_path(m, os.getcwd()))
+        except SystemExit:
+            return durs
+        period = info["beat_period"]
+        snapped = beats.snap(bounds, info["downbeats"], tolerance=period * 1.1)
+        bounds = beats.snap(snapped, info["beats"], tolerance=period * 0.6)
+        spec.setdefault("_beats", info)
     else:
         return durs
     # Bornes croissantes, scènes d'au moins 1,2 s, fin = durée totale.
@@ -210,6 +224,72 @@ def _timing(plan: list[str], durs: dict, tr: float, spec: dict, master_path: str
         prev = b
     new_d = [fixed[0] + tr] + [fixed[i + 1] - fixed[i] + tr for i in range(n - 2)] + [total - fixed[-1]]
     return {k: round(max(1.0, v), 2) for k, v in zip(plan, new_d)}
+
+
+# ── Grammaire « pro » ────────────────────────────────────────────────────────
+# Lois mesurées sur des films professionnels (skill motionmaxxing) :
+#  · on coupe en plein mouvement, jamais au repos → coupes franches + caméra qui bouge déjà ;
+#  · presque rien ne fond : on arrive en bougeant, en se démasquant, en décélérant ;
+#  · l'arrivée décélère depuis un objet surdimensionné (rien ne naît de zéro) ;
+#  · mouvement médian ≈ 0,33 s : entrées courtes, longue traîne, pas de rebond ;
+#  · aucune image morte : une chose vivante par plan.
+_CAMERA_CYCLE = ["push_in", "drift_left", "pull_out", "drift_right", "rise", "push_in"]
+_SWAP = {"scale_in": "land", "punch": "land", "zoom_in": "land", "fade_up": "mask_up",
+         "fade_down": "mask_down", "fade_left": "mask_left", "fade_right": "mask_right"}
+
+
+def _glow(C: dict, i: int, D: float) -> dict:
+    """Halo de couleur d'accent qui dérive lentement : le fond vit, aucune image morte."""
+    side = ["35%", "65%"][i % 2]
+    return {"type": "shape", "kind": "rect", "w": "140vmin", "h": "140vmin",
+            "gradient": [C["accent"] + "50", C["accent"] + "1C", C["accent"] + "00", C["accent"] + "00"],
+            "gradient_type": "radial",
+            "pos": [side, "40%"], "in": 0, "anim": "none", "idle": "drift",
+            "idle_amplitude": "22vw", "idle_period": round(max(2.0, D * 2.2), 2), "_glow": True}
+
+
+def _pro_motion(scenes: list[dict], plan: list[str], C: dict | None = None) -> None:
+    for i, (sc, kind) in enumerate(zip(scenes, plan)):
+        # La scène démarre déjà en mouvement : la première entrée arrive tout de suite.
+        ins = [float(L.get("in", 0)) for L in sc["layers"]
+               if not L.get("_subtitle") and L.get("anim") not in (None, "none")
+               and not (L.get("type") == "shape" and L.get("gradient"))]
+        if ins and min(ins) > 0.12:
+            shift = min(ins) - 0.06
+            for L in sc["layers"]:
+                if not L.get("_subtitle") and float(L.get("in", 0)) >= shift:
+                    L["in"] = round(float(L.get("in", 0)) - shift, 3)
+        if C and not kind.startswith("media:"):
+            sc["layers"].insert(0, _glow(C, i, float(sc["duration"])))
+        if kind.startswith("media:"):
+            pass  # le média bouge déjà (kenburns / vidéo)
+        else:
+            amount = 0.07 if kind in ("hook", "offer", "proof") else 0.05
+            sc.setdefault("camera", {"move": _CAMERA_CYCLE[i % len(_CAMERA_CYCLE)],
+                                     "amount": amount, "ease": "ease_in_out"})
+        for L in sc["layers"]:
+            if L.get("_subtitle") or L.get("_glow") or L.get("anim") in (None, "none") \
+                    or str(L.get("anim", "")).startswith("kenburns"):
+                continue
+            a = L["anim"]
+            if L.get("type") == "shape" and a in ("fade", "grow_x", "grow_y"):
+                continue  # dégradés et soulignés : on garde
+            if a == "fade" and L.get("type") == "text":
+                a = "mask_up"
+            elif a == "fade" and L.get("type") == "image":
+                a = "land"
+                L.pop("fade_out", None)
+            a = _SWAP.get(a, a)
+            if L.get("split") and a in ("pop", "land"):
+                a = "mask_up"
+            L["anim"] = a
+            if a in ("land", "mask_up", "mask_down", "mask_left", "mask_right"):
+                L.pop("ease", None)
+                L.setdefault("anim_duration", 0.45)
+            if L.get("split"):
+                L["stagger"] = min(float(L.get("stagger", 0.08)), 0.1)
+            if L.get("exit") in ("fade_up", "fade"):
+                L["exit"] = "slide_up" if L.get("exit") == "fade_up" else L["exit"]
 
 
 def _add_subtitles(scenes: list[dict], script: list[dict], tr: float, C: dict, font: str) -> None:
@@ -294,7 +374,10 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
     if len(benefits) > 5:
         _fail("au plus 5 bénéfices (la lisibilité chute au-delà)")
     style = spec.get("style") or {}
-    transition = style.get("transition", "smoothleft")
+    motion_style = style.get("motion", "pro")
+    if motion_style not in ("pro", "classique"):
+        _fail("style.motion : 'pro' (défaut : coupes franches, caméra, entrées masquées) ou 'classique'")
+    transition = style.get("transition", "cut" if motion_style == "pro" else "smoothleft")
     if transition not in presets.XFADE_TRANSITIONS:
         _fail(f"transition '{transition}' inconnue")
     C, F, logo = _palette(spec)
@@ -344,7 +427,7 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
         return BASE_DURATIONS[kind]
 
     durs = {k: base_duration(k) * tpl["pace"] for k in plan}
-    tr_dur = 0.4
+    tr_dur = presets.CUT_DURATION if transition == "cut" else 0.4
 
     # Audio complet fourni : il fixe la durée totale (la vidéo se cale dessus).
     master = spec.get("audio_master")
@@ -363,6 +446,16 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
         natural = sum(durs.values()) - tr_dur * (len(plan) - 1)
         k = (float(target) + tr_dur * (len(plan) - 1)) / (natural + tr_dur * (len(plan) - 1))
         durs = {key: max(1.6, round(v * k, 2)) for key, v in durs.items()}
+        # Les planchers de 1,6 s ont pu allonger le film : on reprend l'excédent aux scènes longues.
+        want = float(target) + tr_dur * (len(plan) - 1)
+        for _ in range(4):
+            excess = sum(durs.values()) - want
+            flex = {key: v - 1.2 for key, v in durs.items() if v > 1.2}
+            if excess <= 0.02 or not flex:
+                break
+            tot = sum(flex.values())
+            durs = {key: round(v - excess * flex.get(key, 0) / tot, 2) if key in flex else v
+                    for key, v in durs.items()}
     durs = _timing(plan, durs, tr_dur, spec, master_path)
 
     big = "9vmin" if vertical else "8vmin"
@@ -539,6 +632,9 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
             sc["transition"] = {"type": transition, "duration": tr_dur}
         scenes.append(sc)
 
+    if motion_style == "pro":
+        _pro_motion(scenes, plan, C if bg_style != "solid" else None)
+
     if spec.get("subtitles") and spec.get("script"):
         _add_subtitles(scenes, spec["script"], tr_dur, C, body_font)
 
@@ -550,8 +646,12 @@ def compose(raw: dict, canvas: str | None = None) -> dict:
         "export": {"preset": preset},
         "transitions": {"type": transition, "duration": tr_dur},
         "scenes": scenes,
-        "_ad": {"template": tpl_name, "plan": plan},
+        "_ad": {"template": tpl_name, "plan": plan, "motion": motion_style},
     }
+    if spec.get("_beats"):
+        b = spec["_beats"]
+        project["_ad"]["beats"] = {"bpm": b["bpm"], "downbeats": b["downbeats"][:64],
+                                   "drops": b["drops"]}
     if master:
         a = master if isinstance(master, dict) else {"file": master}
         project["audio"] = {"volume": 1.0, "fade_in": 0, "fade_out": 0.25, **a}

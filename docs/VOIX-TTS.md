@@ -50,18 +50,18 @@ sandbox**, voir §4.
 
 ## 3. Ce que le moteur attend déjà
 
-La pub `projects/missa-tv-360-v9` est câblée pour 6 segments de VO :
-`projects/missa-tv-360-v9/mix9.sh` mixe `.cache/vo9/s1.mp3` … `s6.mp3` avec les
+Le projet d'exemple `projects/demo-voix` est câblé pour 6 segments de VO :
+`projects/demo-voix/mix.sh` mixe `.cache/vo-demo/s1.mp3` … `s6.mp3` avec les
 décalages `adelay` suivants :
 
 | Clip | Départ | Texte (caption de `index.html`) |
 |---|---|---|
-| `s1` | 0,20 s | « Eh mon frère ! Chaque mois tu payes l'abonnement télé, et à la fin tu ne trouves même rien à regarder ? Ça fait mal au cœur, hein ! » |
-| `s2` | 8,35 s | « Laisse-moi te montrer le vrai truc : Missa TV 360 ! » |
-| `s3` | 13,97 s | « Avec ta box WiFi et ta connexion Internet : +3 000 chaînes et +9 000 films & séries. Et même avec un petit débit, le flux reste stable ! » |
-| `s4` | 22,52 s | « Du football aux grands films, des séries africaines aux programmes du monde entier : une autre dimension ! » |
-| `s5` | 31,70 s | « Arrête de gaspiller ton argent pour ce qui ne te plaît même pas. Passe à Missa TV 360 ! » |
-| `s6` | 38,20 s | « Missa TV 360 : tu te connectes, tu choisis, tu profites ! 5 000 francs seulement par an. On est ensemble ! » |
+| `s1` | 0,20 s | « Chaque mois, vous payez un abonnement… et vous ne trouvez rien à regarder ? » |
+| `s2` | 8,35 s | « Découvrez le Produit Démo ! » |
+| `s3` | 13,97 s | « Tout ce que vous aimez, au même endroit, même avec une petite connexion. » |
+| `s4` | 22,52 s | « Du sport aux grands films, des séries aux documentaires : tout y est. » |
+| `s5` | 31,70 s | « Arrêtez de payer pour ce que vous ne regardez pas. Passez au Produit Démo ! » |
+| `s6` | 38,20 s | « Le Produit Démo : vous vous connectez, vous choisissez, vous profitez ! » |
 
 Rappel de la convention maison : voix **conversationnelle** validée par le
 client, logo toujours carré, livrables remis en artefact (pas de `output/`).
@@ -72,7 +72,7 @@ client, logo toujours carré, livrables remis en artefact (pas de `output/`).
 
 | Besoin | Choix conseillé |
 |---|---|
-| VO immédiate dans ce sandbox | Outil vocal intégré à l'agent → 6 MP3 dans le dossier des VO, puis `mix9.sh` |
+| VO immédiate dans ce sandbox | Outil vocal intégré à l'agent → 6 MP3 dans le dossier des VO, puis `mix.sh` |
 | Chaîne reproductible et **libre de droits** sur ton poste | `OpenBMB/VoxCPM` (Apache-2.0, français confirmé, voice design) ou `msrbuilds/voice-studio` (MIT + Whisper pour les `.srt`) — à installer hors sandbox, modèles HuggingFace nécessaires |
 | Démarrage rapide sans GPU, en ligne | `edge-tts` directement (`pip install edge-tts`, voix `fr-FR-HenriNeural` / `fr-FR-DeniseNeural`) plutôt que le wrapper `mrpeng4` sans licence |
 | Studio complet clonage + doublage | `jamiepine/voicebox` (MIT) ; `debpalash/VoiceStudio` (AGPL-3.0) seulement si le copyleft est acceptable |
@@ -83,11 +83,11 @@ dans le sandbox) :
 
 ```bash
 pip install edge-tts
-edge-tts --voice fr-FR-HenriNeural --text "Laisse-moi te montrer le vrai truc : Missa TV 360 !" \
-  --write-media .cache/vo9/s2.mp3
+edge-tts --voice fr-FR-HenriNeural --text "Découvrez le Produit Démo !" \
+  --write-media .cache/vo-demo/s2.mp3
 ```
 
-Les chemins `.cache/vo9/s*.mp3` sont ceux attendus par `mix9.sh` ; les médias ne
+Les chemins `.cache/vo-demo/s*.mp3` sont ceux attendus par `mix.sh` ; les médias ne
 sont pas versionnés (`.gitignore`), la VO se régénère à partir des captions.
 
 ---
@@ -99,10 +99,10 @@ La VO est devenue **déclarative**, comme le montage : elle vit dans
 attendus par le mixage ffmpeg. Aucun modèle n'est téléchargé par le dépôt.
 
 ```bash
-./md vo missa-tv-360-v9 --dry-run          # 6 commandes, 0 fichier, 0 réseau ✅
-./md vo missa-tv-360-v9 --check-mix mix9.sh  # les starts calent sur les adelay
-./md vo missa-tv-360-v9 --mix             # affiche les adelay ffmpeg dérivés
-make vo P=missa-tv-360-v9 DRY=1           # raccourci Makefile
+./md vo demo-voix --dry-run          # 6 commandes, 0 fichier, 0 réseau ✅
+./md vo demo-voix --check-mix mix.sh  # les starts calent sur les adelay
+./md vo demo-voix --mix             # affiche les adelay ffmpeg dérivés
+make vo P=demo-voix DRY=1           # raccourci Makefile
 make test                                  # 14 tests hors-ligne
 ```
 
@@ -110,9 +110,9 @@ make test                                  # 14 tests hors-ligne
 
 ```bash
 pip3 install edge-tts                       # backend par défaut, service Microsoft
-./md vo missa-tv-360-v9                     # → .cache/vo9/s1.mp3 … s6.mp3
-./md vo missa-tv-360-v9 --force            # régénérer même si les clips existent
-./md vo missa-tv-360-v9 --backend voxcpm --model /chemin/VoxCPM2 --voice ma_voix.wav
+./md vo demo-voix                     # → .cache/vo-demo/s1.mp3 … s6.mp3
+./md vo demo-voix --force            # régénérer même si les clips existent
+./md vo demo-voix --backend voxcpm --model /chemin/VoxCPM2 --voice ma_voix.wav
 ```
 
 ### Manifeste `vo.json`
@@ -122,15 +122,15 @@ pip3 install edge-tts                       # backend par défaut, service Micro
   "backend": "edge-tts",
   "voice": "fr-FR-HenriNeural",
   "rate": "-4%",
-  "out_dir": ".cache/vo9",
+  "out_dir": ".cache/vo-demo",
   "format": "mp3",
-  "segments": [{ "id": "s1", "start": 0.2, "text": "Eh mon frère ! …" }]
+  "segments": [{ "id": "s1", "start": 0.2, "text": "Chaque mois, vous payez un abonnement… " }]
 }
 ```
 
-- `start` = **instant de placement dans le mix** (`adelay` de `mix9.sh`), pas
-  forcément le `data-start` de la scène : les deux diffèrent légèrement sur v9.
-- Le manifeste de `missa-tv-360-v9` est fourni, avec les 6 textes extraits des
+- `start` = **instant de placement dans le mix** (`adelay` de `mix.sh`), pas
+  forcément le `data-start` de la scène.
+- Le manifeste de `demo-voix` est fourni, avec les 6 textes extraits des
   captions et les 6 décalages du mix ; `--check-mix` valide cet alignement.
 - Pour repartir d'une composition neuve :
   `./md vo <projet> --from-captions --write-script` lit les `<div class="cap">`

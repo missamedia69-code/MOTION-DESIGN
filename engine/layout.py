@@ -21,7 +21,7 @@ from . import brand
 _UNIT_RE = re.compile(r"^\s*(-?\d+(?:\.\d+)?)\s*(px|%|vw|vh|vmin|vmax)?\s*$")
 
 # Champ → axe de référence pour '%'
-_FIELDS_W = ("w", "size", "max_width", "amplitude", "radius", "stroke_width",
+_FIELDS_W = ("w", "size", "max_width", "amplitude", "idle_amplitude", "radius", "stroke_width",
              "letter_spacing", "stroke")
 _FIELDS_H = ("h",)
 

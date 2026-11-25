@@ -13,8 +13,14 @@ connecte automatiquement (MCP), comme un pilote dans un cockpit : il voit les
 instruments, compose, vérifie, regarde des aperçus et livre.
 
 ```
-brief / project.json ──► contrôle qualité ──► aperçu (planche contact) ──► rendu MP4 multi-formats
+brief / project.json ──► contrôle qualité ──► aperçu (planche contact) ──► rendu MP4 multi-formats ──► vérification du rendu
 ```
+
+**Nouveau en 2.1** : grammaire de mouvement « pro » par défaut (coupes franches en plein
+mouvement, caméra sur chaque scène, entrées `land` / `mask_*` / `whip_*`, fond vivant, fin
+courte), **vérification automatique de la vidéo rendue** (`./md verifier`), **calage sur le
+rythme de la musique** (`./md rythme`) et 30 skills professionnels de motion design ajoutés
+(voir [docs/SKILLS-SOURCES.md](docs/SKILLS-SOURCES.md)).
 
 ---
 
@@ -186,8 +192,9 @@ Lancement manuel : `python3 -m lab.mcp` (JSON-RPC sur stdio, sans dépendance).
 | 3. Contrôler | `md_lint` | erreurs bloquantes + alertes avec le champ exact à corriger |
 | 4. Regarder | `md_preview` | une **image** de planche contact du brouillon |
 | 5. Livrer | `md_render` / `md_ad_render` | les MP4, un par format |
+| 6. Juger | `md_verify` | verdict sur la **vidéo rendue** (image vide, figés, fin, énergie, volume) + corrections + planche |
 
-Autres outils : `md_guide` (manuel), `md_brands`, `md_projects`, `md_project_get`,
+Autres outils : `md_rythme` (tempo et temps d'une musique), `md_guide` (manuel), `md_brands`, `md_projects`, `md_project_get`,
 `md_ad_example`. Le laboratoire « données → graphique animé » reste disponible
 via les outils `lab_*`.
 
@@ -262,6 +269,8 @@ Sans MCP, la même chose en ligne de commande : `./md cockpit` (JSON des capacit
    (respirations, fins de phrase), même sous une musique, et place les coupes entre
    scènes sur ces creux. Un agent peut aussi imposer les coupes exactes (`cuts`), par
    exemple au début d'une phrase du script.
+   Avec une simple musique (`music`), le moteur en mesure le tempo et place les coupes
+   sur les premiers temps de mesure (`beat_sync`, `./md rythme`).
 
 7. **Assemblage et audio.** Les scènes sont enchaînées avec des transitions `xfade`
    (fondu, glissé, volet…). L'audio est placé sur la timeline globale : musique
@@ -274,6 +283,13 @@ Sans MCP, la même chose en ligne de commande : `./md cockpit` (JSON des capacit
    un fichier à moitié écrit. En cas d'échec, ffmpeg renvoie un message lisible qui
    indique la cause.
 
+9. **Vérification du rendu.** Après chaque rendu final, `engine/verify.py` regarde la
+   vidéo comme un directeur artistique : elle se décode et bouge, aucune image vide,
+   carton de fin immobile ≤ 1,4 s, dernier plan ≤ 25 % du film, passages figés,
+   coupes franches, énergie du mouvement comparée aux films pros (4,4 à 9,8) et volume.
+   Les coupes exactes sont écrites à côté de la vidéo (`<vidéo>.events.json`). Le verdict
+   (`OK`, `À AMÉLIORER`, `À CORRIGER`) est accompagné de la correction à appliquer.
+
 ### Organisation du code
 
 | Fichier | Rôle |
@@ -285,7 +301,9 @@ Sans MCP, la même chose en ligne de commande : `./md cockpit` (JSON des capacit
 | `engine/easing.py` | courbes d'accélération (expressions ffmpeg) |
 | `engine/layout.py` | unités relatives et normalisation |
 | `engine/brand.py` | kits de marque et jetons |
-| `engine/lint.py` | contrôle qualité |
+| `engine/lint.py` | contrôle qualité (dont règles « pro » : fondus, lenteur, caméra, fin) |
+| `engine/verify.py` | vérification de la vidéo rendue (look.py du skill motionmaxxing) |
+| `engine/beats.py` | rythme d'une musique : BPM, temps, mesures, montées |
 | `engine/ads.py` | compositeur publicitaire (brief → montage, calage sur l'audio) |
 | `engine/intake.py` | réception : tri des fichiers, analyse audio, palette du logo |
 | `engine/frames.py` | aperçus : images clés et planche contact |
@@ -300,7 +318,7 @@ Sans MCP, la même chose en ligne de commande : `./md cockpit` (JSON des capacit
 ```
 MOTION-DESIGN/
 ├── assets/        ← bibliothèque partagée : fonts, images, videos, audio (./md install)
-├── brands/        ← kits de marque (un par client) : demo.json, neutre.json, missa.json…
+├── brands/        ← kits de marque (un par client) : demo.json, neutre.json…
 ├── entrees/       ← éléments déposés pour la pub en cours (audio, logos, détails, médias)
 ├── projects/      ← 1 dossier = 1 projet (project.json)
 ├── templates/     ← modèles de projet (base, story) et briefs pub (ad/)
@@ -324,7 +342,9 @@ MOTION-DESIGN/
 | `./md new <nom> --canvas 9x16 [--template story]` | nouveau projet |
 | `./md lint <nom> [--canvas 1x1]` | contrôle qualité |
 | `./md apercu <nom> [--at 0.5,2,4] [--canvas 1x1]` | brouillon + planche contact |
-| `./md render <nom> [--preset …] [--formats …] [--draft]` | rendu final |
+| `./md render <nom> [--preset …] [--formats …] [--draft] [--sans-verif]` | rendu final, puis vérification automatique |
+| `./md verifier <vidéo\|projet> [--expect S] [--audio] [--json]` | juger la vidéo rendue (gates, figés, énergie, volume) |
+| `./md rythme <musique>` | tempo, temps, mesures et montées (calage des coupes) |
 | `./md brands` / `./md fonts` / `./md presets` | marques, polices, formats et exports |
 | `./md cockpit [--guide]` | capacités en JSON / manuel du pilote |
 | `./md install <fichiers\|URLs>` | ajouter des éléments à `assets/` |
@@ -347,7 +367,9 @@ MOTION-DESIGN/
 
 | Type | Valeurs |
 |---|---|
-| Entrées `anim` | `fade`, `fade_up/down/left/right`, `slide_up/down/left/right`, `pop`, `scale_in`, `zoom_in`, `punch`, `rotate_in`, `grow_x`, `grow_y`, `kenburns_in/out/pan_left/pan_right` |
+| Entrées `anim` | **pro** : `land`, `mask_up/down/left/right`, `whip_left/right` · `fade`, `fade_up/down/left/right`, `slide_up/down/left/right`, `pop`, `scale_in`, `zoom_in`, `punch`, `rotate_in`, `grow_x`, `grow_y`, `kenburns_in/out/pan_left/pan_right` |
+| Caméra de scène `camera` | `push_in`, `pull_out`, `drift_left`, `drift_right`, `rise`, `fall` (+ `motion_blur: true`) |
+| Transitions | `cut` (coupe franche) + transitions xfade (`fade`, `slideleft`, `smoothleft`, `zoomin`…) |
 | Courbes `ease` | `ease_out`, `ease_in`, `ease_in_out`, `expo_out`, `back_out`, `back_in`, `elastic_out`, `snap`, `linear` |
 | Sorties `exit` | `fade`, `fade_up`, `fade_down`, `slide_*`, `scale_out` |
 | Continu `idle` | `float`, `drift`, `pulse`, `sway`, `breathe` |
@@ -384,7 +406,7 @@ Les jetons `$accent`, `$background`, `$text`, `$muted`, `$on_accent`, `$font.tit
   (interface web et API HTTP), [docs/LAB-MOTION.md](docs/LAB-MOTION.md) et
   [lab/AGENT.md](lab/AGENT.md).
 - **HyperFrames (HTML → vidéo)** : second moteur, pour des compositions HTML/CSS/GSAP.
-  Il s'accompagne de 107 skills d'agent dans `.agents/skills/`. Voir `./scripts/hf`
+  Il s'accompagne de 150 skills d'agent dans `.agents/skills/` (sources et licences : docs/SKILLS-SOURCES.md). Voir `./scripts/hf`
   et [docs/HYPERFRAMES.md](docs/HYPERFRAMES.md).
 - **Éléments graphiques libres de droits** (équivalent ouvert d'IconScout) : emojis 3D
   Microsoft Fluent (~1 600 objets), Unicons d'IconScout, Tabler, Lucide, Phosphor… cherchés

@@ -12,11 +12,11 @@
     "font": "Montserrat-Black.ttf",
     "transition": "slideleft"
   },
-  "brand": {"logo": "assets/images/logo-missa.png"},
+  "brand": {"logo": "assets/images/demo-logo.png"},
   "narrative": {
     "hook": "Une autre dimension de télé",
     "insight": "Films, sport, séries et programmes du monde entier",
-    "cta": "Missa TV 360 · 5 000 F / an"
+    "cta": "Votre marque · 29 € / an"
   },
   "data": [
     {"label": "Films", "value": 900},

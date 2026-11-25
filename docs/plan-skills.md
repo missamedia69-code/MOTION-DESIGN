@@ -2,8 +2,7 @@
 
 Ce document décrit **les skills installés dans le moteur** (107 skills issus de
 5 sources GitHub), leur rôle, quand les mobiliser, et comment ils s'enchaînent
-dans le pipeline de production (exemple de référence : la pub MISSA TV 360,
-`projects/missa-tv-360-v6`).
+dans le pipeline de production (exemple de référence : une pub de démonstration).
 
 Le noyau historique HyperFrames est détaillé en section 2 ; les collections
 ajoutées ensuite (LottieFiles, design-motion-principles, frankxai, OpenMontage)
@@ -62,7 +61,7 @@ motion* appliquée à toute animation (GSAP, CSS, Lottie, Spring…).
 | `SKILL.md` | Checklist 8 étapes + arbre de décision | À ouvrir **avant** de chorégraphier une scène : cible émotionnelle, personnalité de mouvement, easing, hiérarchie, staggering, revue |
 | `director/core-philosophy.md` | Le mouvement = émotion, pas décoration | Choisir l'intention de chaque scène (joie, urgence, élégance…) avant d'animer |
 | `director/emotion-mapping.md` | Table émotion → paramètres (vitesse, easing, amplitude) | Ex. scène « prix » = urgency/impact ; scène finale = pride/confidence |
-| `director/motion-personality.md` | Archétypes de personnalité de marque (playful, premium, bold…) | Fixer l'identité motion de la marque (MISSA = bold + playful) et la tenir sur toutes les scènes |
+| `director/motion-personality.md` | Archétypes de personnalité de marque (playful, premium, bold…) | Fixer l'identité motion de la marque (ex. : bold + playful) et la tenir sur toutes les scènes |
 | `director/disney-principles.md` | 12 principes (squash & stretch, anticipation, follow-through…) | Donner du caractère aux pops/entrées (back.out = anticipation/overshoot) |
 | `director/choreography.md` | Ordonnancement multi-éléments, regards, ordre de lecture | Séquencer titres → badges → captions ; stagger des cartes contenus |
 | `director/decision-framework.md` | Arbitrer durée/easing selon le contexte | Choisir .4–.6 s power3.out pour entrées fonctionnelles, back.out pour accents |
@@ -137,7 +136,7 @@ une vidéo, le point d'entrée reste `.agents/skills/hyperframes/SKILL.md` ;
 
 ### Workflows spécialisés (routage par type de brief)
 - **product-launch-video** — URL/brief produit → vidéo promo/launch. *C'est le
-  workflow naturel de la pub MISSA TV 360.*
+  workflow naturel d'une pub.*
 - **faceless-explainer** — texte arbitraire → explainer sans footage.
 - **general-video** — composition libre quand aucun workflow spécialisé ne colle
   (multi-scènes longs, sizzles, montages).

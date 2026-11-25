@@ -13,6 +13,13 @@
       "skillPath": ".agents/skills/acestep/SKILL.md",
       "computedHash": "3722bae84ece4743d0c3106ec6bb8c2196fe5d69dd802f0f69c16aac8381f27e"
     },
+    "ad-creative-video": {
+      "source": "iart-ai/ad-video-skills",
+      "sourceType": "github",
+      "ref": "cc80716",
+      "skillPath": "skills/ad-creative-video/SKILL.md",
+      "computedHash": "974dbb7c964b1266684851fadfb49fa41aed418016317906ece38f884115042a"
+    },
     "agents": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
@@ -24,6 +31,20 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/ai-video-gen/SKILL.md",
       "computedHash": "e1b56fc98497d9eed583ef39061bdcc1494046350bfce250c509429c3e6a800d"
+    },
+    "animated-chart": {
+      "source": "charlie947/motion-graphics-skills",
+      "sourceType": "github",
+      "ref": "229022e",
+      "skillPath": "skills/animated-chart/SKILL.md",
+      "computedHash": "b4b36d12fd7b4a6290002f527ce994e85002d98c02db62cfaff69b156cfc0a5a"
+    },
+    "animation-principles": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "ref": "b85e50c",
+      "skillPath": "skills/animation-principles/SKILL.md",
+      "computedHash": "fe1ebba05add39204265824bdd2020e0080563f29cc9386ce2aa7566a8ae13a7"
     },
     "atlas-cloud": {
       "source": "calesthio/OpenMontage",
@@ -49,6 +70,20 @@
       "skillPath": ".agents/skills/azure-text-to-speech/SKILL.md",
       "computedHash": "b57baf0ae959ef8f0882c1e10c3a8bb64cec93cde88e0dddd9dfc6700539c559"
     },
+    "bang-motion": {
+      "source": "bangtutorial/bang-motion",
+      "sourceType": "github",
+      "ref": "c1aa65e",
+      "skillPath": "SKILL.md",
+      "computedHash": "d0fd926a4c36c6c35fb17edd5db907c783a0f3718e2688735648783eb1a4fa47"
+    },
+    "beat-sync-editing": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "ref": "b85e50c",
+      "skillPath": "skills/beat-sync-editing/SKILL.md",
+      "computedHash": "32c97149e7c7c3f07139e91ee713a9899c85be84e577129f4a847216e775610b"
+    },
     "beautiful-mermaid": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
@@ -61,17 +96,52 @@
       "skillPath": ".agents/skills/bfl-api/SKILL.md",
       "computedHash": "2c695760ec4be9342a55b7580113189bb9010255a2d8d7738dabbbfcb7f3fcd4"
     },
+    "brand-intake": {
+      "source": "charlie947/motion-graphics-skills",
+      "sourceType": "github",
+      "ref": "229022e",
+      "skillPath": "skills/brand-intake/SKILL.md",
+      "computedHash": "0b3e5c0b557b0626e039b83e55a51d89beb23348e320fb5993bde76f0032061f"
+    },
+    "business-motion-film": {
+      "source": "echris6/motion-video-kit",
+      "sourceType": "github",
+      "ref": "e4b1c00",
+      "skillPath": "business-motion-film/SKILL.md",
+      "computedHash": "213b785627e7a69da7b537963f7c4f3dc019f4e23f92c49c9a6eb163721257a0"
+    },
+    "caption-animation": {
+      "source": "iart-ai/tiktok-video-skills",
+      "sourceType": "github",
+      "ref": "88e7152",
+      "skillPath": "skills/caption-animation/SKILL.md",
+      "computedHash": "568ef0514e4a55660e4aeb9f369a82a5e83288447859351e99929a84764387ef"
+    },
     "character-animation-qa": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
       "skillPath": ".agents/skills/character-animation-qa/SKILL.md",
       "computedHash": "727ca3217c8d69cce95452c3d843db8c78536feaf8c61d0006bb2a62618ef9c7"
     },
+    "color-motion": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "ref": "b85e50c",
+      "skillPath": "skills/color-motion/SKILL.md",
+      "computedHash": "f3539399687a55886a044a549a3841f27e23e17dd1f679854ecf368d2d200b09"
+    },
     "comfyui": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
       "skillPath": ".agents/skills/comfyui/SKILL.md",
       "computedHash": "92977dd30c179c3017890cd91cdee3d209c001bbb061f623e2bbadb47367fc77"
+    },
+    "countdown-video": {
+      "source": "iart-ai/tiktok-video-skills",
+      "sourceType": "github",
+      "ref": "88e7152",
+      "skillPath": "skills/countdown-video/SKILL.md",
+      "computedHash": "7ad7420bf86ee3750925d391b66188b8707fb40d497f070287bd1f7a178d1b15"
     },
     "create-video": {
       "source": "calesthio/OpenMontage",
@@ -212,52 +282,60 @@
       "computedHash": "36cba6db9e7fc2955aecb2cda890b5d602f071538fb2e15e97d9127b8e5ef3ea"
     },
     "gsap-core": {
-      "source": "calesthio/OpenMontage",
+      "source": "greensock/gsap-skills",
       "sourceType": "github",
-      "skillPath": ".agents/skills/gsap-core/SKILL.md",
-      "computedHash": "c4a01101d9e1aafbf4b49f75d74f9349790d8741981ba0237c990093863035a6"
+      "ref": "aed9cfd",
+      "skillPath": "skills/gsap-core/SKILL.md",
+      "computedHash": "e66fa1361332d9f7164e676308e76f6fc9d08d6eac55b01099f3a15030202a3e"
     },
     "gsap-frameworks": {
-      "source": "calesthio/OpenMontage",
+      "source": "greensock/gsap-skills",
       "sourceType": "github",
-      "skillPath": ".agents/skills/gsap-frameworks/SKILL.md",
-      "computedHash": "151f82c17668f8568be9ee77a7b6faadc295118fe5ee77e44c6971f59c66c857"
+      "ref": "aed9cfd",
+      "skillPath": "skills/gsap-frameworks/SKILL.md",
+      "computedHash": "ad3c9cba2d219c404e6b4180624f8a5976d6044a369378e1ec641fed7413fadb"
     },
     "gsap-performance": {
-      "source": "calesthio/OpenMontage",
+      "source": "greensock/gsap-skills",
       "sourceType": "github",
-      "skillPath": ".agents/skills/gsap-performance/SKILL.md",
-      "computedHash": "863842ac2d7aee53fd4f0025c960173d7ad3e658a5715b89b2211fa280213c1f"
+      "ref": "aed9cfd",
+      "skillPath": "skills/gsap-performance/SKILL.md",
+      "computedHash": "09db1685456e3cc8e3a23e3e8579cb958d4ac396e902303316fdd13a074ddbc0"
     },
     "gsap-plugins": {
-      "source": "calesthio/OpenMontage",
+      "source": "greensock/gsap-skills",
       "sourceType": "github",
-      "skillPath": ".agents/skills/gsap-plugins/SKILL.md",
-      "computedHash": "83f5517521ddb74264d5227a2f11e58425edd10d20e8c0f1264e10cbcc00e712"
+      "ref": "aed9cfd",
+      "skillPath": "skills/gsap-plugins/SKILL.md",
+      "computedHash": "e918b4708dc429e1aabcc5767b842cd18158a4ce7d9db00bf705b2aa6f658e61"
     },
     "gsap-react": {
-      "source": "calesthio/OpenMontage",
+      "source": "greensock/gsap-skills",
       "sourceType": "github",
-      "skillPath": ".agents/skills/gsap-react/SKILL.md",
-      "computedHash": "7d3b52822681a4158e371f895c58fb7030ecaf33f585a534b7162f9e92c5d893"
+      "ref": "aed9cfd",
+      "skillPath": "skills/gsap-react/SKILL.md",
+      "computedHash": "db108538f2b333e911cbaa7f77351ee09b5b8a4d14cdc6ec50e5d6ba80fc20d3"
     },
     "gsap-scrolltrigger": {
-      "source": "calesthio/OpenMontage",
+      "source": "greensock/gsap-skills",
       "sourceType": "github",
-      "skillPath": ".agents/skills/gsap-scrolltrigger/SKILL.md",
-      "computedHash": "1cdc5647693783cb7a662d84a5de434c88a051ed56b4d33597c9b5782b5973e6"
+      "ref": "aed9cfd",
+      "skillPath": "skills/gsap-scrolltrigger/SKILL.md",
+      "computedHash": "c2f6e6180c1c09f05eec9ec3c93f62eb563888f4058ea58327a2c0dd7c4d7b81"
     },
     "gsap-timeline": {
-      "source": "calesthio/OpenMontage",
+      "source": "greensock/gsap-skills",
       "sourceType": "github",
-      "skillPath": ".agents/skills/gsap-timeline/SKILL.md",
-      "computedHash": "54981c2feec5a9c0d57988aeb32315af32bdeadd261550d5e9db7a7b1f08b487"
+      "ref": "aed9cfd",
+      "skillPath": "skills/gsap-timeline/SKILL.md",
+      "computedHash": "722e8e92008c87ecf8879d5e4cc009ef5de208aa1fb77c06a78de4e4580caab5"
     },
     "gsap-utils": {
-      "source": "calesthio/OpenMontage",
+      "source": "greensock/gsap-skills",
       "sourceType": "github",
-      "skillPath": ".agents/skills/gsap-utils/SKILL.md",
-      "computedHash": "1ab2387f6e694718a4f1b5acf2a4ab16e1b884c3428adf5f6b26d830f00826cf"
+      "ref": "aed9cfd",
+      "skillPath": "skills/gsap-utils/SKILL.md",
+      "computedHash": "6033d804a8d8ac721d20311aa4a31fa0cfe7f773ee6062cb69fc0282f110e1e1"
     },
     "heygen": {
       "source": "calesthio/OpenMontage",
@@ -270,6 +348,13 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/huashu-art-motion/SKILL.md",
       "computedHash": "baa8f4b525abe45222b0b349d21a1cda5e6b71b00a7014fcd7c5a72555f99a45"
+    },
+    "huashu-motion": {
+      "source": "alchaincyf/huashu-motion",
+      "sourceType": "github",
+      "ref": "f4f38bf",
+      "skillPath": "skills/huashu-motion/SKILL.md",
+      "computedHash": "c710406663927b5ec4fb4f152b829e166aa9e860dd1dc84c901ae8e15a48cb2a"
     },
     "hyperframes": {
       "source": "heygen-com/hyperframes",
@@ -331,17 +416,45 @@
       "skillPath": "skills/hyperframes-studio/SKILL.md",
       "computedHash": "3ac6b0019626b0cfa0d067c52ae3e46b5d98722784b1ef103ac301a1815dfd7a"
     },
+    "kinetic-typography": {
+      "source": "iart-ai/kinetic-typography-skills",
+      "sourceType": "github",
+      "ref": "2b79c81",
+      "skillPath": "skills/kinetic-typography/SKILL.md",
+      "computedHash": "78333118591f9c5b157df470488d41f824305cea9074e41553d9d3d00f8e3e0e"
+    },
     "kling-official": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
       "skillPath": ".agents/skills/kling-official/SKILL.md",
       "computedHash": "5d5fe7e34c1bc06110acf0708084e8b36601117bea97c0a15e92fb1daee3efc7"
     },
+    "launch-video": {
+      "source": "iart-ai/ad-video-skills",
+      "sourceType": "github",
+      "ref": "cc80716",
+      "skillPath": "skills/launch-video/SKILL.md",
+      "computedHash": "c3f9baebafcbe42f6bde9a69374ecf85e67e900c8c9c501cb05d192abdd6e41b"
+    },
+    "logo-animation": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "ref": "b85e50c",
+      "skillPath": "skills/logo-animation/SKILL.md",
+      "computedHash": "2a30d88ec44072e7d91f619aa67f8415479f1c87600358755e42788346aa6522"
+    },
     "lottie-bodymovin": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
       "skillPath": ".agents/skills/lottie-bodymovin/SKILL.md",
       "computedHash": "0eece518ff73d47a172e8fed4c5e3b5e0113afd573124659021b3209f17289c9"
+    },
+    "lower-thirds": {
+      "source": "iart-ai/tiktok-video-skills",
+      "sourceType": "github",
+      "ref": "88e7152",
+      "skillPath": "skills/lower-thirds/SKILL.md",
+      "computedHash": "93aa416237fdd4d3d4fe9972e877303d20b980bda5b37eabeb088261b6920617"
     },
     "ltx2": {
       "source": "calesthio/OpenMontage",
@@ -379,6 +492,13 @@
       "skillPath": "skills/media-use/SKILL.md",
       "computedHash": "4e483ae6e7b26046477ae8d2c66048491e18d0e3e5e0f36f09322a4328bcaf89"
     },
+    "milestone-reveal": {
+      "source": "charlie947/motion-graphics-skills",
+      "sourceType": "github",
+      "ref": "229022e",
+      "skillPath": "skills/milestone-reveal/SKILL.md",
+      "computedHash": "f2b45169696ac8db235ba409e207634b55f34e361c1956315b9ee4b2b8867476"
+    },
     "minimax-h3": {
       "source": "calesthio/OpenMontage",
       "sourceType": "github",
@@ -390,6 +510,27 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/mockup-device-3d/SKILL.md",
       "computedHash": "046a60b0fe1fabb0e9f2e856f448fd38761625fb7def2891689da89432f0f1ab"
+    },
+    "motion-art-direction": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "ref": "b85e50c",
+      "skillPath": "skills/motion-art-direction/SKILL.md",
+      "computedHash": "289e1b7c0b29601eb6063c3d67aa08a0e529785a678c5cff14e0b0b4ad55385e"
+    },
+    "motion-background": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "ref": "b85e50c",
+      "skillPath": "skills/motion-background/SKILL.md",
+      "computedHash": "a5117e0e183c018b3b5c5fe84cf1985a7bdfe6320bd28b3d69eba36621d87394"
+    },
+    "motion-brief-writer": {
+      "source": "charlie947/motion-graphics-skills",
+      "sourceType": "github",
+      "ref": "229022e",
+      "skillPath": "skills/motion-brief-writer/SKILL.md",
+      "computedHash": "b08bc8053fbc4be3344faf16560d4a059a27005d44460cde6e2ae5bc9fc82fe1"
     },
     "motion-design": {
       "source": "LottieFiles/motion-design-skill",
@@ -403,6 +544,13 @@
       "skillPath": "skills/motion-director/SKILL.md",
       "computedHash": "6e1d1d95831043eeced78fc67c9103c612add07d371f4b6875d293f7a1f96c34"
     },
+    "motion-effects": {
+      "source": "charlie947/motion-graphics-skills",
+      "sourceType": "github",
+      "ref": "229022e",
+      "skillPath": "skills/motion-effects/SKILL.md",
+      "computedHash": "5a45f0be1ea1726cc7c055103c337c9a7f54afc263eba6cde0d195d61a0c4364"
+    },
     "motion-graphics": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
@@ -414,6 +562,20 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/motion-lab/SKILL.md",
       "computedHash": "9d7904b87310bdf2e64bf0b0f6ad6f2e7a1739ff12e401a94a25065157134d9a"
+    },
+    "motion2code": {
+      "source": "lovisdotio/motion2code",
+      "sourceType": "github",
+      "ref": "0f00328",
+      "skillPath": "skills/motion2code/SKILL.md",
+      "computedHash": "ee9dffa1e5fa34db6d3b99db42ca0d1a77bdaf2fd2689fceb42e0166de8eda7a"
+    },
+    "motionmaxxing": {
+      "source": "Tejashmakwana/motionmaxxing",
+      "sourceType": "github",
+      "ref": "8c8ec0f",
+      "skillPath": "SKILL.md",
+      "computedHash": "8883ed21f160a2c6d3def66ae4aa3bf21220c1935de1ac13a5e407d2d41ab705"
     },
     "music": {
       "source": "calesthio/OpenMontage",
@@ -457,11 +619,25 @@
       "skillPath": "skills/pr-to-video/SKILL.md",
       "computedHash": "00996f2cd045bb2879fab6ff4dc058b30d59ee44be9e3cd66d79d58e86d1da92"
     },
+    "product-demo-video": {
+      "source": "iart-ai/ecommerce-video-skills",
+      "sourceType": "github",
+      "ref": "a430fbb",
+      "skillPath": "skills/product-demo-video/SKILL.md",
+      "computedHash": "2d8938f05eba751f8034726a7c3be6962ef00316124c3dd75c663d331840278f"
+    },
     "product-launch-video": {
       "source": "heygen-com/hyperframes",
       "sourceType": "github",
       "skillPath": "skills/product-launch-video/SKILL.md",
       "computedHash": "824bec3729b135798d20fb0dda7ad7315b0623ccec685c736e6872d5f0b726a7"
+    },
+    "promo-video": {
+      "source": "iart-ai/ecommerce-video-skills",
+      "sourceType": "github",
+      "ref": "a430fbb",
+      "skillPath": "skills/promo-video/SKILL.md",
+      "computedHash": "a103842a8cd96853b9c2c3e3a23bcbe0408285d58bbe335e2f355424b9488c31"
     },
     "provider-model-refresh": {
       "source": "calesthio/OpenMontage",
@@ -474,6 +650,20 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/provider-refresh-oct23/SKILL.md",
       "computedHash": "d8e194e564f55d9d95832f3053623b33c7ef7cbc7f9edbfc30f931616faa4586"
+    },
+    "reel-export": {
+      "source": "charlie947/motion-graphics-skills",
+      "sourceType": "github",
+      "ref": "229022e",
+      "skillPath": "skills/reel-export/SKILL.md",
+      "computedHash": "1f4062ccdadc3fc7dc64c52630a8dde1fbeddf8807015ce12743d48c24d44089"
+    },
+    "reference-to-motion": {
+      "source": "charlie947/motion-graphics-skills",
+      "sourceType": "github",
+      "ref": "229022e",
+      "skillPath": "skills/reference-to-motion/SKILL.md",
+      "computedHash": "1b2540d9f394687165a3f0f5e520c9521a4af173734f69f7ee0215eab8450619"
     },
     "remotion": {
       "source": "calesthio/OpenMontage",
@@ -523,6 +713,20 @@
       "skillPath": ".agents/skills/setup-api-key/SKILL.md",
       "computedHash": "45e680b4a199bb031472fc28e752abc29bc2a38334cf5c80e1428c3f9fa33083"
     },
+    "short-form-video": {
+      "source": "iart-ai/tiktok-video-skills",
+      "sourceType": "github",
+      "ref": "88e7152",
+      "skillPath": "skills/short-form-video/SKILL.md",
+      "computedHash": "78802f9dc0efe2665826d7a3956ffa676ea0e5d2598398575142856db933c5d4"
+    },
+    "shot-composition": {
+      "source": "iart-ai/motion-design-skills",
+      "sourceType": "github",
+      "ref": "b85e50c",
+      "skillPath": "skills/shot-composition/SKILL.md",
+      "computedHash": "cd41feb070a6563f70043e85e0602432258325d0e71777a5bec3d32498aa4d7c"
+    },
     "site-motion-excellence-director": {
       "source": "frankxai/awesome-motion-design-agent-skills",
       "sourceType": "github",
@@ -570,6 +774,13 @@
       "sourceType": "github",
       "skillPath": "skills/talking-head-recut/SKILL.md",
       "computedHash": "991315e8803089b6b0d008026c9b42c2c83f6ea95c44b26956cd6ff6197f5305"
+    },
+    "testimonial-video": {
+      "source": "iart-ai/ad-video-skills",
+      "sourceType": "github",
+      "ref": "cc80716",
+      "skillPath": "skills/testimonial-video/SKILL.md",
+      "computedHash": "e9814a32ca5b0fde7420b003f34320523becb5db742016412591a6af9b27d51e"
     },
     "text-to-speech": {
       "source": "calesthio/OpenMontage",
@@ -642,6 +853,13 @@
       "sourceType": "github",
       "skillPath": ".agents/skills/threejs-world-generation/SKILL.md",
       "computedHash": "4827d89db49f7b473c6c1d49ec02e3649a690ec9a08cfa15c1356b5555c1e6da"
+    },
+    "title-sequence-3d": {
+      "source": "charlie947/motion-graphics-skills",
+      "sourceType": "github",
+      "ref": "229022e",
+      "skillPath": "skills/title-sequence-3d/SKILL.md",
+      "computedHash": "cbccdd70f71bbd7b031733269644ad2f8b5343d85d473afae444db3ff00199de"
     },
     "vercel-composition-patterns": {
       "source": "calesthio/OpenMontage",

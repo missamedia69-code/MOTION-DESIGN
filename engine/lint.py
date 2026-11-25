@@ -222,6 +222,40 @@ def lint(proj: dict, project_dir: str, canvas_override=None) -> dict:
             except SystemExit as exc:
                 err(f"{key}[{k}].file" if isinstance(val, list) else f"{key}.file", str(exc))
 
+    # ── Camera de scène ──
+    for si, sc in enumerate(scenes):
+        cam = sc.get("camera")
+        mv = cam if isinstance(cam, str) else (cam or {}).get("move") if isinstance(cam, dict) else None
+        if cam and mv not in render.CAMERA_MOVES:
+            err(f"scenes[{si}].camera", f"'{mv}' inconnu ({', '.join(render.CAMERA_MOVES)})")
+
+    # ── Grammaire « pro » (lois mesurées sur des films professionnels, skill motionmaxxing) ──
+    anims = [l for sc in scenes for l in sc.get("layers", [])
+             if l.get("anim") not in (None, "none") and l.get("type") != "audio"]
+    if len(anims) >= 4:
+        fades = [l for l in anims if str(l.get("anim")) == "fade" or str(l.get("anim")).startswith("fade_")]
+        if len(fades) / len(anims) > 0.5:
+            info("mouvement", f"{len(fades)}/{len(anims)} entrées en fondu : « presque rien ne fond » chez les "
+                              "pros → land, mask_up/down/left/right, whip_left/right")
+        slow = [l for l in anims if float(l.get("anim_duration", 0.6)) > 0.8
+                and not str(l.get("anim")).startswith("kenburns")]
+        if slow:
+            info("mouvement", f"{len(slow)} entrée(s) > 0,8 s : le mouvement pro médian dure ~0,33 s "
+                              "(arrivée rapide, longue traîne)")
+    if multi and len(scenes) >= 3:
+        no_cam = [i for i, sc in enumerate(scenes) if not sc.get("camera")]
+        if len(no_cam) == len(scenes):
+            info("mouvement", "aucune scène n'a de caméra : ajouter \"camera\": \"push_in\" (ou drift/rise) "
+                              "pour qu'aucune image ne soit morte")
+        types = [((sc.get("transition") or {}).get("type") or tr.get("type", "fade")) for sc in scenes[:-1]]
+        if types and all(t in ("fade", "dissolve", "fadeblack", "fadewhite") for t in types):
+            info("transitions", "uniquement des fondus entre scènes : les pros coupent en plein mouvement "
+                                "(\"type\": \"cut\")")
+        last = float(scenes[-1].get("duration", 0) or 0)
+        if total and last / total > 0.3:
+            warn(f"scenes[{len(scenes) - 1}]", f"dernier plan = {last / total:.0%} du film (viser ≤ 25 % : "
+                                               "carton de fin court, immobile ≤ 1,4 s)")
+
     # ── Conseils publicitaires ──
     if first_text_at is None:
         info("projet", "aucun texte : une pub sans message écrit performe mal en lecture muette")

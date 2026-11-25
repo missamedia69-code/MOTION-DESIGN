@@ -20,7 +20,7 @@ from engine import voice  # noqa: E402
 SAMPLE_HTML = """\
 <div id="root" data-duration="20">
   <div id="cap1" class="cap clip" data-start="0.2" data-duration="8">Bonjour &amp; bienvenue !</div>
-  <div id="cap2" class="cap clip" data-start="8.3" data-duration="5">Missa TV 360</div>
+  <div id="cap2" class="cap clip" data-start="8.3" data-duration="5">Produit Démo</div>
 </div>
 """
 
@@ -36,7 +36,7 @@ def base_script(**overrides):
         "format": "mp3",
         "segments": [
             {"id": "s1", "start": 0.2, "text": "Bonjour & bienvenue !"},
-            {"id": "s2", "start": 8.35, "text": "Missa TV 360"},
+            {"id": "s2", "start": 8.35, "text": "Produit Démo"},
         ],
     }
     data.update(overrides)
@@ -58,7 +58,7 @@ class ParseCaptionsTest(unittest.TestCase):
         self.assertEqual(segs[1]["start"], 8.3)
 
     def test_real_project_has_six_segments(self):
-        path = os.path.join(REPO, "projects", "missa-tv-360-v9", "index.html")
+        path = os.path.join(REPO, "projects", "demo-voix", "index.html")
         self.assertEqual(len(voice.parse_captions(path)), 6)
 
 
@@ -121,7 +121,7 @@ class MixTest(unittest.TestCase):
 
 class DryRunTest(unittest.TestCase):
     def _args(self, **overrides):
-        args = dict(name="missa-tv-360-v9", script=None, from_captions=False,
+        args = dict(name="demo-voix", script=None, from_captions=False,
                     write_script=False, backend=None, voice=None, rate=None,
                     model=None, out_dir="/tmp/md-vo-should-not-exist", dry_run=True,
                     force=False, mix=False, check_mix=None)
@@ -156,11 +156,11 @@ class DryRunTest(unittest.TestCase):
 
 class ManifestTest(unittest.TestCase):
     def test_committed_vo_json_matches_mix_delays(self):
-        pdir = os.path.join(REPO, "projects", "missa-tv-360-v9")
+        pdir = os.path.join(REPO, "projects", "demo-voix")
         with open(os.path.join(pdir, "vo.json"), encoding="utf-8") as f:
             data = json.load(f)
         voice.validate_script(data)
-        delays = voice.mix_delays(os.path.join(pdir, "mix9.sh"))[:len(data["segments"])]
+        delays = voice.mix_delays(os.path.join(pdir, "mix.sh"))[:len(data["segments"])]
         self.assertEqual([s["start"] for s in data["segments"]], delays)
 
 

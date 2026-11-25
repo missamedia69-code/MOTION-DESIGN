@@ -1,6 +1,6 @@
 {
   "name": "reels-abonnes",
-  "title": "Missa TV 360 · Abonnés",
+  "title": "Votre marque · Abonnés",
   "canvas": "9x16",
   "preset": "mp4-web",
   "duration": 2.2,
@@ -12,11 +12,11 @@
     "font": "Montserrat-ExtraBold.ttf",
     "transition": "fade"
   },
-  "brand": {"logo": "assets/images/logo-missa.png"},
+  "brand": {"logo": "assets/images/demo-logo.png"},
   "narrative": {
     "hook": "Toujours plus de monde",
     "insight": "La croissance continue, mois après mois",
-    "cta": "Rejoins Missa TV 360 !"
+    "cta": "Rejoignez-nous !"
   },
   "data": [
     {"label": "Juin", "value": 120},
