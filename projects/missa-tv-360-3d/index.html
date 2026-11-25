@@ -9,7 +9,7 @@
 @font-face { font-family: "Nunito"; src: url("vendor/Nunito-Variable.ttf") format("truetype"); font-weight: 200 1000; }
 @font-face { font-family: "Mont"; src: url("vendor/Montserrat-Black.ttf") format("truetype"); font-weight: 900; }
 @font-face { font-family: "MontXB"; src: url("vendor/Montserrat-ExtraBold.ttf") format("truetype"); font-weight: 800; }
-:root { --jaune:#FDE503; --bleu:#0141AA; --nuit:#06122E; --nuit2:#0B2560; --vert:#08992D; --citron:#A6E31B; --rouge:#E53935; }
+:root { --jaune:#FDE503; --bleu:#0141AA; --nuit:#06122E; --nuit2:#0B2560; --vert:#08992D; --citron:#A6E31B; --rouge:#C62828; }
 * { margin:0; padding:0; box-sizing:border-box; }
 html,body { width:1080px; height:1920px; overflow:hidden; background:var(--nuit); }
 body { font-family:"Nunito",sans-serif; color:#fff; }
@@ -47,7 +47,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 #tvgris { z-index:1; left:190px; top:520px; width:700px; filter: grayscale(1) brightness(.85) contrast(1.1) drop-shadow(0 30px 40px rgba(0,0,0,.6)); }
 #tvscreen { z-index:2; left:330px; top:740px; width:420px; height:300px; border-radius:26px; overflow:hidden;
   background: repeating-linear-gradient(0deg, #8a8f98 0 3px, #6c717a 3px 6px); }
-#tvscreen .lab { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#2a2e36; }
+#tvscreen .lab { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#f7f8fb; text-shadow:0 3px 12px rgba(0,0,0,.75); }
 #tvscreen .lab .a { font-family:"Mont"; font-size:58px; letter-spacing:.02em; }
 #tvscreen .lab .b { font-family:"MontXB"; font-size:30px; margin-top:6px; }
 #chan { left:690px; top:760px; font-family:"MontXB"; font-size:34px; color:#d8dbe0; }
@@ -82,7 +82,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 .ui-logo b { font-size:20px; background:var(--vert); color:#fff; padding:2px 10px; border-radius:20px; margin-left:6px; vertical-align:middle; }
 .ui-ic { width:44px; height:44px; border-radius:50%; background:#18213a; }
 .pills { position:absolute; top:140px; left:24px; display:flex; gap:12px; }
-.pills i { font-style:normal; font-family:"Nunito"; font-weight:800; font-size:22px; padding:8px 18px; border-radius:30px; background:#18213a; color:#cfd6e6; }
+.pills i { font-style:normal; font-family:"Nunito"; font-weight:800; font-size:22px; padding:8px 18px; border-radius:30px; background:#18213a; color:#FFFFFF; }
 .pills i.on { background:var(--jaune); color:var(--nuit); }
 .hero { position:absolute; left:24px; right:24px; top:200px; height:330px; border-radius:28px; overflow:hidden; background-size:cover; background-position:center 30%; }
 .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(5,9,20,.95)); }
@@ -168,7 +168,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 /* --- scène 10 : CTA --- */
 #logo10 { left:200px; top:150px; width:680px; }
 #slogan { top:752px; font-size:56px; white-space:nowrap; color:var(--bleu); font-style:italic; }
-#slogan b { color:var(--vert); }
+#slogan b { color:#04651e; }
 #cta { left:90px; top:860px; width:900px; height:170px; border-radius:90px; background:linear-gradient(180deg,#1fc24a,var(--vert)); box-shadow:0 16px 0 #05701f, 0 0 0 8px rgba(255,255,255,.7), 0 40px 60px rgba(0,0,0,.3); display:flex; align-items:center; justify-content:center; gap:30px; }
 #cta .ar { width:90px; height:90px; }
 #cta .tx { font-family:"Mont"; font-style:italic; font-size:62px; line-height:1; color:#fff; text-shadow:0 5px 0 #05701f; }
@@ -200,14 +200,14 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
    <div class="row"><span>MARS</span><span>PAYÉ</span></div><div class="row"><span>AVRIL</span><span>PAYÉ</span></div>
    <div class="row"><span>MAI</span><span>PAYÉ</span></div><div class="row"><span>JUIN</span><span>PAYÉ</span></div>
    <div class="row"><span>JUILLET</span><span>PAYÉ</span></div><div class="row"><span>AOÛT</span><span>PAYÉ</span></div>
-   <div>------------------</div><div style="text-align:center">PROGRAMME :</div><div style="text-align:center;font-weight:bold">TOUJOURS LE MÊME</div>
+   <div>------------------</div><div style="text-align:center" data-layout-allow-overlap>PROGRAMME :</div><div style="text-align:center;font-weight:bold" data-layout-allow-overlap>TOUJOURS LE MÊME</div>
   </div>
   <img id="tvgris" class="abs" src="assets/elements/television-3d.png" />
   <div id="tvscreen" class="abs"><div class="lab"><div class="a">REDIFF</div><div class="b" id="rediff">ÉPISODE 1</div></div></div>
   <div id="chan" class="abs">CH 01</div>
   <div id="t1a" class="abs c H t1"><span>TU PAIES</span><br><span>CHAQUE MOIS…</span></div>
   <div id="t1b" class="abs c H t1 o0"><span>POUR TOUJOURS</span></div>
-  <div id="g2" class="abs c H o0" data-layout-allow-overlap><div class="r">LA MÊME CHOSE ?</div><div class="cy">LA MÊME CHOSE ?</div><div>LA MÊME CHOSE ?</div></div>
+  <div id="g2" class="abs c H o0" data-layout-allow-overlap><div class="r" data-layout-allow-overlap>LA MÊME CHOSE ?</div><div class="cy" data-layout-allow-overlap>LA MÊME CHOSE ?</div><div data-layout-allow-overlap>LA MÊME CHOSE ?</div></div>
   <div class="grain"></div>
  </div>
 </div>
@@ -398,7 +398,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 <div class="sub clip" data-start="29.446" data-duration="2.025" data-track-index="21"><p><span id="w23_0">Télécharge</span><span id="w23_1">MISSA</span><span id="w23_2">TV</span><span id="w23_3">360</span></p></div>
 <div class="sub clip" data-start="31.471" data-duration="0.416" data-track-index="20"><p><span id="w24_0">maintenant.</span></p></div>
 <div class="sub clip" data-start="31.887" data-duration="1.517" data-track-index="21"><p><span id="w25_0">Ton</span><span id="w25_1">écran</span><span id="w25_2">mérite</span><span id="w25_3">mieux !</span></p></div>
-<canvas id="hf3d-canvas" width="1080" height="1920" aria-hidden="true"></canvas>
+<canvas id="hf3d-canvas" width="1080" height="1920" aria-hidden="true" data-layout-allow-occlusion></canvas>
 </div>
 
 <script>
