@@ -172,7 +172,7 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 #cta { left:90px; top:860px; width:900px; height:170px; border-radius:90px; background:linear-gradient(180deg,#1fc24a,var(--vert)); box-shadow:0 16px 0 #05701f, 0 0 0 8px rgba(255,255,255,.7), 0 40px 60px rgba(0,0,0,.3); display:flex; align-items:center; justify-content:center; gap:30px; }
 #cta .ar { width:90px; height:90px; }
 #cta .tx { font-family:"Mont"; font-style:italic; font-size:62px; line-height:1; color:#fff; text-shadow:0 5px 0 #05701f; }
-#cta .tx b { color:var(--jaune); }
+#cta .tx b { color:#06122E; }
 #qrc { left:250px; top:1080px; width:580px; height:250px; border-radius:36px; background:#fff; box-shadow:0 30px 50px rgba(0,0,0,.25); display:flex; align-items:center; gap:24px; padding:20px; }
 #qrc img { width:210px; height:210px; }
 #qrc .qt { font-family:"Mont"; font-size:34px; color:var(--nuit); line-height:1.1; }
@@ -246,24 +246,24 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
   <div id="h4b" class="abs c H o0">DES <span class="box-accent">CENTAINES</span><br><span style="font-size:70px">DE CHAÎNES EN DIRECT</span></div>
   <div id="ph4" class="phone" style="transform:perspective(1800px) rotateY(-16deg) rotateX(4deg)">
    <div class="scr"><div class="notch"></div>
-    <div class="ui-top"><div class="ui-logo">MISSA TV<b>360+</b></div><div class="ui-ic"></div></div>
-    <div class="pills"><i class="on">Accueil</i><i>Films</i><i>Séries</i><i>Live</i></div>
+    <div class="ui-top"><div class="ui-logo" data-layout-allow-occlusion>MISSA TV<b data-layout-allow-occlusion>360+</b></div><div class="ui-ic"></div></div>
+    <div class="pills"><i class="on" data-layout-allow-occlusion>Accueil</i><i data-layout-allow-occlusion>Films</i><i data-layout-allow-occlusion>Séries</i><i data-layout-allow-occlusion>Live</i></div>
     <div id="feed4" class="abs" style="left:0;right:0;top:0">
-     <div class="hero" style="background-image:url(assets/vignettes/royaume.jpg)"><div class="ht">ROYAUME</div><div class="hb">▶ Regarder</div></div>
-     <div class="rowt" style="top:560px">Films & séries</div>
+     <div class="hero" style="background-image:url(assets/vignettes/royaume.jpg)"><div class="ht" data-layout-allow-occlusion>ROYAUME</div><div class="hb" data-layout-allow-occlusion>▶ Regarder</div></div>
+     <div class="rowt" style="top:560px" data-layout-allow-occlusion>Films & séries</div>
      <div class="thumbs" style="top:600px"><img src="assets/vignettes/horizon-2030.jpg"/><img src="assets/vignettes/amour-eternel.jpg"/><img src="assets/vignettes/operation-omega.jpg"/></div>
-     <div class="rowt" style="top:830px">En direct</div>
+     <div class="rowt" style="top:830px" data-layout-allow-occlusion>En direct</div>
      <div class="thumbs" style="top:870px"><img src="assets/vignettes/ligue-360.jpg"/><img src="assets/vignettes/nouveau-depart.jpg"/><img src="assets/vignettes/detective.jpg"/></div>
-     <div class="live" style="left:36px;top:882px">LIVE</div>
-     <div class="rowt" style="top:1100px">Mangas</div>
+     <div class="live" style="left:36px;top:882px" data-layout-allow-occlusion>LIVE</div>
+     <div class="rowt" style="top:1100px" data-layout-allow-occlusion>Mangas</div>
      <div class="thumbs" style="top:1140px"><img src="assets/vignettes/secret-foret.jpg"/><img src="assets/vignettes/royaume.jpg"/><img src="assets/vignettes/horizon-2030.jpg"/></div>
     </div>
    </div>
   </div>
   <img class="el glow" id="e4film" src="assets/elements/clapper-board-3d.png" style="left:40px;top:430px;width:230px" />
-  <div class="lbl o0" id="l4film" style="left:50px;top:650px">FILMS</div>
+  <div class="lbl o0" id="l4film" style="left:50px;top:650px" data-layout-allow-occlusion>FILMS</div>
   <img class="el glow" id="e4ser" src="assets/elements/film-frames-3d.png" style="left:800px;top:400px;width:240px" />
-  <div class="lbl o0" id="l4ser" style="left:800px;top:620px">SÉRIES</div>
+  <div class="lbl o0" id="l4ser" style="left:800px;top:620px" data-layout-allow-occlusion>SÉRIES</div>
   <div class="lbl o0" id="l4man" style="left:40px;top:780px;font-size:52px;background:var(--rouge);border-color:#fff">MANGAS</div>
   <img class="el glow" id="e4tv" src="assets/elements/television-3d.png" style="left:800px;top:720px;width:240px" />
   <div class="live o0" id="l4live" style="left:850px;top:720px;font-size:30px">LIVE</div>
@@ -295,12 +295,12 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 <div id="sc6" class="scene clip nightbg" data-start="16.25" data-duration="4.42" data-track-index="5">
  <div class="cam" id="cam6">
   <div class="dots" id="dots6"></div>
-  <div id="h6" class="abs c H">TA <span class="box-accent">BOX WIFI</span> SUFFIT</div>
+  <div id="h6" class="abs c H" data-layout-allow-occlusion>TA <span class="box-accent" data-layout-allow-occlusion>BOX WIFI</span> SUFFIT</div>
   <div class="arc" id="arc1" style="width:220px;height:220px;margin:-110px 0 0 -110px"></div>
   <div class="arc" id="arc2" style="width:380px;height:380px;margin:-190px 0 0 -190px"></div>
   <div class="arc" id="arc3" style="width:500px;height:500px;margin:-250px 0 0 -250px"></div>
   <div id="router" class="abs"><div class="ant" style="left:60px;transform:rotate(-12deg)"></div><div class="ant" style="right:60px;transform:rotate(12deg)"></div>
-   <div class="brand">MISSA</div><div class="led" style="left:150px"></div><div class="led" style="left:200px"></div><div class="led" style="left:250px"></div></div>
+   <div class="brand" data-layout-allow-occlusion>MISSA</div><div class="led" style="left:150px"></div><div class="led" style="left:200px"></div><div class="led" style="left:250px"></div></div>
   <div id="gauge" class="card6 o0">
    <svg viewBox="0 0 460 300" style="position:absolute;left:0;top:30px;width:460px;height:300px">
     <path d="M60 250 A170 170 0 0 1 400 250" fill="none" stroke="#23407f" stroke-width="34" stroke-linecap="round"/>
