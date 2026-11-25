@@ -186,6 +186,10 @@ body { font-family:"Nunito",sans-serif; color:#fff; }
 /* MISSA 3D stage — WebGL canvas composited above the scenes */
 #hf3d-canvas{position:absolute;inset:0;width:1080px;height:1920px;display:block;pointer-events:none;z-index:45}
 .sub{z-index:120}
+
+/* Correctif de lisibilité : la vignette contient déjà sa propre accroche.
+   Le bouton superposé masquait le texte « Ton prochain coup de cœur ». */
+#big .play { display: none !important; }
 </style>
 </head>
 <body>
